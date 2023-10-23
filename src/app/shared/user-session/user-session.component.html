@@ -1,0 +1,50 @@
+<div class="container align-items-center" *ngIf="carga">
+    <div class="row align-items-center">
+        <div class="col-xs-10 col-lg-5 container">
+            <div class="row">
+                <div class="my-2 row">
+                    <h1 class="text-center">Ingreso</h1>
+                </div>
+                <form
+                    [formGroup]="userSessionForm"
+                    (ngSubmit)="!userSessionForm.invalid && onLogInMyUser()"
+                    class="">
+                    <div class="mb-3 row">
+                        <label for="myUser" class="col-lg-3 col-form-label">User</label>
+                        <div class="col-lg-9  ">
+                            <input novalidate id="myUser" class="form-control" formControlName="myUser" placeholder="User">
+                            <div class="fw-lighter text-danger small" *ngIf="userSessionForm.get('myUser')!.touched">
+                                <div *ngIf="userSessionForm.get('myUser')!.hasError('required')">User required</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="myPassword" class="col-lg-3 col-form-label">Password</label>
+                        <div class="col-lg-9">
+                            <input novalidate type="password" id="myPassword" class="form-control" formControlName="myPassword" placeholder="********">
+                            <div class="fw-lighter text-danger small" *ngIf="userSessionForm.get('myPassword')!.touched">
+                                <div *ngIf="userSessionForm.get('myPassword')!.hasError('required')">Pass required</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 text-center mt-3">
+                        <button type="submit"
+                                class="btn btn-warning col-8"
+                                id="btnIngresar"
+                                aria-label="Autenticarse en la plataforma"
+                                [disabled]="!userSessionForm.valid">Ok</button>
+                    </div>
+                </form>
+                <div class="col-12 text-center mt-2">
+                    <p>Get Account? <a href="/signup">Sign In</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-10 col-lg-5 card px-2">
+            <div class="card-body text-center">
+                <h2 class="my-2">ABC Jobs</h2>
+            </div>
+          </div>
+    </div>
+  </div>
+  
