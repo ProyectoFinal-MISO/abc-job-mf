@@ -10,6 +10,7 @@ import { HomeRoutingModule } from './home/home-routing.module';
 import { InterceptorService } from './interceptors/interceptor.service';
 import { ToastrModule } from 'ngx-toastr';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { UserModule } from './user/user.module';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     HomeRoutingModule,
     BrowserAnimationsModule,    
     NgbModule,
+    UserModule,
     ToastrModule.forRoot({
       timeOut: 5000,
       positionClass: 'toast-bottom-right',

@@ -1,0 +1,112 @@
+<div class="container align-items-center" *ngIf="carga">
+    <div class="row align-items-center">
+      <div class="col-xs-10 col-lg-5 card px-2 ">
+        <div class="card-body text-center">
+          <h2 class="my-2">Sign In</h2>
+        </div>
+      </div>
+  
+      <div class="col-xs-10 col-lg-5 container">
+        <div class="row">
+  
+          <div class="my-2 row">
+            <h1 class="text-center">Register</h1>
+          </div>
+  
+          <form [formGroup]="userForm" (ngSubmit)="addUser()">
+  
+            <div class="form-group">
+              <div class="mb-3 row">
+                <label for="username" class="col-lg-3 col-form-label">Username</label>
+                <div class="col-lg-9  ">
+                  <input formControlName="username" type="text" class="form-control" placeholder="Username">
+                  <div class="fw-lighter text-danger small" *ngIf="userForm.get('username')!.touched">
+                    <div *ngIf="userForm.get('username')?.hasError('required')">
+                      You must type an username
+                    </div>
+                    <div *ngIf="userForm.get('username')?.hasError('email')">
+                      You must type an valid email
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+   
+            <div class="form-group">
+              <div class="mb-3 row">
+                <label for="password" class="col-lg-3 col-form-label">Password</label>
+                <div class="col-lg-9">
+                  <input formControlName="password" type="password" class="form-control" placeholder="*********">
+                  <div class="fw-lighter text-danger small" *ngIf="userForm.get('password')!.touched">
+                    <div *ngIf="userForm.get('password')?.hasError('required')">
+                        You must type a password
+                    </div>
+                    <div *ngIf="userForm.get('password')?.hasError('maxlength')">
+                        text must be max 50 characteres
+                    </div>
+                    <div *ngIf="userForm.get('password')?.hasError('minlength')">
+                        text must be min 4 characteres
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+  
+            <div class="form-group">
+              <div class="mb-3 row">
+                <label for="confirmPassword" class="col-lg-3 col-form-label">Confirm Password</label>
+                <div class="col-lg-9">
+                  <input formControlName="confirmPassword" type="password" class="form-control" placeholder="*********">
+                  <div class="fw-lighter text-danger small" *ngIf="userForm.get('confirmPassword')!.touched">
+                    <div *ngIf="userForm.get('confirmPassword')?.hasError('required')">
+                        You must type a password
+                    </div>
+                    <div *ngIf="userForm.get('confirmPassword')?.hasError('maxlength')">
+                        text must be max 50 characteres
+                    </div>
+                    <div *ngIf="userForm.get('confirmPassword')?.hasError('minlength')">
+                        text must be min 4 characteres
+                    </div>
+                    <div *ngIf="userForm.get('confirmPassword')?.value !== userForm.get('password')?.value">
+                      Both password are diferent
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            
+            <div class="form-group">
+                <div class="mb-3 row">
+                  <label for="name" class="col-lg-3 col-form-label">Name</label>
+                  <div class="col-lg-9  ">
+                    <input formControlName="name" type="text" class="form-control" placeholder="Name">
+                    <div class="fw-lighter text-danger small" *ngIf="userForm.get('name')!.touched">
+                      <div *ngIf="userForm.get('name')?.hasError('required')">
+                          You must type a name
+                      </div>
+                      <div *ngIf="userForm.get('name')?.hasError('maxlength')">
+                          text must be max 50 characteres
+                      </div>
+                      <div *ngIf="userForm.get('name')?.hasError('minlength')">
+                          text must be min 4 characteres
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>  
+            <div class="col-12 text-center mt-3">
+              <button type="submit" class="btn btn-warning col-8"
+                [disabled]="!userForm.valid || userForm.get('confirmPassword')?.value !== userForm.get('password')?.value">Register</button>
+            </div>
+            <div class="col-12 text-center mt-2">
+              <p>Dou you have an account? <a href="/">Log In</a></p>
+            </div>
+  
+          </form>
+  
+        </div>
+      </div>
+    </div>
+  </div>
+  

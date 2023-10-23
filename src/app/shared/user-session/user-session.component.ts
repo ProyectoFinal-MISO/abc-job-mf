@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserSessionService } from './user-session.service';
 import { UserSessionDto } from './../model/user-session';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { UserType } from '../model/user-type';
 
 @Component({
   selector: 'app-user-session',
@@ -17,6 +18,7 @@ export class UserSessionComponent {
   token: string | null;
   myUser: UserSessionDto;
   carga: boolean = false;
+  error: boolean = false;
 
   constructor(
     private userSessionService: UserSessionService,
@@ -24,28 +26,32 @@ export class UserSessionComponent {
     private router: Router,
     private toastr: ToastrService
   ) {
-    this.token = null;
-    this.userSessionForm = this.formBuilder.group({
-      myUser: ['', [Validators.required]],
-      myPassword: ['', [Validators.required]],
-    });
-    this.myUser= {
-      id: 0,
-      user: '',
-      password: '',
-      token:''
-    };
   }
-
-  error: boolean = false;
 
   ngOnInit() {
     this.token = localStorage.getItem('token');
     if (this.token) {
       const decodedToken = this.helper.decodeToken(this.token);
       this.router.navigate([`/home`]);
-    } else {      
+    } else {         
+    this.userSessionForm = this.formBuilder.group({
+      myUser: ['', [Validators.required]],
+      myPassword: ['', [Validators.required]],
+      userType: ['', [Validators.required]]
+    });
       this.carga = true;
+    }
+  }
+
+  signIn(){
+    if(this.userSessionForm.get('userType')?.value === UserType.Employee){      
+      this.router.navigate([`/signin/employee`]);
+    }
+    else if (this.userSessionForm.get('userType')?.value === UserType.Company){
+      this.router.navigate([`/signin/company`]);
+    }
+    else{
+      this.router.navigate([`/signin/technicalresource`]);
     }
   }
 
@@ -53,9 +59,8 @@ export class UserSessionComponent {
     this.error = false;
     this.myUser = {
       id: 0,
-      user: this.userSessionForm.get('myUser')?.value,
-      password: this.userSessionForm.get('myPassword')?.value,
-      token:''
+      username: this.userSessionForm.get('myUser')?.value,
+      password: this.userSessionForm.get('myPassword')?.value
     };
 
     this.userSessionService.userLogIn(this.myUser).subscribe((res) => {

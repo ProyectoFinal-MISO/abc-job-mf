@@ -1,5 +1,5 @@
-import { User } from "./user";
-
-export interface UserSessionDto  extends User{
-    token?:string;
+export enum UserType{
+    TechnicalResource = 'PERSON',
+    Company = 'COMPANY',
+    Employee = 'EMPLOYEE'
 }                                                                                                                                                   

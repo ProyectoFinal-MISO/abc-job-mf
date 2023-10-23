@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { UserSessionDto } from '../model/user-session';
 import { Observable, Subject } from 'rxjs';
+import { UserSessionDto } from '../model/user-session';
+import { User } from '../model/user';
 
 @Injectable({
   providedIn: 'root'
@@ -49,25 +50,22 @@ export class UserSessionService {
         return this.http.post<any>(`${this.backUrl}/login`, myUser);
     }
 
-    userSignUp(myUser: UserSessionDto): Observable<any> {
-        return this.http.post<any>(`${this.backUrl}/signin`, myUser);
-    }
-
    /* getUsers(): Observable<Usuario>{
       return this.http.get<Usuario>(`${this.backUrl}/usuario`);
     }
 */
-    getUser(userId:number): Observable<UserSessionDto>{
-      return this.http.get<UserSessionDto>(`${this.backUrl}/user/${userId}`);
-    }
+  getUser(userId:number): Observable<User>{
+      return this.http.get<User>(`${this.backUrl}/user/${userId}`);
+  }
 
-    getUserToken(): string {
+  getUserToken(): string|undefined {
       const userModel = <UserSessionDto>JSON.parse(this.getItem(environment.sur)!);
       if (userModel !== null) {
           return userModel.token;
       }
       return '';
   }
+  
   sendMessage(status: Boolean) {
     this.subjectStatus.next({ status: status })
   }

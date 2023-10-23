@@ -27,6 +27,15 @@
                             </div>
                         </div>
                     </div>
+                    <div class="mb-3 row">
+                        <label for="userType" class="col-lg-3 col-form-label">UserType</label>
+                        <div class="col-lg-9">
+                            <input type="text" id="userType" class="form-control" formControlName="userType" >
+                            <div class="fw-lighter text-danger small" *ngIf="userSessionForm.get('userType')!.touched">
+                                <div *ngIf="userSessionForm.get('userType')!.hasError('required')">userType required</div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-12 text-center mt-3">
                         <button type="submit"
                                 class="btn btn-warning col-8"
@@ -35,9 +44,7 @@
                                 [disabled]="!userSessionForm.valid">Ok</button>
                     </div>
                 </form>
-                <div class="col-12 text-center mt-2">
-                    <p>Get Account? <a href="/signup">Sign In</a></p>
-                </div>
+                <button aria-label="Sign in button" type="button" id="signin" class="btn btn-primary" (click)="signIn()">Sign In</button>
             </div>
         </div>
         <div class="col-xs-10 col-lg-5 card px-2">
