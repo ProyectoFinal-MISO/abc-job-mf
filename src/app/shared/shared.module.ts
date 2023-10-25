@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 import { UserSessionComponent } from './user-session/user-session.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CarouselModule } from 'primeng/carousel';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { CarouselModule } from 'primeng/carousel';
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
-    CarouselModule
+    CarouselModule,
+    NgbModule
   ],
   exports:[
     LayoutComponent,
