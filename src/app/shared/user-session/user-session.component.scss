@@ -3,3 +3,63 @@
     margin: auto;
     display: block;
 }
+
+.img-background{
+position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.btn-login{
+    background-color: #828F9A;
+    color: #ffffff  
+}
+
+.btn-radio{
+    background-color: #a9b581;
+    color: #2b1e6e;
+    border-radius: 0;
+    margin: .5rem !important;
+}
+
+.card-login{
+    background-color: transparent;
+    width: 72%;
+    margin-left: 23%;
+    margin-top: -15%;
+}
+
+.w-95-px{
+    width: 95px;
+}
+  
+.carousel-control-prev:hover{
+    background: rgba(0, 0, 0, 0.7);
+}
+  
+.carousel-control-next:hover{
+    background: rgba(0, 0, 0, 0.7);
+}
+  
+.image-size{
+    width:100%;
+    height: 70vh;
+    object-fit: cover;
+}
+
+  :host ::ng-deep {
+    .itemslider-item {
+        .itemslider-item-content {
+            border: 1px solid var(--surface-d);
+            border-radius: 3px;
+            margin: .3rem;
+            text-align: center;
+            padding: 2rem 0;
+        }
+    
+        .itemslider-image {
+            width: 50%;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)
+        }
+    }
+}

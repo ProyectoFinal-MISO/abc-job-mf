@@ -6,6 +6,7 @@ import { UserSessionService } from './user-session.service';
 import { UserSessionDto } from './../model/user-session';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { UserType } from '../model/user-type';
+import { CarouselModule } from 'primeng/carousel';
 
 @Component({
   selector: 'app-user-session',
@@ -19,6 +20,8 @@ export class UserSessionComponent {
   myUser: UserSessionDto;
   carga: boolean = false;
   error: boolean = false;
+  itemsslider: Array<any> = [];
+  responsiveOptions: any[];
 
   constructor(
     private userSessionService: UserSessionService,
@@ -41,6 +44,8 @@ export class UserSessionComponent {
     });
       this.carga = true;
     }
+    this.fillItemsSlider();
+    this.fillResponsive();
   }
 
   signIn(){
@@ -76,6 +81,36 @@ export class UserSessionComponent {
       });
        });
     });
+  }
+
+  fillItemsSlider(){
+    this.itemsslider = [
+      { name:'img001', url: './../../../assets/images/img_slide_001.png'},
+      { name:'img002', url: './../../../assets/images/img_slide_002.png'},
+      { name:'img003', url: './../../../assets/images/img_slide_003.png'},
+      { name:'img004', url: './../../../assets/images/img_slide_004.png'},
+      { name:'img005', url: './../../../assets/images/img_slide_005.png'},
+    ];
+  }
+
+  fillResponsive(){    
+    this.responsiveOptions = [
+      {
+          breakpoint: '1024px',
+          numVisible: 3,
+          numScroll: 3
+      },
+      {
+          breakpoint: '768px',
+          numVisible: 2,
+          numScroll: 2
+      },
+      {
+          breakpoint: '560px',
+          numVisible: 1,
+          numScroll: 1
+      }
+  ];
   }
 
 }
