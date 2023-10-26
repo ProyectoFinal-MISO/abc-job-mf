@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserSessionService } from './user-session.service';
@@ -22,6 +22,7 @@ export class UserSessionComponent {
   error: boolean = false;
   itemsslider: Array<any> = [];
   responsiveOptions: any[];
+  userTypeEnum: typeof UserType = UserType;
 
   constructor(
     private userSessionService: UserSessionService,
@@ -49,6 +50,7 @@ export class UserSessionComponent {
   }
 
   signIn(){
+    this.getMyUser();
     if(this.userSessionForm.get('userType')?.value === UserType.Employee){      
       this.router.navigate([`/signin/employee`]);
     }
@@ -56,18 +58,19 @@ export class UserSessionComponent {
       this.router.navigate([`/signin/company`]);
     }
     else{
-      this.router.navigate([`/signin/technicalresource`]);
+      const navigationExtras: NavigationExtras = {
+        state: {
+          data: this.myUser
+        }
+      };
+  
+      this.router.navigate([`/signin/technicalresource`], navigationExtras);
     }
   }
 
   onLogInMyUser() {
-    this.error = false;
-    this.myUser = {
-      id: 0,
-      username: this.userSessionForm.get('myUser')?.value,
-      password: this.userSessionForm.get('myPassword')?.value
-    };
-
+    this.error = false;  
+    this.getMyUser();
     this.userSessionService.userLogIn(this.myUser).subscribe((res) => {
       localStorage.setItem('token', res.token);
       const decodedToken = this.helper.decodeToken(res.token);
@@ -111,6 +114,15 @@ export class UserSessionComponent {
           numScroll: 1
       }
   ];
+  }
+
+  getMyUser(){
+    this.myUser = {
+      id: 0,
+      username: this.userSessionForm.get('myUser')?.value,
+      password: this.userSessionForm.get('myPassword')?.value,
+      userType: this.userSessionForm.get('userType')?.value
+    };
   }
 
 }

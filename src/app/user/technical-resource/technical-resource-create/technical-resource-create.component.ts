@@ -1,12 +1,15 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, NavigationStart, NavigationExtras, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { ToastrService } from 'ngx-toastr';
 import { UserSessionDto } from 'src/app/shared/model/user-session';
 import { TechnicalResource } from 'src/app/shared/model/technical-resource';
 import { TechnicalResourceService } from '../technical-resource.service';
 import { UserSessionService } from 'src/app/shared/user-session/user-session.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-technical-resource-create',
@@ -14,7 +17,6 @@ import { UserSessionService } from 'src/app/shared/user-session/user-session.ser
   styleUrls: ['./technical-resource-create.component.scss']
 })
 export class TechnicalResourceCreateComponent {
-  @Input() userType!: string;
   @Input() userSessionDto!: UserSessionDto;
   
   helper = new JwtHelperService();
@@ -22,14 +24,18 @@ export class TechnicalResourceCreateComponent {
   token: string | null;  
   carga: boolean = false;
   user: TechnicalResource;
+  localStageData: any;
 
   constructor(
     private userService: TechnicalResourceService,
     private userSessionService: UserSessionService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private route: ActivatedRoute,
+    private location: Location
   ) {
+    this.localStageData = location.getState(); // do what you want 
   }
 
   createForm(){
@@ -84,9 +90,11 @@ export class TechnicalResourceCreateComponent {
       const decodedToken = this.helper.decodeToken(this.token);
       this.router.navigate([`/home`]);
       //this.router.navigate([`/carreras/${decodedToken.sub}/${this.token}`]);
-    } else { 
-      this.createForm();
-      this.carga = true;
+    } else {
+      if(this.localStageData && this.localStageData?.data && !this.userSessionDto){
+          this.userSessionDto = this.localStageData?.data as UserSessionDto;
+          this.createForm();    
+      }     
     }
   }
 
