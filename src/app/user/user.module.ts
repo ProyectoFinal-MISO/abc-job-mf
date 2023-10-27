@@ -6,12 +6,14 @@ import { EmployeeCreateComponent } from './employee/employee-create/employee-cre
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from '../app-routing.module';
 import { RouterModule } from '@angular/router';
+import { AcademicDataComponent } from './academic-data/academic-data.component';
 
 @NgModule({
   declarations: [
     EmployeeCreateComponent,
     TechnicalResourceCreateComponent,
-    CompanyCreateComponent
+    CompanyCreateComponent,
+    AcademicDataComponent
   ],
   imports: [
     CommonModule,

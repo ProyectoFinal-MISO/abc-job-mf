@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl, FormArray} from '@angular/forms';
 import { ActivatedRoute, NavigationStart, NavigationExtras, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
@@ -25,6 +25,7 @@ export class TechnicalResourceCreateComponent {
   carga: boolean = false;
   user: TechnicalResource;
   localStageData: any;
+  countries: any = ['Florida', 'South Dakota', 'Tennessee', 'Michigan'];
 
   constructor(
     private userService: TechnicalResourceService,
@@ -41,31 +42,25 @@ export class TechnicalResourceCreateComponent {
   createForm(){
     this.userForm = this.formBuilder.group({
       username: [this.userSessionDto.username, [Validators.required, Validators.email]],
-      password: [this.userSessionDto.password, [Validators.required, Validators.maxLength(50), Validators.minLength(4),],],
-      confirmPassword: ['', [Validators.required, Validators.maxLength(50), Validators.minLength(4),],],
+      password: [this.userSessionDto.password, [Validators.required, Validators.maxLength(50), Validators.minLength(4)]],
+      confirmPassword: ['', [Validators.required, Validators.maxLength(50), Validators.minLength(4)]],
       userType: [this.userSessionDto.userType, [Validators.required]],      
-      email: [this.userSessionDto.username, [Validators.required, Validators.email]],
-      name: ['', [Validators.required]],      
+      email: [this.userSessionDto.username, [Validators.required, Validators.email]],           
       personalInformation: this.formBuilder.group({
-        lastName: [''],
-        age: [0],
+        name: ['', [Validators.required, Validators.minLength(1)]], 
+        lastName: ['', [Validators.required, Validators.minLength(1)]],
+        age: [0, [Validators.required, Validators.min(18)]],
         genre: [''],
         typeIdentification: ['', [Validators.required]],
-        identification: ['', [Validators.required]],
-        phoneNumber: [''],
+        identification: ['', [Validators.required, Validators.minLength(1)]],
+        phoneNumber: ['', [Validators.required]],
         mobileNumber: [''],
         city: [''],
         state: [''],
         country: [''],
         address: ['']
       }),
-      academicInformation: this.formBuilder.group({
-        schoolName: ['', [Validators.required]],
-        educationLevel: [''],
-        professionalSector: [''],
-        startDate: [''],
-        endDate: ['']
-      }),
+      academicInformation: this.formBuilder.array([]),
       professionalExperience: this.formBuilder.group({
         titleJob: [''],
         companyName: [''],
@@ -93,7 +88,8 @@ export class TechnicalResourceCreateComponent {
     } else {
       if(this.localStageData && this.localStageData?.data && !this.userSessionDto){
           this.userSessionDto = this.localStageData?.data as UserSessionDto;
-          this.createForm();    
+          this.createForm();
+          this.carga = true; 
       }     
     }
   }
@@ -124,5 +120,18 @@ export class TechnicalResourceCreateComponent {
 
   private _createFormArrayControls(): FormControl{
     return this.formBuilder.control('', Validators.required)
+  }
+
+  changeCountry(e:any) {
+    console.log(e.value)
+    this.countries.setValue(e.target.value, {onlySelf: true});
+  }
+
+  addAcademicInformation() {
+    const academicInformation = this.userForm.get('academicInformation') as FormArray;
+    academicInformation.push(this.formBuilder.group({
+      username: '',
+      password: '',
+    }));
   }
 }

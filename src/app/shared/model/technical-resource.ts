@@ -10,10 +10,10 @@ import { User } from "./user";
 export interface TechnicalResource extends User {
     email?:string;
     personalInformation:PersonalInformationTechnicalResource;
-    academicInformation:AcademicInformation;
-    professionalExperience:ProfessionalExperience;
-    aditionalInformation:AditionalInformation;
+    academicInformation:Array<AcademicInformation>;
+    professionalExperience:Array<ProfessionalExperience>;    
     programmingLanguages:Array<ProgrammingLanguage>;
     languages:Array<Language>;
     personalSkills:Array<PersonalSkill>;
+    aditionalInformation:AditionalInformation;
 }

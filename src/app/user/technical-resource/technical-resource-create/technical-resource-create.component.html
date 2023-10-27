@@ -1,11 +1,5 @@
 <div class="container align-items-center" *ngIf="carga">
-    <div class="row align-items-center">
-      <div class="col-xs-10 col-lg-5 card px-2 ">
-        <div class="card-body text-center">
-          <h2 class="my-2">Sign In</h2>
-        </div>
-      </div>
-  
+    <div class="row align-items-center">  
       <div class="col-xs-10 col-lg-5 container">
         <div class="row">
   
@@ -14,12 +8,195 @@
           </div>
   
           <form [formGroup]="userForm" (ngSubmit)="addUser()">
-  
+            <h3 class="title-section">Personal Data</h3>
+            <div formGroupName="personalInformation">
+              <div class="form-group">
+                <div class="mb-3 row">
+                  <label for="name" class="col-lg-3 col-form-label">Name</label>
+                  <div class="col-lg-9  ">
+                    <input formControlName="name" type="text" class="form-control" placeholder="Name">
+                    <div class="fw-lighter text-danger small" *ngIf="userForm.get('name')!.touched">
+                      <div *ngIf="userForm.get('name')?.hasError('required')">
+                          You must type a name
+                      </div>
+                      <div *ngIf="userForm.get('name')?.hasError('minlength')">
+                          text must be min 4 characteres
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="mb-3 row">
+                  <label for="lastName" class="col-lg-3 col-form-label">Last Name</label>
+                  <div class="col-lg-9  ">
+                    <input formControlName="lastName" type="text" class="form-control" placeholder="Last Name">
+                    <div class="fw-lighter text-danger small" *ngIf="userForm.get('lastName')!.touched">
+                      <div *ngIf="userForm.get('lastName')?.hasError('required')">
+                          You must type a lastName
+                      </div>
+                      <div *ngIf="userForm.get('lastName')?.hasError('minlength')">
+                          text must be min 4 characteres
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="mb-3 row">              
+                  <label for="typeIdentification" class="col-lg-3 col-form-label">Type Identification</label>
+                  <div class="col-lg-9  ">
+                      <select class="form-select mb-3" (change)="changeTypeIdentification($event)" formControlName="typeIdentification">
+                          <option value="">Choose Type Identification</option>
+                          <option *ngFor="let typeIdentification of countries" [ngValue]="typeIdentification">{{typeIdentification}}</option>
+                      </select>
+                      <div class="fw-lighter text-danger small" *ngIf="userForm.get('personalInformation.typeIdentification')!.touched">
+                          <div *ngIf="userForm.get('personalInformation.typeIdentification')?.hasError('required')">
+                              Please provide any type identification
+                          </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="mb-3 row">              
+                  <label for="identification" class="col-lg-3 col-form-label">Identification</label>
+                  <div class="col-lg-9  ">
+                      <input formControlName="identification" type="text" class="form-control" placeholder="Identification">
+                      <div class="fw-lighter text-danger small" *ngIf="userForm.get('personalInformation.identification')!.touched">
+                      <div *ngIf="userForm.get('personalInformation.identification')?.hasError('required')">
+                          You must type your identification
+                      </div>
+                      <div *ngIf="userForm.get('personalInformation.identification')?.hasError('minlength')">
+                        text must be min 4 characteres
+                      </div>
+                      </div>
+                  </div>
+                </div>
+              </div>              
+              <div class="form-group">
+                <div class="mb-3 row">
+                  <label for="age" class="col-lg-3 col-form-label">Age</label>
+                  <div class="col-lg-9  ">
+                      <input formControlName="age" type="number" class="form-control" placeholder="Age">
+                      <div class="fw-lighter text-danger small" *ngIf="userForm.get('personalInformation.age')!.touched">
+                          <div *ngIf="userForm.get('personalInformation.age')?.hasError('required')">
+                              You must type your age
+                          </div>
+                          <div *ngIf="userForm.get('age')?.hasError('min')">
+                              text must an adult
+                          </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="mb-3 row">              
+                  <label for="genre" class="col-lg-3 col-form-label">Genre</label>
+                  <div class="col-lg-9  ">
+                      <select class="form-select mb-3" (change)="changeGenre($event)" formControlName="genre">
+                          <option value="">Choose Genre</option>
+                          <option *ngFor="let genre of countries" [ngValue]="genre">{{genre}}</option>
+                      </select>
+                      <div class="fw-lighter text-danger small" *ngIf="userForm.get('personalInformation.genre')!.touched">
+                          <div *ngIf="userForm.get('personalInformation.genre')?.hasError('required')">
+                              Please provide any genre
+                          </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                  <div class="mb-3 row">              
+                  <label for="phoneNumber" class="col-lg-3 col-form-label">Phone Number</label>
+                  <div class="col-lg-9  ">
+                      <input formControlName="phoneNumber" type="text" class="form-control" placeholder="Phone Number">
+                      <div class="fw-lighter text-danger small" *ngIf="userForm.get('personalInformation.phoneNumber')!.touched">
+                      <div *ngIf="userForm.get('personalInformation.phoneNumber')?.hasError('required')">
+                          You must type an phone number
+                      </div>
+                      </div>
+                  </div>
+                  </div>
+              </div>
+              <div class="form-group">
+                <div class="mb-3 row">              
+                  <label for="mobileNumber" class="col-lg-3 col-form-label">Mobile Number</label>
+                  <div class="col-lg-9  ">
+                      <input formControlName="mobileNumber" type="text" class="form-control" placeholder="Mobile Number">
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                  <div class="mb-3 row">              
+                  <label for="country" class="col-lg-3 col-form-label">Country</label>
+                  <div class="col-lg-9  ">
+                      <select class="form-select mb-3" (change)="changeCountry($event)" formControlName="country">
+                          <option value="">Choose Country</option>
+                          <option *ngFor="let country of countries" [ngValue]="country">{{country}}</option>
+                      </select>
+                      <div class="fw-lighter text-danger small" *ngIf="userForm.get('personalInformation.country')!.touched">
+                          <div *ngIf="userForm.get('personalInformation.country')?.hasError('required')">
+                              Please provide any country
+                          </div>
+                      </div>
+                  </div>
+                  </div>
+              </div>
+              <div class="form-group">
+                <div class="mb-3 row">              
+                  <label for="state" class="col-lg-3 col-form-label">State</label>
+                  <div class="col-lg-9  ">
+                      <select class="form-select mb-3" (change)="changeState($event)" formControlName="state">
+                          <option value="">Choose State</option>
+                          <option *ngFor="let state of countries" [ngValue]="state">{{state}}</option>
+                      </select>
+                      <div class="fw-lighter text-danger small" *ngIf="userForm.get('personalInformation.state')!.touched">
+                          <div *ngIf="userForm.get('personalInformation.state')?.hasError('required')">
+                              Please provide any state
+                          </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="mb-3 row">              
+                  <label for="city" class="col-lg-3 col-form-label">City</label>
+                  <div class="col-lg-9  ">
+                      <select class="form-select mb-3" (change)="changeCity($event)" formControlName="city">
+                          <option value="">Choose City</option>
+                          <option *ngFor="let city of countries" [ngValue]="city">{{city}}</option>
+                      </select>
+                      <div class="fw-lighter text-danger small" *ngIf="userForm.get('personalInformation.city')!.touched">
+                          <div *ngIf="userForm.get('personalInformation.city')?.hasError('required')">
+                              Please provide any city
+                          </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="mb-3 row">              
+                  <label for="address" class="col-lg-3 col-form-label">Address</label>
+                  <div class="col-lg-9  ">
+                      <input formControlName="address" type="text" class="form-control" placeholder="Address">
+                  </div>
+                </div>
+              </div>
+            </div>
             <div class="form-group">
-              <div class="mb-3 row">
+              <div class="mb-3 row">              
+                <label for="email" class="col-lg-3 col-form-label">Email</label>
+                <div class="col-lg-9  ">
+                  <input formControlName="email" type="email" class="form-control" placeholder="Email">
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="mb-3 row">              
                 <label for="username" class="col-lg-3 col-form-label">Username</label>
                 <div class="col-lg-9  ">
-                  <input formControlName="username" type="text" class="form-control" placeholder="Username">
+                  <input formControlName="username" type="email" class="form-control" placeholder="Username">
                   <div class="fw-lighter text-danger small" *ngIf="userForm.get('username')!.touched">
                     <div *ngIf="userForm.get('username')?.hasError('required')">
                       You must type an username
@@ -30,8 +207,7 @@
                   </div>
                 </div>
               </div>
-            </div>
-   
+            </div>   
             <div class="form-group">
               <div class="mb-3 row">
                 <label for="password" class="col-lg-3 col-form-label">Password</label>
@@ -50,8 +226,7 @@
                   </div>
                 </div>
               </div>
-            </div>
-  
+            </div>  
             <div class="form-group">
               <div class="mb-3 row">
                 <label for="confirmPassword" class="col-lg-3 col-form-label">Confirm Password</label>
@@ -74,27 +249,18 @@
                 </div>
               </div>
             </div>
-
-            
-            <div class="form-group">
-                <div class="mb-3 row">
-                  <label for="name" class="col-lg-3 col-form-label">Name</label>
-                  <div class="col-lg-9  ">
-                    <input formControlName="name" type="text" class="form-control" placeholder="Name">
-                    <div class="fw-lighter text-danger small" *ngIf="userForm.get('name')!.touched">
-                      <div *ngIf="userForm.get('name')?.hasError('required')">
-                          You must type a name
-                      </div>
-                      <div *ngIf="userForm.get('name')?.hasError('maxlength')">
-                          text must be max 50 characteres
-                      </div>
-                      <div *ngIf="userForm.get('name')?.hasError('minlength')">
-                          text must be min 4 characteres
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>  
+            <h3 class="title-section">Academic Data</h3>
+            <div formArrayName="academicInformation" *ngFor="let acainf of form.controls.academicInformation?.value; let i = index">
+              <ng-container [formGroupName]="i">
+                <div class="card top-0 start-50 translate-middle-x card-array-form" id="{{'academicInformationCard' + i}}">
+                  <input [formControlName]="schoolName" type="text" class="form-control" placeholder="School Name">
+                  <input [formControlName]="educationLevel" type="text" class="form-control" placeholder="Education Level">
+                  <input [formControlName]="professionalSector" type="text" class="form-control" placeholder="Professional Sector">
+                  <input [formControlName]="startDate" type="date" class="form-control">
+                  <input [formControlName]="endDate" type="date" class="form-control">                
+                </div> 
+              </ng-container>              
+            </div>
             <div class="col-12 text-center mt-3">
               <button type="submit" class="btn btn-warning col-8"
                 [disabled]="!userForm.valid || userForm.get('confirmPassword')?.value !== userForm.get('password')?.value">Register</button>
