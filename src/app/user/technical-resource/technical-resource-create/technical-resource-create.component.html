@@ -46,7 +46,7 @@
                 <div class="mb-3 row">              
                   <label for="typeIdentification" class="col-lg-3 col-form-label">Type Identification</label>
                   <div class="col-lg-9  ">
-                      <select class="form-select mb-3" (change)="changeTypeIdentification($event)" formControlName="typeIdentification">
+                      <select class="form-select mb-3" formControlName="typeIdentification">
                           <option value="">Choose Type Identification</option>
                           <option *ngFor="let typeIdentification of typesIdentification" [ngValue]="typeIdentification">{{typeIdentification}}</option>
                       </select>
@@ -94,7 +94,7 @@
                 <div class="mb-3 row">              
                   <label for="genre" class="col-lg-3 col-form-label">Genre</label>
                   <div class="col-lg-9  ">
-                      <select class="form-select mb-3" (change)="changeGenre($event)" formControlName="genre">
+                      <select class="form-select mb-3"  formControlName="genre">
                           <option value="">Choose Genre</option>
                           <option *ngFor="let genre of genres" [ngValue]="genre">{{genre}}</option>
                       </select>
@@ -131,9 +131,9 @@
                   <div class="mb-3 row">              
                   <label for="country" class="col-lg-3 col-form-label">Country</label>
                   <div class="col-lg-9  ">
-                      <select class="form-select mb-3" (change)="changeCountry($event)" formControlName="country">
+                      <select class="form-select mb-3"  formControlName="country">
                           <option value="">Choose Country</option>
-                          <option *ngFor="let country of countries" [ngValue]="country">{{country}}</option>
+                          <option *ngFor="let country of countries" [ngValue]="country">{{country.name}}</option>
                       </select>
                       <div class="fw-lighter text-danger small" *ngIf="userForm.get('personalInformation.country')!.touched">
                           <div *ngIf="userForm.get('personalInformation.country')?.hasError('required')">
@@ -147,9 +147,9 @@
                 <div class="mb-3 row">              
                   <label for="state" class="col-lg-3 col-form-label">State</label>
                   <div class="col-lg-9  ">
-                      <select class="form-select mb-3" (change)="changeState($event)" formControlName="state">
+                      <select class="form-select mb-3"  formControlName="state">
                           <option value="">Choose State</option>
-                          <option *ngFor="let state of states" [ngValue]="state">{{state}}</option>
+                          <option *ngFor="let state of states" [ngValue]="state">{{state.name}}</option>
                       </select>
                       <div class="fw-lighter text-danger small" *ngIf="userForm.get('personalInformation.state')!.touched">
                           <div *ngIf="userForm.get('personalInformation.state')?.hasError('required')">
@@ -163,9 +163,9 @@
                 <div class="mb-3 row">              
                   <label for="city" class="col-lg-3 col-form-label">City</label>
                   <div class="col-lg-9  ">
-                      <select class="form-select mb-3" (change)="changeCity($event)" formControlName="city">
+                      <select class="form-select mb-3"  formControlName="city">
                           <option value="">Choose City</option>
-                          <option *ngFor="let city of countries" [ngValue]="city">{{city}}</option>
+                          <option *ngFor="let city of countries" [ngValue]="city">{{city.name}}</option>
                       </select>
                       <div class="fw-lighter text-danger small" *ngIf="userForm.get('personalInformation.city')!.touched">
                           <div *ngIf="userForm.get('personalInformation.city')?.hasError('required')">

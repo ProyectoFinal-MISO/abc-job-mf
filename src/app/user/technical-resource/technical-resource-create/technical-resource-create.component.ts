@@ -12,6 +12,7 @@ import { UserSessionService } from 'src/app/shared/user-session/user-session.ser
 import { Location } from '@angular/common';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AcademicInformationComponent } from '../../academic-information/academic-information.component';
+import { AcademicInformation } from 'src/app/shared/model/academic-information';
 
 @Component({
   selector: 'app-technical-resource-create',
@@ -33,7 +34,6 @@ export class TechnicalResourceCreateComponent {
   typesIdentification: any = ['CC', 'CE', 'PASSPORT', 'NIT'];
   genres: any = ['MALE', 'FEMALE', 'OTHER'];
   closeResult = '';
-  academicInformations: FormArray<FormGroup>;
 
   constructor(
     private userService: TechnicalResourceService,
@@ -88,8 +88,8 @@ export class TechnicalResourceCreateComponent {
       personalSkills: this.formBuilder.array([this._createFormArrayControls()])
     });
     
-    this.userForm.get('academicInformation') as FormArray;
-    this.addAcademicInformationFormGroup();
+    this.userForm.get('academicInformation') as FormArray<FormGroup>;
+    this.initAcademicInformationFormGroup();
   }
 
   ngOnInit() {
@@ -162,7 +162,8 @@ export class TechnicalResourceCreateComponent {
 
   goAddAcademicInformation() {
     this.modalService.open(AcademicInformationComponent, {ariaLabelledBy: 'myModalLabel',  backdrop: 'static' }).result.then((result) => {
-      this.academicInformations.push(this.formBuilder.group(result));
+      debugger
+      this.addAcademicInformation(result);
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -183,7 +184,7 @@ export class TechnicalResourceCreateComponent {
     return this.userForm.get('academicInformation') as FormArray<FormGroup>;
   }
 
-  addAcademicInformationFormGroup() {
+  initAcademicInformationFormGroup() {
     return this.formBuilder.group({
       schoolName:new FormControl(''),
       educationLevel:new FormControl(''),
@@ -191,5 +192,18 @@ export class TechnicalResourceCreateComponent {
       startDate:new FormControl(''),
       endDate:new FormControl('')
     });
+  }
+
+  addAcademicInformation(data:any) {
+    debugger
+    const academicInformationAux = data as AcademicInformation;
+    this.getAcademicInformations.push(this.formBuilder.group({
+      schoolName:academicInformationAux?.schoolName,
+      educationLevel:academicInformationAux?.educationLevel,
+      professionalSector:academicInformationAux?.professionalSector,
+      startDate:academicInformationAux?.startDate,
+      endDate:academicInformationAux?.endDate
+    })
+    );
   }
 }

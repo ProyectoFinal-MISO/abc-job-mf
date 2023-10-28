@@ -52,6 +52,7 @@ export class AcademicInformationComponent implements OnInit{
 
   changeEducationLevel(e:any) {
     console.log(e.value)
+    debugger
     this.educationLevels.setValue(e.target.value, {onlySelf: true});
   }
 

@@ -26,7 +26,7 @@
                             <div class="mb-3 row">              
                                 <label i18n for="educationLevel" class="col-lg-3 col-form-label">Education Level</label>
                                 <div class="col-lg-9 ">
-                                    <select class="form-select mb-3" (change)="changeEducationLevel($event)" formControlName="educationLevel">
+                                    <select class="form-select mb-3" formControlName="educationLevel">
                                         <option value="">Choose Education Level</option>
                                         <option *ngFor="let educationLevel of educationLevels" [ngValue]="educationLevel">{{educationLevel}}</option>
                                     </select>
@@ -43,7 +43,7 @@
                             <div class="mb-3 row">              
                                 <label i18n for="professionalSector" class="col-lg-3 col-form-label">Professional Sector</label>
                                 <div class="col-lg-9 ">
-                                    <select class="form-select mb-3" (change)="changeProfessionalSector($event)" formControlName="professionalSector">
+                                    <select class="form-select mb-3" formControlName="professionalSector">
                                         <option value="">Choose Professional Sector</option>
                                         <option *ngFor="let professionalSector of professionalSectors" [ngValue]="professionalSector">{{professionalSector}}</option>
                                     </select>
@@ -60,7 +60,7 @@
                             <div class="mb-3 row">              
                                 <label i18n for="startDate" class="col-lg-3 col-form-label">Start Date</label>
                                 <div class="col-lg-9  ">
-                                    <input formControlName="startDate" id="startDate" type="text" class="form-control" placeholder="Start Date" required>
+                                    <input formControlName="startDate" id="startDate" type="date" class="form-control" placeholder="Start Date" required>
                                     <div class="fw-lighter text-danger small" *ngIf="modalForm.get('startDate')!.touched">
                                         <div i18n class="alert alert-danger alert-dismissible fade show" *ngIf="modalForm.get('startDate')?.hasError('required')">
                                             You must type a start date
@@ -74,7 +74,7 @@
                             <div class="mb-3 row">              
                                 <label i18n for="endDate" class="col-lg-3 col-form-label">End Date</label>
                                 <div class="col-lg-9  ">
-                                    <input formControlName="endDate" id="endDate" type="text" class="form-control" placeholder="End Date" required>
+                                    <input formControlName="endDate" id="endDate" type="date" class="form-control" placeholder="End Date" required>
                                     <div class="fw-lighter text-danger small" *ngIf="modalForm.get('endDate')!.touched">
                                         <div i18n class="alert alert-danger alert-dismissible fade show" *ngIf="modalForm.get('endDate')?.hasError('required')">
                                             You must type a end date
