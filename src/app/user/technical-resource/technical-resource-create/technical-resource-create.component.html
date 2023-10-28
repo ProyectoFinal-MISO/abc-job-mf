@@ -15,11 +15,11 @@
                   <label for="name" class="col-lg-3 col-form-label">Name</label>
                   <div class="col-lg-9  ">
                     <input formControlName="name" type="text" class="form-control" placeholder="Name">
-                    <div class="fw-lighter text-danger small" *ngIf="userForm.get('name')!.touched">
-                      <div *ngIf="userForm.get('name')?.hasError('required')">
+                    <div class="fw-lighter text-danger small" *ngIf="userForm.get('personalInformation.name')!.touched">
+                      <div *ngIf="userForm.get('personalInformation.name')?.hasError('required')">
                           You must type a name
                       </div>
-                      <div *ngIf="userForm.get('name')?.hasError('minlength')">
+                      <div *ngIf="userForm.get('personalInformation.name')?.hasError('minlength')">
                           text must be min 4 characteres
                       </div>
                     </div>
@@ -31,11 +31,11 @@
                   <label for="lastName" class="col-lg-3 col-form-label">Last Name</label>
                   <div class="col-lg-9  ">
                     <input formControlName="lastName" type="text" class="form-control" placeholder="Last Name">
-                    <div class="fw-lighter text-danger small" *ngIf="userForm.get('lastName')!.touched">
-                      <div *ngIf="userForm.get('lastName')?.hasError('required')">
+                    <div class="fw-lighter text-danger small" *ngIf="userForm.get('personalInformation.lastName')!.touched">
+                      <div *ngIf="userForm.get('personalInformation.lastName')?.hasError('required')">
                           You must type a lastName
                       </div>
-                      <div *ngIf="userForm.get('lastName')?.hasError('minlength')">
+                      <div *ngIf="userForm.get('personalInformation.lastName')?.hasError('minlength')">
                           text must be min 4 characteres
                       </div>
                     </div>
@@ -252,7 +252,7 @@
             <h3 class="title-section">Academic Information</h3>
             <button (click)="goAddAcademicInformation()">Add</button>
             <div formArrayName="academicInformation" >
-              <ng-container *ngFor="let acainf of academicInformations.controls; index as i">
+              <ng-container *ngFor="let acainf of getAcademicInformations.controls; index as i">
 
                 <div class="card top-0 start-50 translate-middle-x card-array-form" id="{{'academicInformationCard' + i}}" [formGroupName]="i">
                   <input type="text" class="form-control" placeholder="School Name" formControlName="schoolName">

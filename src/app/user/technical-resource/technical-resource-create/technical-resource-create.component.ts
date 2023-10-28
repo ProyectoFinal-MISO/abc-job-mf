@@ -179,6 +179,10 @@ export class TechnicalResourceCreateComponent {
     }
   }
 
+  get getAcademicInformations() {
+    return this.userForm.get('academicInformation') as FormArray<FormGroup>;
+  }
+
   addAcademicInformationFormGroup() {
     return this.formBuilder.group({
       schoolName:new FormControl(''),
