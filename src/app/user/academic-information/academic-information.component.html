@@ -28,7 +28,7 @@
                                 <div class="col-lg-9 ">
                                     <select class="form-select mb-3" (change)="changeEducationLevel($event)" formControlName="educationLevel">
                                         <option value="">Choose Education Level</option>
-                                        <option *ngFor="let educationLevel of educationsLevel" [ngValue]="educationLevel">{{educationLevel}}</option>
+                                        <option *ngFor="let educationLevel of educationLevels" [ngValue]="educationLevel">{{educationLevel}}</option>
                                     </select>
                                     <div class="fw-lighter text-danger small" *ngIf="modalForm.get('educationLevel')!.touched">
                                         <div i18n *ngIf="modalForm.get('educationLevel')?.hasError('required')">
@@ -45,7 +45,7 @@
                                 <div class="col-lg-9 ">
                                     <select class="form-select mb-3" (change)="changeProfessionalSector($event)" formControlName="professionalSector">
                                         <option value="">Choose Professional Sector</option>
-                                        <option *ngFor="let professionalSector of educationsLevel" [ngValue]="professionalSector">{{professionalSector}}</option>
+                                        <option *ngFor="let professionalSector of professionalSectors" [ngValue]="professionalSector">{{professionalSector}}</option>
                                     </select>
                                     <div class="fw-lighter text-danger small" *ngIf="modalForm.get('professionalSector')!.touched">
                                         <div i18n *ngIf="modalForm.get('professionalSector')?.hasError('required')">

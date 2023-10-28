@@ -10,6 +10,8 @@ import { TechnicalResource } from 'src/app/shared/model/technical-resource';
 import { TechnicalResourceService } from '../technical-resource.service';
 import { UserSessionService } from 'src/app/shared/user-session/user-session.service';
 import { Location } from '@angular/common';
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AcademicInformationComponent } from '../../academic-information/academic-information.component';
 
 @Component({
   selector: 'app-technical-resource-create',
@@ -25,7 +27,12 @@ export class TechnicalResourceCreateComponent {
   carga: boolean = false;
   user: TechnicalResource;
   localStageData: any;
-  countries: any = ['Florida', 'South Dakota', 'Tennessee', 'Michigan'];
+  countries: any = [{id:1, code:'COL', name: 'Colombia', parentId:0}, {id:2, code:'USA', name: 'Unit States', parentId:0}, {id:3, code:'MEX', name: 'México', parentId:0}];
+  states: any = [{id:1, code:'CUN', name:'Cundinamarca', parentId:1}, {id:3, code:'ANT', name:'Antioquia', parentId:1}, {id:3, code:'VAL', name:'Valle', parentId:1}, {id:4, code:'FLD', name:'Florida', parentId:2}, {id:5, code:'WAS', name:'Washington', parentId:2}];
+  cities: any = [{id:1, code:'BOG', name:'Bogotá', parentId:1}, {id:2, code:'ZIP', name:'Zipaquirá', parentId:1}, {id:3, code:'MED', name:'Medellín', parentId:2}, {id:4, code:'ITA', name:'Itagüí', parentId:2}, {id:5, code:'CAL', name:'Cali', parentId:3}, {id:6, code:'MIA', name:'Miami', parentId:4}, {id:7, code:'WHA', name:'Washington', parentId:5}];
+  typesIdentification: any = ['CC', 'CE', 'PASSPORT', 'NIT'];
+  genres: any = ['MALE', 'FEMALE', 'OTHER'];
+  closeResult = '';
 
   constructor(
     private userService: TechnicalResourceService,
@@ -34,7 +41,8 @@ export class TechnicalResourceCreateComponent {
     private router: Router,
     private toastr: ToastrService,
     private route: ActivatedRoute,
-    private location: Location
+    private location: Location,
+    private modalService: NgbModal
   ) {
     this.localStageData = location.getState(); // do what you want 
   }
@@ -127,11 +135,43 @@ export class TechnicalResourceCreateComponent {
     this.countries.setValue(e.target.value, {onlySelf: true});
   }
 
-  addAcademicInformation() {
-    const academicInformation = this.userForm.get('academicInformation') as FormArray;
-    academicInformation.push(this.formBuilder.group({
-      username: '',
-      password: '',
-    }));
+  changeState(e:any) {
+    console.log(e.value)
+    this.states.setValue(e.target.value, {onlySelf: true});
+  }
+
+  changeCity(e:any) {
+    console.log(e.value)
+    this.cities.setValue(e.target.value, {onlySelf: true});
+  }
+
+  changeTypeIdentification(e:any) {
+    console.log(e.value)
+    this.typesIdentification.setValue(e.target.value, {onlySelf: true});
+  }
+
+  changeGenre(e:any) {
+    console.log(e.value)
+    this.genres.setValue(e.target.value, {onlySelf: true});
+  }
+
+  goAddAcademicInformation() {
+    this.modalService.open(AcademicInformationComponent, {ariaLabelledBy: 'myModalLabel',  backdrop: 'static' }).result.then((result) => {
+      const academicInformation = this.userForm.get('academicInformation') as FormArray;
+      academicInformation.push(this.formBuilder.group(result));
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
   }
 }

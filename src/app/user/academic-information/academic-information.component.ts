@@ -3,16 +3,19 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ToastrService } from 'ngx-toastr';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
+
 @Component({
-  selector: 'app-academic-data',
-  templateUrl: './academic-data.component.html',
-  styleUrls: ['./academic-data.component.scss']
+  selector: 'app-academic-information',
+  templateUrl: './academic-information.component.html',
+  styleUrls: ['./academic-information.component.scss']
 })
-export class AcademicDataComponent implements OnInit {
+export class AcademicInformationComponent implements OnInit{
 
   isDisabled!: boolean;
   modalForm!: FormGroup;
   result: any;
+  educationLevels: any = ['MASTER', 'GRADUATE', 'BACHELOR'];
+  professionalSectors: any = ['TI', 'HR', 'RETAIL'];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -45,5 +48,15 @@ export class AcademicDataComponent implements OnInit {
       this.toastr.success("Confirmation", "Record added");
       this.activeModal.close(this.modalForm.value);
     }
+  }
+
+  changeEducationLevel(e:any) {
+    console.log(e.value)
+    this.educationLevels.setValue(e.target.value, {onlySelf: true});
+  }
+
+  changeProfessionalSector(e:any) {
+    console.log(e.value)
+    this.professionalSectors.setValue(e.target.value, {onlySelf: true});
   }
 }

@@ -6,14 +6,14 @@ import { EmployeeCreateComponent } from './employee/employee-create/employee-cre
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from '../app-routing.module';
 import { RouterModule } from '@angular/router';
-import { AcademicDataComponent } from './academic-data/academic-data.component';
+import { AcademicInformationComponent } from './academic-information/academic-information.component';
 
 @NgModule({
   declarations: [
     EmployeeCreateComponent,
     TechnicalResourceCreateComponent,
     CompanyCreateComponent,
-    AcademicDataComponent
+    AcademicInformationComponent
   ],
   imports: [
     CommonModule,
@@ -25,7 +25,8 @@ import { AcademicDataComponent } from './academic-data/academic-data.component';
   exports: [
     EmployeeCreateComponent,
     TechnicalResourceCreateComponent,
-    CompanyCreateComponent
+    CompanyCreateComponent,
+    AcademicInformationComponent
   ]
 })
 export class UserModule { }
