@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl, FormArray} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl, FormArray, UntypedFormArray} from '@angular/forms';
 import { ActivatedRoute, NavigationStart, NavigationExtras, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
@@ -33,7 +33,7 @@ export class TechnicalResourceCreateComponent {
   typesIdentification: any = ['CC', 'CE', 'PASSPORT', 'NIT'];
   genres: any = ['MALE', 'FEMALE', 'OTHER'];
   closeResult = '';
-  academicInformationArray:FormArray;
+  academicInformations: FormArray<FormGroup>;
 
   constructor(
     private userService: TechnicalResourceService,
@@ -69,15 +69,8 @@ export class TechnicalResourceCreateComponent {
         country: [''],
         address: ['']
       }),
-      academicInformation: this.formBuilder.array([
-        this.formBuilder.group({
-          schoolName:this.formBuilder.control(null),
-          educationLevel:this.formBuilder.control(null),
-          professionalSector:this.formBuilder.control(null),
-          startDate:this.formBuilder.control(null),
-          endDate:this.formBuilder.control(null),
-        }),
-      ]),
+      academicInformation: new UntypedFormArray([]),
+      
       professionalExperience: this.formBuilder.group({
         titleJob: [''],
         companyName: [''],
@@ -94,8 +87,9 @@ export class TechnicalResourceCreateComponent {
       languages: this.formBuilder.array([this._createFormArrayControls()]),
       personalSkills: this.formBuilder.array([this._createFormArrayControls()])
     });
-
-    this.academicInformationArray = this.userForm.get('academicInformation') as FormArray;
+    
+    this.userForm.get('academicInformation') as FormArray;
+    this.addAcademicInformationFormGroup();
   }
 
   ngOnInit() {
@@ -168,7 +162,7 @@ export class TechnicalResourceCreateComponent {
 
   goAddAcademicInformation() {
     this.modalService.open(AcademicInformationComponent, {ariaLabelledBy: 'myModalLabel',  backdrop: 'static' }).result.then((result) => {
-      this.academicInformationArray.push(this.formBuilder.group(result));
+      this.academicInformations.push(this.formBuilder.group(result));
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -185,7 +179,13 @@ export class TechnicalResourceCreateComponent {
     }
   }
 
-  get academicInformations() {
-    return this.userForm.controls['academicInformation'] as FormArray;
+  addAcademicInformationFormGroup() {
+    return this.formBuilder.group({
+      schoolName:new FormControl(''),
+      educationLevel:new FormControl(''),
+      professionalSector:new FormControl(''),
+      startDate:new FormControl(''),
+      endDate:new FormControl('')
+    });
   }
 }
