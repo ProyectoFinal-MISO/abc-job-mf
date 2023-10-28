@@ -33,6 +33,7 @@ export class TechnicalResourceCreateComponent {
   typesIdentification: any = ['CC', 'CE', 'PASSPORT', 'NIT'];
   genres: any = ['MALE', 'FEMALE', 'OTHER'];
   closeResult = '';
+  academicInformationArray:FormArray;
 
   constructor(
     private userService: TechnicalResourceService,
@@ -68,7 +69,15 @@ export class TechnicalResourceCreateComponent {
         country: [''],
         address: ['']
       }),
-      academicInformation: this.formBuilder.array([]),
+      academicInformation: this.formBuilder.array([
+        this.formBuilder.group({
+          schoolName:this.formBuilder.control(null),
+          educationLevel:this.formBuilder.control(null),
+          professionalSector:this.formBuilder.control(null),
+          startDate:this.formBuilder.control(null),
+          endDate:this.formBuilder.control(null),
+        }),
+      ]),
       professionalExperience: this.formBuilder.group({
         titleJob: [''],
         companyName: [''],
@@ -85,6 +94,8 @@ export class TechnicalResourceCreateComponent {
       languages: this.formBuilder.array([this._createFormArrayControls()]),
       personalSkills: this.formBuilder.array([this._createFormArrayControls()])
     });
+
+    this.academicInformationArray = this.userForm.get('academicInformation') as FormArray;
   }
 
   ngOnInit() {
@@ -157,8 +168,7 @@ export class TechnicalResourceCreateComponent {
 
   goAddAcademicInformation() {
     this.modalService.open(AcademicInformationComponent, {ariaLabelledBy: 'myModalLabel',  backdrop: 'static' }).result.then((result) => {
-      const academicInformation = this.userForm.get('academicInformation') as FormArray;
-      academicInformation.push(this.formBuilder.group(result));
+      this.academicInformationArray.push(this.formBuilder.group(result));
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -173,5 +183,9 @@ export class TechnicalResourceCreateComponent {
     } else {
       return `with: ${reason}`;
     }
+  }
+
+  get academicInformations() {
+    return this.userForm.controls['academicInformation'] as FormArray;
   }
 }

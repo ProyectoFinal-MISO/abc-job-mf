@@ -251,16 +251,15 @@
             </div>
             <h3 class="title-section">Academic Information</h3>
             <button (click)="goAddAcademicInformation()">Add</button>
-            <div formArrayName="academicInformation" *ngFor="let acainf of userForm.controls['academicInformation']?.value; let i = index">
-              <ng-container [formGroupName]="i">
-                <div class="card top-0 start-50 translate-middle-x card-array-form" id="{{'academicInformationCard' + i}}">
+            <div formArrayName="academicInformation" *ngFor="let acainf of academicInformations.controls;let i = index">
+
+                <div class="card top-0 start-50 translate-middle-x card-array-form" id="{{'academicInformationCard' + i}}" [formGroupName]="i">
                   <input [formControlName]="schoolName" type="text" class="form-control" placeholder="School Name">
                   <input [formControlName]="educationLevel" type="text" class="form-control" placeholder="Education Level">
                   <input [formControlName]="professionalSector" type="text" class="form-control" placeholder="Professional Sector">
                   <input [formControlName]="startDate" type="date" class="form-control">
                   <input [formControlName]="endDate" type="date" class="form-control">                
-                </div> 
-              </ng-container>              
+                </div>              
             </div>
             <div class="col-12 text-center mt-3">
               <button type="submit" class="btn btn-warning col-8"
