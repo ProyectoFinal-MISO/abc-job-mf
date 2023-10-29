@@ -74,7 +74,7 @@
                   <div class="mb-3 row">              
                     <label for="typeIdentification" class="col-lg-3 col-form-label text-white">Type Identification</label>
                     <div class="col-lg-9  ">
-                        <select class="form-select mb-3" formControlName="typeIdentification">
+                        <select class="form-select" formControlName="typeIdentification">
                             <option value="">Choose Type Identification</option>
                             <option *ngFor="let typeIdentification of typesIdentification" [ngValue]="typeIdentification">{{typeIdentification}}</option>
                         </select>
@@ -106,7 +106,7 @@
                   <div class="mb-3 row">              
                     <label for="genre" class="col-lg-3 col-form-label text-white">Genre</label>
                     <div class="col-lg-9  ">
-                        <select class="form-select mb-3"  formControlName="genre">
+                        <select class="form-select"  formControlName="genre">
                             <option value="">Choose Genre</option>
                             <option *ngFor="let genre of genres" [ngValue]="genre">{{genre}}</option>
                         </select>
@@ -143,7 +143,7 @@
                     <div class="mb-3 row">              
                     <label for="country" class="col-lg-3 col-form-label text-white">Country</label>
                     <div class="col-lg-9  ">
-                        <select class="form-select mb-3"  formControlName="country">
+                        <select class="form-select"  formControlName="country">
                             <option value="">Choose Country</option>
                             <option *ngFor="let country of countries" [ngValue]="country">{{country.name}}</option>
                         </select>
@@ -159,7 +159,7 @@
                   <div class="mb-3 row">              
                     <label for="state" class="col-lg-3 col-form-label text-white">State</label>
                     <div class="col-lg-9  ">
-                        <select class="form-select mb-3"  formControlName="state">
+                        <select class="form-select"  formControlName="state">
                             <option value="">Choose State</option>
                             <option *ngFor="let state of states" [ngValue]="state">{{state.name}}</option>
                         </select>
@@ -175,7 +175,7 @@
                   <div class="mb-3 row">              
                     <label for="city" class="col-lg-3 col-form-label text-white">City</label>
                     <div class="col-lg-9  ">
-                        <select class="form-select mb-3"  formControlName="city">
+                        <select class="form-select"  formControlName="city">
                             <option value="">Choose City</option>
                             <option *ngFor="let city of countries" [ngValue]="city">{{city.name}}</option>
                         </select>
@@ -196,72 +196,76 @@
                   </div>
                 </div>
               </div>
-              <div class="form-group">
-                <div class="mb-3 row">              
-                  <label for="email" class="col-lg-3 col-form-label text-white">Email</label>
-                  <div class="col-lg-9  ">
-                    <input formControlName="email" type="email" class="form-control" placeholder="Email">
+              <h3 class="title-section pt-3">Account Data</h3>             
+              <div class="card card-info">
+                <div class="form-group">
+                  <div class="mb-3 row">              
+                    <label for="email" class="col-lg-3 col-form-label text-white">Email</label>
+                    <div class="col-lg-9  ">
+                      <input formControlName="email" type="email" class="form-control" placeholder="Email">
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="mb-3 row">              
+                    <label for="username" class="col-lg-3 col-form-label text-white">Username</label>
+                    <div class="col-lg-9  ">
+                      <input formControlName="username" type="email" class="form-control" placeholder="Username">
+                      <div class="fw-lighter text-danger small" *ngIf="userForm.get('username')!.touched">
+                        <div *ngIf="userForm.get('username')?.hasError('required')">
+                          You must type an username
+                        </div>
+                        <div *ngIf="userForm.get('username')?.hasError('email')">
+                          You must type an valid email
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>   
+                <div class="form-group">
+                  <div class="mb-3 row">
+                    <label for="password" class="col-lg-3 col-form-label text-white">Password</label>
+                    <div class="col-lg-9">
+                      <input formControlName="password" type="password" class="form-control" placeholder="*********">
+                      <div class="fw-lighter text-danger small" *ngIf="userForm.get('password')!.touched">
+                        <div *ngIf="userForm.get('password')?.hasError('required')">
+                            You must type a password
+                        </div>
+                        <div *ngIf="userForm.get('password')?.hasError('maxlength')">
+                            text must be max 50 characteres
+                        </div>
+                        <div *ngIf="userForm.get('password')?.hasError('minlength')">
+                            text must be min 4 characteres
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>  
+                <div class="form-group">
+                  <div class="mb-3 row">
+                    <label for="confirmPassword" class="col-lg-3 col-form-label text-white">Confirm Password</label>
+                    <div class="col-lg-9">
+                      <input formControlName="confirmPassword" type="password" class="form-control" placeholder="*********">
+                      <div class="fw-lighter text-danger small" *ngIf="userForm.get('confirmPassword')!.touched">
+                        <div *ngIf="userForm.get('confirmPassword')?.hasError('required')">
+                            You must type a password
+                        </div>
+                        <div *ngIf="userForm.get('confirmPassword')?.hasError('maxlength')">
+                            text must be max 50 characteres
+                        </div>
+                        <div *ngIf="userForm.get('confirmPassword')?.hasError('minlength')">
+                            text must be min 4 characteres
+                        </div>
+                        <div *ngIf="userForm.get('confirmPassword')?.value !== userForm.get('password')?.value">
+                          Both password are diferent
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div class="form-group">
-                <div class="mb-3 row">              
-                  <label for="username" class="col-lg-3 col-form-label text-white">Username</label>
-                  <div class="col-lg-9  ">
-                    <input formControlName="username" type="email" class="form-control" placeholder="Username">
-                    <div class="fw-lighter text-danger small" *ngIf="userForm.get('username')!.touched">
-                      <div *ngIf="userForm.get('username')?.hasError('required')">
-                        You must type an username
-                      </div>
-                      <div *ngIf="userForm.get('username')?.hasError('email')">
-                        You must type an valid email
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>   
-              <div class="form-group">
-                <div class="mb-3 row">
-                  <label for="password" class="col-lg-3 col-form-label text-white">Password</label>
-                  <div class="col-lg-9">
-                    <input formControlName="password" type="password" class="form-control" placeholder="*********">
-                    <div class="fw-lighter text-danger small" *ngIf="userForm.get('password')!.touched">
-                      <div *ngIf="userForm.get('password')?.hasError('required')">
-                          You must type a password
-                      </div>
-                      <div *ngIf="userForm.get('password')?.hasError('maxlength')">
-                          text must be max 50 characteres
-                      </div>
-                      <div *ngIf="userForm.get('password')?.hasError('minlength')">
-                          text must be min 4 characteres
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>  
-              <div class="form-group">
-                <div class="mb-3 row">
-                  <label for="confirmPassword" class="col-lg-3 col-form-label text-white">Confirm Password</label>
-                  <div class="col-lg-9">
-                    <input formControlName="confirmPassword" type="password" class="form-control" placeholder="*********">
-                    <div class="fw-lighter text-danger small" *ngIf="userForm.get('confirmPassword')!.touched">
-                      <div *ngIf="userForm.get('confirmPassword')?.hasError('required')">
-                          You must type a password
-                      </div>
-                      <div *ngIf="userForm.get('confirmPassword')?.hasError('maxlength')">
-                          text must be max 50 characteres
-                      </div>
-                      <div *ngIf="userForm.get('confirmPassword')?.hasError('minlength')">
-                          text must be min 4 characteres
-                      </div>
-                      <div *ngIf="userForm.get('confirmPassword')?.value !== userForm.get('password')?.value">
-                        Both password are diferent
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <h3 class="title-section">Academic Information</h3>
+
+              <h3 class="title-section pt-3">Academic Information</h3>
               <button (click)="goAddAcademicInformation()">Add</button>
               <div formArrayName="academicInformation" >
                 <ng-container *ngFor="let acainf of getAcademicInformations.controls; index as i">
