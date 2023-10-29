@@ -19,7 +19,7 @@
                           <div class="hover-text">Choose file</div>
                           <div class="background"></div>                        
                         </label>
-                        <button class="close" *ngIf="url" (click)="clearFile()"></button>
+                        <button class="close-image" *ngIf="url" (click)="clearFile()"></button>
                       </span>
                       <br/>                      
                       <input id="fileInput" type='file' formControlName="Photo" (change)="handleFileInput($event)">                      
@@ -264,9 +264,8 @@
                   </div>
                 </div>
               </div>
-
-              <h3 class="title-section pt-3">Academic Information</h3>
-              <button (click)="goAddAcademicInformation()">Add</button>
+              <h3 class="title-section pt-4">Academic Information</h3>
+              <button class="float-right pull-right float-end add-item-array" (click)="goAddAcademicInformation()">+</button>
               <div formArrayName="academicInformation" >
                 <ng-container *ngFor="let acainf of getAcademicInformations.controls; index as i">
 

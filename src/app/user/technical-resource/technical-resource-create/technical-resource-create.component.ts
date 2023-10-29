@@ -165,7 +165,6 @@ export class TechnicalResourceCreateComponent {
 
   goAddAcademicInformation() {
     this.modalService.open(AcademicInformationComponent, {ariaLabelledBy: 'myModalLabel',  backdrop: 'static' }).result.then((result) => {
-      debugger
       this.addAcademicInformation(result);
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
@@ -198,7 +197,6 @@ export class TechnicalResourceCreateComponent {
   }
 
   addAcademicInformation(data:any) {
-    debugger
     const academicInformationAux = data as AcademicInformation;
     this.getAcademicInformations.push(this.formBuilder.group({
       schoolName:academicInformationAux?.schoolName,

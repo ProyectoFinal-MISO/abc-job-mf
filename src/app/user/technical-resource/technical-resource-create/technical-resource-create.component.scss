@@ -71,7 +71,7 @@
     border-radius: 50%;
   }
 
-  .close {
+  .close-image {
     position: absolute;
     width: 32px;
     height: 32px;
@@ -83,10 +83,10 @@
     margin-top: -3.5em;
     margin-left: 5em;
   }
-  .close:hover {
+  .close-image:hover {
     opacity: 1;
   }
-  .close:before, .close:after {
+  .close-image:before, .close-image:after {
     position: absolute;
     content: ' ';
     height: 20px;
@@ -96,14 +96,42 @@
     margin-top: -35%;
     margin-left: -1%;
   }
-  .close:before {
+  .close-image:before {
     transform: rotate(45deg);
   }
-  .close:after {
+  .close-image:after {
     transform: rotate(-45deg);
   }
 
   .card-info{
     background-color: #283138;
     padding: 2em;
+  }
+
+  .add-item-array {
+    width: 1.9em;
+    z-index: 2;
+    background: transparent;
+    border-radius: 50%;
+    margin-top: -3em;
+    font-weight: bold;
+    font-size: 16.5px;
+  }
+  .add-item-array:hover {
+    opacity: 1;
+  }
+  .add-item-array:before, .add-item-array:after {
+    content: ' ';
+    height: 20px;
+    width: 2px;
+    background-color: #333;
+    z-index: 2;
+    margin-top: -35%;
+    margin-left: -1%;
+  }
+  .add-item-array:before {
+    transform: rotate(45deg);
+  }
+  .add-item-array:after {
+    transform: rotate(-45deg);
   }
