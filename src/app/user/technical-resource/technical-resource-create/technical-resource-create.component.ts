@@ -34,6 +34,7 @@ export class TechnicalResourceCreateComponent {
   typesIdentification: any = ['CC', 'CE', 'PASSPORT', 'NIT'];
   genres: any = ['MALE', 'FEMALE', 'OTHER'];
   closeResult = '';
+  url!: string;
 
   constructor(
     private userService: TechnicalResourceService,
@@ -56,6 +57,7 @@ export class TechnicalResourceCreateComponent {
       userType: [this.userSessionDto.userType, [Validators.required]],      
       email: [this.userSessionDto.username, [Validators.required, Validators.email]],           
       personalInformation: this.formBuilder.group({
+        photo: [''], 
         name: ['', [Validators.required, Validators.minLength(1)]], 
         lastName: ['', [Validators.required, Validators.minLength(1)]],
         age: [0, [Validators.required, Validators.min(18)]],
@@ -90,6 +92,7 @@ export class TechnicalResourceCreateComponent {
     
     this.userForm.get('academicInformation') as FormArray<FormGroup>;
     this.initAcademicInformationFormGroup();
+    this.readFile();
   }
 
   ngOnInit() {
@@ -205,5 +208,42 @@ export class TechnicalResourceCreateComponent {
       endDate:academicInformationAux?.endDate
     })
     );
+  }
+
+  handleFileInput(event: Event) {
+    const target = event.target as HTMLInputElement;
+    const files = target.files as FileList;
+    const file = files[0];
+    this.userForm.value.Photo = file;
+    if (file) this.saveFile(file);
+  }
+
+  saveFile(file: File) {
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      console.log(reader.result);
+      this.url = reader.result as string;
+      localStorage.setItem('profile', reader.result as string);
+    };
+   reader.readAsDataURL(file);
+  }
+
+  clearFile() {
+    localStorage.removeItem('profile');
+    this.readFile();
+  }
+
+  readFile() {
+    const profile = localStorage.getItem('profile');
+    if (profile) {
+      this.url = profile;
+      const contentType = profile.split(';')[0].replace('data:', '');
+      const file = new File([profile], 'profile.jpeg', {
+        type: contentType,
+      });
+      this.userForm.value.Photo = file;
+    } else {
+      this.url = '';
+    }
   }
 }
