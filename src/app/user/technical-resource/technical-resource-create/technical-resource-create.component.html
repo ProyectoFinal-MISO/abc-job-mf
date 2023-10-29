@@ -268,13 +268,43 @@
               <button class="float-right pull-right float-end add-item-array" (click)="goAddAcademicInformation()">+</button>
               <div formArrayName="academicInformation" >
                 <ng-container *ngFor="let acainf of getAcademicInformations.controls; index as i">
-
-                  <div class="card top-0 start-50 translate-middle-x card-array-form" id="{{'academicInformationCard' + i}}" [formGroupName]="i">
-                    <input type="text" class="form-control" placeholder="School Name" formControlName="schoolName">
-                    <input type="text" class="form-control" placeholder="Education Level" formControlName="educationLevel">
-                    <input type="text" class="form-control" placeholder="Professional Sector" formControlName="professionalSector">
-                    <input type="date" class="form-control" formControlName="startDate">
-                    <input type="date" class="form-control" formControlName="endDate">                
+                  <div class="card card-info mb-3" id="{{'academicInformationCard' + i}}" [formGroupName]="i">
+                    <div class="row">
+                      <div class="col-12 col-xs-12 col-sm-12 col-md-6">
+                        <div class="mb-3 row">
+                          <label class="col-lg-5 col-form-label text-white">School Name:</label>
+                          <div class="col-lg-7">
+                            <input type="text" class="input-to-label form-control" placeholder="School Name" formControlName="schoolName" [readonly]="true" novalidate>
+                          </div>
+                        </div>                        
+                        <div class="mb-3 row">
+                          <label class="col-lg-5 col-form-label text-white">Start Date:</label>
+                          <div class="col-lg-7">
+                            <input type="text" class="input-to-label form-control" formControlName="startDate" [readonly]="true" novalidate>
+                          </div>
+                        </div>
+                        <div class="mb-3 row">
+                          <label class="col-lg-5 col-form-label text-white">Level:</label>
+                          <div class="col-lg-7">
+                            <input type="text" class="input-to-label form-control" placeholder="Education Level" formControlName="educationLevel" [readonly]="true" novalidate>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-12 col-xs-12 col-sm-12 col-md-6">
+                        <div class="mb-3 row">                          
+                          <label class="col-lg-5 col-form-label text-white">Sector:</label>
+                          <div class="col-lg-7">
+                            <input type="text" class="input-to-label form-control" placeholder="Professional Sector" formControlName="professionalSector" [readonly]="true" novalidate>
+                          </div>
+                        </div>
+                        <div class="mb-3 row">
+                          <label class="col-lg-5 col-form-label text-white">End Date:</label>
+                          <div class="col-lg-7">
+                            <input type="text" class="input-to-label form-control" formControlName="endDate" [readonly]="true" novalidate>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </ng-container> 
                   
