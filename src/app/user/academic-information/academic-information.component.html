@@ -1,7 +1,7 @@
 <div class="modal-header" role="main" aria-labelledby="myModalLabel" >
     <h1 i18n class="modal-title modal-title-label-dlg" id="myModalLabel">Academic Information</h1>
 </div>
-<div class="modal-body">
+<div class="modal-body bg-dark">
     <div class="container-fluid pt-2">
         <div class="row">
             <div class="col-md-12">
@@ -10,12 +10,12 @@
                         <!--School Name-->
                         <div class="form-group mx-sm-3 mb-2">
                             <div class="mb-3 row">              
-                                <label i18n for="schoolName" class="col-lg-3 col-form-label">School Name</label>
-                                <div class="col-lg-9  ">
+                                <label i18n for="schoolName" class="col-xs-5 col-md-4 col-form-label text-white">School Name</label>
+                                <div class="col-xs-7 col-md-8">
                                     <input formControlName="schoolName" id="schoolName" type="text" class="form-control" placeholder="School Name" required>
                                     <div class="fw-lighter text-danger small" *ngIf="modalForm.get('schoolName')!.touched">
-                                        <div i18n class="alert alert-danger alert-dismissible fade show" *ngIf="modalForm.get('schoolName')?.hasError('required')">
-                                            You must type your identification
+                                        <div i18n *ngIf="modalForm.get('schoolName')?.hasError('required')">
+                                            You must type an school name
                                         </div>
                                     </div>
                                 </div>
@@ -24,9 +24,9 @@
                         <!--Education Level-->
                         <div class="form-group mx-sm-3 mb-2">
                             <div class="mb-3 row">              
-                                <label i18n for="educationLevel" class="col-lg-3 col-form-label">Education Level</label>
-                                <div class="col-lg-9 ">
-                                    <select class="form-select mb-3" formControlName="educationLevel">
+                                <label i18n for="educationLevel" class="col-xs-5 col-md-4 col-form-label text-white">Education Level</label>
+                                <div class="col-xs-7 col-md-8">
+                                    <select class="form-select" formControlName="educationLevel">
                                         <option value="">Choose Education Level</option>
                                         <option *ngFor="let educationLevel of educationLevels" [ngValue]="educationLevel">{{educationLevel}}</option>
                                     </select>
@@ -41,15 +41,15 @@
                         <!--Professional Sector-->
                         <div class="form-group mx-sm-3 mb-2">
                             <div class="mb-3 row">              
-                                <label i18n for="professionalSector" class="col-lg-3 col-form-label">Professional Sector</label>
-                                <div class="col-lg-9 ">
-                                    <select class="form-select mb-3" formControlName="professionalSector">
+                                <label i18n for="professionalSector" class="col-xs-5 col-md-4 col-form-label text-white">Prof. Sector</label>
+                                <div class="col-xs-7 col-md-8">
+                                    <select class="form-select" formControlName="professionalSector">
                                         <option value="">Choose Professional Sector</option>
                                         <option *ngFor="let professionalSector of professionalSectors" [ngValue]="professionalSector">{{professionalSector}}</option>
                                     </select>
                                     <div class="fw-lighter text-danger small" *ngIf="modalForm.get('professionalSector')!.touched">
                                         <div i18n *ngIf="modalForm.get('professionalSector')?.hasError('required')">
-                                            Please provide any education Level
+                                            Please provide any professional sector
                                         </div>
                                     </div>
                                 </div>
@@ -58,11 +58,11 @@
                         <!--Start Date-->
                         <div class="form-group mx-sm-3 mb-2">
                             <div class="mb-3 row">              
-                                <label i18n for="startDate" class="col-lg-3 col-form-label">Start Date</label>
-                                <div class="col-lg-9  ">
+                                <label i18n for="startDate" class="col-xs-5 col-md-4 col-form-label text-white">Start Date</label>
+                                <div class="col-xs-7 col-md-8">
                                     <input formControlName="startDate" id="startDate" type="date" class="form-control" placeholder="Start Date" required>
                                     <div class="fw-lighter text-danger small" *ngIf="modalForm.get('startDate')!.touched">
-                                        <div i18n class="alert alert-danger alert-dismissible fade show" *ngIf="modalForm.get('startDate')?.hasError('required')">
+                                        <div i18n *ngIf="modalForm.get('startDate')?.hasError('required')">
                                             You must type a start date
                                         </div>
                                     </div>
@@ -72,11 +72,11 @@
                         <!--End Date-->
                         <div class="form-group mx-sm-3 mb-2">
                             <div class="mb-3 row">              
-                                <label i18n for="endDate" class="col-lg-3 col-form-label">End Date</label>
-                                <div class="col-lg-9  ">
+                                <label i18n for="endDate" class="col-xs-5 col-md-4 col-form-label text-white">End Date</label>
+                                <div class="col-xs-7 col-md-8">
                                     <input formControlName="endDate" id="endDate" type="date" class="form-control" placeholder="End Date" required>
                                     <div class="fw-lighter text-danger small" *ngIf="modalForm.get('endDate')!.touched">
-                                        <div i18n class="alert alert-danger alert-dismissible fade show" *ngIf="modalForm.get('endDate')?.hasError('required')">
+                                        <div i18n *ngIf="modalForm.get('endDate')?.hasError('required')">
                                             You must type a end date
                                         </div>
                                     </div>
@@ -89,7 +89,7 @@
         </div>
     </div>
 </div>
-<div class="modal-footer">
+<div class="modal-footer bg-dark">
     <button i18n id="btnCancel" type="button" class="btn btn-danger" (click)="onCancel()" data-dismiss="modal">
       Cancel
     </button>

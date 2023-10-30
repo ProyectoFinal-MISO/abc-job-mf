@@ -7,13 +7,21 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from '../app-routing.module';
 import { RouterModule } from '@angular/router';
 import { AcademicInformationComponent } from './academic-information/academic-information.component';
+import { ProfessionalExperienceComponent } from './professional-experience/professional-experience.component';
+import { PersonalSkillComponent } from './personal-skill/personal-skill.component';
+import { ProgrammingLanguageComponent } from './programming-language/programming-language.component';
+import { LanguageComponent } from './language/language.component';
 
 @NgModule({
   declarations: [
     EmployeeCreateComponent,
     TechnicalResourceCreateComponent,
     CompanyCreateComponent,
-    AcademicInformationComponent
+    AcademicInformationComponent,
+    ProfessionalExperienceComponent,
+    PersonalSkillComponent,
+    ProgrammingLanguageComponent,
+    LanguageComponent
   ],
   imports: [
     CommonModule,
@@ -26,7 +34,11 @@ import { AcademicInformationComponent } from './academic-information/academic-in
     EmployeeCreateComponent,
     TechnicalResourceCreateComponent,
     CompanyCreateComponent,
-    AcademicInformationComponent
+    AcademicInformationComponent,
+    ProfessionalExperienceComponent,
+    PersonalSkillComponent,
+    ProgrammingLanguageComponent,
+    LanguageComponent
   ]
 })
 export class UserModule { }
