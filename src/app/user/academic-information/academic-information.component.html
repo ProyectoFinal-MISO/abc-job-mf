@@ -1,0 +1,101 @@
+<div class="modal-header" role="main" aria-labelledby="myModalLabel" >
+    <h1 i18n class="modal-title modal-title-label-dlg" id="myModalLabel">Academic Information</h1>
+</div>
+<div class="modal-body bg-dark">
+    <div class="container-fluid pt-2">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="container">
+                    <form [formGroup]="modalForm">
+                        <!--School Name-->
+                        <div class="form-group mx-sm-3 mb-2">
+                            <div class="mb-3 row">              
+                                <label i18n for="schoolName" class="col-xs-5 col-md-4 col-form-label text-white">School Name</label>
+                                <div class="col-xs-7 col-md-8">
+                                    <input formControlName="schoolName" id="schoolName" type="text" class="form-control" placeholder="School Name" required>
+                                    <div class="fw-lighter text-danger small" *ngIf="modalForm.get('schoolName')!.touched">
+                                        <div i18n *ngIf="modalForm.get('schoolName')?.hasError('required')">
+                                            You must type an school name
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Education Level-->
+                        <div class="form-group mx-sm-3 mb-2">
+                            <div class="mb-3 row">              
+                                <label i18n for="educationLevel" class="col-xs-5 col-md-4 col-form-label text-white">Education Level</label>
+                                <div class="col-xs-7 col-md-8">
+                                    <select class="form-select" formControlName="educationLevel">
+                                        <option value="">Choose Education Level</option>
+                                        <option *ngFor="let educationLevel of educationLevels" [ngValue]="educationLevel">{{educationLevel}}</option>
+                                    </select>
+                                    <div class="fw-lighter text-danger small" *ngIf="modalForm.get('educationLevel')!.touched">
+                                        <div i18n *ngIf="modalForm.get('educationLevel')?.hasError('required')">
+                                            Please provide any education Level
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Professional Sector-->
+                        <div class="form-group mx-sm-3 mb-2">
+                            <div class="mb-3 row">              
+                                <label i18n for="professionalSector" class="col-xs-5 col-md-4 col-form-label text-white">Prof. Sector</label>
+                                <div class="col-xs-7 col-md-8">
+                                    <select class="form-select" formControlName="professionalSector">
+                                        <option value="">Choose Professional Sector</option>
+                                        <option *ngFor="let professionalSector of professionalSectors" [ngValue]="professionalSector">{{professionalSector}}</option>
+                                    </select>
+                                    <div class="fw-lighter text-danger small" *ngIf="modalForm.get('professionalSector')!.touched">
+                                        <div i18n *ngIf="modalForm.get('professionalSector')?.hasError('required')">
+                                            Please provide any professional sector
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Start Date-->
+                        <div class="form-group mx-sm-3 mb-2">
+                            <div class="mb-3 row">              
+                                <label i18n for="startDate" class="col-xs-5 col-md-4 col-form-label text-white">Start Date</label>
+                                <div class="col-xs-7 col-md-8">
+                                    <input formControlName="startDate" id="startDate" type="date" class="form-control" placeholder="Start Date" required>
+                                    <div class="fw-lighter text-danger small" *ngIf="modalForm.get('startDate')!.touched">
+                                        <div i18n *ngIf="modalForm.get('startDate')?.hasError('required')">
+                                            You must type a start date
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--End Date-->
+                        <div class="form-group mx-sm-3 mb-2">
+                            <div class="mb-3 row">              
+                                <label i18n for="endDate" class="col-xs-5 col-md-4 col-form-label text-white">End Date</label>
+                                <div class="col-xs-7 col-md-8">
+                                    <input formControlName="endDate" id="endDate" type="date" class="form-control" placeholder="End Date" required>
+                                    <div class="fw-lighter text-danger small" *ngIf="modalForm.get('endDate')!.touched">
+                                        <div i18n *ngIf="modalForm.get('endDate')?.hasError('required')">
+                                            You must type a end date
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer bg-dark">
+    <button i18n id="btnCancel" type="button" class="btn btn-danger" (click)="onCancel()" data-dismiss="modal">
+      Cancel
+    </button>
+    <button i18n id="btnSave" type="submit" class="btn btn-success" [disabled]="!modalForm.valid" (click)="onCreate()">
+      Save
+    </button>
+</div>
+  
+  

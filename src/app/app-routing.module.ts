@@ -6,6 +6,7 @@ import { AuthGuard } from './shared/user-session/auth.guard';
 import { CompanyCreateComponent } from './user/company/company-create/company-create.component';
 import { TechnicalResourceCreateComponent } from './user/technical-resource/technical-resource-create/technical-resource-create.component';
 import { EmployeeCreateComponent } from './user/employee/employee-create/employee-create.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   {
@@ -37,7 +38,8 @@ const routes: Routes = [
               data: {}
               }
             ]
-      }
+      },
+      { path: 'home', component: HomeComponent },
     ]
   },  
   { path: 'signin', children: [
@@ -47,8 +49,7 @@ const routes: Routes = [
   ] },
   { path: 'logout', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: UserSessionComponent},
-  { path: '**', redirectTo: 'login', pathMatch: 'full'  },
-  { path: '', redirectTo: 'login', pathMatch: 'full'  }
+  { path: '**', redirectTo: 'login', pathMatch: 'full'  }
 ];
 
 @NgModule({

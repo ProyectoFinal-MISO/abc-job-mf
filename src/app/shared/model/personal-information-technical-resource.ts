@@ -4,4 +4,5 @@ export interface PersonalInformationTechnicalResource extends PersonalInformatio
     lastName:string;
     age:number;
     genre:string;
+    photo:string;
 }
