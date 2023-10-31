@@ -43,6 +43,7 @@ export class TechnicalResourceCreateComponent {
   genres: any = ['MALE', 'FEMALE', 'OTHER'];
   closeResult = '';
   url!: string;
+  transferAvailabilities: any = [{val:0, name:'No'},{val:1, name:'Si'}];
 
   constructor(
     private userService: TechnicalResourceService,
@@ -79,10 +80,10 @@ export class TechnicalResourceCreateComponent {
         country: [''],
         address: ['']
       }),
-      aditionalInformation: this.formBuilder.group({
+      additionalInformation: this.formBuilder.group({
         driverLicense: [''],
         transferAvailability: [''],
-        vehicule: ['']
+        vehicle: ['']
       }),
       academicInformation: new UntypedFormArray([]), 
       professionalExperience: new UntypedFormArray([]),      

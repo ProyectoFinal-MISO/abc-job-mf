@@ -1,284 +1,330 @@
 <div class="container align-items-center" *ngIf="carga">
-    <div class="row align-items-center">  
-      <div class="col-xs-10 col-12 container">
-        <div class="mt-3 row">
+  <div class="row align-items-center">  
+    <div class="col-xs-10 col-12 container">
+      <div class="mt-3 row">
           <h1 class="text-title-banner">
           <img src="./../../../assets/images/abc-jobs-tie.png" alt="Logo de la pagina" class="img-logo-banner">
           SING IN</h1>
-        </div>
-          <form [formGroup]="userForm" (ngSubmit)="addUser()">
+      </div>
+        <form [formGroup]="userForm" (ngSubmit)="addUser()">
             <div class="row">
+              <div class="col-12">
                 <h3 class="title-section">Personal Data</h3>               
                 <div formGroupName="personalInformation">
                   <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                  <div class="form-group">
-                    <div class="row">
-                      <div class="col-xs-12 col-7 col-lg-4">
-                        <span>
-                          <label class="hoverable" for="fileInput">
-                            <img class="img-profile" [src]="url ? url : 'https://www.w3schools.com/howto/img_avatar.png'"> 
-                            <div class="hover-text">Choose file</div>
-                            <div class="background"></div>                        
-                          </label>
-                          <button class="close-image" *ngIf="url" (click)="clearFile()"></button>
-                        </span>
-                        <br/>                      
-                        <input id="fileInput" type='file' formControlName="photo" (change)="handleFileInput($event)">                      
-                      </div>
-                      <div class="col-xs-12 col-5 col-lg-8">
-                        <div class="mb-3 row">
-                          <label for="name" class="col-xs-5 col-md-4 col-form-label text-white">Name</label>
-                          <div class="col-xs-7 col-md-8">
-                            <input formControlName="name" type="text" class="form-control" placeholder="Name">
-                            <div class="fw-lighter text-danger small" *ngIf="userForm.get('personalInformation.name')!.touched">
-                              <div *ngIf="userForm.get('personalInformation.name')?.hasError('required')">
-                                  You must type a name
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-xs-12 col-7 col-lg-4">
+                            <span>
+                              <label class="hoverable" for="fileInput">
+                                <img class="img-profile" [src]="url ? url : 'https://www.w3schools.com/howto/img_avatar.png'"> 
+                                <div class="hover-text">Choose file</div>
+                                <div class="background"></div>                        
+                              </label>
+                              <button class="close-image" *ngIf="url" (click)="clearFile()"></button>
+                            </span>
+                            <br/>                      
+                            <input id="fileInput" type='file' formControlName="photo" (change)="handleFileInput($event)">                      
+                          </div>
+                          <div class="col-xs-12 col-5 col-lg-8">
+                            <div class="mb-3 row">
+                              <label for="name" class="col-xs-5 col-md-4 col-form-label text-white">Name</label>
+                              <div class="col-xs-7 col-md-8">
+                                <input formControlName="name" type="text" class="form-control" placeholder="Name">
+                                <div class="fw-lighter text-danger small" *ngIf="userForm.get('personalInformation.name')!.touched">
+                                  <div *ngIf="userForm.get('personalInformation.name')?.hasError('required')">
+                                      You must type a name
+                                  </div>
+                                  <div *ngIf="userForm.get('personalInformation.name')?.hasError('minlength')">
+                                      text must be min 4 characteres
+                                  </div>
+                                </div>
                               </div>
-                              <div *ngIf="userForm.get('personalInformation.name')?.hasError('minlength')">
-                                  text must be min 4 characteres
+                            </div>
+                            <div class="mb-3 row">
+                              <label for="lastName" class="col-xs-5 col-md-4 col-form-label text-white">Last Name</label>
+                              <div class="col-xs-7 col-md-8  ">
+                                <input formControlName="lastName" type="text" class="form-control" placeholder="Last Name">
+                                <div class="fw-lighter text-danger small" *ngIf="userForm.get('personalInformation.lastName')!.touched">
+                                  <div *ngIf="userForm.get('personalInformation.lastName')?.hasError('required')">
+                                      You must type a lastName
+                                  </div>
+                                  <div *ngIf="userForm.get('personalInformation.lastName')?.hasError('minlength')">
+                                      text must be min 4 characteres
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="mb-3 row">
+                              <label for="age" class="col-xs-5 col-md-4 col-form-label text-white">Age</label>
+                              <div class="col-xs-7 col-md-8">
+                                  <input formControlName="age" type="number" class="form-control" placeholder="Age">
+                                  <div class="fw-lighter text-danger small" *ngIf="userForm.get('personalInformation.age')!.touched">
+                                      <div *ngIf="userForm.get('personalInformation.age')?.hasError('required')">
+                                          You must type your age
+                                      </div>
+                                      <div *ngIf="userForm.get('age')?.hasError('min')">
+                                          text must an adult
+                                      </div>
+                                  </div>
                               </div>
                             </div>
                           </div>
                         </div>
-                        <div class="mb-3 row">
-                          <label for="lastName" class="col-xs-5 col-md-4 col-form-label text-white">Last Name</label>
-                          <div class="col-xs-7 col-md-8  ">
-                            <input formControlName="lastName" type="text" class="form-control" placeholder="Last Name">
-                            <div class="fw-lighter text-danger small" *ngIf="userForm.get('personalInformation.lastName')!.touched">
-                              <div *ngIf="userForm.get('personalInformation.lastName')?.hasError('required')">
-                                  You must type a lastName
+                      </div>
+                      <div class="form-group">
+                        <div class="mb-3 row">              
+                          <label for="typeIdentification" class="col-xs-5 col-md-4 col-form-label text-white">Type Identification</label>
+                          <div class="col-xs-7 col-md-8">
+                              <select class="form-select" formControlName="typeIdentification">
+                                  <option value="">Choose Type Identification</option>
+                                  <option *ngFor="let typeIdentification of typesIdentification" [ngValue]="typeIdentification">{{typeIdentification}}</option>
+                              </select>
+                              <div class="fw-lighter text-danger small" *ngIf="userForm.get('personalInformation.typeIdentification')!.touched">
+                                  <div *ngIf="userForm.get('personalInformation.typeIdentification')?.hasError('required')">
+                                      Please provide any type identification
+                                  </div>
                               </div>
-                              <div *ngIf="userForm.get('personalInformation.lastName')?.hasError('minlength')">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="mb-3 row">              
+                          <label for="identification" class="col-xs-5 col-md-4 col-form-label text-white">Identification</label>
+                          <div class="col-xs-7 col-md-8">
+                              <input formControlName="identification" type="text" class="form-control" placeholder="Identification">
+                              <div class="fw-lighter text-danger small" *ngIf="userForm.get('personalInformation.identification')!.touched">
+                                <div *ngIf="userForm.get('personalInformation.identification')?.hasError('required')">
+                                    You must type your identification
+                                </div>
+                                <div *ngIf="userForm.get('personalInformation.identification')?.hasError('minlength')">
                                   text must be min 4 characteres
+                                </div>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="mb-3 row">              
+                          <label for="genre" class="col-xs-5 col-md-4 col-form-label text-white">Genre</label>
+                          <div class="col-xs-7 col-md-8">
+                              <select class="form-select"  formControlName="genre">
+                                  <option value="">Choose Genre</option>
+                                  <option *ngFor="let genre of genres" [ngValue]="genre">{{genre}}</option>
+                              </select>
+                              <div class="fw-lighter text-danger small" *ngIf="userForm.get('personalInformation.genre')!.touched">
+                                  <div *ngIf="userForm.get('personalInformation.genre')?.hasError('required')">
+                                      Please provide any genre
+                                  </div>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                      <div class="form-group">
+                        <div class="mb-3 row">              
+                          <label for="phoneNumber" class="col-xs-5 col-md-4 col-form-label text-white">Phone Number</label>
+                          <div class="col-xs-7 col-md-8">
+                            <input formControlName="phoneNumber" type="text" class="form-control" placeholder="Phone Number">
+                            <div class="fw-lighter text-danger small" *ngIf="userForm.get('personalInformation.phoneNumber')!.touched">
+                              <div *ngIf="userForm.get('personalInformation.phoneNumber')?.hasError('required')">
+                                  You must type an phone number
                               </div>
                             </div>
                           </div>
                         </div>
-                        <div class="mb-3 row">
-                          <label for="age" class="col-xs-5 col-md-4 col-form-label text-white">Age</label>
+                      </div>
+                      <div class="form-group">
+                        <div class="mb-3 row">              
+                          <label for="mobileNumber" class="col-xs-5 col-md-4 col-form-label text-white">Mobile Number</label>
                           <div class="col-xs-7 col-md-8">
-                              <input formControlName="age" type="number" class="form-control" placeholder="Age">
-                              <div class="fw-lighter text-danger small" *ngIf="userForm.get('personalInformation.age')!.touched">
-                                  <div *ngIf="userForm.get('personalInformation.age')?.hasError('required')">
-                                      You must type your age
+                              <input formControlName="mobileNumber" type="text" class="form-control" placeholder="Mobile Number">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="mb-3 row">              
+                        <label for="country" class="col-xs-5 col-md-4 col-form-label text-white">Country</label>
+                        <div class="col-xs-7 col-md-8">
+                            <select class="form-select"  formControlName="country">
+                                <option value="">Choose Country</option>
+                                <option *ngFor="let country of countries" [ngValue]="country">{{country.name}}</option>
+                            </select>
+                            <div class="fw-lighter text-danger small" *ngIf="userForm.get('personalInformation.country')!.touched">
+                                <div *ngIf="userForm.get('personalInformation.country')?.hasError('required')">
+                                    Please provide any country
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="mb-3 row">              
+                          <label for="state" class="col-xs-5 col-md-4 col-form-label text-white">State</label>
+                          <div class="col-xs-7 col-md-8">
+                              <select class="form-select"  formControlName="state">
+                                  <option value="">Choose State</option>
+                                  <option *ngFor="let state of states" [ngValue]="state">{{state.name}}</option>
+                              </select>
+                              <div class="fw-lighter text-danger small" *ngIf="userForm.get('personalInformation.state')!.touched">
+                                  <div *ngIf="userForm.get('personalInformation.state')?.hasError('required')">
+                                      Please provide any state
                                   </div>
-                                  <div *ngIf="userForm.get('age')?.hasError('min')">
-                                      text must an adult
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="mb-3 row">              
+                          <label for="city" class="col-xs-5 col-md-4 col-form-label text-white">City</label>
+                          <div class="col-xs-7 col-md-8">
+                              <select class="form-select"  formControlName="city">
+                                  <option value="">Choose City</option>
+                                  <option *ngFor="let city of countries" [ngValue]="city">{{city.name}}</option>
+                              </select>
+                              <div class="fw-lighter text-danger small" *ngIf="userForm.get('personalInformation.city')!.touched">
+                                  <div *ngIf="userForm.get('personalInformation.city')?.hasError('required')">
+                                      Please provide any city
                                   </div>
                               </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <div class="mb-3 row">              
-                      <label for="typeIdentification" class="col-xs-5 col-md-4 col-form-label text-white">Type Identification</label>
-                      <div class="col-xs-7 col-md-8">
-                          <select class="form-select" formControlName="typeIdentification">
-                              <option value="">Choose Type Identification</option>
-                              <option *ngFor="let typeIdentification of typesIdentification" [ngValue]="typeIdentification">{{typeIdentification}}</option>
-                          </select>
-                          <div class="fw-lighter text-danger small" *ngIf="userForm.get('personalInformation.typeIdentification')!.touched">
-                              <div *ngIf="userForm.get('personalInformation.typeIdentification')?.hasError('required')">
-                                  Please provide any type identification
-                              </div>
-                          </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <div class="mb-3 row">              
-                      <label for="identification" class="col-xs-5 col-md-4 col-form-label text-white">Identification</label>
-                      <div class="col-xs-7 col-md-8">
-                          <input formControlName="identification" type="text" class="form-control" placeholder="Identification">
-                          <div class="fw-lighter text-danger small" *ngIf="userForm.get('personalInformation.identification')!.touched">
-                          <div *ngIf="userForm.get('personalInformation.identification')?.hasError('required')">
-                              You must type your identification
-                          </div>
-                          <div *ngIf="userForm.get('personalInformation.identification')?.hasError('minlength')">
-                            text must be min 4 characteres
-                          </div>
-                          </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <div class="mb-3 row">              
-                      <label for="genre" class="col-xs-5 col-md-4 col-form-label text-white">Genre</label>
-                      <div class="col-xs-7 col-md-8">
-                          <select class="form-select"  formControlName="genre">
-                              <option value="">Choose Genre</option>
-                              <option *ngFor="let genre of genres" [ngValue]="genre">{{genre}}</option>
-                          </select>
-                          <div class="fw-lighter text-danger small" *ngIf="userForm.get('personalInformation.genre')!.touched">
-                              <div *ngIf="userForm.get('personalInformation.genre')?.hasError('required')">
-                                  Please provide any genre
-                              </div>
-                          </div>
-                      </div>
-                    </div>
-                  </div>
-                  </div><div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                  <div class="form-group">
-                      <div class="mb-3 row">              
-                      <label for="phoneNumber" class="col-xs-5 col-md-4 col-form-label text-white">Phone Number</label>
-                      <div class="col-xs-7 col-md-8">
-                          <input formControlName="phoneNumber" type="text" class="form-control" placeholder="Phone Number">
-                          <div class="fw-lighter text-danger small" *ngIf="userForm.get('personalInformation.phoneNumber')!.touched">
-                          <div *ngIf="userForm.get('personalInformation.phoneNumber')?.hasError('required')">
-                              You must type an phone number
-                          </div>
-                          </div>
-                      </div>
-                      </div>
-                  </div>
-                  <div class="form-group">
-                    <div class="mb-3 row">              
-                      <label for="mobileNumber" class="col-xs-5 col-md-4 col-form-label text-white">Mobile Number</label>
-                      <div class="col-xs-7 col-md-8">
-                          <input formControlName="mobileNumber" type="text" class="form-control" placeholder="Mobile Number">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                      <div class="mb-3 row">              
-                      <label for="country" class="col-xs-5 col-md-4 col-form-label text-white">Country</label>
-                      <div class="col-xs-7 col-md-8">
-                          <select class="form-select"  formControlName="country">
-                              <option value="">Choose Country</option>
-                              <option *ngFor="let country of countries" [ngValue]="country">{{country.name}}</option>
-                          </select>
-                          <div class="fw-lighter text-danger small" *ngIf="userForm.get('personalInformation.country')!.touched">
-                              <div *ngIf="userForm.get('personalInformation.country')?.hasError('required')">
-                                  Please provide any country
-                              </div>
-                          </div>
-                      </div>
-                      </div>
-                  </div>
-                  <div class="form-group">
-                    <div class="mb-3 row">              
-                      <label for="state" class="col-xs-5 col-md-4 col-form-label text-white">State</label>
-                      <div class="col-xs-7 col-md-8">
-                          <select class="form-select"  formControlName="state">
-                              <option value="">Choose State</option>
-                              <option *ngFor="let state of states" [ngValue]="state">{{state.name}}</option>
-                          </select>
-                          <div class="fw-lighter text-danger small" *ngIf="userForm.get('personalInformation.state')!.touched">
-                              <div *ngIf="userForm.get('personalInformation.state')?.hasError('required')">
-                                  Please provide any state
-                              </div>
-                          </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <div class="mb-3 row">              
-                      <label for="city" class="col-xs-5 col-md-4 col-form-label text-white">City</label>
-                      <div class="col-xs-7 col-md-8">
-                          <select class="form-select"  formControlName="city">
-                              <option value="">Choose City</option>
-                              <option *ngFor="let city of countries" [ngValue]="city">{{city.name}}</option>
-                          </select>
-                          <div class="fw-lighter text-danger small" *ngIf="userForm.get('personalInformation.city')!.touched">
-                              <div *ngIf="userForm.get('personalInformation.city')?.hasError('required')">
-                                  Please provide any city
-                              </div>
-                          </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <div class="mb-3 row">              
-                      <label for="address" class="col-xs-5 col-md-4 col-form-label text-white">Address</label>
-                      <div class="col-xs-7 col-md-8">
-                          <input formControlName="address" type="text" class="form-control" placeholder="Address">
-                      </div>
-                    </div>
-                  </div>
-                  </div>
-                </div>
-                </div>
-                <div class="row">
-                <h3 class="title-section pt-3">Account Data</h3>             
-                <div class="card card-info">
-                  <div class="row">
-                  <div class="col-sm-12 col-md-6">
-                  <div class="form-group">
-                    <div class="mb-3 row">              
-                      <label for="email" class="col-xs-5 col-md-4 col-form-label text-white">Email</label>
-                      <div class="col-xs-7 col-md-8">
-                        <input formControlName="email" type="email" class="form-control" placeholder="Email">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <div class="mb-3 row">              
-                      <label for="username" class="col-xs-5 col-md-4 col-form-label text-white">Username</label>
-                      <div class="col-xs-7 col-md-8">
-                        <input formControlName="username" type="email" class="form-control" placeholder="Username">
-                        <div class="fw-lighter text-danger small" *ngIf="userForm.get('username')!.touched">
-                          <div *ngIf="userForm.get('username')?.hasError('required')">
-                            You must type an username
-                          </div>
-                          <div *ngIf="userForm.get('username')?.hasError('email')">
-                            You must type an valid email
+                      <div class="form-group">
+                        <div class="mb-3 row">              
+                          <label for="address" class="col-xs-5 col-md-4 col-form-label text-white">Address</label>
+                          <div class="col-xs-7 col-md-8">
+                              <input formControlName="address" type="text" class="form-control" placeholder="Address">
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                  </div><div class="col-sm-12 col-md-6">
-                  <div class="form-group">
-                    <div class="mb-3 row">
-                      <label for="password" class="col-xs-5 col-md-4 col-form-label text-white">Password</label>
-                      <div class="col-xs-7 col-md-8">
-                        <input formControlName="password" type="password" class="form-control" placeholder="*********">
-                        <div class="fw-lighter text-danger small" *ngIf="userForm.get('password')!.touched">
-                          <div *ngIf="userForm.get('password')?.hasError('required')">
-                              You must type a password
+                </div>
+              </div>
+              <div class="row">
+                  <div class="col-12">
+                    <h3 class="title-section pt-3">Account Data</h3>             
+                    <div class="card card-info mb-3">
+                      <div class="row">
+                        <div class="col-sm-12 col-md-6">
+                          <div class="form-group">
+                            <div class="mb-3 row">              
+                              <label for="email" class="col-xs-5 col-md-4 col-form-label text-white">Email</label>
+                              <div class="col-xs-7 col-md-8">
+                                <input formControlName="email" type="email" class="form-control" placeholder="Email">
+                              </div>
+                            </div>
                           </div>
-                          <div *ngIf="userForm.get('password')?.hasError('maxlength')">
-                              text must be max 50 characteres
+                          <div class="form-group">
+                            <div class="mb-3 row">              
+                              <label for="username" class="col-xs-5 col-md-4 col-form-label text-white">Username</label>
+                              <div class="col-xs-7 col-md-8">
+                                <input formControlName="username" type="email" class="form-control" placeholder="Username">
+                                <div class="fw-lighter text-danger small" *ngIf="userForm.get('username')!.touched">
+                                  <div *ngIf="userForm.get('username')?.hasError('required')">
+                                    You must type an username
+                                  </div>
+                                  <div *ngIf="userForm.get('username')?.hasError('email')">
+                                    You must type an valid email
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
                           </div>
-                          <div *ngIf="userForm.get('password')?.hasError('minlength')">
-                              text must be min 4 characteres
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                          <div class="form-group">
+                            <div class="mb-3 row">
+                              <label for="password" class="col-xs-5 col-md-4 col-form-label text-white">Password</label>
+                              <div class="col-xs-7 col-md-8">
+                                <input formControlName="password" type="password" class="form-control" placeholder="*********">
+                                <div class="fw-lighter text-danger small" *ngIf="userForm.get('password')!.touched">
+                                  <div *ngIf="userForm.get('password')?.hasError('required')">
+                                      You must type a password
+                                  </div>
+                                  <div *ngIf="userForm.get('password')?.hasError('maxlength')">
+                                      text must be max 50 characteres
+                                  </div>
+                                  <div *ngIf="userForm.get('password')?.hasError('minlength')">
+                                      text must be min 4 characteres
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>  
+                          <div class="form-group">
+                            <div class="mb-3 row">
+                              <label for="confirmPassword" class="col-xs-5 col-md-4 col-form-label text-white">Confirm Password</label>
+                              <div class="col-xs-7 col-md-8">
+                                <input formControlName="confirmPassword" type="password" class="form-control" placeholder="*********">
+                                <div class="fw-lighter text-danger small" *ngIf="userForm.get('confirmPassword')!.touched">
+                                  <div *ngIf="userForm.get('confirmPassword')?.hasError('required')">
+                                      You must type a password
+                                  </div>
+                                  <div *ngIf="userForm.get('confirmPassword')?.hasError('maxlength')">
+                                      text must be max 50 characteres
+                                  </div>
+                                  <div *ngIf="userForm.get('confirmPassword')?.hasError('minlength')">
+                                      text must be min 4 characteres
+                                  </div>
+                                  <div *ngIf="userForm.get('confirmPassword')?.value !== userForm.get('password')?.value">
+                                    Both password are diferent
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>  
-                  <div class="form-group">
-                    <div class="mb-3 row">
-                      <label for="confirmPassword" class="col-xs-5 col-md-4 col-form-label text-white">Confirm Password</label>
-                      <div class="col-xs-7 col-md-8">
-                        <input formControlName="confirmPassword" type="password" class="form-control" placeholder="*********">
-                        <div class="fw-lighter text-danger small" *ngIf="userForm.get('confirmPassword')!.touched">
-                          <div *ngIf="userForm.get('confirmPassword')?.hasError('required')">
-                              You must type a password
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-12">
+                    <h3 class="title-section">Additional Information</h3>               
+                      <div formGroupName="additionalInformation">
+                        <div class="row">
+                          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-group">
+                              <div class="mb-3 row">              
+                                <label for="transferAvailability" class="col-xs-5 col-md-4 col-form-label text-white">Transfer Availability</label>
+                                <div class="col-xs-7 col-md-8">
+                                    <select class="form-select" formControlName="transferAvailability">
+                                        <option value="">Choose Transfer Availability</option>
+                                        <option *ngFor="let transferAvailability of transferAvailabilities" [ngValue]="transferAvailability">{{transferAvailability.name}}</option>
+                                    </select>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <div class="mb-3 row">              
+                                <label for="driverLicense" class="col-xs-5 col-md-4 col-form-label text-white">Driver License</label>
+                                <div class="col-xs-7 col-md-8">
+                                    <input formControlName="driverLicense" type="text" class="form-control" placeholder="Driver License">
+                                </div>
+                              </div>
+                            </div>
                           </div>
-                          <div *ngIf="userForm.get('confirmPassword')?.hasError('maxlength')">
-                              text must be max 50 characteres
-                          </div>
-                          <div *ngIf="userForm.get('confirmPassword')?.hasError('minlength')">
-                              text must be min 4 characteres
-                          </div>
-                          <div *ngIf="userForm.get('confirmPassword')?.value !== userForm.get('password')?.value">
-                            Both password are diferent
+                          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-group">
+                                <div class="mb-3 row">              
+                                  <label for="vehicle" class="col-xs-5 col-md-4 col-form-label text-white">Vehicle</label>
+                                  <div class="col-xs-7 col-md-8">
+                                      <input formControlName="vehicle" type="text" class="form-control" placeholder="Vehicle">
+                                  </div>
+                                </div>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
                   </div>
-                  </div>
-                  </div>
-                </div>
-                </div>
+              </div>                
             </div>
             <div class="row">
-              <div class="col-6">
+              <div class="col-12 col-xs-12 col-sm-12 col-md-6">
                 <h3 class="title-section pt-4">Academic Information</h3>
                 <button class="float-right pull-right float-end add-item-array" (click)="goAddAcademicInformation()">+</button>
                 <div formArrayName="academicInformation" >
@@ -324,7 +370,7 @@
                   </ng-container>                    
                 </div>
               </div>
-              <div class="col-6">
+              <div class="col-12 col-xs-12 col-sm-12 col-md-6">
                 <h3 class="title-section pt-4">Professional Experience</h3>
                 <button class="float-right pull-right float-end add-item-array" (click)="goAddProfessionalExperience()">+</button>
                 <div formArrayName="professionalExperience" >
@@ -369,122 +415,104 @@
                     </div>
                   </ng-container>                    
                 </div>
-              </div> 
-              <div class="col-6">
+              </div>              
+              <div class="col-12 col-xs-12 col-sm-12 col-md-6">
                 <h3 class="title-section pt-4">Technical Skills</h3>
                 <button class="float-right pull-right float-end add-item-array" (click)="goAddProgrammingLanguages()">+</button>
                 <div class="card card-info mb-3" id="technicalSkillsCard">
-                <div formArrayName="programmingLanguages" >
-                  <ng-container *ngFor="let acainf of getProgrammingLanguages.controls; index as i">                    
+                  <div formArrayName="programmingLanguages" >
+                    <ng-container *ngFor="let acainf of getProgrammingLanguages.controls; index as i">                    
                       <div class="row" id="{{'row' + i}}" [formGroupName]="i">
-                        <div class="col-12 col-xs-12 col-sm-12 col-md-6">
-                          <div class="mb-3 row">
-                            <div class="col-12">
-                              <input type="text" class="input-to-label form-control" placeholder="Name" formControlName="name" [readonly]="true" novalidate>
-                            </div>
-                          </div>
+                        <div class="col-6">
+                            <input type="text" class="input-to-label form-control" placeholder="Name" formControlName="name" [readonly]="true" novalidate>
                         </div>
-                        <div class="col-12 col-xs-12 col-sm-12 col-md-6">                          
-                          <div class="rating-yellow pe-none">
-                            <input type="radio" id="{{'rating-1-' + i}}" value="1" formControlName="score" [readonly]="true" novalidate/>
-                            <label for="{{'rating-1-' + i}}">★</label>
-                            <input type="radio" id="{{'rating-2-' + i}}" value="2" formControlName="score" [readonly]="true" novalidate/>
-                            <label for="{{'rating-2-' + i}}">★</label>
-                            <input type="radio" id="{{'rating-3-' + i}}" value="3" formControlName="score" [readonly]="true" novalidate/>
-                            <label for="{{'rating-3-' + i}}">★</label>
-                            <input type="radio" id="{{'rating-4-' + i}}" value="4" formControlName="score" [readonly]="true" novalidate/>
-                            <label for="{{'rating-4-' + i}}">★</label>
-                            <input type="radio" id="{{'rating-5-' + i}}" value="5" formControlName="score" [readonly]="true" novalidate/>
-                            <label for="{{'rating-5-' + i}}">★</label>
-                          </div>
+                        <div class="col-6">                          
+                            <div class="rating-yellow pe-none">
+                              <input type="radio" id="{{'rating-1-' + i}}" value="1" formControlName="score" [readonly]="true" novalidate/>
+                              <label for="{{'rating-1-' + i}}">★</label>
+                              <input type="radio" id="{{'rating-2-' + i}}" value="2" formControlName="score" [readonly]="true" novalidate/>
+                              <label for="{{'rating-2-' + i}}">★</label>
+                              <input type="radio" id="{{'rating-3-' + i}}" value="3" formControlName="score" [readonly]="true" novalidate/>
+                              <label for="{{'rating-3-' + i}}">★</label>
+                              <input type="radio" id="{{'rating-4-' + i}}" value="4" formControlName="score" [readonly]="true" novalidate/>
+                              <label for="{{'rating-4-' + i}}">★</label>
+                              <input type="radio" id="{{'rating-5-' + i}}" value="5" formControlName="score" [readonly]="true" novalidate/>
+                              <label for="{{'rating-5-' + i}}">★</label>
+                            </div>
                         </div>
                       </div>                    
-                  </ng-container>                    
+                    </ng-container>                    
+                  </div>
                 </div>
-              </div>
               </div>          
-              <div class="col-6">
+              <div class="col-12 col-xs-12 col-sm-12 col-md-6">
                 <h3 class="title-section pt-4">Personal Skills</h3>
                 <button class="float-right pull-right float-end add-item-array" (click)="goAddPersonalSkill()">+</button>
                 <div class="card card-info mb-3" id="personalSkillsCard">
-                <div formArrayName="personalSkills" >
-                  <ng-container *ngFor="let acainf of getPersonalSkills.controls; index as i">                    
+                  <div formArrayName="personalSkills" >
+                    <ng-container *ngFor="let acainf of getPersonalSkills.controls; index as i">                    
                       <div class="row" id="{{'row' + i}}" [formGroupName]="i">
-                        <div class="col-12 col-xs-12 col-sm-12 col-md-6">
-                          <div class="mb-3 row">
-                            <div class="col-12">
-                              <input type="text" class="input-to-label form-control" placeholder="Name" formControlName="name" [readonly]="true" novalidate>
-                            </div>
-                          </div>
+                        <div class="col-6">
+                            <input type="text" class="input-to-label form-control" placeholder="Name" formControlName="name" [readonly]="true" novalidate>
                         </div>
-                        <div class="col-12 col-xs-12 col-sm-12 col-md-6">                          
-                          <div class="rating-blue pe-none">
-                            <input type="radio" id="{{'rating-1-' + i}}" value="1" formControlName="score" [readonly]="true" novalidate/>
-                            <label for="{{'rating-1-' + i}}">★</label>
-                            <input type="radio" id="{{'rating-2-' + i}}" value="2" formControlName="score" [readonly]="true" novalidate/>
-                            <label for="{{'rating-2-' + i}}">★</label>
-                            <input type="radio" id="{{'rating-3-' + i}}" value="3" formControlName="score" [readonly]="true" novalidate/>
-                            <label for="{{'rating-3-' + i}}">★</label>
-                            <input type="radio" id="{{'rating-4-' + i}}" value="4" formControlName="score" [readonly]="true" novalidate/>
-                            <label for="{{'rating-4-' + i}}">★</label>
-                            <input type="radio" id="{{'rating-5-' + i}}" value="5" formControlName="score" [readonly]="true" novalidate/>
-                            <label for="{{'rating-5-' + i}}">★</label>
-                          </div>
+                        <div class="col-6">                          
+                            <div class="rating-blue pe-none">
+                              <input type="radio" id="{{'rating-1-' + i}}" value="1" formControlName="score" [readonly]="true" novalidate/>
+                              <label for="{{'rating-1-' + i}}">★</label>
+                              <input type="radio" id="{{'rating-2-' + i}}" value="2" formControlName="score" [readonly]="true" novalidate/>
+                              <label for="{{'rating-2-' + i}}">★</label>
+                              <input type="radio" id="{{'rating-3-' + i}}" value="3" formControlName="score" [readonly]="true" novalidate/>
+                              <label for="{{'rating-3-' + i}}">★</label>
+                              <input type="radio" id="{{'rating-4-' + i}}" value="4" formControlName="score" [readonly]="true" novalidate/>
+                              <label for="{{'rating-4-' + i}}">★</label>
+                              <input type="radio" id="{{'rating-5-' + i}}" value="5" formControlName="score" [readonly]="true" novalidate/>
+                              <label for="{{'rating-5-' + i}}">★</label>
+                            </div>
                         </div>                      
-                    </div>
-                  </ng-container>
-                </div>                   
+                      </div>
+                    </ng-container>
+                  </div>                   
                 </div>
               </div>
-              <div class="col-6">
+              <div class="col-12 col-xs-12 col-sm-12 col-md-6">
                 <h3 class="title-section pt-4">Languages</h3>
                 <button class="float-right pull-right float-end add-item-array" (click)="goAddLanguage()">+</button>
                 <div class="card card-info mb-3" id="languagesCard">
-                <div formArrayName="languages">
-                  <ng-container *ngFor="let acainf of getLanguages.controls; index as i">                    
+                  <div formArrayName="languages">
+                    <ng-container *ngFor="let acainf of getLanguages.controls; index as i">                    
                       <div class="row" id="{{'row' + i}}" [formGroupName]="i">
-                        <div class="col-12 col-xs-12 col-sm-12 col-md-6">
-                          <div class="mb-3 row">
-                            <div class="col-12">
-                              <input type="text" class="input-to-label form-control" placeholder="Language" formControlName="language" [readonly]="true" novalidate>
+                          <div class="col-6">
+                            <input type="text" class="input-to-label form-control" placeholder="Language" formControlName="language" [readonly]="true" novalidate>
+                          </div>
+                          <div class="col-6">                          
+                            <div class="rating-green pe-none">
+                              <input type="radio" id="{{'rating-1-' + i}}" value="1" formControlName="score" [readonly]="true" novalidate/>
+                              <label for="{{'rating-1-' + i}}">★</label>
+                              <input type="radio" id="{{'rating-2-' + i}}" value="2" formControlName="score" [readonly]="true" novalidate/>
+                              <label for="{{'rating-2-' + i}}">★</label>
+                              <input type="radio" id="{{'rating-3-' + i}}" value="3" formControlName="score" [readonly]="true" novalidate/>
+                              <label for="{{'rating-3-' + i}}">★</label>
+                              <input type="radio" id="{{'rating-4-' + i}}" value="4" formControlName="score" [readonly]="true" novalidate/>
+                              <label for="{{'rating-4-' + i}}">★</label>
+                              <input type="radio" id="{{'rating-5-' + i}}" value="5" formControlName="score" [readonly]="true" novalidate/>
+                              <label for="{{'rating-5-' + i}}">★</label>
                             </div>
                           </div>
-                        </div>
-                        <div class="col-12 col-xs-12 col-sm-12 col-md-6">                          
-                          <div class="rating-green pe-none">
-                            <input type="radio" id="{{'rating-1-' + i}}" value="1" formControlName="score" [readonly]="true" novalidate/>
-                            <label for="{{'rating-1-' + i}}">★</label>
-                            <input type="radio" id="{{'rating-2-' + i}}" value="2" formControlName="score" [readonly]="true" novalidate/>
-                            <label for="{{'rating-2-' + i}}">★</label>
-                            <input type="radio" id="{{'rating-3-' + i}}" value="3" formControlName="score" [readonly]="true" novalidate/>
-                            <label for="{{'rating-3-' + i}}">★</label>
-                            <input type="radio" id="{{'rating-4-' + i}}" value="4" formControlName="score" [readonly]="true" novalidate/>
-                            <label for="{{'rating-4-' + i}}">★</label>
-                            <input type="radio" id="{{'rating-5-' + i}}" value="5" formControlName="score" [readonly]="true" novalidate/>
-                            <label for="{{'rating-5-' + i}}">★</label>
-                          </div>
-                        </div>
                       </div>                    
-                  </ng-container>
-                </div>                 
+                    </ng-container>
+                  </div>                 
                 </div>
               </div>
-
-
-
-
-
-            </div>
-            
+            </div>            
             <div class="col-12 text-center mt-3">
-              <button type="submit" class="btn btn-warning col-8"
-                [disabled]="!userForm.valid || userForm.get('confirmPassword')?.value !== userForm.get('password')?.value">Register</button>
+              <button type="submit" class="btn btn-confirm col-4 col-sm-4 col-md-3 col-lg-2"
+                [disabled]="!userForm.valid || userForm.get('confirmPassword')?.value !== userForm.get('password')?.value">Continue</button>
             </div>
             <div class="col-12 text-center mt-2">
-              <p>Dou you have an account? <a href="/">Log In</a></p>
+              <p class="font-weight-bold">Dou you have an account? <a href="/">Log In</a></p>
             </div>
-          </form>
-      </div>
+        </form>
     </div>
   </div>
+</div>
   

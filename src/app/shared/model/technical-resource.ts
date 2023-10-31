@@ -1,5 +1,5 @@
 import { AcademicInformation } from "./academic-information";
-import { AditionalInformation } from "./aditional-information";
+import { AdditionalInformation } from "./additional-information";
 import { Language } from "./language";
 import { PersonalInformationTechnicalResource } from "./personal-information-technical-resource";
 import { PersonalSkill } from "./personal-skill";
@@ -15,5 +15,5 @@ export interface TechnicalResource extends User {
     programmingLanguages:Array<ProgrammingLanguage>;
     languages:Array<Language>;
     personalSkills:Array<PersonalSkill>;
-    aditionalInformation:AditionalInformation;
+    additionalInformation:AdditionalInformation;
 }
