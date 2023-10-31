@@ -369,7 +369,111 @@
                     </div>
                   </ng-container>                    
                 </div>
+              </div> 
+              <div class="col-6">
+                <h3 class="title-section pt-4">Technical Skills</h3>
+                <button class="float-right pull-right float-end add-item-array" (click)="goAddProgrammingLanguages()">+</button>
+                <div class="card card-info mb-3" id="technicalSkillsCard">
+                <div formArrayName="programmingLanguages" >
+                  <ng-container *ngFor="let acainf of getProgrammingLanguages.controls; index as i">                    
+                      <div class="row" id="{{'row' + i}}" [formGroupName]="i">
+                        <div class="col-12 col-xs-12 col-sm-12 col-md-6">
+                          <div class="mb-3 row">
+                            <div class="col-12">
+                              <input type="text" class="input-to-label form-control" placeholder="Name" formControlName="name" [readonly]="true" novalidate>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-12 col-xs-12 col-sm-12 col-md-6">                          
+                          <div class="rating-yellow pe-none">
+                            <input type="radio" id="{{'rating-1-' + i}}" value="1" formControlName="score" [readonly]="true" novalidate/>
+                            <label for="{{'rating-1-' + i}}">★</label>
+                            <input type="radio" id="{{'rating-2-' + i}}" value="2" formControlName="score" [readonly]="true" novalidate/>
+                            <label for="{{'rating-2-' + i}}">★</label>
+                            <input type="radio" id="{{'rating-3-' + i}}" value="3" formControlName="score" [readonly]="true" novalidate/>
+                            <label for="{{'rating-3-' + i}}">★</label>
+                            <input type="radio" id="{{'rating-4-' + i}}" value="4" formControlName="score" [readonly]="true" novalidate/>
+                            <label for="{{'rating-4-' + i}}">★</label>
+                            <input type="radio" id="{{'rating-5-' + i}}" value="5" formControlName="score" [readonly]="true" novalidate/>
+                            <label for="{{'rating-5-' + i}}">★</label>
+                          </div>
+                        </div>
+                      </div>                    
+                  </ng-container>                    
+                </div>
               </div>
+              </div>          
+              <div class="col-6">
+                <h3 class="title-section pt-4">Personal Skills</h3>
+                <button class="float-right pull-right float-end add-item-array" (click)="goAddPersonalSkill()">+</button>
+                <div class="card card-info mb-3" id="personalSkillsCard">
+                <div formArrayName="personalSkills" >
+                  <ng-container *ngFor="let acainf of getPersonalSkills.controls; index as i">                    
+                      <div class="row" id="{{'row' + i}}" [formGroupName]="i">
+                        <div class="col-12 col-xs-12 col-sm-12 col-md-6">
+                          <div class="mb-3 row">
+                            <div class="col-12">
+                              <input type="text" class="input-to-label form-control" placeholder="Name" formControlName="name" [readonly]="true" novalidate>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-12 col-xs-12 col-sm-12 col-md-6">                          
+                          <div class="rating-blue pe-none">
+                            <input type="radio" id="{{'rating-1-' + i}}" value="1" formControlName="score" [readonly]="true" novalidate/>
+                            <label for="{{'rating-1-' + i}}">★</label>
+                            <input type="radio" id="{{'rating-2-' + i}}" value="2" formControlName="score" [readonly]="true" novalidate/>
+                            <label for="{{'rating-2-' + i}}">★</label>
+                            <input type="radio" id="{{'rating-3-' + i}}" value="3" formControlName="score" [readonly]="true" novalidate/>
+                            <label for="{{'rating-3-' + i}}">★</label>
+                            <input type="radio" id="{{'rating-4-' + i}}" value="4" formControlName="score" [readonly]="true" novalidate/>
+                            <label for="{{'rating-4-' + i}}">★</label>
+                            <input type="radio" id="{{'rating-5-' + i}}" value="5" formControlName="score" [readonly]="true" novalidate/>
+                            <label for="{{'rating-5-' + i}}">★</label>
+                          </div>
+                        </div>                      
+                    </div>
+                  </ng-container>
+                </div>                   
+                </div>
+              </div>
+              <div class="col-6">
+                <h3 class="title-section pt-4">Languages</h3>
+                <button class="float-right pull-right float-end add-item-array" (click)="goAddLanguage()">+</button>
+                <div class="card card-info mb-3" id="languagesCard">
+                <div formArrayName="languages">
+                  <ng-container *ngFor="let acainf of getLanguages.controls; index as i">                    
+                      <div class="row" id="{{'row' + i}}" [formGroupName]="i">
+                        <div class="col-12 col-xs-12 col-sm-12 col-md-6">
+                          <div class="mb-3 row">
+                            <div class="col-12">
+                              <input type="text" class="input-to-label form-control" placeholder="Language" formControlName="language" [readonly]="true" novalidate>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-12 col-xs-12 col-sm-12 col-md-6">                          
+                          <div class="rating-green pe-none">
+                            <input type="radio" id="{{'rating-1-' + i}}" value="1" formControlName="score" [readonly]="true" novalidate/>
+                            <label for="{{'rating-1-' + i}}">★</label>
+                            <input type="radio" id="{{'rating-2-' + i}}" value="2" formControlName="score" [readonly]="true" novalidate/>
+                            <label for="{{'rating-2-' + i}}">★</label>
+                            <input type="radio" id="{{'rating-3-' + i}}" value="3" formControlName="score" [readonly]="true" novalidate/>
+                            <label for="{{'rating-3-' + i}}">★</label>
+                            <input type="radio" id="{{'rating-4-' + i}}" value="4" formControlName="score" [readonly]="true" novalidate/>
+                            <label for="{{'rating-4-' + i}}">★</label>
+                            <input type="radio" id="{{'rating-5-' + i}}" value="5" formControlName="score" [readonly]="true" novalidate/>
+                            <label for="{{'rating-5-' + i}}">★</label>
+                          </div>
+                        </div>
+                      </div>                    
+                  </ng-container>
+                </div>                 
+                </div>
+              </div>
+
+
+
+
+
             </div>
             
             <div class="col-12 text-center mt-3">

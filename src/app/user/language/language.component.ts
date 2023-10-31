@@ -13,8 +13,6 @@ export class LanguageComponent {
   isDisabled!: boolean;
   modalForm!: FormGroup;
   result: any;
-  educationLevels: any = ['MASTER', 'GRADUATE', 'BACHELOR'];
-  professionalSectors: any = ['TI', 'HR', 'RETAIL'];
 
   constructor(
     private formBuilder: FormBuilder,

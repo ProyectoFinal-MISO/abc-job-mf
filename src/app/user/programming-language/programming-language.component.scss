@@ -3,4 +3,35 @@
     font-weight: 500;
     margin-top: 0;
 }
+
+.rating {
+    font-size: 0; /* Remove any font size */
+    direction: rtl; /* Set direction to right-to-left for proper star display */
+  }
   
+  /* Hide the radio input element of the rating bar */
+  .rating input {
+    display: none;
+  }
+  
+  /* Style the label elements to display as stars and to allow for interactivity */
+  .rating label {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    padding: 0;
+    font-size: 24px;
+    text-align: center;
+    line-height: 20px;
+    cursor: pointer;
+    color: #cccccc;
+    transform: rotateY(180deg); /* Flip the star to display properly */
+  }
+  
+  /* Style the label elements when hovered over or checked */
+  .rating label:hover,
+  .rating label:hover ~ label,
+  .rating input:checked ~ label {
+    color: #ff9900; /* Change the color of the star to yellow when hovered over or checked */
+  }

@@ -348,8 +348,8 @@ export class TechnicalResourceCreateComponent {
   addLanguages(data:any) {
     const myObjAux = data as Language;
     this.getLanguages.push(this.formBuilder.group({
-      language:new FormControl(''),
-      score:new FormControl('')
+      language:myObjAux?.language,
+      score:myObjAux?.score
     })
     );
   }
