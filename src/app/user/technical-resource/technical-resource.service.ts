@@ -15,10 +15,10 @@ export class TechnicalResourceService {
   constructor(private http: HttpClient) { }
 
   addUser(user: TechnicalResource): Observable<any> {
-    return this.http.post<any>(`${this.backUrl}/users`, user);
+    return this.http.post<any>(`/api/users`, user);
   }
 
   getUser(userId:number): Observable<TechnicalResource>{
-    return this.http.get<TechnicalResource>(`${this.backUrl}/${this.backController}/${userId}`);
+    return this.http.get<TechnicalResource>(`/api/${this.backController}/${userId}`);
   }
 }

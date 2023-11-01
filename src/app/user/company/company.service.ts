@@ -15,10 +15,10 @@ export class CompanyService {
   constructor(private http: HttpClient) { }
 
   addUser(user: Company): Observable<any> {
-    return this.http.post<any>(`${this.backUrl}//users`, user);
+    return this.http.post<any>(`/api/users`, user);
   }
 
   getUser(userId:number): Observable<Company>{
-    return this.http.get<Company>(`${this.backUrl}/${this.backController}/${userId}`);
+    return this.http.get<Company>(`/api/${this.backController}/${userId}`);
   }
 }
