@@ -6,7 +6,8 @@ const baseUrl: string = 'http://localhost:5000/';
 export const environment = {
   production: false,
   baseUrl,
-  sur: 'sur'
+  sur: 'sur',
+  token: 'token'
 };
 
 /*

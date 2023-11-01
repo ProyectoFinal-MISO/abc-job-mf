@@ -71,18 +71,38 @@ export class UserSessionComponent {
   onLogInMyUser() {
     this.error = false;  
     this.getMyUser();
-    this.userSessionService.userLogIn(this.myUser).subscribe((res) => {
-      localStorage.setItem('token', res.token);
-      const decodedToken = this.helper.decodeToken(res.token);
-      this.userSessionService.getUser(decodedToken.sub).subscribe(response => {
-        this.userSessionService.sendMessage(true);
-        this.userSessionService.saveUserLocal(response);
-        this.router.navigate([`/home`]);
-        //this.router.navigate([`/home/${decodedToken.sub}/${res.token}`]);        
-        this.toastr.success(`login succesful`, 'Success', {
-        progressBar: true,
-      });
-       });
+    const userTypeUri =
+   this.userSessionForm.get('userType')?.value === UserType.Employee? 'employee':
+    this.userSessionForm.get('userType')?.value === UserType.Company? 'company': 'technical_resource';
+    this.userSessionService.userLogIn(this.myUser).subscribe({
+      next: (res:any) => {
+        localStorage.setItem('token', res.token);
+        const decodedToken = this.helper.decodeToken(res.token);
+        this.userSessionService.getUser(decodedToken.sub, userTypeUri).subscribe({
+          next: (response:any) => {
+            //response.token = decodedToken;
+            this.userSessionService.sendMessage(true);
+            this.userSessionService.saveUserLocal(response);            
+            //this.router.navigate([`/home/${decodedToken.sub}/${res.token}`]);        
+            this.toastr.success(`login succesful`, 'Success', {
+              progressBar: true,
+            });
+            this.router.navigate([`/home`]);
+          },
+          error: (e0:any) => {
+            this.toastr.error(`login fail`, 'Error, ' + e0, {
+              progressBar: true,
+            });
+          },
+          complete: () => console.log('complete0'),
+        })
+      },
+      error: (e1:any) => {
+        this.toastr.error(`login fail`, 'Error, ' + e1, {
+          progressBar: true,
+        });
+      },
+      complete: () => console.log('complete1'),
     });
   }
 
