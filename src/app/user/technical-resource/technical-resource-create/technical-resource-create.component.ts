@@ -445,19 +445,50 @@ export class TechnicalResourceCreateComponent {
     });
   }
 
-  addUser() {
-    this.user =  this.userForm.value;
+  async addUser() {
+    let userAux = { ...this.userForm.value };
+    userAux.personalInformation.city = userAux?.personalInformation?.city?.id ?? '';
+    userAux.personalInformation.state = userAux?.personalInformation?.state?.id ?? '';
+    userAux.personalInformation.country = userAux?.personalInformation?.country?.id ?? '';
+    userAux.additionalInformation.transferAvailability = userAux?.additionalInformation?.transferAvailability?.val ?? '';
+
+    await userAux.academicInformation.forEach((obj:any) => {
+      obj.professionalSector = obj.professionalSector?.id ?? '';
+    });
+
+    await userAux.languages.forEach((obj:any) => {
+      obj.language = obj.language?.id ?? '';
+    });
+    this.user = userAux;
     localStorage.clear();
-    this.userService.addUser(this.user).subscribe((res:any) => {
-      localStorage.setItem('token', res.token);
-      const decodedToken = this.helper.decodeToken(res.token);
-      this.userService.getUser(decodedToken.sub).subscribe((response:any) => {
-        this.userSessionService.saveUserLocal(response);
-        this.router.navigate([`/home`]);
-        this.toastr.success(`Ingreso correcto`, 'Success', {
+    this.userService.addUser(this.user).subscribe({
+      next: (result:any) => {
+        if(result){          
+          localStorage.setItem('token', result.token);
+          const decodedToken = this.helper.decodeToken(result.token);
+          this.userService.getUser(decodedToken.sub).subscribe({
+            next: (response:any) => {
+              this.userSessionService.sendMessage(true);
+              this.userSessionService.saveUserLocal(response);                 
+              this.toastr.success(`login succesful`, 'Success', {
+                progressBar: true,
+              });
+              this.router.navigate([`/home`]);
+            },
+            error: (e0:any) => {
+              this.toastr.error(`login fail`, 'Error, ' + e0, {
+                progressBar: true,
+              });
+            },
+            complete: () => console.log('complete0'),
+          });
+        }
+      },
+      error: (e0:any) => {
+        this.toastr.error(`Error`, e0, {
           progressBar: true,
         });
-      });
+      }
     });
   }
 }
