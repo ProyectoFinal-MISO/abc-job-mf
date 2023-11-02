@@ -57,14 +57,14 @@
                               </div>
                             </div>
                             <div class="mb-3 row">
-                              <label for="age" class="col-xs-5 col-md-4 col-form-label text-white">Age</label>
+                              <label for="birthdate" class="col-xs-5 col-md-4 col-form-label text-white">Birthdate</label>
                               <div class="col-xs-7 col-md-8">
-                                  <input formControlName="age" type="number" class="form-control" placeholder="Age">
-                                  <div class="fw-lighter text-danger small" *ngIf="userForm.get('personalInformation.age')!.touched">
-                                      <div *ngIf="userForm.get('personalInformation.age')?.hasError('required')">
-                                          You must type your age
+                                  <input formControlName="birthdate" type="date" class="form-control" placeholder="Birthdate">
+                                  <div class="fw-lighter text-danger small" *ngIf="userForm.get('personalInformation.birthdate')!.touched">
+                                      <div *ngIf="userForm.get('personalInformation.birthdate')?.hasError('required')">
+                                          You must type your birthdate
                                       </div>
-                                      <div *ngIf="userForm.get('age')?.hasError('min')">
+                                      <div *ngIf="userForm.get('birthdate')?.hasError('min')">
                                           text must an adult
                                       </div>
                                   </div>
@@ -148,7 +148,7 @@
                         <div class="mb-3 row">              
                         <label for="country" class="col-xs-5 col-md-4 col-form-label text-white">Country</label>
                         <div class="col-xs-7 col-md-8">
-                            <select class="form-select"  formControlName="country">
+                            <select (change)="getStates()" class="form-select"  formControlName="country">
                                 <option value="">Choose Country</option>
                                 <option *ngFor="let country of countries" [ngValue]="country">{{country.name}}</option>
                             </select>
@@ -164,7 +164,7 @@
                         <div class="mb-3 row">              
                           <label for="state" class="col-xs-5 col-md-4 col-form-label text-white">State</label>
                           <div class="col-xs-7 col-md-8">
-                              <select class="form-select"  formControlName="state">
+                              <select (change)="getCities()" class="form-select"  formControlName="state">
                                   <option value="">Choose State</option>
                                   <option *ngFor="let state of states" [ngValue]="state">{{state.name}}</option>
                               </select>
@@ -182,7 +182,7 @@
                           <div class="col-xs-7 col-md-8">
                               <select class="form-select"  formControlName="city">
                                   <option value="">Choose City</option>
-                                  <option *ngFor="let city of countries" [ngValue]="city">{{city.name}}</option>
+                                  <option *ngFor="let city of cities" [ngValue]="city">{{city.name}}</option>
                               </select>
                               <div class="fw-lighter text-danger small" *ngIf="userForm.get('personalInformation.city')!.touched">
                                   <div *ngIf="userForm.get('personalInformation.city')?.hasError('required')">
@@ -335,19 +335,19 @@
                           <div class="mb-3 row">
                             <label class="col-lg-5 col-form-label text-white">School Name:</label>
                             <div class="col-lg-7">
-                              <input type="text" class="input-to-label form-control" placeholder="School Name" formControlName="schoolName" [readonly]="true" novalidate>
+                              <label class="col-form-label text-white">{{userForm.get('academicInformation')?.value[i]?.schoolName}}</label>
                             </div>
                           </div>                        
                           <div class="mb-3 row">
                             <label class="col-lg-5 col-form-label text-white">Start Date:</label>
                             <div class="col-lg-7">
-                              <input type="text" class="input-to-label form-control" formControlName="startDate" [readonly]="true" novalidate>
+                              <label class="col-form-label text-white">{{userForm.get('academicInformation')?.value[i]?.startDate}}</label>
                             </div>
                           </div>
                           <div class="mb-3 row">
                             <label class="col-lg-5 col-form-label text-white">Level:</label>
                             <div class="col-lg-7">
-                              <input type="text" class="input-to-label form-control" placeholder="Education Level" formControlName="educationLevel" [readonly]="true" novalidate>
+                              <label class="col-form-label text-white">{{userForm.get('academicInformation')?.value[i]?.educationLevel}}</label>
                             </div>
                           </div>
                         </div>
@@ -355,13 +355,13 @@
                           <div class="mb-3 row">                          
                             <label class="col-lg-5 col-form-label text-white">Sector:</label>
                             <div class="col-lg-7">
-                              <input type="text" class="input-to-label form-control" placeholder="Professional Sector" formControlName="professionalSector" [readonly]="true" novalidate>
+                              <label class="col-form-label text-white">{{userForm.get('academicInformation')?.value[i]?.professionalSector?.name}}</label>
                             </div>
                           </div>
                           <div class="mb-3 row">
                             <label class="col-lg-5 col-form-label text-white">End Date:</label>
                             <div class="col-lg-7">
-                              <input type="text" class="input-to-label form-control" formControlName="endDate" [readonly]="true" novalidate>
+                              <label class="col-form-label text-white">{{userForm.get('academicInformation')?.value[i]?.endDate}}</label>
                             </div>
                           </div>
                         </div>
@@ -381,19 +381,19 @@
                           <div class="mb-3 row">
                             <label class="col-lg-5 col-form-label text-white">Title Job:</label>
                             <div class="col-lg-7">
-                              <input type="text" class="input-to-label form-control" placeholder="Title Job" formControlName="titleJob" [readonly]="true" novalidate>
+                              <label class="col-form-label text-white">{{userForm.get('professionalExperience')?.value[i]?.titleJob}}</label>
                             </div>
                           </div>                        
                           <div class="mb-3 row">
                             <label class="col-lg-5 col-form-label text-white">Start Date:</label>
                             <div class="col-lg-7">
-                              <input type="text" class="input-to-label form-control" formControlName="startDate" [readonly]="true" novalidate>
+                              <label class="col-form-label text-white">{{userForm.get('professionalExperience')?.value[i]?.startDate}}</label>
                             </div>
                           </div>
                           <div class="mb-3 row">                          
                             <label class="col-lg-5 col-form-label text-white">Details:</label>
                             <div class="col-lg-7">
-                              <input type="text" class="input-to-label form-control" placeholder="Details" formControlName="details" [readonly]="true" novalidate>
+                              <label class="col-form-label text-white text-justify">{{userForm.get('professionalExperience')?.value[i]?.details}}</label>
                             </div>
                           </div>
                         </div>
@@ -401,13 +401,13 @@
                           <div class="mb-3 row">
                             <label class="col-lg-5 col-form-label text-white">Company:</label>
                             <div class="col-lg-7">
-                              <input type="text" class="input-to-label form-control" placeholder="Company" formControlName="companyName" [readonly]="true" novalidate>
+                              <label class="col-form-label text-white">{{userForm.get('professionalExperience')?.value[i]?.companyName}}</label>
                             </div>
                           </div>
                           <div class="mb-3 row">
                             <label class="col-lg-5 col-form-label text-white">End Date:</label>
                             <div class="col-lg-7">
-                              <input type="text" class="input-to-label form-control" formControlName="endDate" [readonly]="true" novalidate>
+                              <label class="col-form-label text-white">{{userForm.get('professionalExperience')?.value[i]?.endDate}}</label>
                             </div>
                           </div>
                         </div>
@@ -424,7 +424,7 @@
                     <ng-container *ngFor="let acainf of getProgrammingLanguages.controls; index as i">                    
                       <div class="row" id="{{'row' + i}}" [formGroupName]="i">
                         <div class="col-6">
-                            <input type="text" class="input-to-label form-control" placeholder="Name" formControlName="name" [readonly]="true" novalidate>
+                          <label class="col-form-label text-white">{{userForm.get('programmingLanguages')?.value[i]?.name}}</label>
                         </div>
                         <div class="col-6">                          
                             <div class="rating-yellow pe-none">
@@ -453,7 +453,7 @@
                     <ng-container *ngFor="let acainf of getPersonalSkills.controls; index as i">                    
                       <div class="row" id="{{'row' + i}}" [formGroupName]="i">
                         <div class="col-6">
-                            <input type="text" class="input-to-label form-control" placeholder="Name" formControlName="name" [readonly]="true" novalidate>
+                          <label class="col-form-label text-white">{{userForm.get('personalSkills')?.value[i]?.name}}</label>
                         </div>
                         <div class="col-6">                          
                             <div class="rating-blue pe-none">
@@ -482,7 +482,7 @@
                     <ng-container *ngFor="let acainf of getLanguages.controls; index as i">                    
                       <div class="row" id="{{'row' + i}}" [formGroupName]="i">
                           <div class="col-6">
-                            <input type="text" class="input-to-label form-control" placeholder="Language" formControlName="language" [readonly]="true" novalidate>
+                            <label class="col-form-label text-white">{{userForm.get('languages')?.value[i]?.language?.name}}</label>
                           </div>
                           <div class="col-6">                          
                             <div class="rating-green pe-none">

@@ -40,7 +40,7 @@
                             <div class="mb-3 row">              
                                 <label i18n for="details" class="col-xs-5 col-md-4 col-form-label text-white">Details</label>
                                 <div class="col-xs-7 col-md-8">
-                                    <input formControlName="details" id="details" type="text" class="form-control" placeholder="Details" required>
+                                    <textarea formControlName="details" id="details" type="text" class="form-control" placeholder="Details"></textarea>
                                     <div class="fw-lighter text-danger small" *ngIf="modalForm.get('details')!.touched">
                                         <div i18n *ngIf="modalForm.get('details')?.hasError('required')">
                                             Please provide any details

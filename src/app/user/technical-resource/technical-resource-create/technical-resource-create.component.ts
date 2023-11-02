@@ -21,6 +21,7 @@ import { ProfessionalExperienceComponent } from '../../professional-experience/p
 import { ProgrammingLanguageComponent } from '../../programming-language/programming-language.component';
 import { LanguageComponent } from '../../language/language.component';
 import { PersonalSkillComponent } from '../../personal-skill/personal-skill.component';
+import { SharedService } from 'src/app/shared/shared.service';
 
 @Component({
   selector: 'app-technical-resource-create',
@@ -36,14 +37,14 @@ export class TechnicalResourceCreateComponent {
   carga: boolean = false;
   user: TechnicalResource;
   localStageData: any;
-  countries: any = [{id:1, code:'COL', name: 'Colombia', parentId:0}, {id:2, code:'USA', name: 'Unit States', parentId:0}, {id:3, code:'MEX', name: 'México', parentId:0}];
-  states: any = [{id:1, code:'CUN', name:'Cundinamarca', parentId:1}, {id:3, code:'ANT', name:'Antioquia', parentId:1}, {id:3, code:'VAL', name:'Valle', parentId:1}, {id:4, code:'FLD', name:'Florida', parentId:2}, {id:5, code:'WAS', name:'Washington', parentId:2}];
-  cities: any = [{id:1, code:'BOG', name:'Bogotá', parentId:1}, {id:2, code:'ZIP', name:'Zipaquirá', parentId:1}, {id:3, code:'MED', name:'Medellín', parentId:2}, {id:4, code:'ITA', name:'Itagüí', parentId:2}, {id:5, code:'CAL', name:'Cali', parentId:3}, {id:6, code:'MIA', name:'Miami', parentId:4}, {id:7, code:'WHA', name:'Washington', parentId:5}];
-  typesIdentification: any = ['CC', 'CE', 'PASSPORT', 'NIT'];
-  genres: any = ['MALE', 'FEMALE', 'OTHER'];
+  countries: any = [];
+  states: any = [];
+  cities: any= [];
+  typesIdentification: any = [];
+  genres: any = [];
   closeResult = '';
   url!: string;
-  transferAvailabilities: any = [{val:0, name:'No'},{val:1, name:'Si'}];
+  transferAvailabilities: any = [];
 
   constructor(
     private userService: TechnicalResourceService,
@@ -53,7 +54,8 @@ export class TechnicalResourceCreateComponent {
     private toastr: ToastrService,
     private route: ActivatedRoute,
     private location: Location,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private sharedService: SharedService
   ) {
     this.localStageData = location.getState(); // do what you want 
   }
@@ -69,7 +71,7 @@ export class TechnicalResourceCreateComponent {
         photo: [''], 
         name: ['', [Validators.required, Validators.minLength(1)]], 
         lastName: ['', [Validators.required, Validators.minLength(1)]],
-        age: [0, [Validators.required, Validators.min(18)]],
+        birthdate: ['', [Validators.required, Validators.min(18)]],
         genre: [''],
         typeIdentification: ['', [Validators.required]],
         identification: ['', [Validators.required, Validators.minLength(1)]],
@@ -112,6 +114,10 @@ export class TechnicalResourceCreateComponent {
       if(this.localStageData && this.localStageData?.data && !this.userSessionDto){
           this.userSessionDto = this.localStageData?.data as UserSessionDto;
           this.createForm();
+          this.getCountries();
+          this.getTypesIdentification();
+          this.getGenres();
+          this.transferAvailabilities = [{val:0, name:'No'},{val:1, name:'Si'}];
           this.carga = true; 
       }     
     }
@@ -271,7 +277,7 @@ export class TechnicalResourceCreateComponent {
 
   goAddProfessionalExperience() {
     this.modalService.open(ProfessionalExperienceComponent, {ariaLabelledBy: 'myModalLabel',  backdrop: 'static' }).result.then((result) => {
-      if(result){
+      if(result){        
         this.addProfessionalExperience(result);
       }
       this.closeResult = `Closed with: ${result}`;
@@ -364,19 +370,125 @@ export class TechnicalResourceCreateComponent {
     );
   }
 
-  addUser() {
-    this.user =  this.userForm.value;
-    localStorage.clear();
-    this.userService.addUser(this.user).subscribe((res:any) => {
-      localStorage.setItem('token', res.token);
-      const decodedToken = this.helper.decodeToken(res.token);
-      this.userService.getUser(decodedToken.sub).subscribe((response:any) => {
-        this.userSessionService.saveUserLocal(response);
-        this.router.navigate([`/home`]);
-        this.toastr.success(`Ingreso correcto`, 'Success', {
+  getCountries() {
+    this.sharedService.getCountries().subscribe({
+      next: (result:any) => {
+        if(result){
+          this.countries = result;
+        }
+      },
+      error: (e0:any) => {
+        this.toastr.error(`Error`, e0, {
           progressBar: true,
         });
-      });
+      }
+    });
+  }
+
+  getStates() {
+    this.sharedService.getStatesByCountry(Number(this.userForm.get('personalInformation.country')?.value?.id)).subscribe({
+      next: (result:any) => {
+        if(result){
+          this.states = result;
+        }
+      },
+      error: (e0:any) => {
+        this.toastr.error(`Error`, e0, {
+          progressBar: true,
+        });
+      }
+    });
+  }
+
+  getCities() {
+    this.sharedService.getCitiesByState(Number(this.userForm.get('personalInformation.state')?.value?.id)).subscribe({
+      next: (result:any) => {
+        if(result){
+          this.cities = result;
+        }
+      },
+      error: (e0:any) => {
+        this.toastr.error(`Error`, e0, {
+          progressBar: true,
+        });
+      }
+    });
+  }
+
+  getTypesIdentification() {
+    this.sharedService.getTypesIdentification().subscribe({
+      next: (result:any) => {
+        if(result){
+          this.typesIdentification = result;
+        }
+      },
+      error: (e0:any) => {
+        this.toastr.error(`Error`, e0, {
+          progressBar: true,
+        });
+      }
+    });
+  }
+
+  getGenres() {
+    this.sharedService.getGenres().subscribe({
+      next: (result:any) => {
+        if(result){
+          this.genres = result;
+        }
+      },
+      error: (e0:any) => {
+        this.toastr.error(`Error`, e0, {
+          progressBar: true,
+        });
+      }
+    });
+  }
+
+  async addUser() {
+    let userAux = { ...this.userForm.value };
+    userAux.personalInformation.city = userAux?.personalInformation?.city?.id ?? '';
+    userAux.personalInformation.state = userAux?.personalInformation?.state?.id ?? '';
+    userAux.personalInformation.country = userAux?.personalInformation?.country?.id ?? '';
+    userAux.additionalInformation.transferAvailability = userAux?.additionalInformation?.transferAvailability?.val ?? '';
+
+    await userAux.academicInformation.forEach((obj:any) => {
+      obj.professionalSector = obj.professionalSector?.id ?? '';
+    });
+
+    await userAux.languages.forEach((obj:any) => {
+      obj.language = obj.language?.id ?? '';
+    });
+    this.user = userAux;
+    localStorage.clear();
+    this.userService.addUser(this.user).subscribe({
+      next: (result:any) => {
+        if(result){          
+          localStorage.setItem('token', result.token);
+          const decodedToken = this.helper.decodeToken(result.token);
+          this.userService.getUser(decodedToken.sub).subscribe({
+            next: (response:any) => {
+              this.userSessionService.sendMessage(true);
+              this.userSessionService.saveUserLocal(response);                 
+              this.toastr.success(`login succesful`, 'Success', {
+                progressBar: true,
+              });
+              this.router.navigate([`/home`]);
+            },
+            error: (e0:any) => {
+              this.toastr.error(`login fail`, 'Error, ' + e0, {
+                progressBar: true,
+              });
+            },
+            complete: () => console.log('complete0'),
+          });
+        }
+      },
+      error: (e0:any) => {
+        this.toastr.error(`Error`, e0, {
+          progressBar: true,
+        });
+      }
     });
   }
 }

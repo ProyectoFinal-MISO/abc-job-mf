@@ -30,7 +30,6 @@ import { UserSessionService } from './user-session.service';
   ) => {
     const userSessionService = inject(UserSessionService);
     const router = inject(Router);
-  
         if (userSessionService.getUserToken() && userSessionService.getUserToken()!=='' ) {
             return true;
         }
