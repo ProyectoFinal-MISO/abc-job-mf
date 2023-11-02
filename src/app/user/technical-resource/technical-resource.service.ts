@@ -10,7 +10,7 @@ import { TechnicalResource } from 'src/app/shared/model/technical-resource';
 export class TechnicalResourceService {
 
   private backUrl: string = environment.baseUrl;
-  private backController: string = 'technical_resource';
+  private backController: string = 'users/technical_resource';
 
   constructor(private http: HttpClient) { }
 

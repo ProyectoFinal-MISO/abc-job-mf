@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { SharedService } from 'src/app/shared/shared.service';
 
 @Component({
   selector: 'app-language',
@@ -13,11 +14,13 @@ export class LanguageComponent {
   isDisabled!: boolean;
   modalForm!: FormGroup;
   result: any;
+  languages: any = [];
 
   constructor(
     private formBuilder: FormBuilder,
     private toastr: ToastrService,
-    public activeModal: NgbActiveModal) {
+    public activeModal: NgbActiveModal,
+    private sharedService: SharedService) {
       this.isDisabled=false;
   }
 
@@ -26,6 +29,7 @@ export class LanguageComponent {
       language: ["", [Validators.required, Validators.minLength(2)]],
       score: ["", [Validators.required]]
     });
+    this.getLanguages();
   }
 
   onCancel() {
@@ -42,5 +46,20 @@ export class LanguageComponent {
       this.toastr.success("Confirmation", "Record added");
       this.activeModal.close(this.modalForm.value);
     }
+  }
+
+  getLanguages() {
+    this.sharedService.getLanguages().subscribe({
+      next: (result:any) => {
+        if(result){
+          this.languages = result;
+        }
+      },
+      error: (e0:any) => {
+        this.toastr.error(`Error`, e0, {
+          progressBar: true,
+        });
+      }
+    });
   }
 }

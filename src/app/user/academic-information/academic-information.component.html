@@ -45,7 +45,7 @@
                                 <div class="col-xs-7 col-md-8">
                                     <select class="form-select" formControlName="professionalSector">
                                         <option value="">Choose Professional Sector</option>
-                                        <option *ngFor="let professionalSector of professionalSectors" [ngValue]="professionalSector">{{professionalSector}}</option>
+                                        <option *ngFor="let professionalSector of professionalSectors" [ngValue]="professionalSector">{{professionalSector.name}}</option>
                                     </select>
                                     <div class="fw-lighter text-danger small" *ngIf="modalForm.get('professionalSector')!.touched">
                                         <div i18n *ngIf="modalForm.get('professionalSector')?.hasError('required')">

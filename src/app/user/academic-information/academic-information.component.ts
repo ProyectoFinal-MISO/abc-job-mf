@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { SharedService } from 'src/app/shared/shared.service';
 
 @Component({
   selector: 'app-academic-information',
@@ -13,13 +14,15 @@ export class AcademicInformationComponent implements OnInit{
   isDisabled!: boolean;
   modalForm!: FormGroup;
   result: any;
-  educationLevels: any = ['MASTER', 'GRADUATE', 'BACHELOR'];
-  professionalSectors: any = ['TI', 'HR', 'RETAIL'];
+  educationLevels: any = [];
+  professionalSectors: any = [];
 
   constructor(
     private formBuilder: FormBuilder,
     private toastr: ToastrService,
-    public activeModal: NgbActiveModal) {
+    public activeModal: NgbActiveModal,
+    private sharedService: SharedService
+    ) {
       this.isDisabled=false;
   }
 
@@ -31,6 +34,8 @@ export class AcademicInformationComponent implements OnInit{
       startDate: ["", [Validators.required]],
       endDate: ["", [Validators.required]]
     });
+    this.getProfessionalSectors();
+    this.getEducationLevels();
   }
 
   onCancel() {
@@ -58,4 +63,34 @@ export class AcademicInformationComponent implements OnInit{
     console.log(e.value)
     this.professionalSectors.setValue(e.target.value, {onlySelf: true});
   }
+
+  getProfessionalSectors() {
+    this.sharedService.getProfessionalSectors().subscribe({
+      next: (result:any) => {
+        if(result){
+          this.professionalSectors = result;
+        }
+      },
+      error: (e0:any) => {
+        this.toastr.error(`Error`, e0, {
+          progressBar: true,
+        });
+      }
+    });
+  }
+
+  getEducationLevels() {
+    this.sharedService.getEducationLevels().subscribe({
+      next: (result:any) => {
+        if(result){
+          this.educationLevels = result;
+        }
+      },
+      error: (e0:any) => {
+        this.toastr.error(`Error`, e0, {
+          progressBar: true,
+        });
+      }
+    });
+  }  
 }
