@@ -6,8 +6,8 @@ import { filter, map } from 'rxjs/operators';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { ToastrService } from 'ngx-toastr';
 import { UserSessionDto } from 'src/app/shared/model/user-session';
-import { TechnicalResource } from 'src/app/shared/model/technical-resource';
-import { TechnicalResourceService } from '../technical-resource.service';
+import { Company } from 'src/app/shared/model/company';
+import { CompanyService } from '../company.service';
 import { UserSessionService } from 'src/app/shared/user-session/user-session.service';
 import { Location } from '@angular/common';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -24,18 +24,18 @@ import { PersonalSkillComponent } from '../../personal-skill/personal-skill.comp
 import { SharedService } from 'src/app/shared/shared.service';
 
 @Component({
-  selector: 'app-technical-resource-view',
-  templateUrl: './technical-resource-view.component.html',
-  styleUrls: ['./technical-resource-view.component.scss']
+  selector: 'app-company-view',
+  templateUrl: './company-view.component.html',
+  styleUrls: ['./company-view.component.scss']
 })
-export class TechnicalResourceViewComponent {
+export class CompanyViewComponent {
   @Input() userSessionDto!: UserSessionDto;
 
   helper = new JwtHelperService();
   userData: FormGroup;
   token: string | null;
   carga: boolean = false;
-  user: TechnicalResource;
+  user: Company;
   localStageData: any;
   countries: any = [];
   states: any = [];
@@ -49,7 +49,7 @@ export class TechnicalResourceViewComponent {
   userId: number;
 
   constructor(
-    private userService: TechnicalResourceService,
+    private userService: CompanyService,
     private userSessionService: UserSessionService,
     private formBuilder: FormBuilder,
     private router: Router,
@@ -66,7 +66,7 @@ export class TechnicalResourceViewComponent {
     this.token = localStorage.getItem('token');
     if (this.token) {
       const decodedToken = this.helper.decodeToken(this.token);
-      this.router.navigate([`/technical-resource/view/` + userId]);
+      this.router.navigate([`/company/view/` + userId]);
     } else {
       this.route.paramMap.subscribe((data) => {
 

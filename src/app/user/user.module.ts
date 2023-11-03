@@ -5,7 +5,11 @@ import { TechnicalResourceCreateComponent } from './technical-resource/technical
 import { TechnicalResourceViewComponent } from './technical-resource/technical-resource-view/technical-resource-view.component';
 
 import { CompanyCreateComponent } from './company/company-create/company-create.component';
+import { CompanyViewComponent } from './company/company-view/company-view.component';
+
 import { EmployeeCreateComponent } from './employee/employee-create/employee-create.component';
+import { EmployeeViewComponent } from './employee/employee-view/employee-view.component';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from '../app-routing.module';
 import { RouterModule } from '@angular/router';
@@ -18,9 +22,11 @@ import { LanguageComponent } from './language/language.component';
 @NgModule({
   declarations: [
     EmployeeCreateComponent,
+    EmployeeViewComponent,
     TechnicalResourceCreateComponent,
     TechnicalResourceViewComponent,
     CompanyCreateComponent,
+    CompanyViewComponent,
     AcademicInformationComponent,
     ProfessionalExperienceComponent,
     PersonalSkillComponent,

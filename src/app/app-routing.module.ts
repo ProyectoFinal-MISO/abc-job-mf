@@ -3,11 +3,16 @@ import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from './shared/layout/layout.component';
 import { UserSessionComponent } from './shared/user-session/user-session.component';
 import { AuthGuard } from './shared/user-session/auth.guard';
+import { HomeComponent } from './home/home.component';
+
 import { CompanyCreateComponent } from './user/company/company-create/company-create.component';
+import { CompanyViewComponent } from './user/company/company-view/company-view.component';
+
 import { TechnicalResourceCreateComponent } from './user/technical-resource/technical-resource-create/technical-resource-create.component';
 import { TechnicalResourceViewComponent } from './user/technical-resource/technical-resource-view/technical-resource-view.component';
+
 import { EmployeeCreateComponent } from './user/employee/employee-create/employee-create.component';
-import { HomeComponent } from './home/home.component';
+import { EmployeeViewComponent } from './user/employee/employee-view/employee-view.component';
 
 const routes: Routes = [
   {
@@ -16,18 +21,23 @@ const routes: Routes = [
       { path: 'company',
               children: [
               {
-              path: 'add',
-              component: CompanyCreateComponent,
-              data: {}
+                path: 'add',
+                component: CompanyCreateComponent,
+                data: {}
+              },
+              {
+                path: 'view/:id',
+                component: CompanyViewComponent,
+                data: {}
               }
             ]
       },
       { path: 'technical-resource',
               children: [
               {
-              path: 'add',
-              component: TechnicalResourceCreateComponent,
-              data: {}
+                path: 'add',
+                component: TechnicalResourceCreateComponent,
+                data: {}
               },
               {
                 path: 'view/:id',
@@ -39,9 +49,14 @@ const routes: Routes = [
       { path: 'employee',
               children: [
               {
-              path: 'add',
-              component: EmployeeCreateComponent,
-              data: {}
+                path: 'add',
+                component: EmployeeCreateComponent,
+                data: {}
+              },
+              {
+                path: 'view/:id',
+                component: EmployeeViewComponent,
+                data: {}
               }
             ]
       },
