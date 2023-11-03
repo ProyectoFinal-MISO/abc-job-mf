@@ -10,7 +10,7 @@ import { Company } from 'src/app/shared/model/company';
 export class CompanyService {
 
   private backUrl: string = environment.baseUrl;
-  private backController: string = 'company';
+  private backController: string = 'users/company';
 
   constructor(private http: HttpClient) { }
 
@@ -18,7 +18,7 @@ export class CompanyService {
     return this.http.post<any>(`/api/users`, user);
   }
 
-  getUser(userId:number): Observable<Company>{
+  getUser(userId:any): Observable<Company>{
     return this.http.get<Company>(`/api/${this.backController}/${userId}`);
   }
 }

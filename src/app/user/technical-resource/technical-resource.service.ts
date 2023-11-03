@@ -18,7 +18,7 @@ export class TechnicalResourceService {
     return this.http.post<any>(`/api/users`, user);
   }
 
-  getUser(userId:number): Observable<TechnicalResource>{
+  getUser(userId:any): Observable<TechnicalResource>{
     return this.http.get<TechnicalResource>(`/api/${this.backController}/${userId}`);
   }
 }
