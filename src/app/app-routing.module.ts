@@ -5,6 +5,7 @@ import { UserSessionComponent } from './shared/user-session/user-session.compone
 import { AuthGuard } from './shared/user-session/auth.guard';
 import { CompanyCreateComponent } from './user/company/company-create/company-create.component';
 import { TechnicalResourceCreateComponent } from './user/technical-resource/technical-resource-create/technical-resource-create.component';
+import { TechnicalResourceViewComponent } from './user/technical-resource/technical-resource-view/technical-resource-view.component';
 import { EmployeeCreateComponent } from './user/employee/employee-create/employee-create.component';
 import { HomeComponent } from './home/home.component';
 
@@ -12,7 +13,7 @@ const routes: Routes = [
   {
     path: '', canActivate: [AuthGuard], component: LayoutComponent, children: [
       { path: '', redirectTo: '/home', pathMatch: 'full' },
-      { path: 'company', 
+      { path: 'company',
               children: [
               {
               path: 'add',
@@ -21,16 +22,21 @@ const routes: Routes = [
               }
             ]
       },
-      { path: 'technical-resource', 
+      { path: 'technical-resource',
               children: [
               {
               path: 'add',
               component: TechnicalResourceCreateComponent,
               data: {}
+              },
+              {
+                path: 'view/:id',
+                component: TechnicalResourceViewComponent,
+                data: {}
               }
             ]
       },
-      { path: 'employee', 
+      { path: 'employee',
               children: [
               {
               path: 'add',
@@ -41,7 +47,7 @@ const routes: Routes = [
       },
       { path: 'home', component: HomeComponent },
     ]
-  },  
+  },
   { path: 'signin', children: [
     { path: 'company', component: CompanyCreateComponent },
     { path: 'technicalresource', component: TechnicalResourceCreateComponent },

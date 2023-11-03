@@ -13,10 +13,10 @@ import { Location } from '@angular/common';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AcademicInformationComponent } from '../../academic-information/academic-information.component';
 import { AcademicInformation } from 'src/app/shared/model/academic-information';
-import { ProfessionalExperience } from 'src/app/shared/model/professional-experience';
+import { ProfessionalExperiences } from 'src/app/shared/model/professional-experience';
 import { Language } from 'src/app/shared/model/language';
 import { PersonalSkill } from 'src/app/shared/model/personal-skill';
-import { ProgrammingLanguage } from 'src/app/shared/model/programming-language';
+import { ProgrammingLanguages } from 'src/app/shared/model/programming-language';
 import { ProfessionalExperienceComponent } from '../../professional-experience/professional-experience.component';
 import { ProgrammingLanguageComponent } from '../../programming-language/programming-language.component';
 import { LanguageComponent } from '../../language/language.component';
@@ -30,10 +30,10 @@ import { SharedService } from 'src/app/shared/shared.service';
 })
 export class TechnicalResourceCreateComponent {
   @Input() userSessionDto!: UserSessionDto;
-  
+
   helper = new JwtHelperService();
   userForm: FormGroup;
-  token: string | null;  
+  token: string | null;
   carga: boolean = false;
   user: TechnicalResource;
   localStageData: any;
@@ -57,7 +57,7 @@ export class TechnicalResourceCreateComponent {
     private modalService: NgbModal,
     private sharedService: SharedService
   ) {
-    this.localStageData = location.getState(); // do what you want 
+    this.localStageData = location.getState(); // do what you want
   }
 
   createForm(){
@@ -65,11 +65,11 @@ export class TechnicalResourceCreateComponent {
       username: [this.userSessionDto.username, [Validators.required, Validators.email]],
       password: [this.userSessionDto.password, [Validators.required, Validators.maxLength(50), Validators.minLength(4)]],
       confirmPassword: ['', [Validators.required, Validators.maxLength(50), Validators.minLength(4)]],
-      userType: [this.userSessionDto.userType, [Validators.required]],      
-      email: [this.userSessionDto.username, [Validators.required, Validators.email]],           
+      userType: [this.userSessionDto.userType, [Validators.required]],
+      email: [this.userSessionDto.username, [Validators.required, Validators.email]],
       personalInformation: this.formBuilder.group({
-        photo: [''], 
-        name: ['', [Validators.required, Validators.minLength(1)]], 
+        photo: [''],
+        name: ['', [Validators.required, Validators.minLength(1)]],
         lastName: ['', [Validators.required, Validators.minLength(1)]],
         birthdate: ['', [Validators.required, Validators.min(18)]],
         genre: [''],
@@ -87,13 +87,13 @@ export class TechnicalResourceCreateComponent {
         transferAvailability: [''],
         vehicle: ['']
       }),
-      academicInformation: new UntypedFormArray([]), 
-      professionalExperience: new UntypedFormArray([]),      
+      academicInformation: new UntypedFormArray([]),
+      professionalExperience: new UntypedFormArray([]),
       programmingLanguages: new UntypedFormArray([]),
       languages: new UntypedFormArray([]),
       personalSkills: new UntypedFormArray([])
     });
-    
+
     this.userForm.get('academicInformation') as FormArray<FormGroup>;
     this.userForm.get('professionalExperience') as FormArray<FormGroup>;
     this.userForm.get('programmingLanguages') as FormArray<FormGroup>;
@@ -118,8 +118,8 @@ export class TechnicalResourceCreateComponent {
           this.getTypesIdentification();
           this.getGenres();
           this.transferAvailabilities = [{val:0, name:'No'},{val:1, name:'Si'}];
-          this.carga = true; 
-      }     
+          this.carga = true;
+      }
     }
   }
 
@@ -142,7 +142,7 @@ export class TechnicalResourceCreateComponent {
   get getPersonalSkills() {
     return this.userForm.get('personalSkills') as FormArray<FormGroup>;
   }
-  
+
   initAcademicInformationFormGroup() {
     return this.formBuilder.group({
       schoolName:new FormControl(''),
@@ -162,7 +162,7 @@ export class TechnicalResourceCreateComponent {
       endDate:new FormControl('')
     });
   }
-  
+
   initProgrammingLanguagesFormGroup() {
     return this.formBuilder.group({
       name:new FormControl(''),
@@ -183,7 +183,7 @@ export class TechnicalResourceCreateComponent {
       score:new FormControl('')
     });
   }
-  
+
   handleFileInput(event: Event) {
     const target = event.target as HTMLInputElement;
     const files = target.files as FileList;
@@ -230,7 +230,7 @@ export class TechnicalResourceCreateComponent {
       return `with: ${reason}`;
     }
   }
- 
+
   showError(error: string) {
     this.toastr.error(error, 'Error');
   }
@@ -277,7 +277,7 @@ export class TechnicalResourceCreateComponent {
 
   goAddProfessionalExperience() {
     this.modalService.open(ProfessionalExperienceComponent, {ariaLabelledBy: 'myModalLabel',  backdrop: 'static' }).result.then((result) => {
-      if(result){        
+      if(result){
         this.addProfessionalExperience(result);
       }
       this.closeResult = `Closed with: ${result}`;
@@ -332,7 +332,7 @@ export class TechnicalResourceCreateComponent {
   }
 
   addProfessionalExperience(data:any) {
-    const myObjAux = data as ProfessionalExperience;
+    const myObjAux = data as ProfessionalExperiences;
     this.getProfessionalExperiences.push(this.formBuilder.group({
       titleJob:myObjAux?.titleJob,
       companyName:myObjAux?.companyName,
@@ -344,7 +344,7 @@ export class TechnicalResourceCreateComponent {
   }
 
   addProgrammingLanguages(data:any) {
-    const myObjAux = data as ProgrammingLanguage;
+    const myObjAux = data as ProgrammingLanguages;
     this.getProgrammingLanguages.push(this.formBuilder.group({
       name:myObjAux?.name,
       score:myObjAux?.score
@@ -463,13 +463,13 @@ export class TechnicalResourceCreateComponent {
     localStorage.clear();
     this.userService.addUser(this.user).subscribe({
       next: (result:any) => {
-        if(result){          
+        if(result){
           localStorage.setItem('token', result.token);
           const decodedToken = this.helper.decodeToken(result.token);
           this.userService.getUser(decodedToken.sub).subscribe({
             next: (response:any) => {
               this.userSessionService.sendMessage(true);
-              this.userSessionService.saveUserLocal(response);                 
+              this.userSessionService.saveUserLocal(response);
               this.toastr.success(`login succesful`, 'Success', {
                 progressBar: true,
               });

@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 import { TechnicalResourceCreateComponent } from './technical-resource/technical-resource-create/technical-resource-create.component';
+import { TechnicalResourceViewComponent } from './technical-resource/technical-resource-view/technical-resource-view.component';
+
 import { CompanyCreateComponent } from './company/company-create/company-create.component';
 import { EmployeeCreateComponent } from './employee/employee-create/employee-create.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -16,6 +19,7 @@ import { LanguageComponent } from './language/language.component';
   declarations: [
     EmployeeCreateComponent,
     TechnicalResourceCreateComponent,
+    TechnicalResourceViewComponent,
     CompanyCreateComponent,
     AcademicInformationComponent,
     ProfessionalExperienceComponent,
