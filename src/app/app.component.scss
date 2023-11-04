@@ -1,12 +1,36 @@
 * [lang^=en] {
     color: green;
   }
-  
+
+* html,
+body {
+  background: rgb(162,190,81) !important;
+  background: linear-gradient(0deg, rgba(162,190,81,1) 0%, rgba(86,95,102,1) 100%) !important;
+}
+
+:host {
+  background: rgb(162,190,81) !important;
+  background: linear-gradient(0deg, rgba(162,190,81,1) 0%, rgba(86,95,102,1) 100%) !important;
+}
+
   .text-center{
     text-align: center;
   }
-  
+
   .background{
     background: rgb(162,190,81);
     background: linear-gradient(0deg, rgba(162,190,81,1) 0%, rgba(86,95,102,1) 100%);
+}
+
+.img-logo-banner{
+  width: 20%;
+  margin: auto;
+  display: block;
+}
+
+.text-title{
+  font-family: 'jura';
+  font-size: 12em;
+  font-weight: bold;
+  text-align: center;
 }

@@ -3,14 +3,11 @@
         <div class="col-xs-12 col-7 col-lg-7">
             <div class="row">
                 <div class="my-2 row">
-                    <img src="./../../../assets/images/abc-jobs-logo.png" alt="Logo de la pagina" class="img-logo">
+                    <img src="./../../../assets/images/abc-jobs-logo.png" alt="Logo de la pagina" class="img-logo-banner">
                 </div>
                 <div class="card card-login">
                     <div class="card-body">
-                                <form
-                            [formGroup]="userSessionForm"
-                            (ngSubmit)="!userSessionForm.invalid && onLogInMyUser()"
-                            class="">
+                        <form [formGroup]="userSessionForm" (ngSubmit)="!userSessionForm.invalid && onLogInMyUser()" class="">
                             <div class="mb-3 row">
                                 <label for="myUser" class="text-white col-lg-3 col-form-label">Email</label>
                                 <div class="col-lg-9  ">
@@ -30,13 +27,13 @@
                                 </div>
                             </div>
                             <div class="btn-group flex-wrap w-100">
-                                <input type="radio" class="btn-check" value="UserType.Employee" id="userTypeTechnicalResource" formControlName="userType"/>
+                                <input type="radio" class="btn-check" value="{{userTypeEnum.TechnicalResource}}" id="userTypeTechnicalResource" formControlName="userType"/>
                                 <label class="btn btn-radio" for="userTypeTechnicalResource">Technical Resource</label>
-                                <input type="radio" class="btn-check" value="UserType.Company" id="userTypeCompany" formControlName="userType"/>
+                                <input type="radio" class="btn-check" value="{{userTypeEnum.Company}}" id="userTypeCompany" formControlName="userType"/>
                                 <label class="btn btn-radio" for="userTypeCompany">Company</label>
-                                <input type="radio" class="btn-check" value="UserType.TechnicalResource" id="userTypeEmployee" formControlName="userType"/>
+                                <input type="radio" class="btn-check" value="{{userTypeEnum.Employee}}" id="userTypeEmployee" formControlName="userType"/>
                                 <label class="btn btn-radio" for="userTypeEmployee">Employee</label>
-                              </div>
+                            </div>
                             <div class="text-center pt-3 m-auto">
                                 <button aria-label="Log in button option" type="submit" class="btn btn-login w-95-px" id="btnLogin" [disabled]="!userSessionForm.valid">Log In</button>
                             </div>

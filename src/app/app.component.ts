@@ -9,8 +9,6 @@ import { UserSessionService } from './shared/user-session/user-session.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit, OnDestroy {
-
-
   title = 'app';
   login = false;
   subscription: Subscription;

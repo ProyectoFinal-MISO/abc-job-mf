@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserSessionService } from './user-session.service';
@@ -22,6 +22,7 @@ export class UserSessionComponent {
   error: boolean = false;
   itemsslider: Array<any> = [];
   responsiveOptions: any[];
+  userTypeEnum: typeof UserType = UserType;
 
   constructor(
     private userSessionService: UserSessionService,
@@ -46,9 +47,14 @@ export class UserSessionComponent {
     }
     this.fillItemsSlider();
     this.fillResponsive();
+
+   /* this.userSessionService.myUserChangeObservable.subscribe(x=>{
+      this.cerrarMenu();
+    });*/
   }
 
   signIn(){
+    this.getMyUser();
     if(this.userSessionForm.get('userType')?.value === UserType.Employee){      
       this.router.navigate([`/signin/employee`]);
     }
@@ -56,30 +62,50 @@ export class UserSessionComponent {
       this.router.navigate([`/signin/company`]);
     }
     else{
-      this.router.navigate([`/signin/technicalresource`]);
+      const navigationExtras: NavigationExtras = {
+        state: {
+          data: this.myUser
+        }
+      };  
+      this.router.navigate([`/signin/technicalresource`], navigationExtras);
     }
   }
 
   onLogInMyUser() {
-    this.error = false;
-    this.myUser = {
-      id: 0,
-      username: this.userSessionForm.get('myUser')?.value,
-      password: this.userSessionForm.get('myPassword')?.value
-    };
-
-    this.userSessionService.userLogIn(this.myUser).subscribe((res) => {
-      localStorage.setItem('token', res.token);
-      const decodedToken = this.helper.decodeToken(res.token);
-      this.userSessionService.getUser(decodedToken.sub).subscribe(response => {
-        this.userSessionService.sendMessage(true);
-        this.userSessionService.saveUserLocal(response);
-        this.router.navigate([`/home`]);
-        //this.router.navigate([`/home/${decodedToken.sub}/${res.token}`]);        
-        this.toastr.success(`login succesful`, 'Success', {
-        progressBar: true,
-      });
-       });
+    this.error = false;  
+    this.getMyUser();
+    const userTypeUri =
+   this.userSessionForm.get('userType')?.value === UserType.Employee? 'employee':
+    this.userSessionForm.get('userType')?.value === UserType.Company? 'company': 'technical_resource';
+    this.userSessionService.userLogIn(this.myUser).subscribe({
+      next: (res:any) => {
+        localStorage.setItem('token', res.token);
+        const decodedToken = this.helper.decodeToken(res.token);
+        this.userSessionService.getUser(decodedToken.sub, userTypeUri).subscribe({
+          next: (response:any) => {
+            //response.token = decodedToken;
+            this.userSessionService.sendMessage(true);
+            this.userSessionService.saveUserLocal(response);            
+            //this.router.navigate([`/home/${decodedToken.sub}/${res.token}`]);        
+            this.toastr.success(`login succesful`, 'Success', {
+              progressBar: true,
+            });
+            this.router.navigate([`/home`]);
+          },
+          error: (e0:any) => {
+            this.toastr.error(`login fail`, 'Error, ' + e0, {
+              progressBar: true,
+            });
+          },
+          complete: () => console.log('complete0'),
+        })
+      },
+      error: (e1:any) => {
+        this.toastr.error(`login fail`, 'Error, ' + e1, {
+          progressBar: true,
+        });
+      },
+      complete: () => console.log('complete1'),
     });
   }
 
@@ -111,6 +137,15 @@ export class UserSessionComponent {
           numScroll: 1
       }
   ];
+  }
+
+  getMyUser(){
+    this.myUser = {
+      id: 0,
+      username: this.userSessionForm.get('myUser')?.value,
+      password: this.userSessionForm.get('myPassword')?.value,
+      userType: this.userSessionForm.get('userType')?.value
+    };
   }
 
 }

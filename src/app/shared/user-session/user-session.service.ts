@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Observable, Subject } from 'rxjs';
@@ -41,29 +41,35 @@ export class UserSessionService {
     }
 
     closeSession() {
-      this.removeItem(environment.sur);     
+      this.removeItem(environment.sur); 
+      this.removeItem(environment.token);     
       this.storage.clear();
       this.sendMessage(false);
   }
 
     userLogIn(myUser: UserSessionDto ): Observable<any> {
-        return this.http.post<any>(`${this.backUrl}/login`, myUser);
+        return this.http.post<any>(`/api/users/auth`, myUser);
     }
 
    /* getUsers(): Observable<Usuario>{
       return this.http.get<Usuario>(`${this.backUrl}/usuario`);
     }
 */
-  getUser(userId:number): Observable<User>{
-      return this.http.get<User>(`${this.backUrl}/user/${userId}`);
+  getUser(userId:number, userType:string): Observable<User>{
+      return this.http.get<User>(`/api/users/${userType}/${userId}`);
   }
 
-  getUserToken(): string|undefined {
+  /*getUserToken(): string|undefined {
       const userModel = <UserSessionDto>JSON.parse(this.getItem(environment.sur)!);
       if (userModel !== null) {
           return userModel.token;
       }
       return '';
+  }**/
+
+  getUserToken(): string|undefined {
+    const token = this.getItem(environment.token)!;
+    return token?token:'';
   }
   
   sendMessage(status: Boolean) {
@@ -72,5 +78,10 @@ export class UserSessionService {
 
   getMessage(): Observable<any> {
     return this.subjectStatus.asObservable();
+  }
+
+  getUserSession(): any|undefined {
+    const obj = this.getItem(environment.sur)!;
+    return obj?JSON.parse(obj):null;
   }
 }

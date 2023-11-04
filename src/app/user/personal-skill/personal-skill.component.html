@@ -1,0 +1,59 @@
+<div class="modal-header" role="main" aria-labelledby="myModalLabel" >
+    <h1 i18n class="modal-title modal-title-label-dlg" id="myModalLabel">Personal Skills</h1>
+</div>
+<div class="modal-body bg-dark">
+    <div class="container-fluid pt-2">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="container">
+                    <form [formGroup]="modalForm">
+                        <!--Name-->
+                        <div class="form-group mx-sm-3 mb-2">
+                            <div class="mb-3 row">              
+                                <label i18n for="name" class="col-xs-5 col-md-4 col-form-label text-white">Name</label>
+                                <div class="col-xs-7 col-md-8">
+                                    <input formControlName="name" id="name" type="text" class="form-control" placeholder="Name" required>
+                                    <div class="fw-lighter text-danger small" *ngIf="modalForm.get('name')!.touched">
+                                        <div i18n *ngIf="modalForm.get('name')?.hasError('required')">
+                                            You must type an name
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Score-->
+                        <div class="form-group mx-sm-3 mb-2">
+                            <div class="mb-3 row">
+                                <label i18n class="col-xs-5 col-md-4 col-form-label text-white">Score: </label>
+                                <div class="col-xs-7 col-md-8">                                                          
+                                    <div class="rating">
+                                      <input type="radio" id="rating-1" value="1" formControlName="score"/>
+                                      <label for="rating-1">★</label>
+                                      <input type="radio" id="rating-2" value="2" formControlName="score"/>
+                                      <label for="rating-2">★</label>
+                                      <input type="radio" id="rating-3" value="3" formControlName="score"/>
+                                      <label for="rating-3">★</label>
+                                      <input type="radio" id="rating-4" value="4" formControlName="score"/>
+                                      <label for="rating-4">★</label>
+                                      <input type="radio" id="rating-5" value="5" formControlName="score"/>
+                                      <label for="rating-5">★</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer bg-dark">
+    <button i18n id="btnCancel" type="button" class="btn btn-danger" (click)="onCancel()" data-dismiss="modal">
+      Cancel
+    </button>
+    <button i18n id="btnSave" type="submit" class="btn btn-success" [disabled]="!modalForm.valid" (click)="onCreate()">
+      Save
+    </button>
+</div>
+  
+  

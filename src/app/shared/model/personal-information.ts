@@ -9,4 +9,5 @@ export interface PersonalInformation{
     state:string;
     country:string;
     address:string;
+    photo:string;
 }
