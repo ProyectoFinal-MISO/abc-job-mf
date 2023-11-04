@@ -1,6 +1,6 @@
-export interface AdditionalInformation{
+export interface AditionalInformation{
     id:number;
     driverLicense:string;
     transferAvailability:number;
-    vehicle:string;
+    vehicule:string;
 }

@@ -1,4 +1,4 @@
-export interface ProfessionalExperience{
+export interface ProfessionalExperiences{
     id:number;
     titleJob:string,
     companyName:string,

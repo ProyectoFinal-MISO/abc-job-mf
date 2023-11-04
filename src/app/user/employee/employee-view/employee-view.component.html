@@ -1,0 +1,120 @@
+<div class="container align-items-center" *ngIf="user">
+    <div class="row align-items-center">
+      <div class="col-xs-10 col-12 container">
+        <div class="mt-3 row">
+            <h1 class="text-title-banner">
+            <img src="./../../../assets/images/abc-jobs-tie.png" alt="Logo de la pagina" class="img-logo-banner">
+            VIEW PROFILE</h1>
+        </div>
+          <div>
+              <div class="row">
+                <div class="col-12">
+                  <h3 class="title-section">Personal Data</h3>
+                  <div>
+                    <div class="row">
+                      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                        <div class="form-group">
+                          <div class="row">
+                            <div class="col-xs-12 col-7 col-lg-4">
+                              <span>
+                                <label class="hoverable" for="fileInput">
+                                  <img class="img-profile" [src]="url ? url : 'https://www.w3schools.com/howto/img_avatar.png'">
+                                  <div class="hover-text">Choose file</div>
+                                  <div class="background"></div>
+                                </label>
+                              </span>
+                              <br/>
+                            </div>
+                            <div class="col-xs-12 col-5 col-lg-8">
+                              <div class="mb-3 row">
+                                <label for="name" class="col-xs-5 col-md-4 col-form-label text-white">Name</label>
+                                <div class="col-xs-7 col-md-8">
+                                  <div>
+                                    {{ user.personalInformation.name }}
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="mb-3 row">
+                                <label for="lastName" class="col-xs-5 col-md-4 col-form-label text-white">Last Name</label>
+                                <div class="col-xs-7 col-md-8  ">
+                                  {{ user.personalInformation.lastName }}
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class="mb-3 row">
+                            <label for="typeIdentification" class="col-xs-5 col-md-4 col-form-label text-white">Type Identification</label>
+                            <div class="col-xs-7 col-md-8">
+                              {{ user.personalInformation.typeIdentification }}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class="mb-3 row">
+                            <label for="identification" class="col-xs-5 col-md-4 col-form-label text-white">Identification</label>
+                            <div class="col-xs-7 col-md-8">
+                                {{ user.personalInformation.identification }}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                        <div class="form-group">
+                          <div class="mb-3 row">
+                            <label for="phoneNumber" class="col-xs-5 col-md-4 col-form-label text-white">Phone Number</label>
+                            <div class="col-xs-7 col-md-8">
+                              {{ user.personalInformation.phoneNumber }}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class="mb-3 row">
+                            <label for="mobileNumber" class="col-xs-5 col-md-4 col-form-label text-white">Mobile Number</label>
+                            <div class="col-xs-7 col-md-8">
+                              {{ user.personalInformation.mobileNumber }}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class="mb-3 row">
+                          <label for="country" class="col-xs-5 col-md-4 col-form-label text-white">Country</label>
+                          <div class="col-xs-7 col-md-8">
+                            {{ user.personalInformation.country }}
+                          </div>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class="mb-3 row">
+                            <label for="state" class="col-xs-5 col-md-4 col-form-label text-white">State</label>
+                            <div class="col-xs-7 col-md-8">
+                              {{ user.personalInformation.state }}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class="mb-3 row">
+                            <label for="city" class="col-xs-5 col-md-4 col-form-label text-white">City</label>
+                            <div class="col-xs-7 col-md-8">
+                              {{ user.personalInformation.city }}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class="mb-3 row">
+                            <label for="address" class="col-xs-5 col-md-4 col-form-label text-white">Address</label>
+                            <div class="col-xs-7 col-md-8">
+                              {{ user.personalInformation.address }}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+      </div>
+    </div>
+  </div>
