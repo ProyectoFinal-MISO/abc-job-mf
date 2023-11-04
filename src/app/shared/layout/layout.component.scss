@@ -11,6 +11,7 @@
       position: fixed;
       width: 100%;
       z-index: -1;
+      background-color: transparent !important;
      /* background: rgb(162,190,81);
       background: linear-gradient(0deg, rgba(162,190,81,1) 0%, rgba(86,95,102,1) 100%);*/
     }
@@ -26,8 +27,8 @@
     }
     
     .global-container{
-      background-color: #ffffff;
-      padding-top: 40px;
+      background-color: transparent !important;
+      padding-top: 60px;
       padding-bottom: 25px;
       height: 100%;
     }

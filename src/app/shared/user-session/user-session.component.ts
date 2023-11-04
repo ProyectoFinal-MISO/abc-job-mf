@@ -47,6 +47,10 @@ export class UserSessionComponent {
     }
     this.fillItemsSlider();
     this.fillResponsive();
+
+   /* this.userSessionService.myUserChangeObservable.subscribe(x=>{
+      this.cerrarMenu();
+    });*/
   }
 
   signIn(){
@@ -62,8 +66,7 @@ export class UserSessionComponent {
         state: {
           data: this.myUser
         }
-      };
-  
+      };  
       this.router.navigate([`/signin/technicalresource`], navigationExtras);
     }
   }

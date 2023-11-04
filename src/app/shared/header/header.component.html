@@ -1,23 +1,40 @@
-<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+<nav class="navbar navbar-dark bg-dark fixed-top">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#" aria-label="Link to home">
-        <img src="./../../../assets/images/abc-jobs-logo-mini.png" alt="Logo of page" width="86" height="44" class="d-inline-block align-text-top">
+      <a i18n routerLink="/home" class="d-flex align-items-center text-white text-decoration-none" aria-current="home">
+        <img src="./../../../assets/images/abc-jobs-logo-mini-green.png" alt="Logo of page" width="86" height="44" class="d-inline-block align-text-top">
       </a>
-      <h1 i18n class="d-lg-none ms-auto px-3 site">{{sharedService.site}}</h1>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <h1 i18n class="md-auto px-3 site">{{sharedService.site}}</h1>
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuNavbar" aria-controls="menuNavbar" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a i18n class="nav-link active" routerLink="/home" aria-current="page">Home</a>
-          </li>
-          <li class="nav-item">
-            <a i18n class="nav-link" routerLink="/users">User</a>
-          </li>
-        </ul>
+      <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="menuNavbar" aria-labelledby="menuNavbarLabel">
+        <div class="offcanvas-header">
+          <img src="./../../../assets/images/abc-jobs-text-white.png" alt="Logo white home" id="menuNavbarLabel" class="img-title d-inline-block align-text-top">
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <hr>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <li class="nav-item">
+              <a i18n class="nav-link" routerLink="/users">User</a>
+            </li>
+          </ul>
+        </div>
+        <hr>
+        <div class="dropdown img-dropdown">
+          <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+            <img class="rounded-circle me-2" [src]="userSession?.personalInformation?.photo ? userSession.personalInformation.photo : 'https://www.w3schools.com/howto/img_avatar.png'" alt="image profile" width="32" height="32"> 
+            <strong>{{userSession?.username ? userSession.username: ''}}</strong>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-dark text-small shadow dropdown-ul" aria-labelledby="dropdownUser1">
+            <li><a class="dropdown-item" href="#">Profile</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" alt="" (click)="closeSession()"  href="">Sign out</a></li>
+          </ul>
+        </div>
       </div>
-      <h1 i18n class="d-none d-lg-block ms-auto px-3 site">{{sharedService.site}}</h1>
     </div>
-  </nav>
+</nav>
+
+<div class=" text-white bg-dark" style="width: 280px;"></div>
   
