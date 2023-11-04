@@ -41,7 +41,8 @@ export class UserSessionService {
     }
 
     closeSession() {
-      this.removeItem(environment.sur);     
+      this.removeItem(environment.sur); 
+      this.removeItem(environment.token);     
       this.storage.clear();
       this.sendMessage(false);
   }
@@ -77,5 +78,10 @@ export class UserSessionService {
 
   getMessage(): Observable<any> {
     return this.subjectStatus.asObservable();
+  }
+
+  getUserSession(): any|undefined {
+    const obj = this.getItem(environment.sur)!;
+    return obj?JSON.parse(obj):null;
   }
 }
