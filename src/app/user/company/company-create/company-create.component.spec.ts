@@ -1,18 +1,40 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { CompanyCreateComponent } from './company-create.component';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { DebugElement } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
+import { NgbActiveModal, NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { By } from '@angular/platform-browser';
+
 
 describe('CompanyCreateComponent', () => {
   let component: CompanyCreateComponent;
   let fixture: ComponentFixture<CompanyCreateComponent>;
+  let debug: DebugElement;
+  let div: HTMLElement;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule, RouterModule.forRoot([]),
+      ReactiveFormsModule,ToastrModule.forRoot(),
+      NgbModule],
+      declarations: [CompanyCreateComponent ],
+      providers: [
+        NgbActiveModal,
+        NgbModal
+      ]
+    })
+    .compileComponents();
+  });
 
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [CompanyCreateComponent]
-    });
     fixture = TestBed.createComponent(CompanyCreateComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    debug = fixture.debugElement;
+    div = fixture.nativeElement.querySelector('div');
   });
 
   it('should create', () => {
