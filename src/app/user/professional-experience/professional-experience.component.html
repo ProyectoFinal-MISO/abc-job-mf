@@ -84,10 +84,10 @@
     </div>
 </div>
 <div class="modal-footer bg-dark">
-    <button i18n id="btnCancel" type="button" class="btn btn-danger" (click)="onCancel()" data-dismiss="modal">
+    <button i18n id="btnCancel" type="button" class="btn btn-danger" (click)="onCancel()" data-dismiss="modal" aria-label="cancel professional experience">
       Cancel
     </button>
-    <button i18n id="btnSave" type="submit" class="btn btn-success" [disabled]="!modalForm.valid" (click)="onCreate()">
+    <button i18n id="btnSave" type="submit" class="btn btn-success" [disabled]="!modalForm.valid" (click)="onCreate()" aria-label="add professional experience">
       Save
     </button>
 </div>
