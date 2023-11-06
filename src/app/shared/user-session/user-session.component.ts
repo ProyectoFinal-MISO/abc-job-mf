@@ -37,7 +37,7 @@ export class UserSessionComponent {
     if (this.token) {
       const decodedToken = this.helper.decodeToken(this.token);
       this.router.navigate([`/home`]);
-    } else {         
+    } else {
     this.userSessionForm = this.formBuilder.group({
       myUser: ['', [Validators.required]],
       myPassword: ['', [Validators.required]],
@@ -55,7 +55,7 @@ export class UserSessionComponent {
 
   signIn(){
     this.getMyUser();
-    if(this.userSessionForm.get('userType')?.value === UserType.Employee){      
+    if(this.userSessionForm.get('userType')?.value === UserType.Employee){
       this.router.navigate([`/signin/employee`]);
     }
     else if (this.userSessionForm.get('userType')?.value === UserType.Company){
@@ -66,13 +66,13 @@ export class UserSessionComponent {
         state: {
           data: this.myUser
         }
-      };  
+      };
       this.router.navigate([`/signin/technicalresource`], navigationExtras);
     }
   }
 
   onLogInMyUser() {
-    this.error = false;  
+    this.error = false;
     this.getMyUser();
     const userTypeUri =
    this.userSessionForm.get('userType')?.value === UserType.Employee? 'employee':
@@ -85,8 +85,8 @@ export class UserSessionComponent {
           next: (response:any) => {
             //response.token = decodedToken;
             this.userSessionService.sendMessage(true);
-            this.userSessionService.saveUserLocal(response);            
-            //this.router.navigate([`/home/${decodedToken.sub}/${res.token}`]);        
+            this.userSessionService.saveUserLocal(response);
+            //this.router.navigate([`/home/${decodedToken.sub}/${res.token}`]);
             this.toastr.success(`login succesful`, 'Success', {
               progressBar: true,
             });
@@ -111,15 +111,15 @@ export class UserSessionComponent {
 
   fillItemsSlider(){
     this.itemsslider = [
-      { name:'img001', url: './../../../assets/images/img_slide_001.png'},
-      { name:'img002', url: './../../../assets/images/img_slide_002.png'},
-      { name:'img003', url: './../../../assets/images/img_slide_003.png'},
-      { name:'img004', url: './../../../assets/images/img_slide_004.png'},
-      { name:'img005', url: './../../../assets/images/img_slide_005.png'},
+      { name:'img001', url: 'assets/images/img_slide_001.png'},
+      { name:'img002', url: 'assets/images/img_slide_002.png'},
+      { name:'img003', url: 'assets/images/img_slide_003.png'},
+      { name:'img004', url: 'assets/images/img_slide_004.png'},
+      { name:'img005', url: 'assets/images/img_slide_005.png'},
     ];
   }
 
-  fillResponsive(){    
+  fillResponsive(){
     this.responsiveOptions = [
       {
           breakpoint: '1024px',
