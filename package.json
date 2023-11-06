@@ -8,7 +8,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "deploy": "ng build --prod --base-href=/abc-job-mf/"
+    "deploy": "ng build --configuration=production --base-href=/abc-job-mf/"
   },
   "private": true,
   "dependencies": {
