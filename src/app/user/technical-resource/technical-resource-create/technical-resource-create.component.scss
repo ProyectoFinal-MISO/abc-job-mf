@@ -109,15 +109,18 @@
   }
 
   .add-item-array {
-    width: 1.9em;
     background: transparent;
-    border-radius: 50%;
-    margin-top: -3em;
-    font-weight: bold;
-    font-size: 16.5px;
+    margin-top: -4em;
+    margin-right: -0.5em;
+    border: 0;
   }
+
   .add-item-array:hover {
     opacity: 1;
+  }
+
+  .add-item-array-icon{
+    font-size: 2rem;
   }
 
   .input-to-label{

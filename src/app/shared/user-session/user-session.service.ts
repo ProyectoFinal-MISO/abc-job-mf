@@ -59,6 +59,10 @@ export class UserSessionService {
       return this.http.get<User>(`/api/users/${userType}/${userId}`);
   }
 
+  getMyUserSession(): Observable<User>{
+    return this.http.get<User>(`/api/users/user_session`);
+}
+
   /*getUserToken(): string|undefined {
       const userModel = <UserSessionDto>JSON.parse(this.getItem(environment.sur)!);
       if (userModel !== null) {

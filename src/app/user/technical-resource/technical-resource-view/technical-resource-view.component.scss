@@ -108,16 +108,30 @@
     padding: 2em;
   }
 
-  .add-item-array {
-    width: 1.9em;
+  .item-array-banner-delete {
     background: transparent;
-    border-radius: 50%;
-    margin-top: -3em;
-    font-weight: bold;
-    font-size: 16.5px;
+    margin-top: -4em;
+    margin-right: 1em;
+    border:0
   }
-  .add-item-array:hover {
+
+  .item-array-banner-delete:hover {
     opacity: 1;
+  }
+
+  .item-array-banner-update {
+    background: transparent;
+    margin-top: -4em;
+    margin-right: -0.5em;
+    border:0
+  }
+
+  .item-array-banner-update:hover {
+    opacity: 1;
+  }
+
+  .item-array-banner-icon{
+    font-size: 2rem;
   }
 
   .input-to-label{
@@ -163,10 +177,6 @@
     background-color: #828F9A;
     color: #ffffff  
 }
-
-
-
-
   
   .rating-green {
     font-size: 0; /* Remove any font size */

@@ -1,15 +1,16 @@
 <div class="container align-items-center" *ngIf="user">
     <div class="row align-items-center">
       <div class="col-xs-10 col-12 container">
-        <div class="mt-3 row">
-            <h1 class="text-title-banner">
-            <img src="./../../../assets/images/abc-jobs-tie.png" alt="Logo de la pagina" class="img-logo-banner">
-            VIEW PROFILE</h1>
-        </div>
           <div>
               <div class="row">
                 <div class="col-12">
                   <h3 class="title-section">Personal Data</h3>
+                    <button i18n id="btn-update" type="button" class="float-end item-array-banner-update" (click)="onUpdate()">
+                      <i class="bi bi-pencil-square item-array-banner-icon"></i>
+                    </button>
+                    <button i18n id="btn-delete" type="submit" class="float-end item-array-banner-delete" (click)="onDelete()">
+                      <i class="bi bi-dash-square item-array-banner-icon"></i>
+                    </button>
                   <div>
                     <div class="row">
                       <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
