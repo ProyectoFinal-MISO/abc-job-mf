@@ -39,6 +39,12 @@
           },
           "configurations": {
             "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
               "budgets": [
                 {
                   "type": "initial",
@@ -76,8 +82,7 @@
           },
           "defaultConfiguration": "development",
           "options": {
-            "browserTarget": "abc-job-mf:build",
-            "proxyConfig": "proxy.conf.json"
+            "browserTarget": "abc-job-mf:build"
           }
         },
         "extract-i18n": {
