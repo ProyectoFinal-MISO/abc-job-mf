@@ -21,4 +21,8 @@ export class TechnicalResourceService {
   getUser(userId:any): Observable<TechnicalResource>{
     return this.http.get<TechnicalResource>(`/api/${this.backController}/${userId}`);
   }
+
+  deleteUser(userId:any): Observable<TechnicalResource>{
+    return this.http.delete<TechnicalResource>(`/api/${this.backController}/${userId}`);
+  }
 }

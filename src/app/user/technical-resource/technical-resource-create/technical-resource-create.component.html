@@ -326,7 +326,7 @@
             <div class="row" id="row-dialog-information">
               <div class="col-12 col-xs-12 col-sm-12 col-md-6" id="col-academic-information">
                 <h3 i18n class="title-section pt-4">Academic Information</h3>
-                <button class="float-right pull-right float-end add-item-array" (click)="goAddAcademicInformation()" aria-label="open dialog academic information">+</button>
+                <button class="float-right pull-right float-end add-item-array" (click)="goAddAcademicInformation()" aria-label="open dialog academic information"><i class="bi bi-plus-square add-item-array-icon"></i></button>
                 <div formArrayName="academicInformation" >
                   <ng-container *ngFor="let acainf of getAcademicInformations.controls; index as i">
                     <div class="card card-info mb-3" id="{{'academic-information-card' + i}}" [formGroupName]="i">
@@ -372,7 +372,7 @@
               </div>
               <div class="col-12 col-xs-12 col-sm-12 col-md-6" id="col-professional-experience">
                 <h3 i18n class="title-section pt-4">Professional Experience</h3>
-                <button class="float-right pull-right float-end add-item-array" (click)="goAddProfessionalExperience()" aria-label="open dialog professional experience">+</button>
+                <button class="float-right pull-right float-end add-item-array" (click)="goAddProfessionalExperience()" aria-label="open dialog professional experience"><i class="bi bi-plus-square add-item-array-icon"></i></button>
                 <div formArrayName="professionalExperience" >
                   <ng-container *ngFor="let acainf of getProfessionalExperiences.controls; index as i">
                     <div class="card card-info mb-3" id="{{'professional-experience-card-' + i}}" [formGroupName]="i">
@@ -418,7 +418,7 @@
               </div>
               <div class="col-12 col-xs-12 col-sm-12 col-md-6" id="col-technical-skills">
                 <h3 i18n class="title-section pt-4">Technical Skills</h3>
-                <button class="float-right pull-right float-end add-item-array" (click)="goAddProgrammingLanguages()" aria-label="open dialog technical skills">+</button>
+                <button class="float-right pull-right float-end add-item-array" (click)="goAddProgrammingLanguages()" aria-label="open dialog technical skills"><i class="bi bi-plus-square add-item-array-icon"></i></button>
                 <div class="card card-info mb-3" id="technical-skills-card">
                   <div formArrayName="programmingLanguages" >
                     <ng-container *ngFor="let acainf of getProgrammingLanguages.controls; index as i">
@@ -447,7 +447,7 @@
               </div>
               <div class="col-12 col-xs-12 col-sm-12 col-md-6" id="col-personal-skills">
                 <h3 i18n class="title-section pt-4">Personal Skills</h3>
-                <button class="float-right pull-right float-end add-item-array" (click)="goAddPersonalSkill()" aria-label="open dialog personal skills">+</button>
+                <button class="float-right pull-right float-end add-item-array" (click)="goAddPersonalSkill()" aria-label="open dialog personal skills"><i class="bi bi-plus-square add-item-array-icon"></i></button>
                 <div class="card card-info mb-3" id="personal-skills-card">
                   <div formArrayName="personalSkills" >
                     <ng-container *ngFor="let acainf of getPersonalSkills.controls; index as i">
@@ -476,7 +476,7 @@
               </div>
               <div class="col-12 col-xs-12 col-sm-12 col-md-6" id="col-languages">
                 <h3 i18n class="title-section pt-4">Languages</h3>
-                <button class="float-right pull-right float-end add-item-array" (click)="goAddLanguage()" aria-label="open dialog languages">+</button>
+                <button class="float-right pull-right float-end add-item-array" (click)="goAddLanguage()" aria-label="open dialog languages"><i class="bi bi-plus-square add-item-array-icon"></i></button>
                 <div class="card card-info mb-3" id="languages-card">
                   <div formArrayName="languages">
                     <ng-container *ngFor="let acainf of getLanguages.controls; index as i">

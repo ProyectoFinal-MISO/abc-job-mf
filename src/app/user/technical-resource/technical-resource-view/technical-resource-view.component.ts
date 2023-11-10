@@ -56,7 +56,9 @@ export class TechnicalResourceViewComponent {
     private toastr: ToastrService,
     private sharedService: SharedService,
     private route: ActivatedRoute
-  ) { }
+  ) {
+    this.sharedService.setSite('View Profile');
+   }
 
   ngOnInit(): void {
     const userId = this.route.snapshot.paramMap.get('id');
@@ -66,31 +68,10 @@ export class TechnicalResourceViewComponent {
     this.token = localStorage.getItem('token');
     if (this.token) {
       const decodedToken = this.helper.decodeToken(this.token);
-      this.router.navigate([`/technical-resource/view/` + userId]);
+     // this.router.navigate([`/technical-resource/view/` + userId]);
     } else {
-      this.route.paramMap.subscribe((data) => {
-
-      })
     }
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   changeCountry(e:any) {
     console.log(e.value)
@@ -190,6 +171,14 @@ export class TechnicalResourceViewComponent {
         });
       }
     });
+  }
+
+  onUpdate(){
+
+  }
+
+  onDelete(){
+    
   }
 
 }
