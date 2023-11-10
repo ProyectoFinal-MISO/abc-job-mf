@@ -4,4 +4,5 @@ import { User } from "./user";
 export interface Company extends User {
     email?:string;
     personalInformation:PersonalInformation;
+    location:any;
 }

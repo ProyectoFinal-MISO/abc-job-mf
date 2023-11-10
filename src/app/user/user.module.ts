@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { TechnicalResourceCreateComponent } from './technical-resource/technical-resource-create/technical-resource-create.component';
 import { TechnicalResourceViewComponent } from './technical-resource/technical-resource-view/technical-resource-view.component';
+import { TechnicalResourceDeleteComponent } from './technical-resource/technical-resource-delete/technical-resource-delete.component';
 
 import { CompanyCreateComponent } from './company/company-create/company-create.component';
 import { CompanyViewComponent } from './company/company-view/company-view.component';
@@ -25,6 +26,7 @@ import { LanguageComponent } from './language/language.component';
     EmployeeViewComponent,
     TechnicalResourceCreateComponent,
     TechnicalResourceViewComponent,
+    TechnicalResourceDeleteComponent,
     CompanyCreateComponent,
     CompanyViewComponent,
     AcademicInformationComponent,

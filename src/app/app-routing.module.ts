@@ -10,6 +10,9 @@ import { CompanyViewComponent } from './user/company/company-view/company-view.c
 
 import { TechnicalResourceCreateComponent } from './user/technical-resource/technical-resource-create/technical-resource-create.component';
 import { TechnicalResourceViewComponent } from './user/technical-resource/technical-resource-view/technical-resource-view.component';
+import { TechnicalResourceDeleteComponent } from './user/technical-resource/technical-resource-delete/technical-resource-delete.component';
+
+
 
 import { EmployeeCreateComponent } from './user/employee/employee-create/employee-create.component';
 import { EmployeeViewComponent } from './user/employee/employee-view/employee-view.component';
@@ -42,6 +45,11 @@ const routes: Routes = [
               {
                 path: 'view/:id',
                 component: TechnicalResourceViewComponent,
+                data: {}
+              },
+              {
+                path: 'delete/:id',
+                component: TechnicalResourceDeleteComponent,
                 data: {}
               }
             ]
