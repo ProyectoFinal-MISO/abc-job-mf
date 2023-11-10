@@ -21,4 +21,8 @@ export class CompanyService {
   getUser(userId:any): Observable<Company>{
     return this.http.get<Company>(`/api/${this.backController}/${userId}`);
   }
+
+  deleteUser(userId:any): Observable<Company>{
+    return this.http.delete<Company>(`/api/${this.backController}/${userId}`);
+  }
 }

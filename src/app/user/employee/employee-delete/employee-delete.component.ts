@@ -4,15 +4,15 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { ToastrService } from 'ngx-toastr';
 import { UserSessionDto } from 'src/app/shared/model/user-session';
-import { TechnicalResourceService } from '../technical-resource.service';
+import { EmployeeService } from '../employee.service';
 import { UserSessionService } from 'src/app/shared/user-session/user-session.service';
 
 @Component({
-  selector: 'app-technical-resource-delete',
-  templateUrl: './technical-resource-delete.component.html',
-  styleUrls: ['./technical-resource-delete.component.scss']
+  selector: 'app-employee-delete',
+  templateUrl: './employee-delete.component.html',
+  styleUrls: ['./employee-delete.component.scss']
 })
-export class TechnicalResourceDeleteComponent {
+export class EmployeeDeleteComponent {
   @Input() userSessionDto!: UserSessionDto;
 
   helper = new JwtHelperService();
@@ -24,7 +24,7 @@ export class TechnicalResourceDeleteComponent {
   userId: number;
 
   constructor(
-    private userService: TechnicalResourceService,
+    private userService: EmployeeService,
     private userSessionService: UserSessionService,
     private formBuilder: FormBuilder,
     private router: Router,
@@ -47,7 +47,7 @@ export class TechnicalResourceDeleteComponent {
     this.token = localStorage.getItem('token');
     if (this.token) {
       this.userSessionDto = this.localStageData?.data as UserSessionDto;
-      this.router.navigate([`/technical-resource/delete/` + userId]);
+      this.router.navigate([`/employee/delete/` + userId]);
     } else {
       this.router.navigate([`/home`]);
     }

@@ -1,4 +1,4 @@
-import { TechnicalResourceDeleteComponent } from './technical-resource-delete.component';
+import { EmployeeDeleteComponent } from './employee-delete.component';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { DebugElement } from '@angular/core';
@@ -8,9 +8,9 @@ import { ToastrModule } from 'ngx-toastr';
 import { NgbActiveModal, NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { By } from '@angular/platform-browser';
 
-describe('TechnicalResourceDeleteComponent', () => {
-  let component: TechnicalResourceDeleteComponent;
-  let fixture: ComponentFixture<TechnicalResourceDeleteComponent>;
+describe('EmployeeDeleteComponent', () => {
+  let component: EmployeeDeleteComponent;
+  let fixture: ComponentFixture<EmployeeDeleteComponent>;
 
   let debug: DebugElement;
   let div: HTMLElement;
@@ -20,7 +20,7 @@ describe('TechnicalResourceDeleteComponent', () => {
       imports: [HttpClientTestingModule, RouterModule.forRoot([]),
       ReactiveFormsModule,ToastrModule.forRoot(),
       NgbModule],
-      declarations: [ TechnicalResourceDeleteComponent ],
+      declarations: [ EmployeeDeleteComponent ],
       providers: [
         NgbActiveModal,
         NgbModal
@@ -30,7 +30,7 @@ describe('TechnicalResourceDeleteComponent', () => {
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TechnicalResourceDeleteComponent);
+    fixture = TestBed.createComponent(EmployeeDeleteComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
     debug = fixture.debugElement;
