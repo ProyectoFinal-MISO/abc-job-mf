@@ -35,7 +35,6 @@ export class UserSessionComponent {
   ngOnInit() {
     this.token = localStorage.getItem('token');
     if (this.token) {
-      const decodedToken = this.helper.decodeToken(this.token);
       this.router.navigate([`/home`]);
     } else {
     this.userSessionForm = this.formBuilder.group({
