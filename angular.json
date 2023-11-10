@@ -19,7 +19,7 @@
           "options": {
             "outputPath": "dist/abc-job-mf",
             "index": "src/index.html",
-            "main": "src/main.ts",            
+            "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
@@ -39,10 +39,16 @@
           },
           "configurations": {
             "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "4mb",
+                  "maximumWarning": "2mb",
                   "maximumError": "5mb"
                 },
                 {
@@ -76,8 +82,7 @@
           },
           "defaultConfiguration": "development",
           "options": {
-            "browserTarget": "abc-job-mf:build",
-            "proxyConfig": "proxy.conf.json"
+            "browserTarget": "abc-job-mf:build"
           }
         },
         "extract-i18n": {
@@ -88,8 +93,8 @@
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
-          "options": {      
-            "main": "src/test.ts",      
+          "options": {
+            "main": "src/test.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
@@ -109,6 +114,9 @@
               "node_modules/bootstrap/dist/js/bootstrap.min.js"
             ]
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy"
         }
       }
     }

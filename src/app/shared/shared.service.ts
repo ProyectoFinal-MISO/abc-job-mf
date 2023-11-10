@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { ProfessionalSector } from './model/professional-sector';
 import { EducationLevel } from './model/education-level';
 import { LanguageDto } from './model/languageDto';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,7 @@ export class SharedService {
 
   site: string = '';
   siteEs: string = '';
+  private urlUsers:string = environment.baseUrlUsers
 
   constructor(private http: HttpClient) { }
 
@@ -33,34 +35,34 @@ export class SharedService {
   }
 
   getCountries(): Observable<Array<Country>>{
-    return this.http.get<Array<Country>>(`/api/users/location/countries`);
+    return this.http.get<Array<Country>>(`${this.urlUsers}location/countries`);
   }
 
   getStatesByCountry(countryId:number): Observable<Array<Country>>{
-    return this.http.get<Array<Country>>(`/api/users/location/states/${countryId}`);
+    return this.http.get<Array<Country>>(`${this.urlUsers}location/states/${countryId}`);
   }
 
   getCitiesByState(stateId:number): Observable<Array<Country>>{
-    return this.http.get<Array<Country>>(`/api/users/location/cities/${stateId}`);
+    return this.http.get<Array<Country>>(`${this.urlUsers}location/cities/${stateId}`);
   }
 
   getTypesIdentification(): Observable<Array<string>>{
-    return this.http.get<Array<string>>(`/api/users/types_documents`);
+    return this.http.get<Array<string>>(`${this.urlUsers}types_documents`);
   }
 
   getGenres(): Observable<Array<string>>{
-    return this.http.get<Array<string>>(`/api/users/genders`);
+    return this.http.get<Array<string>>(`${this.urlUsers}genders`);
   }
 
   getProfessionalSectors(): Observable<Array<ProfessionalSector>>{
-    return this.http.get<Array<ProfessionalSector>>(`/api/users/professional_sector`);
+    return this.http.get<Array<ProfessionalSector>>(`${this.urlUsers}professional_sector`);
   }
 
   getEducationLevels(): Observable<Array<string>>{
-    return this.http.get<Array<string>>(`/api/users/education_levels`);
+    return this.http.get<Array<string>>(`${this.urlUsers}education_levels`);
   }
 
   getLanguages(): Observable<Array<LanguageDto>>{
-    return this.http.get<Array<LanguageDto>>(`/api/users/language`);
+    return this.http.get<Array<LanguageDto>>(`${this.urlUsers}language`);
   }
 }

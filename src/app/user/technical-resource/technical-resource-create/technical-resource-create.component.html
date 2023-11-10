@@ -1,15 +1,15 @@
 <div class="container align-items-center" *ngIf="carga">
-  <div class="row align-items-center">  
+  <div class="row align-items-center">
     <div class="col-xs-10 col-12 container">
       <div class="mt-3 row">
           <h1 i18n class="text-title-banner">
-          <img src="./../../../assets/images/abc-jobs-tie.png" alt="Logo of page" class="img-logo-banner">
+          <img src="assets/images/abc-jobs-tie.png" alt="Logo of page" class="img-logo-banner">
           SING IN</h1>
       </div>
         <form [formGroup]="userForm" (ngSubmit)="addUser()">
             <div class="row" id="row-personal-information">
               <div class="col-12">
-                <h3 i18n class="title-section">Personal Data</h3>               
+                <h3 i18n class="title-section">Personal Data</h3>
                 <div formGroupName="personalInformation">
                   <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" id="col-personal-information-section-left">
@@ -18,14 +18,14 @@
                           <div class="col-xs-12 col-7 col-lg-4">
                             <span>
                               <label class="hoverable" for="fileInput">
-                                <img id="img-user" class="img-profile" [src]="url ? url : 'https://www.w3schools.com/howto/img_avatar.png'" alt="Logo of profile"> 
+                                <img id="img-user" class="img-profile" [src]="url ? url : 'https://www.w3schools.com/howto/img_avatar.png'" alt="Logo of profile">
                                 <div i18n class="hover-text">Choose file</div>
-                                <div class="background"></div>                        
+                                <div class="background"></div>
                               </label>
                               <button id="btn-img-user" class="close-image" *ngIf="url" (click)="clearFile()" aria-label="clear photo option"></button>
                             </span>
-                            <br/>                      
-                            <input id="fileInput" type='file' formControlName="photo" (change)="handleFileInput($event)">                      
+                            <br/>
+                            <input id="fileInput" type='file' formControlName="photo" (change)="handleFileInput($event)">
                           </div>
                           <div class="col-xs-12 col-5 col-lg-8">
                             <div class="mb-3 row">
@@ -74,7 +74,7 @@
                         </div>
                       </div>
                       <div class="form-group">
-                        <div class="mb-3 row">              
+                        <div class="mb-3 row">
                           <label i18n for="personal-information-type-identification" class="col-xs-5 col-md-4 col-form-label text-white">Type Identification</label>
                           <div class="col-xs-7 col-md-8">
                               <select class="form-select" formControlName="typeIdentification" id="personal-information-type-identification">
@@ -90,7 +90,7 @@
                         </div>
                       </div>
                       <div class="form-group">
-                        <div class="mb-3 row">              
+                        <div class="mb-3 row">
                           <label i18n for="personal-information-identification" class="col-xs-5 col-md-4 col-form-label text-white">Identification</label>
                           <div class="col-xs-7 col-md-8">
                               <input formControlName="identification" type="text" class="form-control" placeholder="Identification" id="personal-information-identification">
@@ -106,7 +106,7 @@
                         </div>
                       </div>
                       <div class="form-group">
-                        <div class="mb-3 row">              
+                        <div class="mb-3 row">
                           <label i18n for="personal-information-genre" class="col-xs-5 col-md-4 col-form-label text-white">Genre</label>
                           <div class="col-xs-7 col-md-8">
                               <select class="form-select"  formControlName="genre" id="personal-information-genre">
@@ -124,7 +124,7 @@
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" id="col-personal-information-section-rigth">
                       <div class="form-group">
-                        <div class="mb-3 row">              
+                        <div class="mb-3 row">
                           <label i18n for="personal-information-phone-number" class="col-xs-5 col-md-4 col-form-label text-white">Phone Number</label>
                           <div class="col-xs-7 col-md-8">
                             <input formControlName="phoneNumber" type="text" class="form-control" placeholder="Phone Number" id="personal-information-phone-number">
@@ -137,7 +137,7 @@
                         </div>
                       </div>
                       <div class="form-group">
-                        <div class="mb-3 row">              
+                        <div class="mb-3 row">
                           <label i18n for="personal-information-mobile-number" class="col-xs-5 col-md-4 col-form-label text-white">Mobile Number</label>
                           <div class="col-xs-7 col-md-8">
                               <input formControlName="mobileNumber" type="text" class="form-control" placeholder="Mobile Number" id="personal-information-mobile-number">
@@ -145,7 +145,7 @@
                         </div>
                       </div>
                       <div class="form-group">
-                        <div class="mb-3 row">              
+                        <div class="mb-3 row">
                         <label i18n for="personal-information-country" class="col-xs-5 col-md-4 col-form-label text-white">Country</label>
                         <div class="col-xs-7 col-md-8">
                             <select (change)="getStates()" class="form-select"  formControlName="country" id="personal-information-country">
@@ -161,7 +161,7 @@
                         </div>
                       </div>
                       <div class="form-group">
-                        <div class="mb-3 row">              
+                        <div class="mb-3 row">
                           <label i18n for="personal-information-state" class="col-xs-5 col-md-4 col-form-label text-white">State</label>
                           <div class="col-xs-7 col-md-8">
                               <select (change)="getCities()" class="form-select"  formControlName="state" id="personal-information-state">
@@ -177,7 +177,7 @@
                         </div>
                       </div>
                       <div class="form-group">
-                        <div class="mb-3 row">              
+                        <div class="mb-3 row">
                           <label i18n for="personal-information-city" class="col-xs-5 col-md-4 col-form-label text-white">City</label>
                           <div class="col-xs-7 col-md-8">
                               <select class="form-select"  formControlName="city" id="personal-information-city">
@@ -193,7 +193,7 @@
                         </div>
                       </div>
                       <div class="form-group">
-                        <div class="mb-3 row">              
+                        <div class="mb-3 row">
                           <label i18n for="personal-information-address" class="col-xs-5 col-md-4 col-form-label text-white">Address</label>
                           <div class="col-xs-7 col-md-8">
                               <input formControlName="address" type="text" class="form-control" placeholder="Address" id="personal-information-address">
@@ -206,12 +206,12 @@
               </div>
               <div class="row" id="row-account-data">
                   <div class="col-12">
-                    <h3 i18n class="title-section pt-3">Account Data</h3>             
+                    <h3 i18n class="title-section pt-3">Account Data</h3>
                     <div class="card card-info mb-3">
                       <div class="row">
                         <div class="col-sm-12 col-md-6">
                           <div class="form-group">
-                            <div class="mb-3 row">              
+                            <div class="mb-3 row">
                               <label i18n for="account-data-email" class="col-xs-5 col-md-4 col-form-label text-white">Email</label>
                               <div class="col-xs-7 col-md-8">
                                 <input formControlName="email" type="email" class="form-control" placeholder="Email" id="account-data-email">
@@ -219,7 +219,7 @@
                             </div>
                           </div>
                           <div class="form-group">
-                            <div class="mb-3 row">              
+                            <div class="mb-3 row">
                               <label i18n for="account-data-username" class="col-xs-5 col-md-4 col-form-label text-white">Username</label>
                               <div class="col-xs-7 col-md-8">
                                 <input formControlName="username" type="email" class="form-control" placeholder="Username" id="account-data-username">
@@ -254,7 +254,7 @@
                                 </div>
                               </div>
                             </div>
-                          </div>  
+                          </div>
                           <div class="form-group">
                             <div class="mb-3 row">
                               <label i18n for="account-data-cpw" class="col-xs-5 col-md-4 col-form-label text-white">Confirm Password</label>
@@ -284,12 +284,12 @@
               </div>
               <div class="row" id="row-additional-information">
                   <div class="col-12">
-                    <h3 i18n class="title-section">Additional Information</h3>               
+                    <h3 i18n class="title-section">Additional Information</h3>
                       <div formGroupName="additionalInformation">
                         <div class="row">
                           <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                             <div class="form-group">
-                              <div class="mb-3 row">              
+                              <div class="mb-3 row">
                                 <label i18n for="additional-information-transfer-availability" class="col-xs-5 col-md-4 col-form-label text-white">Transfer Availability</label>
                                 <div class="col-xs-7 col-md-8">
                                     <select class="form-select" formControlName="transferAvailability" id="additional-information-transfer-availability">
@@ -300,7 +300,7 @@
                               </div>
                             </div>
                             <div class="form-group">
-                              <div class="mb-3 row">              
+                              <div class="mb-3 row">
                                 <label i18n for="additional-information-driver-license" class="col-xs-5 col-md-4 col-form-label text-white">Driver License</label>
                                 <div class="col-xs-7 col-md-8">
                                     <input formControlName="driverLicense" type="text" class="form-control" placeholder="Driver License" id="additional-information-driver-license">
@@ -310,7 +310,7 @@
                           </div>
                           <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                             <div class="form-group">
-                                <div class="mb-3 row">              
+                                <div class="mb-3 row">
                                   <label i18n for="additional-information-vehicle" class="col-xs-5 col-md-4 col-form-label text-white">Vehicle</label>
                                   <div class="col-xs-7 col-md-8">
                                       <input formControlName="vehicle" type="text" class="form-control" placeholder="Vehicle" id="additional-information-vehicle">
@@ -321,7 +321,7 @@
                         </div>
                       </div>
                   </div>
-              </div>                
+              </div>
             </div>
             <div class="row" id="row-dialog-information">
               <div class="col-12 col-xs-12 col-sm-12 col-md-6" id="col-academic-information">
@@ -337,7 +337,7 @@
                             <div class="col-lg-7">
                               <label i18n class="col-form-label text-white" id="{{'academic-information-school-name-' + i}}">{{userForm.get('academicInformation')?.value[i]?.schoolName}}</label>
                             </div>
-                          </div>                        
+                          </div>
                           <div class="mb-3 row">
                             <label i18n class="col-lg-5 col-form-label text-white">Start Date:</label>
                             <div class="col-lg-7">
@@ -352,7 +352,7 @@
                           </div>
                         </div>
                         <div class="col-12 col-xs-12 col-sm-12 col-md-6">
-                          <div class="mb-3 row">                          
+                          <div class="mb-3 row">
                             <label i18n class="col-lg-5 col-form-label text-white">Sector:</label>
                             <div class="col-lg-7">
                               <label i18n class="col-form-label text-white" id="{{'academic-information-sector-' + i}}">{{userForm.get('academicInformation')?.value[i]?.professionalSector?.name}}</label>
@@ -367,7 +367,7 @@
                         </div>
                       </div>
                     </div>
-                  </ng-container>                    
+                  </ng-container>
                 </div>
               </div>
               <div class="col-12 col-xs-12 col-sm-12 col-md-6" id="col-professional-experience">
@@ -383,21 +383,21 @@
                             <div class="col-lg-7">
                               <label i18n class="col-form-label text-white" id="{{'professional-experience-title-job-' + i}}">{{userForm.get('professionalExperience')?.value[i]?.titleJob}}</label>
                             </div>
-                          </div>                        
+                          </div>
                           <div class="mb-3 row">
                             <label class="col-lg-5 col-form-label text-white">Start Date:</label>
                             <div class="col-lg-7">
                               <label i18n class="col-form-label text-white" id="{{'professional-experience-title-job-' + i}}">{{userForm.get('professionalExperience')?.value[i]?.startDate}}</label>
                             </div>
                           </div>
-                          <div class="mb-3 row">                          
+                          <div class="mb-3 row">
                             <label class="col-lg-5 col-form-label text-white">Details:</label>
                             <div class="col-lg-7">
                               <label i18n class="col-form-label text-white text-justify" id="{{'professional-experience-details-' + i}}">{{userForm.get('professionalExperience')?.value[i]?.details}}</label>
                             </div>
                           </div>
                         </div>
-                        <div class="col-12 col-xs-12 col-sm-12 col-md-6">                          
+                        <div class="col-12 col-xs-12 col-sm-12 col-md-6">
                           <div class="mb-3 row">
                             <label class="col-lg-5 col-form-label text-white">Company:</label>
                             <div class="col-lg-7">
@@ -413,20 +413,20 @@
                         </div>
                       </div>
                     </div>
-                  </ng-container>                    
+                  </ng-container>
                 </div>
-              </div>              
+              </div>
               <div class="col-12 col-xs-12 col-sm-12 col-md-6" id="col-technical-skills">
                 <h3 i18n class="title-section pt-4">Technical Skills</h3>
                 <button class="float-right pull-right float-end add-item-array" (click)="goAddProgrammingLanguages()" aria-label="open dialog technical skills"><i class="bi bi-plus-square add-item-array-icon"></i></button>
                 <div class="card card-info mb-3" id="technical-skills-card">
                   <div formArrayName="programmingLanguages" >
-                    <ng-container *ngFor="let acainf of getProgrammingLanguages.controls; index as i">                    
+                    <ng-container *ngFor="let acainf of getProgrammingLanguages.controls; index as i">
                       <div class="row" id="{{'row' + i}}" [formGroupName]="i">
                         <div class="col-6">
                           <label class="col-form-label text-white">{{userForm.get('programmingLanguages')?.value[i]?.name}}</label>
                         </div>
-                        <div class="col-6">                          
+                        <div class="col-6">
                             <div class="rating-yellow pe-none">
                               <input type="radio" id="{{'technical-skills-rating-1-' + i}}" value="1" formControlName="score" [readonly]="true" novalidate/>
                               <label for="{{'technical-skills-rating-1-' + i}}">★</label>
@@ -440,22 +440,22 @@
                               <label for="{{'technical-skills-rating-5-' + i}}">★</label>
                             </div>
                         </div>
-                      </div>                    
-                    </ng-container>                    
+                      </div>
+                    </ng-container>
                   </div>
                 </div>
-              </div>          
+              </div>
               <div class="col-12 col-xs-12 col-sm-12 col-md-6" id="col-personal-skills">
                 <h3 i18n class="title-section pt-4">Personal Skills</h3>
                 <button class="float-right pull-right float-end add-item-array" (click)="goAddPersonalSkill()" aria-label="open dialog personal skills"><i class="bi bi-plus-square add-item-array-icon"></i></button>
                 <div class="card card-info mb-3" id="personal-skills-card">
                   <div formArrayName="personalSkills" >
-                    <ng-container *ngFor="let acainf of getPersonalSkills.controls; index as i">                    
+                    <ng-container *ngFor="let acainf of getPersonalSkills.controls; index as i">
                       <div class="row" id="{{'row' + i}}" [formGroupName]="i">
                         <div class="col-6">
                           <label class="col-form-label text-white">{{userForm.get('personalSkills')?.value[i]?.name}}</label>
                         </div>
-                        <div class="col-6">                          
+                        <div class="col-6">
                             <div class="rating-blue pe-none">
                               <input type="radio" id="{{'personal-skills-rating-1-' + i}}" value="1" formControlName="score" [readonly]="true" novalidate/>
                               <label for="{{'personal-skills-rating-1-' + i}}">★</label>
@@ -468,10 +468,10 @@
                               <input type="radio" id="{{'personal-skills-rating-5-' + i}}" value="5" formControlName="score" [readonly]="true" novalidate/>
                               <label for="{{'personal-skills-rating-5-' + i}}">★</label>
                             </div>
-                        </div>                      
+                        </div>
                       </div>
                     </ng-container>
-                  </div>                   
+                  </div>
                 </div>
               </div>
               <div class="col-12 col-xs-12 col-sm-12 col-md-6" id="col-languages">
@@ -479,12 +479,12 @@
                 <button class="float-right pull-right float-end add-item-array" (click)="goAddLanguage()" aria-label="open dialog languages"><i class="bi bi-plus-square add-item-array-icon"></i></button>
                 <div class="card card-info mb-3" id="languages-card">
                   <div formArrayName="languages">
-                    <ng-container *ngFor="let acainf of getLanguages.controls; index as i">                    
+                    <ng-container *ngFor="let acainf of getLanguages.controls; index as i">
                       <div class="row" id="{{'row' + i}}" [formGroupName]="i">
                           <div class="col-6">
                             <label class="col-form-label text-white">{{userForm.get('languages')?.value[i]?.language?.name}}</label>
                           </div>
-                          <div class="col-6">                          
+                          <div class="col-6">
                             <div class="rating-green pe-none">
                               <input type="radio" id="{{'languages-rating-1-' + i}}" value="1" formControlName="score" [readonly]="true" novalidate/>
                               <label for="{{'languages-rating-1-' + i}}">★</label>
@@ -498,12 +498,12 @@
                               <label for="{{'languages-rating-5-' + i}}">★</label>
                             </div>
                           </div>
-                      </div>                    
+                      </div>
                     </ng-container>
-                  </div>                 
+                  </div>
                 </div>
               </div>
-            </div>            
+            </div>
             <div class="col-12 text-center mt-3">
               <button i18n type="submit" class="btn btn-confirm col-4 col-sm-4 col-md-3 col-lg-2"
                 [disabled]="!userForm.valid || userForm.get('confirmPassword')?.value !== userForm.get('password')?.value" aria-label="create user">Continue</button>
@@ -515,4 +515,3 @@
     </div>
   </div>
 </div>
-  
