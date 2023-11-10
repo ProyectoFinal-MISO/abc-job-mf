@@ -3,12 +3,15 @@ import { CommonModule } from '@angular/common';
 
 import { TechnicalResourceCreateComponent } from './technical-resource/technical-resource-create/technical-resource-create.component';
 import { TechnicalResourceViewComponent } from './technical-resource/technical-resource-view/technical-resource-view.component';
+import { TechnicalResourceDeleteComponent } from './technical-resource/technical-resource-delete/technical-resource-delete.component';
 
 import { CompanyCreateComponent } from './company/company-create/company-create.component';
 import { CompanyViewComponent } from './company/company-view/company-view.component';
+import { CompanyDeleteComponent } from './company/company-delete/company-delete.component';
 
 import { EmployeeCreateComponent } from './employee/employee-create/employee-create.component';
 import { EmployeeViewComponent } from './employee/employee-view/employee-view.component';
+import { EmployeeDeleteComponent } from './employee/employee-delete/employee-delete.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from '../app-routing.module';
@@ -23,10 +26,13 @@ import { LanguageComponent } from './language/language.component';
   declarations: [
     EmployeeCreateComponent,
     EmployeeViewComponent,
+    EmployeeDeleteComponent,
     TechnicalResourceCreateComponent,
     TechnicalResourceViewComponent,
+    TechnicalResourceDeleteComponent,
     CompanyCreateComponent,
     CompanyViewComponent,
+    CompanyDeleteComponent,
     AcademicInformationComponent,
     ProfessionalExperienceComponent,
     PersonalSkillComponent,

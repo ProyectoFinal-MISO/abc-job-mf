@@ -41,8 +41,8 @@ export class UserSessionService {
     }
 
     closeSession() {
-      this.removeItem(environment.sur); 
-      this.removeItem(environment.token);     
+      this.removeItem(environment.sur);
+      this.removeItem(environment.token);
       this.storage.clear();
       this.sendMessage(false);
   }
@@ -61,7 +61,11 @@ export class UserSessionService {
 
   getMyUserSession(): Observable<User>{
     return this.http.get<User>(`/api/users/user_session`);
-}
+  }
+
+  getUserMe(): Observable<User>{
+    return this.http.get<User>(`/api/users/me`);
+  }
 
   /*getUserToken(): string|undefined {
       const userModel = <UserSessionDto>JSON.parse(this.getItem(environment.sur)!);
@@ -75,7 +79,7 @@ export class UserSessionService {
     const token = this.getItem(environment.token)!;
     return token?token:'';
   }
-  
+
   sendMessage(status: Boolean) {
     this.subjectStatus.next({ status: status })
   }
