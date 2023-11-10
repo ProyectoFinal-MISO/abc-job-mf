@@ -42,7 +42,7 @@
           </div>
         </div>
 
-        <form  [formGroup]="userForm" (ngSubmit)="deleteUser()">
+        <form  [formGroup]="userDeleteForm" (ngSubmit)="deleteUser()">
           <div class="row" id="row-personal-information">
             <div class="row" id="row-account-data">
               <div class="col-12">
@@ -74,11 +74,11 @@
                                 id="account-data-username">
                               <div class="fw-lighter text-danger small">
                                 <div i18n
-                                  *ngIf="userForm.get('username')?.hasError('required')">
+                                  *ngIf="userDeleteForm.get('username')?.hasError('required')">
                                   You must type an username
                                 </div>
                                 <div i18n
-                                  *ngIf="userForm.get('username')?.hasError('email')">
+                                  *ngIf="userDeleteForm.get('username')?.hasError('email')">
                                   You must type an valid email
                                 </div>
                               </div>
@@ -96,17 +96,17 @@
                                 class="form-control" placeholder="*********"
                                 id="account-data-pw">
                               <div class="fw-lighter text-danger small"
-                                *ngIf="userForm.get('password')!.touched">
+                                *ngIf="userDeleteForm.get('password')!.touched">
                                 <div i18n
-                                  *ngIf="userForm.get('password')?.hasError('required')">
+                                  *ngIf="userDeleteForm.get('password')?.hasError('required')">
                                   You must type a password
                                 </div>
                                 <div i18n
-                                  *ngIf="userForm.get('password')?.hasError('maxlength')">
+                                  *ngIf="userDeleteForm.get('password')?.hasError('maxlength')">
                                   text must be max 50 characteres
                                 </div>
                                 <div i18n
-                                  *ngIf="userForm.get('password')?.hasError('minlength')">
+                                  *ngIf="userDeleteForm.get('password')?.hasError('minlength')">
                                   text must be min 4 characteres
                                 </div>
                               </div>
@@ -123,21 +123,21 @@
                                 type="password" class="form-control"
                                 placeholder="*********" id="account-data-cpw">
                               <div class="fw-lighter text-danger small"
-                                *ngIf="userForm.get('confirmPassword')!.touched">
+                                *ngIf="userDeleteForm.get('confirmPassword')!.touched">
                                 <div i18n
-                                  *ngIf="userForm.get('confirmPassword')?.hasError('required')">
+                                  *ngIf="userDeleteForm.get('confirmPassword')?.hasError('required')">
                                   You must type a password
                                 </div>
                                 <div i18n
-                                  *ngIf="userForm.get('confirmPassword')?.hasError('maxlength')">
+                                  *ngIf="userDeleteForm.get('confirmPassword')?.hasError('maxlength')">
                                   text must be max 50 characteres
                                 </div>
                                 <div i18n
-                                  *ngIf="userForm.get('confirmPassword')?.hasError('minlength')">
+                                  *ngIf="userDeleteForm.get('confirmPassword')?.hasError('minlength')">
                                   text must be min 4 characteres
                                 </div>
                                 <div i18n
-                                  *ngIf="userForm.get('confirmPassword')?.value !== userForm.get('password')?.value">
+                                  *ngIf="userDeleteForm.get('confirmPassword')?.value !== userDeleteForm.get('password')?.value">
                                   Both password are diferent
                                 </div>
                               </div>
@@ -154,7 +154,7 @@
             <div class="col-12 text-center mt-3">
               <button i18n type="submit"
                 class="btn btn-confirm col-4 col-sm-4 col-md-3 col-lg-2"
-                [disabled]="!userForm.valid || userForm.get('confirmPassword')?.value !== userForm.get('password')?.value"
+                [disabled]="!userDeleteForm.valid || userDeleteForm.get('confirmPassword')?.value !== userDeleteForm.get('password')?.value"
                 aria-label="delete user">Confirm</button>
             </div>
             <div class="col-12 text-center mt-2"></div>
