@@ -59,6 +59,10 @@ export class UserSessionService {
       return this.http.get<User>(`/api/users/${userType}/${userId}`);
   }
 
+  getMyUserSession(): Observable<User>{
+    return this.http.get<User>(`/api/users/user_session`);
+  }
+
   getUserMe(): Observable<User>{
     return this.http.get<User>(`/api/users/me`);
   }

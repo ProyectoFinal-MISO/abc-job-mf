@@ -27,7 +27,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.router.events.subscribe((evt) => {
+   /* this.router.events.subscribe((evt) => {
       if (!(evt instanceof NavigationEnd)) {
           return;
       }
@@ -35,7 +35,7 @@ export class AppComponent implements OnInit, OnDestroy {
       if (layout.length > 0 ) {
         document.getElementsByTagName("app-layout")[0].scrollIntoView();
       }
-    });
+    });*/
   }
 
   ngOnDestroy(): void {
