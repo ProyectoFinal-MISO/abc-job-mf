@@ -61,11 +61,11 @@ export class UserSessionService {
   }
 
   getMyUserSession(): Observable<User>{
-    return this.http.get<User>(`/api/users/user_session`);
+    return this.http.get<User>(`${this.urlUsers}user_session`);
   }
 
   getUserMe(): Observable<User>{
-    return this.http.get<User>(`/api/users/me`);
+    return this.http.get<User>(`${this.urlUsers}me`);
   }
 
   /*getUserToken(): string|undefined {

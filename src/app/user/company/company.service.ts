@@ -9,20 +9,20 @@ import { Company } from 'src/app/shared/model/company';
 })
 export class CompanyService {
 
-  private backUrl: string = environment.baseUrl;
-  private backController: string = 'users/company';
+  private backController: string = 'company';
+  private urlUsers:string = environment.baseUrlUsers
 
   constructor(private http: HttpClient) { }
 
   addUser(user: Company): Observable<any> {
-    return this.http.post<any>(`/api/users`, user);
+    return this.http.post<any>(`${this.urlUsers}`, user);
   }
 
   getUser(userId:any): Observable<Company>{
-    return this.http.get<Company>(`/api/${this.backController}/${userId}`);
+    return this.http.get<Company>(`${this.urlUsers}${this.backController}/${userId}`);
   }
 
   deleteUser(userId:any): Observable<Company>{
-    return this.http.delete<Company>(`/api/${this.backController}/${userId}`);
+    return this.http.delete<Company>(`${this.urlUsers}${this.backController}/${userId}`);
   }
 }
