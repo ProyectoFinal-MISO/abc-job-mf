@@ -1,5 +1,5 @@
 export interface Language{
-    id:number;
+    id?:number;
     language:string;
     score:number;
 }

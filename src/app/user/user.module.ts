@@ -21,6 +21,7 @@ import { ProfessionalExperienceComponent } from './professional-experience/profe
 import { PersonalSkillComponent } from './personal-skill/personal-skill.component';
 import { ProgrammingLanguageComponent } from './programming-language/programming-language.component';
 import { LanguageComponent } from './language/language.component';
+import { TechnicalResourceEditComponent } from './technical-resource/technical-resource-edit/technical-resource-edit.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { LanguageComponent } from './language/language.component';
     ProfessionalExperienceComponent,
     PersonalSkillComponent,
     ProgrammingLanguageComponent,
-    LanguageComponent
+    LanguageComponent,
+    TechnicalResourceEditComponent
   ],
   imports: [
     CommonModule,

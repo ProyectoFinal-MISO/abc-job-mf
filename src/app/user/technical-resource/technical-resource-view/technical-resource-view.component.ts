@@ -219,7 +219,7 @@ export class TechnicalResourceViewComponent {
   }
 
   onUpdate(){
-
+    this.router.navigate([`/technical-resource/update/` + this.user.id]);
   }
 
   onDelete(){

@@ -341,7 +341,7 @@
                           <div class="mb-3 row">
                             <label i18n class="col-lg-5 col-form-label text-white">Start Date:</label>
                             <div class="col-lg-7">
-                              <label i18n class="col-form-label text-white" id="{{'academic-information-start-date-' + i}}">{{userForm.get('academicInformation')?.value[i]?.startDate}}</label>
+                              <label i18n class="col-form-label text-white" id="{{'academic-information-start-date-' + i}}">{{userForm.get('academicInformation')?.value[i]?.startDate  | date: 'yyyy-MM-dd'}}</label>
                             </div>
                           </div>
                           <div class="mb-3 row">
@@ -361,7 +361,7 @@
                           <div class="mb-3 row">
                             <label i18n class="col-lg-5 col-form-label text-white">End Date:</label>
                             <div class="col-lg-7">
-                              <label i18n class="col-form-label text-white" id="{{'academic-information-end-date-' + i}}">{{userForm.get('academicInformation')?.value[i]?.endDate}}</label>
+                              <label i18n class="col-form-label text-white" id="{{'academic-information-end-date-' + i}}">{{userForm.get('academicInformation')?.value[i]?.endDate | date: 'yyyy-MM-dd' }}</label>
                             </div>
                           </div>
                         </div>
@@ -387,7 +387,7 @@
                           <div class="mb-3 row">
                             <label class="col-lg-5 col-form-label text-white">Start Date:</label>
                             <div class="col-lg-7">
-                              <label i18n class="col-form-label text-white" id="{{'professional-experience-title-job-' + i}}">{{userForm.get('professionalExperience')?.value[i]?.startDate}}</label>
+                              <label i18n class="col-form-label text-white" id="{{'professional-experience-title-job-' + i}}">{{userForm.get('professionalExperience')?.value[i]?.startDate  | date: 'yyyy-MM-dd'}}</label>
                             </div>
                           </div>
                           <div class="mb-3 row">
@@ -407,7 +407,7 @@
                           <div class="mb-3 row">
                             <label class="col-lg-5 col-form-label text-white">End Date:</label>
                             <div class="col-lg-7">
-                              <label i18n class="col-form-label text-white" id="{{'professional-experience-end-date-' + i}}">{{userForm.get('professionalExperience')?.value[i]?.endDate}}</label>
+                              <label i18n class="col-form-label text-white" id="{{'professional-experience-end-date-' + i}}">{{userForm.get('professionalExperience')?.value[i]?.endDate  | date: 'yyyy-MM-dd'}}</label>
                             </div>
                           </div>
                         </div>

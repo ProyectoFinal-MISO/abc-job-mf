@@ -9,7 +9,7 @@ import { UserSessionDto } from 'src/app/shared/model/user-session';
 import { TechnicalResource } from 'src/app/shared/model/technical-resource';
 import { TechnicalResourceService } from '../technical-resource.service';
 import { UserSessionService } from 'src/app/shared/user-session/user-session.service';
-import { Location } from '@angular/common';
+import { Location, formatDate } from '@angular/common';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AcademicInformationComponent } from '../../academic-information/academic-information.component';
 import { AcademicInformation } from 'src/app/shared/model/academic-information';
@@ -24,12 +24,11 @@ import { PersonalSkillComponent } from '../../personal-skill/personal-skill.comp
 import { SharedService } from 'src/app/shared/shared.service';
 
 @Component({
-  selector: 'app-technical-resource-create',
-  templateUrl: './technical-resource-create.component.html',
-  styleUrls: ['./technical-resource-create.component.scss']
+  selector: 'app-technical-resource-edit',
+  templateUrl: './technical-resource-edit.component.html',
+  styleUrls: ['./technical-resource-edit.component.scss']
 })
-export class TechnicalResourceCreateComponent {
-  @Input() userSessionDto!: UserSessionDto;
+export class TechnicalResourceEditComponent {
 
   helper = new JwtHelperService();
   userForm: FormGroup;
@@ -45,6 +44,9 @@ export class TechnicalResourceCreateComponent {
   closeResult = '';
   url!: string;
   transferAvailabilities: any = [];
+  educationLevels: any = [];
+  professionalSectors: any = [];
+  languagesArray: any = [];
 
   constructor(
     private userService: TechnicalResourceService,
@@ -57,16 +59,14 @@ export class TechnicalResourceCreateComponent {
     private modalService: NgbModal,
     private sharedService: SharedService
   ) {
-    this.localStageData = location.getState(); // do what you want
+    this.sharedService.setSite('Edit Profile');
   }
 
   createForm(){
     this.userForm = this.formBuilder.group({
-      username: [this.userSessionDto.username, [Validators.required, Validators.email]],
-      password: [this.userSessionDto.password, [Validators.required, Validators.maxLength(50), Validators.minLength(4)]],
-      confirmPassword: ['', [Validators.required, Validators.maxLength(50), Validators.minLength(4)]],
-      userType: [this.userSessionDto.userType, [Validators.required]],
-      email: [this.userSessionDto.username, [Validators.required, Validators.email]],
+      username: ['', [Validators.required, Validators.email]],
+      userType: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
       personalInformation: this.formBuilder.group({
         photo: [''],
         name: ['', [Validators.required, Validators.minLength(1)]],
@@ -105,22 +105,17 @@ export class TechnicalResourceCreateComponent {
   }
 
   ngOnInit() {
+    debugger
+    const userId = this.route.snapshot.paramMap.get('id');
+    this.createForm();
     this.token = localStorage.getItem('token');
-    if (this.token) {
-      const decodedToken = this.helper.decodeToken(this.token);
-      this.router.navigate([`/home`]);
-      //this.router.navigate([`/carreras/${decodedToken.sub}/${this.token}`]);
-    } else {
-      if(this.localStageData && this.localStageData?.data && !this.userSessionDto){
-          this.userSessionDto = this.localStageData?.data as UserSessionDto;
-          this.createForm();
-          this.getCountries();
-          this.getTypesIdentification();
-          this.getGenres();
-          this.transferAvailabilities = [{val:0, name:'No'},{val:1, name:'Yes'}];
-          this.carga = true;
+    this.userService.getUser(userId).subscribe(data => {
+      this.user = data;
+      if (this.token) {
+        this.getAllData();
+      } else {
       }
-    }
+    });
   }
 
   get getAcademicInformations() {
@@ -297,7 +292,7 @@ export class TechnicalResourceCreateComponent {
     });
   }
 
-  goAddLanguage() {    
+  goAddLanguage() {
     this.modalService.open(LanguageComponent, {ariaLabelledBy: 'myModalLabel',  backdrop: 'static' }).result.then((result) => {
       if(result){
         this.addLanguages(result);
@@ -322,6 +317,7 @@ export class TechnicalResourceCreateComponent {
   addAcademicInformation(data:any) {
     const myObjAux = data as AcademicInformation;
     this.getAcademicInformations.push(this.formBuilder.group({
+      id:myObjAux?.id?myObjAux?.id:'',
       schoolName:myObjAux?.schoolName,
       educationLevel:myObjAux?.educationLevel,
       professionalSector:myObjAux?.professionalSector,
@@ -334,6 +330,7 @@ export class TechnicalResourceCreateComponent {
   addProfessionalExperience(data:any) {
     const myObjAux = data as ProfessionalExperiences;
     this.getProfessionalExperiences.push(this.formBuilder.group({
+      id:myObjAux?.id?myObjAux?.id:'',
       titleJob:myObjAux?.titleJob,
       companyName:myObjAux?.companyName,
       details:myObjAux?.details,
@@ -355,6 +352,7 @@ export class TechnicalResourceCreateComponent {
   addLanguages(data:any) {
     const myObjAux = data as Language;
     this.getLanguages.push(this.formBuilder.group({
+      id:myObjAux?.id?myObjAux?.id:'',
       language:myObjAux?.language,
       score:myObjAux?.score.toString()
     })
@@ -364,17 +362,21 @@ export class TechnicalResourceCreateComponent {
   addPersonalSkills(data:any) {
     const myObjAux = data as PersonalSkill;
     this.getPersonalSkills.push(this.formBuilder.group({
+      id:myObjAux?.id?myObjAux?.id:'',
       name:myObjAux?.name,
       score:myObjAux?.score.toString()
     })
     );
   }
 
-  getCountries() {
+  async getCountries() {
     this.sharedService.getCountries().subscribe({
       next: (result:any) => {
         if(result){
           this.countries = result;
+          this.user.personalInformation.country = this.countries.find((x:any) => x.id ===this.user.personalInformation.country);
+          this.userForm.get('personalInformation.country')?.setValue(this.user.personalInformation.country);
+          this.userForm.get('personalInformation.country')?.updateValueAndValidity();
         }
       },
       error: (e0:any) => {
@@ -386,10 +388,13 @@ export class TechnicalResourceCreateComponent {
   }
 
   getStates() {
-    this.sharedService.getStatesByCountry(Number(this.userForm.get('personalInformation.country')?.value?.id)).subscribe({
+    this.sharedService.getStatesByCountry(Number(this.user.personalInformation.country)).subscribe({
       next: (result:any) => {
         if(result){
           this.states = result;
+          this.user.personalInformation.state = this.states.find((x:any) => x.id ===this.user.personalInformation.state);
+          this.userForm.get('personalInformation.state')?.setValue(this.user.personalInformation.state);
+          this.userForm.get('personalInformation.state')?.updateValueAndValidity();
         }
       },
       error: (e0:any) => {
@@ -401,10 +406,13 @@ export class TechnicalResourceCreateComponent {
   }
 
   getCities() {
-    this.sharedService.getCitiesByState(Number(this.userForm.get('personalInformation.state')?.value?.id)).subscribe({
+    this.sharedService.getCitiesByState(Number(this.user.personalInformation.state)).subscribe({
       next: (result:any) => {
         if(result){
           this.cities = result;
+          this.user.personalInformation.city = this.cities.find((x:any) => x.id ===this.user.personalInformation.city);
+          this.userForm.get('personalInformation.city')?.setValue(this.user.personalInformation.city);
+          this.userForm.get('personalInformation.city')?.updateValueAndValidity();
         }
       },
       error: (e0:any) => {
@@ -415,11 +423,14 @@ export class TechnicalResourceCreateComponent {
     });
   }
 
-  getTypesIdentification() {
+  async getTypesIdentification() {
     this.sharedService.getTypesIdentification().subscribe({
       next: (result:any) => {
         if(result){
           this.typesIdentification = result;
+          this.user.personalInformation.typeIdentification = this.typesIdentification.find((x:any) => x ===this.user.personalInformation.typeIdentification.replaceAll('"',"").replaceAll('\\"',""));
+          this.userForm.get('personalInformation.typeIdentification')?.setValue(this.user.personalInformation.typeIdentification);
+          this.userForm.get('personalInformation.typeIdentification')?.updateValueAndValidity();
         }
       },
       error: (e0:any) => {
@@ -430,11 +441,41 @@ export class TechnicalResourceCreateComponent {
     });
   }
 
-  getGenres() {
+  async getGenres() {
     this.sharedService.getGenres().subscribe({
       next: (result:any) => {
         if(result){
           this.genres = result;
+          this.user.personalInformation.genre = this.genres.find((x:any) => x ===this.user.personalInformation.genre.replaceAll('"',"").replaceAll('\\"',""));
+          this.userForm.get('personalInformation.genre')?.setValue(this.user.personalInformation.genre);
+          this.userForm.get('personalInformation.genre')?.updateValueAndValidity();      
+        }
+      },
+      error: (e0:any) => {
+        this.toastr.error(`Error`, e0, {
+          progressBar: true,
+        });
+      }
+    });
+  }
+  
+  async getProfessionalSectors() {
+    this.sharedService.getProfessionalSectors().subscribe({
+      next: (result:any) => {
+        if(result){
+          this.professionalSectors = result;
+          this.user.academicInformation.forEach( (x:AcademicInformation) => {
+            x.professionalSector = this.professionalSectors.find((y:any) => y.id ===x.professionalSector);
+          });
+          if(this.userForm.get('academicInformation')?.value.length > 0){
+            this.userForm.get('academicInformation')?.setValue(this.user.academicInformation);
+            this.userForm.get('academicInformation')?.updateValueAndValidity();
+          }else{
+            this.user.academicInformation.forEach( (x:AcademicInformation) => {
+              this.addAcademicInformation(x);
+            });
+          } 
+
         }
       },
       error: (e0:any) => {
@@ -445,7 +486,146 @@ export class TechnicalResourceCreateComponent {
     });
   }
 
-  async addUser() {
+  async getEducationLevels() {
+    this.sharedService.getEducationLevels().subscribe({
+      next: (result:any) => {
+        if(result){
+          this.educationLevels = result;
+          this.user.academicInformation.forEach( (x:AcademicInformation) => {
+            if(x.educationLevel){
+              x.educationLevel = this.educationLevels.find((y:any) => y === x.educationLevel.replaceAll('"',"").replaceAll('\\"',""));
+            }
+          });
+          if(this.userForm.get('academicInformation')?.value.length > 0){
+            this.userForm.get('academicInformation')?.setValue(this.user.academicInformation);
+            this.userForm.get('academicInformation')?.updateValueAndValidity();
+          }else{
+            this.user.academicInformation.forEach( (x:AcademicInformation) => {
+              this.addAcademicInformation(x);
+            });
+          } 
+        }
+      },
+      error: (e0:any) => {
+        this.toastr.error(`Error`, e0, {
+          progressBar: true,
+        });
+      }
+    });
+  }
+
+  async getLanguagesArray() {
+   await this.sharedService.getLanguages().subscribe({
+      next: (result:any) => {
+        if(result){
+          this.languagesArray = result;
+          this.user.languages.forEach( (x:Language) => {
+            x.language = this.languagesArray.find((y:any) => y.id ===x.id);
+          });
+          if(this.userForm.get('languages')?.value.length > 0){
+            this.userForm.get('languages')?.setValue(this.user.languages);
+            this.userForm.get('languages')?.updateValueAndValidity();
+          }else{
+            this.user.languages.forEach( (x:Language) => {
+              this.addLanguages(x);
+            });
+          }          
+        }
+      },
+      error: (e0:any) => {
+        this.toastr.error(`Error`, e0, {
+          progressBar: true,
+        });
+      }
+    });
+  }
+
+  async cleanData(){
+    this.transferAvailabilities = [{val:0, valaux:false, name:'No'},{val:1, valaux:true, name:'Yes'}];
+   
+    this.userForm.get('username')?.setValue(this.user.username);
+    this.userForm.get('username')?.updateValueAndValidity();
+    this.userForm.get('userType')?.setValue(this.user.userType);
+    this.userForm.get('userType')?.updateValueAndValidity();
+    this.userForm.get('email')?.setValue(this.user.email);
+    this.userForm.get('email')?.updateValueAndValidity();
+
+    this.userForm.get('personalInformation.photo')?.setValue(this.user.personalInformation.photo);
+    this.userForm.get('personalInformation.photo')?.updateValueAndValidity();
+
+    this.userForm.get('personalInformation.name')?.setValue(this.user.personalInformation.name);
+    this.userForm.get('personalInformation.name')?.updateValueAndValidity();
+
+    this.userForm.get('personalInformation.lastName')?.setValue(this.user.personalInformation.lastName);
+    this.userForm.get('personalInformation.lastName')?.updateValueAndValidity();
+    
+    this.userForm.get('personalInformation.birthdate')?.setValue(this.user.personalInformation.birthdate? formatDate(new Date(this.user.personalInformation.birthdate), "yyyy-MM-dd", "en"): this.user.personalInformation.birthdate);
+    this.userForm.get('personalInformation.birthdate')?.updateValueAndValidity();
+
+    this.userForm.get('personalInformation.identification')?.setValue(this.user.personalInformation.identification);
+    this.userForm.get('personalInformation.identification')?.updateValueAndValidity();
+
+    this.userForm.get('personalInformation.phoneNumber')?.setValue(this.user.personalInformation.phoneNumber);
+    this.userForm.get('personalInformation.phoneNumber')?.updateValueAndValidity();
+
+    this.userForm.get('personalInformation.mobileNumber')?.setValue(this.user.personalInformation.mobileNumber);
+    this.userForm.get('personalInformation.mobileNumber')?.updateValueAndValidity();
+
+    this.userForm.get('personalInformation.address')?.setValue(this.user.personalInformation.address);
+    this.userForm.get('personalInformation.address')?.updateValueAndValidity();
+
+    this.userForm.get('additionalInformation.driverLicense')?.setValue(this.user.aditionalInformation.driverLicense);
+    this.userForm.get('additionalInformation.driverLicense')?.updateValueAndValidity();
+
+    this.userForm.get('additionalInformation.vehicle')?.setValue(this.user.aditionalInformation.vehicule);
+    this.userForm.get('additionalInformation.vehicle')?.updateValueAndValidity();
+
+    this.user.aditionalInformation.transferAvailability = this.transferAvailabilities.find((x:any) => x.valaux ===this.user.aditionalInformation?.transferAvailability);
+        
+    this.userForm.get('additionalInformation.transferAvailability')?.setValue(this.user.aditionalInformation.transferAvailability);
+    this.userForm.get('additionalInformation.transferAvailability')?.updateValueAndValidity();
+
+    if(this.userForm.get('professionalExperience')?.value.length > 0){
+      this.userForm.get('professionalExperience')?.setValue(this.user.professionalExperience);
+      this.userForm.get('professionalExperience')?.updateValueAndValidity();
+    }else{
+      this.user.professionalExperience.forEach( (x:ProfessionalExperiences) => {
+        this.addProfessionalExperience(x);
+      });
+    }
+
+    if(this.userForm.get('programmingLanguages')?.value.length > 0){
+      this.userForm.get('programmingLanguages')?.setValue(this.user.programmingLanguages);
+      this.userForm.get('programmingLanguages')?.updateValueAndValidity();
+    }else{
+      this.user.programmingLanguages.forEach( (x:ProgrammingLanguages) => {
+        this.addProgrammingLanguages(x);
+      });
+    } 
+
+    if(this.userForm.get('personalSkills')?.value.length > 0){
+      this.userForm.get('personalSkills')?.setValue(this.user.personalSkills);
+      this.userForm.get('personalSkills')?.updateValueAndValidity();
+    }else{
+      this.user.personalSkills.forEach( (x:PersonalSkill) => {
+        this.addPersonalSkills(x);
+      });
+    }
+  }
+
+  async getAllData(){
+    await this.getCountries();
+    await this.getStates();
+    await this.getCities();
+    await this.getTypesIdentification();
+    await this.getGenres();
+    await this.getProfessionalSectors();
+    await this.getEducationLevels();
+    await this.getLanguagesArray();
+    await this.cleanData();
+  }
+
+  async updateUser() {
     let userAux = { ...this.userForm.value };
     userAux.personalInformation.city = userAux?.personalInformation?.city?.id ?? '';
     userAux.personalInformation.state = userAux?.personalInformation?.state?.id ?? '';
