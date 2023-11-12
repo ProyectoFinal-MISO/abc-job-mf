@@ -100,9 +100,10 @@ export class UserSessionComponent {
         })
       },
       error: (e1:any) => {
-        this.toastr.error(`login fail`, 'Error, ' + e1, {
-          progressBar: true,
-        });
+        console.log(e1)
+        // this.toastr.error(`login fail`, 'Error, ' + e1, {
+        //   progressBar: true,
+        // });
       },
       complete: () => console.log('complete1'),
     });
