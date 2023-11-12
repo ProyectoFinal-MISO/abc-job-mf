@@ -117,7 +117,7 @@ export class TechnicalResourceCreateComponent {
           this.getCountries();
           this.getTypesIdentification();
           this.getGenres();
-          this.transferAvailabilities = [{val:0, name:'No'},{val:1, name:'Si'}];
+          this.transferAvailabilities = [{val:0, name:'No'},{val:1, name:'Yes'}];
           this.carga = true;
       }
     }
