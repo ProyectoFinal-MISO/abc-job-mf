@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { UserSessionDto } from 'src/app/shared/model/user-session';
 import { TechnicalResourceService } from '../technical-resource.service';
 import { UserSessionService } from 'src/app/shared/user-session/user-session.service';
+import { SharedService } from 'src/app/shared/shared.service';
 
 @Component({
   selector: 'app-technical-resource-delete',
@@ -13,11 +14,8 @@ import { UserSessionService } from 'src/app/shared/user-session/user-session.ser
   styleUrls: ['./technical-resource-delete.component.scss']
 })
 export class TechnicalResourceDeleteComponent {
-  @Input() userSessionDto!: UserSessionDto;
-
   helper = new JwtHelperService();
   userDeleteForm: FormGroup;
-  token: string | null;
   localStageData: any;
   closeResult = '';
   url!: string;
@@ -29,8 +27,11 @@ export class TechnicalResourceDeleteComponent {
     private formBuilder: FormBuilder,
     private router: Router,
     private toastr: ToastrService,
-    private route: ActivatedRoute
-  ) { }
+    private route: ActivatedRoute,    
+    private sharedService: SharedService
+  ) { 
+    this.sharedService.setSite('Delete Profile');
+  }
 
   createForm() {
     this.userDeleteForm = this.formBuilder.group({
@@ -44,50 +45,36 @@ export class TechnicalResourceDeleteComponent {
   ngOnInit(): void {
     const userId = this.route.snapshot.paramMap.get('id');
     this.createForm();
-    this.token = localStorage.getItem('token');
-    if (this.token) {
-      this.userSessionDto = this.localStageData?.data as UserSessionDto;
-      this.router.navigate([`/technical-resource/delete/` + userId]);
-    } else {
-      this.router.navigate([`/home`]);
-    }
   }
 
   async deleteUser() {
-    let userAux = { ...this.userDeleteForm.value };
-    this.token = localStorage.getItem('token');
-    if (this.token) {
-      const decodedToken = this.helper.decodeToken(this.token);
-      this.userSessionService.getUserMe().subscribe({
-        next: (response: any) => {
-          if (response.username == userAux.username) {
-            this.userService.deleteUser(decodedToken.sub).subscribe({
-              next: (response: any) => {
-                this.userSessionService.sendMessage(true);
-                this.userSessionService.saveUserLocal(response);
-                this.toastr.success(`delete succesful`, 'Success', {
-                  progressBar: true,
-                });
-                this.router.navigate([`/home`]);
-              },
-              error: (e0: any) => {
-                this.toastr.error(`delete fail`, 'Error, ' + e0, {
-                  progressBar: true,
-                });
-              },
-              complete: () => {
-                console.log('delete0')
-                this.userSessionService.closeSession();
-              },
-            });
-          } else {
-            this.toastr.error(`Username is incorrect`, 'Error', {
+    let userAux = { ...this.userDeleteForm.value };    
+    if (this.userSessionService.getUserToken()) {
+      if (this.userSessionService.getUserSession().username == userAux.username) {
+        this.userService.deleteUser(this.userSessionService.getUserSession().userId).subscribe({
+          next: (response: any) => {
+            this.userSessionService.sendMessage(true);
+            this.userSessionService.saveUserLocal(response);
+            this.toastr.success(`delete succesful`, 'Success', {
               progressBar: true,
             });
-          }
-        }
-      });
+            this.router.navigate([`/home`]);
+          },
+          error: (e0: any) => {
+            this.toastr.error(`delete fail`, 'Error, ' + e0, {
+              progressBar: true,
+            });
+          },
+          complete: () => {
+            console.log('delete0')
+            this.userSessionService.closeSession();
+          },
+        });
+      } else {
+        this.toastr.error(`Username is incorrect`, 'Error', {
+          progressBar: true,
+        });
+      }
     }
-
   }
 }
