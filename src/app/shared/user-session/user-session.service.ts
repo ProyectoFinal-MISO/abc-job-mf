@@ -49,7 +49,7 @@ export class UserSessionService {
   }
 
   userLogIn(myUser: UserSessionDto ): Observable<any> {
-      return this.http.post<any>(`${this.urlUsers}auth`, myUser);
+      return this.http.post<any>(`${this.urlUsers}/auth`, myUser);
   }
 
    /* getUsers(): Observable<Usuario>{
@@ -57,15 +57,15 @@ export class UserSessionService {
     }
 */
   getUser(userId:number, userType:string): Observable<User>{
-      return this.http.get<User>(`${this.urlUsers}${userType}/${userId}`);
+      return this.http.get<User>(`${this.urlUsers}/${userType}/${userId}`);
   }
 
   getMyUserSession(): Observable<User>{
-    return this.http.get<User>(`${this.urlUsers}user_session`);
+    return this.http.get<User>(`${this.urlUsers}/user_session`);
   }
 
   getUserMe(): Observable<User>{
-    return this.http.get<User>(`${this.urlUsers}me`);
+    return this.http.get<User>(`${this.urlUsers}/me`);
   }
 
   /*getUserToken(): string|undefined {
