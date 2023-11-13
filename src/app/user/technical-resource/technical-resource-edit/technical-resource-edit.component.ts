@@ -105,7 +105,6 @@ export class TechnicalResourceEditComponent {
   }
 
   ngOnInit() {
-    debugger
     const userId = this.route.snapshot.paramMap.get('id');
     this.createForm();
     this.token = localStorage.getItem('token');

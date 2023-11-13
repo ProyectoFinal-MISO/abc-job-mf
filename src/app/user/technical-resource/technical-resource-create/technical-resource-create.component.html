@@ -6,7 +6,7 @@
           <img src="assets/images/abc-jobs-tie.png" alt="Logo of page" class="img-logo-banner">
           SING IN</h1>
       </div>
-        <form [formGroup]="userForm" (ngSubmit)="addUser()">
+        <form [formGroup]="userForm">
             <div class="row" id="row-personal-information">
               <div class="col-12">
                 <h3 i18n class="title-section">Personal Data</h3>
@@ -506,7 +506,7 @@
             </div>
             <div class="col-12 text-center mt-3">
               <button i18n type="submit" class="btn btn-confirm col-4 col-sm-4 col-md-3 col-lg-2"
-                [disabled]="!userForm.valid || userForm.get('confirmPassword')?.value !== userForm.get('password')?.value" aria-label="create user">Continue</button>
+                [disabled]="!userForm.valid || userForm.get('confirmPassword')?.value !== userForm.get('password')?.value" aria-label="create user" (click)="addUser()">Continue</button>
             </div>
             <div class="col-12 text-center mt-2">
               <p i18n class="font-weight-bold">Dou you have an account? <a href="/" aria-label="go to Log In">Log In</a></p>
