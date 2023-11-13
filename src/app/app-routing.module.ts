@@ -7,12 +7,16 @@ import { HomeComponent } from './home/home.component';
 
 import { CompanyCreateComponent } from './user/company/company-create/company-create.component';
 import { CompanyViewComponent } from './user/company/company-view/company-view.component';
+import { CompanyDeleteComponent } from './user/company/company-delete/company-delete.component';
 
 import { TechnicalResourceCreateComponent } from './user/technical-resource/technical-resource-create/technical-resource-create.component';
 import { TechnicalResourceViewComponent } from './user/technical-resource/technical-resource-view/technical-resource-view.component';
+import { TechnicalResourceDeleteComponent } from './user/technical-resource/technical-resource-delete/technical-resource-delete.component';
 
 import { EmployeeCreateComponent } from './user/employee/employee-create/employee-create.component';
 import { EmployeeViewComponent } from './user/employee/employee-view/employee-view.component';
+import { EmployeeDeleteComponent } from './user/employee/employee-delete/employee-delete.component';
+import { TechnicalResourceEditComponent } from './user/technical-resource/technical-resource-edit/technical-resource-edit.component';
 
 const routes: Routes = [
   {
@@ -29,6 +33,11 @@ const routes: Routes = [
                 path: 'view/:id',
                 component: CompanyViewComponent,
                 data: {}
+              },
+              {
+                path: 'delete/:id',
+                component: CompanyDeleteComponent,
+                data: {}
               }
             ]
       },
@@ -43,6 +52,16 @@ const routes: Routes = [
                 path: 'view/:id',
                 component: TechnicalResourceViewComponent,
                 data: {}
+              },
+              {
+                path: 'delete/:id',
+                component: TechnicalResourceDeleteComponent,
+                data: {}
+              },
+              {
+                path: 'update/:id',
+                component: TechnicalResourceEditComponent,
+                data: {}
               }
             ]
       },
@@ -56,6 +75,11 @@ const routes: Routes = [
               {
                 path: 'view/:id',
                 component: EmployeeViewComponent,
+                data: {}
+              },
+              {
+                path: 'delete/:id',
+                component: EmployeeDeleteComponent,
                 data: {}
               }
             ]

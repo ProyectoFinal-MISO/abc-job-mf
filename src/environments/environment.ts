@@ -1,12 +1,12 @@
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
-const baseUrl: string = 'http://localhost:5000/';
-const baseUrlUsers: string = 'http://localhost:5000/users/';
-const baseUrlEvaluations: string = 'http://localhost:5001/evaluations/';
-const baseUrlProjects: string = 'http://localhost:5002/projects/';
-const baseUrlInterviews: string = 'http://localhost:5003/interviews/';
-const baseUrlMediator: string = 'http://localhost:5004/mediator/';
+const baseUrl: string = 'http://localhost:5000';
+const baseUrlUsers: string = 'http://localhost:5000/users';
+const baseUrlEvaluations: string = 'http://localhost:5001/evaluations';
+const baseUrlProjects: string = 'http://localhost:5002/projects';
+const baseUrlInterviews: string = 'http://localhost:5003/interviews';
+const baseUrlMediator: string = 'http://localhost:5004/mediator';
 
 export const environment = {
   production: false,

@@ -54,11 +54,16 @@ export class UserSessionComponent {
 
   signIn(){
     this.getMyUser();
-    if(this.userSessionForm.get('userType')?.value === UserType.Employee){
-      this.router.navigate([`/signin/employee`]);
+    const navigationExtras: NavigationExtras = {
+      state: {
+        data: this.myUser
+      }
+    };  
+    if(this.userSessionForm.get('userType')?.value === UserType.Employee){      
+      this.router.navigate([`/signin/employee`], navigationExtras);
     }
     else if (this.userSessionForm.get('userType')?.value === UserType.Company){
-      this.router.navigate([`/signin/company`]);
+      this.router.navigate([`/signin/company`], navigationExtras);
     }
     else{
       const navigationExtras: NavigationExtras = {
@@ -79,8 +84,8 @@ export class UserSessionComponent {
     this.userSessionService.userLogIn(this.myUser).subscribe({
       next: (res:any) => {
         localStorage.setItem('token', res.token);
-        const decodedToken = this.helper.decodeToken(res.token);
-        this.userSessionService.getUser(decodedToken.sub, userTypeUri).subscribe({
+        //const decodedToken = this.helper.decodeToken(res.token);
+        this.userSessionService.getMyUserSession().subscribe({
           next: (response:any) => {
             //response.token = decodedToken;
             this.userSessionService.sendMessage(true);

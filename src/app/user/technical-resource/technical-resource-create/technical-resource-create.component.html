@@ -6,7 +6,7 @@
           <img src="assets/images/abc-jobs-tie.png" alt="Logo of page" class="img-logo-banner">
           SING IN</h1>
       </div>
-        <form [formGroup]="userForm" (ngSubmit)="addUser()">
+        <form [formGroup]="userForm">
             <div class="row" id="row-personal-information">
               <div class="col-12">
                 <h3 i18n class="title-section">Personal Data</h3>
@@ -326,14 +326,14 @@
             <div class="row" id="row-dialog-information">
               <div class="col-12 col-xs-12 col-sm-12 col-md-6" id="col-academic-information">
                 <h3 i18n class="title-section pt-4">Academic Information</h3>
-                <button class="float-right pull-right float-end add-item-array" (click)="goAddAcademicInformation()" aria-label="open dialog academic information">+</button>
+                <button class="float-right pull-right float-end add-item-array" (click)="goAddAcademicInformation()" aria-label="open dialog academic information"><i class="bi bi-plus-square add-item-array-icon"></i></button>
                 <div formArrayName="academicInformation" >
                   <ng-container *ngFor="let acainf of getAcademicInformations.controls; index as i">
                     <div class="card card-info mb-3" id="{{'academic-information-card' + i}}" [formGroupName]="i">
                       <div class="row">
                         <div class="col-12 col-xs-12 col-sm-12 col-md-6">
                           <div class="mb-3 row">
-                            <label i18n class="col-lg-5 col-form-label text-white">School Name:</label>
+                            <label i18n class="col-lg-5 col-form-label text-white">Institute:</label>
                             <div class="col-lg-7">
                               <label i18n class="col-form-label text-white" id="{{'academic-information-school-name-' + i}}">{{userForm.get('academicInformation')?.value[i]?.schoolName}}</label>
                             </div>
@@ -341,7 +341,7 @@
                           <div class="mb-3 row">
                             <label i18n class="col-lg-5 col-form-label text-white">Start Date:</label>
                             <div class="col-lg-7">
-                              <label i18n class="col-form-label text-white" id="{{'academic-information-start-date-' + i}}">{{userForm.get('academicInformation')?.value[i]?.startDate}}</label>
+                              <label i18n class="col-form-label text-white" id="{{'academic-information-start-date-' + i}}">{{userForm.get('academicInformation')?.value[i]?.startDate  | date: 'yyyy-MM-dd'}}</label>
                             </div>
                           </div>
                           <div class="mb-3 row">
@@ -361,7 +361,7 @@
                           <div class="mb-3 row">
                             <label i18n class="col-lg-5 col-form-label text-white">End Date:</label>
                             <div class="col-lg-7">
-                              <label i18n class="col-form-label text-white" id="{{'academic-information-end-date-' + i}}">{{userForm.get('academicInformation')?.value[i]?.endDate}}</label>
+                              <label i18n class="col-form-label text-white" id="{{'academic-information-end-date-' + i}}">{{userForm.get('academicInformation')?.value[i]?.endDate | date: 'yyyy-MM-dd' }}</label>
                             </div>
                           </div>
                         </div>
@@ -372,7 +372,7 @@
               </div>
               <div class="col-12 col-xs-12 col-sm-12 col-md-6" id="col-professional-experience">
                 <h3 i18n class="title-section pt-4">Professional Experience</h3>
-                <button class="float-right pull-right float-end add-item-array" (click)="goAddProfessionalExperience()" aria-label="open dialog professional experience">+</button>
+                <button class="float-right pull-right float-end add-item-array" (click)="goAddProfessionalExperience()" aria-label="open dialog professional experience"><i class="bi bi-plus-square add-item-array-icon"></i></button>
                 <div formArrayName="professionalExperience" >
                   <ng-container *ngFor="let acainf of getProfessionalExperiences.controls; index as i">
                     <div class="card card-info mb-3" id="{{'professional-experience-card-' + i}}" [formGroupName]="i">
@@ -387,7 +387,7 @@
                           <div class="mb-3 row">
                             <label class="col-lg-5 col-form-label text-white">Start Date:</label>
                             <div class="col-lg-7">
-                              <label i18n class="col-form-label text-white" id="{{'professional-experience-title-job-' + i}}">{{userForm.get('professionalExperience')?.value[i]?.startDate}}</label>
+                              <label i18n class="col-form-label text-white" id="{{'professional-experience-title-job-' + i}}">{{userForm.get('professionalExperience')?.value[i]?.startDate  | date: 'yyyy-MM-dd'}}</label>
                             </div>
                           </div>
                           <div class="mb-3 row">
@@ -407,7 +407,7 @@
                           <div class="mb-3 row">
                             <label class="col-lg-5 col-form-label text-white">End Date:</label>
                             <div class="col-lg-7">
-                              <label i18n class="col-form-label text-white" id="{{'professional-experience-end-date-' + i}}">{{userForm.get('professionalExperience')?.value[i]?.endDate}}</label>
+                              <label i18n class="col-form-label text-white" id="{{'professional-experience-end-date-' + i}}">{{userForm.get('professionalExperience')?.value[i]?.endDate  | date: 'yyyy-MM-dd'}}</label>
                             </div>
                           </div>
                         </div>
@@ -418,7 +418,7 @@
               </div>
               <div class="col-12 col-xs-12 col-sm-12 col-md-6" id="col-technical-skills">
                 <h3 i18n class="title-section pt-4">Technical Skills</h3>
-                <button class="float-right pull-right float-end add-item-array" (click)="goAddProgrammingLanguages()" aria-label="open dialog technical skills">+</button>
+                <button class="float-right pull-right float-end add-item-array" (click)="goAddProgrammingLanguages()" aria-label="open dialog technical skills"><i class="bi bi-plus-square add-item-array-icon"></i></button>
                 <div class="card card-info mb-3" id="technical-skills-card">
                   <div formArrayName="programmingLanguages" >
                     <ng-container *ngFor="let acainf of getProgrammingLanguages.controls; index as i">
@@ -447,7 +447,7 @@
               </div>
               <div class="col-12 col-xs-12 col-sm-12 col-md-6" id="col-personal-skills">
                 <h3 i18n class="title-section pt-4">Personal Skills</h3>
-                <button class="float-right pull-right float-end add-item-array" (click)="goAddPersonalSkill()" aria-label="open dialog personal skills">+</button>
+                <button class="float-right pull-right float-end add-item-array" (click)="goAddPersonalSkill()" aria-label="open dialog personal skills"><i class="bi bi-plus-square add-item-array-icon"></i></button>
                 <div class="card card-info mb-3" id="personal-skills-card">
                   <div formArrayName="personalSkills" >
                     <ng-container *ngFor="let acainf of getPersonalSkills.controls; index as i">
@@ -476,7 +476,7 @@
               </div>
               <div class="col-12 col-xs-12 col-sm-12 col-md-6" id="col-languages">
                 <h3 i18n class="title-section pt-4">Languages</h3>
-                <button class="float-right pull-right float-end add-item-array" (click)="goAddLanguage()" aria-label="open dialog languages">+</button>
+                <button class="float-right pull-right float-end add-item-array" (click)="goAddLanguage()" aria-label="open dialog languages"><i class="bi bi-plus-square add-item-array-icon"></i></button>
                 <div class="card card-info mb-3" id="languages-card">
                   <div formArrayName="languages">
                     <ng-container *ngFor="let acainf of getLanguages.controls; index as i">
@@ -506,7 +506,7 @@
             </div>
             <div class="col-12 text-center mt-3">
               <button i18n type="submit" class="btn btn-confirm col-4 col-sm-4 col-md-3 col-lg-2"
-                [disabled]="!userForm.valid || userForm.get('confirmPassword')?.value !== userForm.get('password')?.value" aria-label="create user">Continue</button>
+                [disabled]="!userForm.valid || userForm.get('confirmPassword')?.value !== userForm.get('password')?.value" aria-label="create user" (click)="addUser()">Continue</button>
             </div>
             <div class="col-12 text-center mt-2">
               <p i18n class="font-weight-bold">Dou you have an account? <a href="/" aria-label="go to Log In">Log In</a></p>

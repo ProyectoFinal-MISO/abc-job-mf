@@ -9,16 +9,20 @@ import { Employee } from 'src/app/shared/model/employee';
 })
 export class EmployeeService {
 
-  private backUrl: string = environment.baseUrl;
-  private backController: string = 'users/employee';
+  private backController: string = 'employee';
+  private urlUsers:string = environment.baseUrlUsers
 
   constructor(private http: HttpClient) { }
 
   addUser(user: Employee): Observable<any> {
-    return this.http.post<any>(`/api/users`, user);
+    return this.http.post<any>(`${this.urlUsers}`, user);
   }
 
   getUser(userId:any): Observable<Employee>{
-    return this.http.get<Employee>(`/api/${this.backController}/${userId}`);
+    return this.http.get<Employee>(`${this.urlUsers}/${this.backController}/${userId}`);
+  }
+
+  deleteUser(userId:any): Observable<Employee>{
+    return this.http.delete<Employee>(`${this.urlUsers}/${this.backController}/${userId}`);
   }
 }

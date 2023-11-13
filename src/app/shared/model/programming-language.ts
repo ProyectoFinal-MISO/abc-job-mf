@@ -1,5 +1,5 @@
 export interface ProgrammingLanguages{
-    id:number;
+    id?:number;
     name:string;
     score:number;
 }
