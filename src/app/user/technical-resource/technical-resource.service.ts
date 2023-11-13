@@ -19,10 +19,14 @@ export class TechnicalResourceService {
   }
 
   getUser(userId:any): Observable<TechnicalResource>{
-    return this.http.get<TechnicalResource>(`${this.urlUsers}${this.backController}/${userId}`);
+    return this.http.get<TechnicalResource>(`${this.urlUsers}/${this.backController}/${userId}`);
   }
 
   deleteUser(userId:any): Observable<TechnicalResource>{
-    return this.http.delete<TechnicalResource>(`${this.urlUsers}${this.backController}/${userId}`);
+    return this.http.delete<TechnicalResource>(`${this.urlUsers}/${this.backController}/${userId}`);
+  }
+
+  updateUser(user: TechnicalResource): Observable<any> {
+    return this.http.put<any>(`${this.urlUsers}${this.backController}/${user.id}`, user);
   }
 }

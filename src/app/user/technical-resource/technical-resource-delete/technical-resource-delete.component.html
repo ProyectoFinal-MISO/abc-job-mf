@@ -35,7 +35,7 @@
           </div>
         </div>
 
-        <form  [formGroup]="userDeleteForm" (ngSubmit)="deleteUser()">
+        <form  [formGroup]="userDeleteForm">
           <div class="row" id="row-personal-information">
             <div class="row" id="row-account-data">
               <div class="col-12">
@@ -148,7 +148,7 @@
               <button i18n type="submit"
                 class="btn btn-confirm col-4 col-sm-4 col-md-3 col-lg-2"
                 [disabled]="!userDeleteForm.valid || userDeleteForm.get('confirmPassword')?.value !== userDeleteForm.get('password')?.value"
-                aria-label="delete user">Confirm</button>
+                aria-label="delete user" (click)="deleteUser()">Confirm</button>
             </div>
             <div class="col-12 text-center mt-2"></div>
         </form>

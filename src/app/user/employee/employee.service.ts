@@ -19,10 +19,10 @@ export class EmployeeService {
   }
 
   getUser(userId:any): Observable<Employee>{
-    return this.http.get<Employee>(`${this.urlUsers}${this.backController}/${userId}`);
+    return this.http.get<Employee>(`${this.urlUsers}/${this.backController}/${userId}`);
   }
 
   deleteUser(userId:any): Observable<Employee>{
-    return this.http.delete<Employee>(`${this.urlUsers}${this.backController}/${userId}`);
+    return this.http.delete<Employee>(`${this.urlUsers}/${this.backController}/${userId}`);
   }
 }

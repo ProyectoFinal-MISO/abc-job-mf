@@ -35,34 +35,34 @@ export class SharedService {
   }
 
   getCountries(): Observable<Array<Country>>{
-    return this.http.get<Array<Country>>(`${this.urlUsers}location/countries`);
+    return this.http.get<Array<Country>>(`${this.urlUsers}/location/countries`);
   }
 
   getStatesByCountry(countryId:number): Observable<Array<Country>>{
-    return this.http.get<Array<Country>>(`${this.urlUsers}location/states/${countryId}`);
+    return this.http.get<Array<Country>>(`${this.urlUsers}/location/states/${countryId}`);
   }
 
   getCitiesByState(stateId:number): Observable<Array<Country>>{
-    return this.http.get<Array<Country>>(`${this.urlUsers}location/cities/${stateId}`);
+    return this.http.get<Array<Country>>(`${this.urlUsers}/location/cities/${stateId}`);
   }
 
   getTypesIdentification(): Observable<Array<string>>{
-    return this.http.get<Array<string>>(`${this.urlUsers}types_documents`);
+    return this.http.get<Array<string>>(`${this.urlUsers}/types_documents`);
   }
 
   getGenres(): Observable<Array<string>>{
-    return this.http.get<Array<string>>(`${this.urlUsers}genders`);
+    return this.http.get<Array<string>>(`${this.urlUsers}/genders`);
   }
 
   getProfessionalSectors(): Observable<Array<ProfessionalSector>>{
-    return this.http.get<Array<ProfessionalSector>>(`${this.urlUsers}professional_sector`);
+    return this.http.get<Array<ProfessionalSector>>(`${this.urlUsers}/professional_sector`);
   }
 
   getEducationLevels(): Observable<Array<string>>{
-    return this.http.get<Array<string>>(`${this.urlUsers}education_levels`);
+    return this.http.get<Array<string>>(`${this.urlUsers}/education_levels`);
   }
 
   getLanguages(): Observable<Array<LanguageDto>>{
-    return this.http.get<Array<LanguageDto>>(`${this.urlUsers}language`);
+    return this.http.get<Array<LanguageDto>>(`${this.urlUsers}/language`);
   }
 }
