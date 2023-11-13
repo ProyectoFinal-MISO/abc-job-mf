@@ -6,7 +6,7 @@
           <img src="assets/images/abc-jobs-tie.png" alt="Logo of page" class="img-logo-banner">
           SING IN</h1>
       </div>
-        <form [formGroup]="userForm" (ngSubmit)="addUser()">
+        <form [formGroup]="userForm">
             <div class="row" id="row-personal-information">
               <div class="col-12">
                 <h3 i18n class="title-section">Personal Data</h3>
@@ -341,7 +341,7 @@
                           <div class="mb-3 row">
                             <label i18n class="col-lg-5 col-form-label text-white">Start Date:</label>
                             <div class="col-lg-7">
-                              <label i18n class="col-form-label text-white" id="{{'academic-information-start-date-' + i}}">{{userForm.get('academicInformation')?.value[i]?.startDate}}</label>
+                              <label i18n class="col-form-label text-white" id="{{'academic-information-start-date-' + i}}">{{userForm.get('academicInformation')?.value[i]?.startDate  | date: 'yyyy-MM-dd'}}</label>
                             </div>
                           </div>
                           <div class="mb-3 row">
@@ -361,7 +361,7 @@
                           <div class="mb-3 row">
                             <label i18n class="col-lg-5 col-form-label text-white">End Date:</label>
                             <div class="col-lg-7">
-                              <label i18n class="col-form-label text-white" id="{{'academic-information-end-date-' + i}}">{{userForm.get('academicInformation')?.value[i]?.endDate}}</label>
+                              <label i18n class="col-form-label text-white" id="{{'academic-information-end-date-' + i}}">{{userForm.get('academicInformation')?.value[i]?.endDate | date: 'yyyy-MM-dd' }}</label>
                             </div>
                           </div>
                         </div>
@@ -387,7 +387,7 @@
                           <div class="mb-3 row">
                             <label class="col-lg-5 col-form-label text-white">Start Date:</label>
                             <div class="col-lg-7">
-                              <label i18n class="col-form-label text-white" id="{{'professional-experience-title-job-' + i}}">{{userForm.get('professionalExperience')?.value[i]?.startDate}}</label>
+                              <label i18n class="col-form-label text-white" id="{{'professional-experience-title-job-' + i}}">{{userForm.get('professionalExperience')?.value[i]?.startDate  | date: 'yyyy-MM-dd'}}</label>
                             </div>
                           </div>
                           <div class="mb-3 row">
@@ -407,7 +407,7 @@
                           <div class="mb-3 row">
                             <label class="col-lg-5 col-form-label text-white">End Date:</label>
                             <div class="col-lg-7">
-                              <label i18n class="col-form-label text-white" id="{{'professional-experience-end-date-' + i}}">{{userForm.get('professionalExperience')?.value[i]?.endDate}}</label>
+                              <label i18n class="col-form-label text-white" id="{{'professional-experience-end-date-' + i}}">{{userForm.get('professionalExperience')?.value[i]?.endDate  | date: 'yyyy-MM-dd'}}</label>
                             </div>
                           </div>
                         </div>
@@ -506,7 +506,7 @@
             </div>
             <div class="col-12 text-center mt-3">
               <button i18n type="submit" class="btn btn-confirm col-4 col-sm-4 col-md-3 col-lg-2"
-                [disabled]="!userForm.valid || userForm.get('confirmPassword')?.value !== userForm.get('password')?.value" aria-label="create user">Continue</button>
+                [disabled]="!userForm.valid || userForm.get('confirmPassword')?.value !== userForm.get('password')?.value" aria-label="create user" (click)="addUser()">Continue</button>
             </div>
             <div class="col-12 text-center mt-2">
               <p i18n class="font-weight-bold">Dou you have an account? <a href="/" aria-label="go to Log In">Log In</a></p>

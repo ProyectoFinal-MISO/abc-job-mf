@@ -1,5 +1,5 @@
 export interface AditionalInformation{
-    id:number;
+    id?:number;
     driverLicense:string;
     transferAvailability:number;
     vehicule:string;

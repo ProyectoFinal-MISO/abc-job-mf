@@ -1,5 +1,5 @@
 export interface LanguageDto{
-    id:number;
+    id?:number;
     name:string;
     code:number;
 }

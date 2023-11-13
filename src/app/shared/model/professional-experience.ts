@@ -1,5 +1,5 @@
 export interface ProfessionalExperiences{
-    id:number;
+    id?:number;
     titleJob:string,
     companyName:string,
     details:string,
