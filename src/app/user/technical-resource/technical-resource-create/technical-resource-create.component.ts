@@ -447,17 +447,17 @@ export class TechnicalResourceCreateComponent {
 
   async addUser() {
     let userAux = { ...this.userForm.value };
-    userAux.personalInformation.city = userAux?.personalInformation?.city?.id ?? '';
-    userAux.personalInformation.state = userAux?.personalInformation?.state?.id ?? '';
-    userAux.personalInformation.country = userAux?.personalInformation?.country?.id ?? '';
-    userAux.additionalInformation.transferAvailability = userAux?.additionalInformation?.transferAvailability?.val ?? '';
+    userAux.personalInformation.city = userAux?.personalInformation?.city?.id ? userAux?.personalInformation?.city?.id : '';
+    userAux.personalInformation.state = userAux?.personalInformation?.state?.id ? userAux?.personalInformation?.state?.i : '';
+    userAux.personalInformation.country = userAux?.personalInformation?.country?.id ? userAux?.personalInformation?.country?.id: '';
+    userAux.additionalInformation.transferAvailability = userAux?.additionalInformation?.transferAvailability?.val ? userAux?.additionalInformation?.transferAvailability?.val: '';
 
     await userAux.academicInformation.forEach((obj:any) => {
-      obj.professionalSector = obj.professionalSector?.id ?? '';
+      obj.professionalSector = obj.professionalSector?.id ? obj.professionalSector?.id : '';
     });
 
     await userAux.languages.forEach((obj:any) => {
-      obj.language = obj.language?.id ?? '';
+      obj.language = obj.language?.id ? obj.language?.id : '';
     });
     this.user = userAux;
     localStorage.clear();
