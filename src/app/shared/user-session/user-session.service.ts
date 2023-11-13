@@ -93,4 +93,10 @@ export class UserSessionService {
     const obj = this.getItem(environment.sur)!;
     return obj?JSON.parse(obj):null;
   }
+
+  updateUserSession(){
+    const obj = this.getItem(environment.sur)!;
+    this.saveUserLocal(obj);
+    this.userChange();
+  }
 }

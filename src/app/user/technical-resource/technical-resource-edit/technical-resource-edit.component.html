@@ -1,0 +1,469 @@
+<div class="container align-items-center" *ngIf="user">
+    <div class="row align-items-center">
+      <div class="col-xs-10 col-12 container">
+          <form [formGroup]="userForm">
+              <div class="row" id="row-personal-information">
+                <div class="col-12">
+                  <h3 i18n class="title-section">Personal Data</h3>
+                  <div formGroupName="personalInformation">
+                    <div class="row">
+                      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" id="col-personal-information-section-left">
+                        <div class="form-group">
+                          <div class="row" id="row-personal-information-internal-section-1">
+                            <div class="col-xs-12 col-7 col-lg-4">
+                              <span>
+                                <label class="hoverable" for="fileInput">
+                                  <img id="img-user" class="img-profile" [src]="url ? url : 'https://www.w3schools.com/howto/img_avatar.png'" alt="Logo of profile">
+                                  <div i18n class="hover-text">Choose file</div>
+                                  <div class="background"></div>
+                                </label>
+                                <button id="btn-img-user" class="close-image" *ngIf="url" (click)="clearFile()" aria-label="clear photo option"></button>
+                              </span>
+                              <br/>
+                              <input id="fileInput" type='file' formControlName="photo" (change)="handleFileInput($event)">
+                            </div>
+                            <div class="col-xs-12 col-5 col-lg-8">
+                              <div class="mb-3 row">
+                                <label i18n for="name" class="col-xs-5 col-md-4 col-form-label text-white">Name</label>
+                                <div class="col-xs-7 col-md-8">
+                                  <input formControlName="name" type="text" class="form-control" placeholder="Name" id="name">
+                                  <div class="fw-lighter text-danger small" *ngIf="userForm.get('personalInformation.name')!.touched">
+                                    <div i18n *ngIf="userForm.get('personalInformation.name')?.hasError('required')">
+                                        You must type a name
+                                    </div>
+                                    <div i18n *ngIf="userForm.get('personalInformation.name')?.hasError('minlength')">
+                                        text must be min 4 characteres
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="mb-3 row">
+                                <label i18n for="last-name" class="col-xs-5 col-md-4 col-form-label text-white">Last Name</label>
+                                <div class="col-xs-7 col-md-8  ">
+                                  <input formControlName="lastName" type="text" class="form-control" placeholder="Last Name" id="last-name">
+                                  <div class="fw-lighter text-danger small" *ngIf="userForm.get('personalInformation.lastName')!.touched">
+                                    <div i18n *ngIf="userForm.get('personalInformation.lastName')?.hasError('required')">
+                                        You must type a lastName
+                                    </div>
+                                    <div i18n *ngIf="userForm.get('personalInformation.lastName')?.hasError('minlength')">
+                                        text must be min 4 characteres
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="mb-3 row">
+                                <label i18n for="birth-date" class="col-xs-5 col-md-4 col-form-label text-white">Birthdate</label>
+                                <div class="col-xs-7 col-md-8">
+                                    <input formControlName="birthdate" type="date" class="form-control" placeholder="Birthdate" id="birth-date">
+                                    <div class="fw-lighter text-danger small" *ngIf="userForm.get('personalInformation.birthdate')!.touched">
+                                        <div i18n *ngIf="userForm.get('personalInformation.birthdate')?.hasError('required')">
+                                            You must type your birthdate
+                                        </div>
+                                        <div i18n *ngIf="userForm.get('birthdate')?.hasError('min')">
+                                            text must an adult
+                                        </div>
+                                    </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class="mb-3 row">
+                            <label i18n for="personal-information-type-identification" class="col-xs-5 col-md-4 col-form-label text-white">Type Identification</label>
+                            <div class="col-xs-7 col-md-8">
+                                <select class="form-select" formControlName="typeIdentification" id="personal-information-type-identification">
+                                    <option i18n value="">Choose Type Identification</option>
+                                    <option i18n *ngFor="let typeIdentification of typesIdentification" [ngValue]="typeIdentification">{{typeIdentification}}</option>
+                                </select>
+                                <div class="fw-lighter text-danger small" *ngIf="userForm.get('personalInformation.typeIdentification')!.touched">
+                                    <div i18n *ngIf="userForm.get('personalInformation.typeIdentification')?.hasError('required')">
+                                        Please provide any type identification
+                                    </div>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class="mb-3 row">
+                            <label i18n for="personal-information-identification" class="col-xs-5 col-md-4 col-form-label text-white">Identification</label>
+                            <div class="col-xs-7 col-md-8">
+                                <input formControlName="identification" type="text" class="form-control" placeholder="Identification" id="personal-information-identification">
+                                <div class="fw-lighter text-danger small" *ngIf="userForm.get('personalInformation.identification')!.touched">
+                                  <div i18n *ngIf="userForm.get('personalInformation.identification')?.hasError('required')">
+                                      You must type your identification
+                                  </div>
+                                  <div i18n *ngIf="userForm.get('personalInformation.identification')?.hasError('minlength')">
+                                    text must be min 4 characteres
+                                  </div>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class="mb-3 row">
+                            <label i18n for="personal-information-genre" class="col-xs-5 col-md-4 col-form-label text-white">Genre</label>
+                            <div class="col-xs-7 col-md-8">
+                                <select class="form-select"  formControlName="genre" id="personal-information-genre">
+                                    <option i18n value="">Choose Genre</option>
+                                    <option i18n *ngFor="let genre of genres" [ngValue]="genre">{{genre}}</option>
+                                </select>
+                                <div class="fw-lighter text-danger small" *ngIf="userForm.get('personalInformation.genre')!.touched">
+                                    <div i18n *ngIf="userForm.get('personalInformation.genre')?.hasError('required')">
+                                        Please provide any genre
+                                    </div>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" id="col-personal-information-section-rigth">
+                        <div class="form-group">
+                          <div class="mb-3 row">
+                            <label i18n for="personal-information-phone-number" class="col-xs-5 col-md-4 col-form-label text-white">Phone Number</label>
+                            <div class="col-xs-7 col-md-8">
+                              <input formControlName="phoneNumber" type="text" class="form-control" placeholder="Phone Number" id="personal-information-phone-number">
+                              <div class="fw-lighter text-danger small" *ngIf="userForm.get('personalInformation.phoneNumber')!.touched">
+                                <div i18n *ngIf="userForm.get('personalInformation.phoneNumber')?.hasError('required')">
+                                    You must type an phone number
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class="mb-3 row">
+                            <label i18n for="personal-information-mobile-number" class="col-xs-5 col-md-4 col-form-label text-white">Mobile Number</label>
+                            <div class="col-xs-7 col-md-8">
+                                <input formControlName="mobileNumber" type="text" class="form-control" placeholder="Mobile Number" id="personal-information-mobile-number">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class="mb-3 row">
+                          <label i18n for="personal-information-country" class="col-xs-5 col-md-4 col-form-label text-white">Country</label>
+                          <div class="col-xs-7 col-md-8">
+                              <select (change)="getStates()" class="form-select"  formControlName="country" id="personal-information-country">
+                                  <option i18n value="">Choose Country</option>
+                                  <option i18n *ngFor="let country of countries" [ngValue]="country">{{country.name}}</option>
+                              </select>
+                              <div class="fw-lighter text-danger small" *ngIf="userForm.get('personalInformation.country')!.touched">
+                                  <div i18n *ngIf="userForm.get('personalInformation.country')?.hasError('required')">
+                                      Please provide any country
+                                  </div>
+                              </div>
+                          </div>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class="mb-3 row">
+                            <label i18n for="personal-information-state" class="col-xs-5 col-md-4 col-form-label text-white">State</label>
+                            <div class="col-xs-7 col-md-8">
+                                <select (change)="getCities()" class="form-select"  formControlName="state" id="personal-information-state">
+                                    <option i18n value="">Choose State</option>
+                                    <option i18n *ngFor="let state of states" [ngValue]="state">{{state.name}}</option>
+                                </select>
+                                <div class="fw-lighter text-danger small" *ngIf="userForm.get('personalInformation.state')!.touched">
+                                    <div i18n *ngIf="userForm.get('personalInformation.state')?.hasError('required')">
+                                        Please provide any state
+                                    </div>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class="mb-3 row">
+                            <label i18n for="personal-information-city" class="col-xs-5 col-md-4 col-form-label text-white">City</label>
+                            <div class="col-xs-7 col-md-8">
+                                <select class="form-select"  formControlName="city" id="personal-information-city">
+                                    <option i18n value="">Choose City</option>
+                                    <option i18n *ngFor="let city of cities" [ngValue]="city">{{city.name}}</option>
+                                </select>
+                                <div class="fw-lighter text-danger small" *ngIf="userForm.get('personalInformation.city')!.touched">
+                                    <div i18n *ngIf="userForm.get('personalInformation.city')?.hasError('required')">
+                                        Please provide any city
+                                    </div>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class="mb-3 row">
+                            <label i18n for="personal-information-address" class="col-xs-5 col-md-4 col-form-label text-white">Address</label>
+                            <div class="col-xs-7 col-md-8">
+                                <input formControlName="address" type="text" class="form-control" placeholder="Address" id="personal-information-address">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row" id="row-account-data">
+                    <div class="col-12">
+                      <h3 i18n class="title-section pt-3">Account Data</h3>
+                      <div class="card card-info mb-3">
+                        <div class="row">
+                          <div class="col-sm-12 col-md-6">
+                            <div class="form-group">
+                              <div class="mb-3 row">
+                                <label i18n for="account-data-email" class="col-xs-5 col-md-4 col-form-label text-white">Email</label>
+                                <div class="col-xs-7 col-md-8">
+                                  <input formControlName="email" type="email" class="form-control" placeholder="Email" id="account-data-email">
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-sm-12 col-md-6">                            
+                            <div class="form-group">
+                                <div class="mb-3 row">
+                                  <label i18n for="account-data-username" class="col-xs-5 col-md-4 col-form-label text-white">Username</label>
+                                  <div class="col-xs-7 col-md-8">
+                                    <input formControlName="username" type="email" class="form-control" placeholder="Username" id="account-data-username">
+                                    <div class="fw-lighter text-danger small" *ngIf="userForm.get('username')!.touched">
+                                      <div i18n *ngIf="userForm.get('username')?.hasError('required')">
+                                        You must type an username
+                                      </div>
+                                      <div i18n *ngIf="userForm.get('username')?.hasError('email')">
+                                        You must type an valid email
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                <div class="row" id="row-additional-information">
+                    <div class="col-12">
+                      <h3 i18n class="title-section">Additional Information</h3>
+                        <div formGroupName="additionalInformation">
+                          <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                              <div class="form-group">
+                                <div class="mb-3 row">
+                                  <label i18n for="additional-information-transfer-availability" class="col-xs-5 col-md-4 col-form-label text-white">Transfer Availability</label>
+                                  <div class="col-xs-7 col-md-8">
+                                      <select class="form-select" formControlName="transferAvailability" id="additional-information-transfer-availability">
+                                          <option i18n value="">Choose Transfer Availability</option>
+                                          <option i18n *ngFor="let transferAvailability of transferAvailabilities" [ngValue]="transferAvailability">{{transferAvailability.name}}</option>
+                                      </select>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                <div class="mb-3 row">
+                                  <label i18n for="additional-information-driver-license" class="col-xs-5 col-md-4 col-form-label text-white">Driver License</label>
+                                  <div class="col-xs-7 col-md-8">
+                                      <input formControlName="driverLicense" type="text" class="form-control" placeholder="Driver License" id="additional-information-driver-license">
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                              <div class="form-group">
+                                  <div class="mb-3 row">
+                                    <label i18n for="additional-information-vehicle" class="col-xs-5 col-md-4 col-form-label text-white">Vehicle</label>
+                                    <div class="col-xs-7 col-md-8">
+                                        <input formControlName="vehicle" type="text" class="form-control" placeholder="Vehicle" id="additional-information-vehicle">
+                                    </div>
+                                  </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+              <div class="row" id="row-dialog-information">
+                <div class="col-12 col-xs-12 col-sm-12 col-md-6" id="col-academic-information">
+                  <h3 i18n class="title-section pt-4">Academic Information</h3>
+                  <button class="float-right pull-right float-end add-item-array" (click)="goAddAcademicInformation()" aria-label="open dialog academic information"><i class="bi bi-plus-square add-item-array-icon"></i></button>
+                  <div formArrayName="academicInformation" >
+                    <ng-container *ngFor="let acainf of getAcademicInformations.controls; index as i">
+                      <div class="card card-info mb-3" id="{{'academic-information-card' + i}}" [formGroupName]="i">
+                        <div class="row">
+                          <div class="col-12 col-xs-12 col-sm-12 col-md-6">
+                            <div class="mb-3 row">
+                              <label i18n class="col-lg-5 col-form-label text-white">Institute:</label>
+                              <div class="col-lg-7">
+                                <label i18n class="col-form-label text-white" id="{{'academic-information-school-name-' + i}}">{{userForm.get('academicInformation')?.value[i]?.schoolName}}</label>
+                              </div>
+                            </div>
+                            <div class="mb-3 row">
+                              <label i18n class="col-lg-5 col-form-label text-white">Start Date:</label>
+                              <div class="col-lg-7">
+                                <label i18n class="col-form-label text-white" id="{{'academic-information-start-date-' + i}}">{{userForm.get('academicInformation')?.value[i]?.startDate  | date: 'yyyy-MM-dd'}}</label>
+                              </div>
+                            </div>
+                            <div class="mb-3 row">
+                              <label i18n class="col-lg-5 col-form-label text-white">Level:</label>
+                              <div class="col-lg-7">
+                                <label i18n class="col-form-label text-white" id="{{'academic-information-level-' + i}}">{{userForm.get('academicInformation')?.value[i]?.educationLevel}}</label>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-12 col-xs-12 col-sm-12 col-md-6">
+                            <div class="mb-3 row">
+                              <label i18n class="col-lg-5 col-form-label text-white">Sector:</label>
+                              <div class="col-lg-7">
+                                <label i18n class="col-form-label text-white" id="{{'academic-information-sector-' + i}}">{{userForm.get('academicInformation')?.value[i]?.professionalSector?.name}}</label>
+                              </div>
+                            </div>
+                            <div class="mb-3 row">
+                              <label i18n class="col-lg-5 col-form-label text-white">End Date:</label>
+                              <div class="col-lg-7">
+                                <label i18n class="col-form-label text-white" id="{{'academic-information-end-date-' + i}}">{{userForm.get('academicInformation')?.value[i]?.endDate | date: 'yyyy-MM-dd' }}</label>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </ng-container>
+                  </div>
+                </div>
+                <div class="col-12 col-xs-12 col-sm-12 col-md-6" id="col-professional-experience">
+                  <h3 i18n class="title-section pt-4">Professional Experience</h3>
+                  <button class="float-right pull-right float-end add-item-array" (click)="goAddProfessionalExperience()" aria-label="open dialog professional experience"><i class="bi bi-plus-square add-item-array-icon"></i></button>
+                  <div formArrayName="professionalExperience" >
+                    <ng-container *ngFor="let acainf of getProfessionalExperiences.controls; index as i">
+                      <div class="card card-info mb-3" id="{{'professional-experience-card-' + i}}" [formGroupName]="i">
+                        <div class="row">
+                          <div class="col-12 col-xs-12 col-sm-12 col-md-6">
+                            <div class="mb-3 row">
+                              <label i18n class="col-lg-5 col-form-label text-white">Title Job:</label>
+                              <div class="col-lg-7">
+                                <label i18n class="col-form-label text-white" id="{{'professional-experience-title-job-' + i}}">{{userForm.get('professionalExperience')?.value[i]?.titleJob}}</label>
+                              </div>
+                            </div>
+                            <div class="mb-3 row">
+                              <label class="col-lg-5 col-form-label text-white">Start Date:</label>
+                              <div class="col-lg-7">
+                                <label i18n class="col-form-label text-white" id="{{'professional-experience-title-job-' + i}}">{{userForm.get('professionalExperience')?.value[i]?.startDate  | date: 'yyyy-MM-dd'}}</label>
+                              </div>
+                            </div>
+                            <div class="mb-3 row">
+                              <label class="col-lg-5 col-form-label text-white">Details:</label>
+                              <div class="col-lg-7">
+                                <label i18n class="col-form-label text-white text-justify" id="{{'professional-experience-details-' + i}}">{{userForm.get('professionalExperience')?.value[i]?.details}}</label>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-12 col-xs-12 col-sm-12 col-md-6">
+                            <div class="mb-3 row">
+                              <label class="col-lg-5 col-form-label text-white">Company:</label>
+                              <div class="col-lg-7">
+                                <label i18n class="col-form-label text-white" id="{{'professional-experience-company-name-' + i}}">{{userForm.get('professionalExperience')?.value[i]?.companyName}}</label>
+                              </div>
+                            </div>
+                            <div class="mb-3 row">
+                              <label class="col-lg-5 col-form-label text-white">End Date:</label>
+                              <div class="col-lg-7">
+                                <label i18n class="col-form-label text-white" id="{{'professional-experience-end-date-' + i}}">{{userForm.get('professionalExperience')?.value[i]?.endDate  | date: 'yyyy-MM-dd'}}</label>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </ng-container>
+                  </div>
+                </div>
+                <div class="col-12 col-xs-12 col-sm-12 col-md-6" id="col-technical-skills">
+                  <h3 i18n class="title-section pt-4">Technical Skills</h3>
+                  <button class="float-right pull-right float-end add-item-array" (click)="goAddProgrammingLanguages()" aria-label="open dialog technical skills"><i class="bi bi-plus-square add-item-array-icon"></i></button>
+                  <div class="card card-info mb-3" id="technical-skills-card">
+                    <div formArrayName="programmingLanguages" >
+                      <ng-container *ngFor="let acainf of getProgrammingLanguages.controls; index as i">
+                        <div class="row" id="{{'row' + i}}" [formGroupName]="i">
+                          <div class="col-6">
+                            <label class="col-form-label text-white">{{userForm.get('programmingLanguages')?.value[i]?.name}}</label>
+                          </div>
+                          <div class="col-6">
+                              <div class="rating-yellow pe-none">
+                                <input type="radio" id="{{'technical-skills-rating-1-' + i}}" value="1" formControlName="score" [readonly]="true" novalidate/>
+                                <label for="{{'technical-skills-rating-1-' + i}}">★</label>
+                                <input type="radio" id="{{'technical-skills-rating-2-' + i}}" value="2" formControlName="score" [readonly]="true" novalidate/>
+                                <label for="{{'technical-skills-rating-2-' + i}}">★</label>
+                                <input type="radio" id="{{'technical-skills-rating-3-' + i}}" value="3" formControlName="score" [readonly]="true" novalidate/>
+                                <label for="{{'technical-skills-rating-3-' + i}}">★</label>
+                                <input type="radio" id="{{'technical-skills-rating-4-' + i}}" value="4" formControlName="score" [readonly]="true" novalidate/>
+                                <label for="{{'technical-skills-rating-4-' + i}}">★</label>
+                                <input type="radio" id="{{'technical-skills-rating-5-' + i}}" value="5" formControlName="score" [readonly]="true" novalidate/>
+                                <label for="{{'technical-skills-rating-5-' + i}}">★</label>
+                              </div>
+                          </div>
+                        </div>
+                      </ng-container>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-xs-12 col-sm-12 col-md-6" id="col-personal-skills">
+                  <h3 i18n class="title-section pt-4">Personal Skills</h3>
+                  <button class="float-right pull-right float-end add-item-array" (click)="goAddPersonalSkill()" aria-label="open dialog personal skills"><i class="bi bi-plus-square add-item-array-icon"></i></button>
+                  <div class="card card-info mb-3" id="personal-skills-card">
+                    <div formArrayName="personalSkills" >
+                      <ng-container *ngFor="let acainf of getPersonalSkills.controls; index as i">
+                        <div class="row" id="{{'row' + i}}" [formGroupName]="i">
+                          <div class="col-6">
+                            <label class="col-form-label text-white">{{userForm.get('personalSkills')?.value[i]?.name}}</label>
+                          </div>
+                          <div class="col-6">
+                              <div class="rating-blue pe-none">
+                                <input type="radio" id="{{'personal-skills-rating-1-' + i}}" value="1" formControlName="score" [readonly]="true" novalidate/>
+                                <label for="{{'personal-skills-rating-1-' + i}}">★</label>
+                                <input type="radio" id="{{'personal-skills-rating-2-' + i}}" value="2" formControlName="score" [readonly]="true" novalidate/>
+                                <label for="{{'personal-skills-rating-2-' + i}}">★</label>
+                                <input type="radio" id="{{'personal-skills-rating-3-' + i}}" value="3" formControlName="score" [readonly]="true" novalidate/>
+                                <label for="{{'personal-skills-rating-3-' + i}}">★</label>
+                                <input type="radio" id="{{'personal-skills-rating-4-' + i}}" value="4" formControlName="score" [readonly]="true" novalidate/>
+                                <label for="{{'personal-skills-rating-4-' + i}}">★</label>
+                                <input type="radio" id="{{'personal-skills-rating-5-' + i}}" value="5" formControlName="score" [readonly]="true" novalidate/>
+                                <label for="{{'personal-skills-rating-5-' + i}}">★</label>
+                              </div>
+                          </div>
+                        </div>
+                      </ng-container>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-xs-12 col-sm-12 col-md-6" id="col-languages">
+                  <h3 i18n class="title-section pt-4">Languages</h3>
+                  <button class="float-right pull-right float-end add-item-array" (click)="goAddLanguage()" aria-label="open dialog languages"><i class="bi bi-plus-square add-item-array-icon"></i></button>
+                  <div class="card card-info mb-3" id="languages-card">
+                    <div formArrayName="languages">
+                      <ng-container *ngFor="let acainf of getLanguages.controls; index as i">
+                        <div class="row" id="{{'row' + i}}" [formGroupName]="i">
+                            <div class="col-6">
+                              <label class="col-form-label text-white">{{userForm.get('languages')?.value[i]?.language?.name}}</label>
+                            </div>
+                            <div class="col-6">
+                              <div class="rating-green pe-none">
+                                <input type="radio" id="{{'languages-rating-1-' + i}}" value="1" formControlName="score" [readonly]="true" novalidate/>
+                                <label for="{{'languages-rating-1-' + i}}">★</label>
+                                <input type="radio" id="{{'languages-rating-2-' + i}}" value="2" formControlName="score" [readonly]="true" novalidate/>
+                                <label for="{{'languages-rating-2-' + i}}">★</label>
+                                <input type="radio" id="{{'languages-rating-3-' + i}}" value="3" formControlName="score" [readonly]="true" novalidate/>
+                                <label for="{{'languages-rating-3-' + i}}">★</label>
+                                <input type="radio" id="{{'languages-rating-4-' + i}}" value="4" formControlName="score" [readonly]="true" novalidate/>
+                                <label for="{{'languages-rating-4-' + i}}">★</label>
+                                <input type="radio" id="{{'languages-rating-5-' + i}}" value="5" formControlName="score" [readonly]="true" novalidate/>
+                                <label for="{{'languages-rating-5-' + i}}">★</label>
+                              </div>
+                            </div>
+                        </div>
+                      </ng-container>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 text-center mt-3">
+                <button i18n type="submit" class="btn btn-confirm col-4 col-sm-4 col-md-3 col-lg-2"
+                  [disabled]="!userForm.valid || userForm.get('confirmPassword')?.value !== userForm.get('password')?.value" aria-label="create user" (click)="updateUser()">Continue</button>
+              </div>
+          </form>
+      </div>
+    </div>
+  </div>
+  

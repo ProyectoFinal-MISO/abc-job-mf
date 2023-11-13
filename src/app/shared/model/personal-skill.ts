@@ -1,5 +1,5 @@
 export interface PersonalSkill{
-    id:number;
+    id?:number;
     name:string;
     score:number;
 }

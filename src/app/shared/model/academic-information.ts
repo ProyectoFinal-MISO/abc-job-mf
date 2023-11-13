@@ -1,5 +1,5 @@
 export interface AcademicInformation{
-    id:number;
+    id?:number;
     schoolName:string,
     educationLevel:string,
     professionalSector:string,

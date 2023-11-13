@@ -1,5 +1,5 @@
 export interface PersonalInformation{
-    id:number;
+    id?:number;
     name?:string;
     typeIdentification:string;
     identification:string;

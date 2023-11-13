@@ -1,5 +1,5 @@
 export interface EducationLevel{
-    id:number;
+    id?:number;
     code:string;
     name:string;
 }
