@@ -7,6 +7,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { NgbActiveModal, NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { By } from '@angular/platform-browser';
+import { SharedService } from '../shared/shared.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 describe('HomeComponent', () => {
@@ -15,7 +17,9 @@ describe('HomeComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [HomeComponent]
+      declarations: [HomeComponent],
+      providers: [SharedService],
+      imports: [HttpClientModule]
     });
     fixture = TestBed.createComponent(HomeComponent);
     component = fixture.componentInstance;
