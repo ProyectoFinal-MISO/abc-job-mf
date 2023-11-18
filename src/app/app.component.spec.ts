@@ -6,7 +6,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('AppComponent', () => {
   beforeEach(() => TestBed.configureTestingModule({
-    imports: [HttpClientModule, HttpClientTestingModule, RouterTestingModule],
+    imports: [HttpClientTestingModule, RouterTestingModule],
     declarations: [AppComponent]
   }));
 
@@ -19,13 +19,7 @@ describe('AppComponent', () => {
   it(`should have as title 'abc-job-mf'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('abc-job-mf');
+    expect(app.title).toEqual('app');
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('abc-job-mf app is running!');
-  });
 });

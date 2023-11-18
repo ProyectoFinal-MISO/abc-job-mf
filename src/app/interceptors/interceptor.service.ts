@@ -53,6 +53,7 @@ export class InterceptorService implements HttpInterceptor {
           if (httpErrorResponse.status === 0) {
             errorMesagge = 'error connection with server';
           } else {
+            console.log(httpErrorResponse)
             errorMesagge = `${httpErrorResponse.status}: ${
               httpErrorResponse.error.mensaje ||
               'Try to connect later'
