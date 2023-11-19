@@ -1,112 +1,298 @@
-<div class="container align-items-center" *ngIf="carga">
-    <div class="row align-items-center">
-      <div class="col-xs-10 col-lg-5 card px-2 ">
-        <div class="card-body text-center">
-          <h2 class="my-2">Sign In</h2>
-        </div>
-      </div>
-  
-      <div class="col-xs-10 col-lg-5 container">
-        <div class="row">
-  
-          <div class="my-2 row">
-            <h1 class="text-center">Register</h1>
-          </div>
-  
-          <form [formGroup]="userForm" (ngSubmit)="addUser()">
-  
-            <div class="form-group">
-              <div class="mb-3 row">
-                <label for="username" class="col-lg-3 col-form-label">Username</label>
-                <div class="col-lg-9  ">
-                  <input formControlName="username" type="text" class="form-control" placeholder="Username">
-                  <div class="fw-lighter text-danger small" *ngIf="userForm.get('username')!.touched">
-                    <div *ngIf="userForm.get('username')?.hasError('required')">
-                      You must type an username
-                    </div>
-                    <div *ngIf="userForm.get('username')?.hasError('email')">
-                      You must type an valid email
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-   
-            <div class="form-group">
-              <div class="mb-3 row">
-                <label for="password" class="col-lg-3 col-form-label">Password</label>
-                <div class="col-lg-9">
-                  <input formControlName="password" type="password" class="form-control" placeholder="*********">
-                  <div class="fw-lighter text-danger small" *ngIf="userForm.get('password')!.touched">
-                    <div *ngIf="userForm.get('password')?.hasError('required')">
-                        You must type a password
-                    </div>
-                    <div *ngIf="userForm.get('password')?.hasError('maxlength')">
-                        text must be max 50 characteres
-                    </div>
-                    <div *ngIf="userForm.get('password')?.hasError('minlength')">
-                        text must be min 4 characteres
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-  
-            <div class="form-group">
-              <div class="mb-3 row">
-                <label for="confirmPassword" class="col-lg-3 col-form-label">Confirm Password</label>
-                <div class="col-lg-9">
-                  <input formControlName="confirmPassword" type="password" class="form-control" placeholder="*********">
-                  <div class="fw-lighter text-danger small" *ngIf="userForm.get('confirmPassword')!.touched">
-                    <div *ngIf="userForm.get('confirmPassword')?.hasError('required')">
-                        You must type a password
-                    </div>
-                    <div *ngIf="userForm.get('confirmPassword')?.hasError('maxlength')">
-                        text must be max 50 characteres
-                    </div>
-                    <div *ngIf="userForm.get('confirmPassword')?.hasError('minlength')">
-                        text must be min 4 characteres
-                    </div>
-                    <div *ngIf="userForm.get('confirmPassword')?.value !== userForm.get('password')?.value">
-                      Both password are diferent
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            
-            <div class="form-group">
-                <div class="mb-3 row">
-                  <label for="name" class="col-lg-3 col-form-label">Name</label>
-                  <div class="col-lg-9  ">
-                    <input formControlName="name" type="text" class="form-control" placeholder="Name">
-                    <div class="fw-lighter text-danger small" *ngIf="userForm.get('name')!.touched">
-                      <div *ngIf="userForm.get('name')?.hasError('required')">
-                          You must type a name
-                      </div>
-                      <div *ngIf="userForm.get('name')?.hasError('maxlength')">
-                          text must be max 50 characteres
-                      </div>
-                      <div *ngIf="userForm.get('name')?.hasError('minlength')">
-                          text must be min 4 characteres
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>  
-            <div class="col-12 text-center mt-3">
-              <button type="submit" class="btn btn-warning col-8"
-                [disabled]="!userForm.valid || userForm.get('confirmPassword')?.value !== userForm.get('password')?.value">Register</button>
-            </div>
-            <div class="col-12 text-center mt-2">
-              <p>Dou you have an account? <a href="/">Log In</a></p>
-            </div>
-  
-          </form>
-  
-        </div>
-      </div>
-    </div>
+<div class="container" *ngIf="carga">
+  <div class="row justify-content-center mt-3">
+    <h1 i18n id="tittle-singin" class="text-title-banner col-12">
+      <img src="assets/images/abc-jobs-tie.png" alt="Logo of page" class="img-logo-banner">
+      SING IN
+    </h1>
   </div>
-  
+  <div>
+    <form [formGroup]="userForm" (ngSubmit)="addUser()">
+      <div class="row" id="row-personal-information">
+        <div class="col-12">
+          <h3 i18n class="title-section">Personal Data</h3>
+          <div formGroupName="personalInformation">
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" id="col-personal-information-section-left">
+                <div class="form-group">
+                  <div class="row" id="row-personal-information-internal-section-1">
+                    <div class="col-xs-12 col-7 col-lg-4">
+                      <span>
+                        <label class="hoverable" for="fileInput">
+                          <img id="img-user" class="img-profile" [src]="url ? url : 'https://www.w3schools.com/howto/img_avatar.png'" alt="Logo of profile">
+                          <div i18n class="hover-text">Choose file</div>
+                          <div class="background"></div>
+                        </label>
+                        <button id="btn-img-user" class="close-image" *ngIf="url" (click)="clearFile()" aria-label="clear photo option"></button>
+                      </span>
+                      <br/>
+                      <input id="fileInput" type='file' formControlName="photo" (change)="handleFileInput($event)">
+                    </div>
+                    <div class="col-xs-12 col-5 col-lg-8">
+                      <div class="mb-3 row">
+                        <label i18n for="name" class="col-xs-5 col-md-4 col-form-label text-white">Name</label>
+                        <div class="col-xs-7 col-md-8">
+                          <input formControlName="name" type="text" class="form-control" placeholder="Name" id="name">
+                          <div class="fw-lighter text-danger small" *ngIf="userForm.get('personalInformation.name')!.touched">
+                            <div i18n *ngIf="userForm.get('personalInformation.name')?.hasError('required')">
+                              You must type a name
+                            </div>
+                            <div i18n *ngIf="userForm.get('personalInformation.name')?.hasError('minlength')">
+                              Text must be min 3 characteres
+                            </div>
+                            <div i18n *ngIf="userForm.get('personalInformation.name')?.hasError('maxlength')">
+                              Text must be max 30 characteres
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="mb-3 row">
+                    <label i18n for="personal-information-type-identification" class="col-xs-5 col-md-4 col-form-label text-white">Type Identification</label>
+                    <div class="col-xs-7 col-md-8">
+                        <select class="form-select" formControlName="typeIdentification" id="personal-information-type-identification">
+                            <option i18n value="">Choose Type Identification</option>
+                            <option i18n *ngFor="let typeIdentification of typesIdentification" [ngValue]="typeIdentification">{{typeIdentification}}</option>
+                        </select>
+                        <div class="fw-lighter text-danger small" *ngIf="userForm.get('personalInformation.typeIdentification')!.touched">
+                            <div i18n *ngIf="userForm.get('personalInformation.typeIdentification')?.hasError('required')">
+                              Please provide any type identification
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="mb-3 row">
+                    <label i18n for="personal-information-identification" class="col-xs-5 col-md-4 col-form-label text-white">Identification</label>
+                    <div class="col-xs-7 col-md-8">
+                        <input formControlName="identification" type="text" class="form-control" placeholder="Identification" id="personal-information-identification">
+                        <div class="fw-lighter text-danger small" *ngIf="userForm.get('personalInformation.identification')!.touched">
+                          <div i18n *ngIf="userForm.get('personalInformation.identification')?.hasError('required')">
+                            You must type your identification
+                          </div>
+                          <div i18n *ngIf="userForm.get('personalInformation.identification')?.hasError('minlength')">
+                            Identification must be min 8 numbers
+                          </div>
+                          <div i18n *ngIf="userForm.get('personalInformation.identification')?.hasError('maxlength')">
+                            Identification must be max 10 numbers
+                          </div>
+                          <div i18n *ngIf="userForm.get('personalInformation.identification')?.hasError('pattern')">
+                            Identification must be numbers
+                          </div>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" id="col-personal-information-section-rigth">
+                <div class="form-group">
+                  <div class="mb-3 row">
+                    <label i18n for="personal-information-phone-number" class="col-xs-5 col-md-4 col-form-label text-white">Phone Number</label>
+                    <div class="col-xs-7 col-md-8">
+                      <input formControlName="phoneNumber" type="text" class="form-control" placeholder="Phone Number" id="personal-information-phone-number">
+                      <div class="fw-lighter text-danger small" *ngIf="userForm.get('personalInformation.phoneNumber')!.touched">
+                        <div i18n *ngIf="userForm.get('personalInformation.phoneNumber')?.hasError('required')">
+                          You must type an phone number
+                        </div>
+                        <div i18n *ngIf="userForm.get('personalInformation.phoneNumber')?.hasError('minlength')">
+                          Phone number have 10 digits
+                        </div>
+                        <div i18n *ngIf="userForm.get('personalInformation.phoneNumber')?.hasError('maxlength')">
+                          Phone number have 10 digits
+                        </div>
+                        <div i18n *ngIf="userForm.get('personalInformation.phoneNumber')?.hasError('pattern')">
+                          Phone number must be numbers
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="mb-3 row">
+                    <label i18n for="personal-information-mobile-number" class="col-xs-5 col-md-4 col-form-label text-white">Mobile Number</label>
+                    <div class="col-xs-7 col-md-8">
+                        <input formControlName="mobileNumber" type="text" class="form-control" placeholder="Mobile Number" id="personal-information-mobile-number">
+                        <div class="fw-lighter text-danger small" *ngIf="userForm.get('personalInformation.mobileNumber')!.touched">
+                          <div i18n *ngIf="userForm.get('personalInformation.mobileNumber')?.hasError('required')">
+                            You must type an mobile number
+                          </div>
+                          <div i18n *ngIf="userForm.get('personalInformation.mobileNumber')?.hasError('minlength')">
+                            Mobile number have 10 digits
+                          </div>
+                          <div i18n *ngIf="userForm.get('personalInformation.mobileNumber')?.hasError('maxlength')">
+                            Mobile number have 10 digits
+                          </div>
+                          <div i18n *ngIf="userForm.get('personalInformation.mobileNumber')?.hasError('pattern')">
+                            Mobile number must be numbers
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="mb-3 row">
+                  <label i18n for="personal-information-country" class="col-xs-5 col-md-4 col-form-label text-white">Country</label>
+                  <div class="col-xs-7 col-md-8">
+                      <select (change)="getStates()" class="form-select"  formControlName="country" id="personal-information-country">
+                          <option i18n value="">Choose Country</option>
+                          <option i18n *ngFor="let country of countries" [ngValue]="country.id">{{country.name}}</option>
+                      </select>
+                      <div class="fw-lighter text-danger small" *ngIf="userForm.get('personalInformation.country')!.touched">
+                          <div i18n *ngIf="userForm.get('personalInformation.country')?.hasError('required')">
+                              Please provide any country
+                          </div>
+                      </div>
+                  </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="mb-3 row">
+                    <label i18n for="personal-information-state" class="col-xs-5 col-md-4 col-form-label text-white">State</label>
+                    <div class="col-xs-7 col-md-8">
+                        <select (change)="getCities()" class="form-select"  formControlName="state" id="personal-information-state">
+                            <option i18n value="">Choose State</option>
+                            <option i18n *ngFor="let state of states" [ngValue]="state.id">{{state.name}}</option>
+                        </select>
+                        <div class="fw-lighter text-danger small" *ngIf="userForm.get('personalInformation.state')!.touched">
+                            <div i18n *ngIf="userForm.get('personalInformation.state')?.hasError('required')">
+                                Please provide any state
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="mb-3 row">
+                    <label i18n for="personal-information-city" class="col-xs-5 col-md-4 col-form-label text-white">City</label>
+                    <div class="col-xs-7 col-md-8">
+                        <select class="form-select"  formControlName="city" id="personal-information-city">
+                            <option i18n value="">Choose City</option>
+                            <option i18n *ngFor="let city of cities" [ngValue]="city.id">{{city.name}}</option>
+                        </select>
+                        <div class="fw-lighter text-danger small" *ngIf="userForm.get('personalInformation.city')!.touched">
+                            <div i18n *ngIf="userForm.get('personalInformation.city')?.hasError('required')">
+                                Please provide any city
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="mb-3 row">
+                    <label i18n for="personal-information-address" class="col-xs-5 col-md-4 col-form-label text-white">Address</label>
+                    <div class="col-xs-7 col-md-8">
+                      <input formControlName="address" type="text" class="form-control" placeholder="Address" id="personal-information-address">
+                      <div class="fw-lighter text-danger small" *ngIf="userForm.get('personalInformation.address')!.touched">
+                        <div i18n *ngIf="userForm.get('personalInformation.address')?.hasError('required')">
+                          Please provide an address
+                        </div>
+                        <div i18n *ngIf="userForm.get('personalInformation.address')?.hasError('minlength')">
+                          Addres must be min 5 digits
+                        </div>
+                        <div i18n *ngIf="userForm.get('personalInformation.address')?.hasError('maxlength')">
+                          Addres must be max 50 digits
+                        </div>
+                    </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row" id="row-account-data">
+            <div class="col-12">
+              <h3 i18n class="title-section pt-3">Account Data</h3>
+              <div class="card card-info mb-3">
+                <div class="row">
+                  <div class="col-sm-12 col-md-6">
+                    <div class="form-group">
+                      <div class="mb-3 row">
+                        <label i18n for="account-data-email" class="col-xs-5 col-md-4 col-form-label text-white">Email</label>
+                        <div class="col-xs-7 col-md-8">
+                          <input formControlName="email" type="email" class="form-control" placeholder="Email" id="account-data-email">
+                          <div class="fw-lighter text-danger small" *ngIf="userForm.get('email')!.touched">
+                            <div i18n *ngIf="userForm.get('email')?.hasError('required')">
+                              You must type an email
+                            </div>
+                            <div *ngIf="userForm.get('email')?.hasError('email')">
+                              Invalid email
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="mb-3 row">
+                        <label i18n for="account-data-username" class="col-xs-5 col-md-4 col-form-label text-white">Username</label>
+                        <div class="col-xs-7 col-md-8">
+                          <input formControlName="username" type="email" class="form-control" placeholder="Username" id="account-data-username">
+                          <div class="fw-lighter text-danger small" *ngIf="userForm.get('username')!.touched">
+                            <div i18n *ngIf="userForm.get('username')?.hasError('required')">
+                              You must type an username
+                            </div>
+                            <div *ngIf="userForm.get('username')?.hasError('maxlength')">
+                              username must not exceed 30 characters
+                            </div>
+                            <div *ngIf="userForm.get('username')?.hasError('minlength')">
+                              username must be more than 5 characters
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-12 col-md-6">
+                    <div class="form-group">
+                      <div class="mb-3 row">
+                        <label i18n for="account-data-pw" class="col-xs-5 col-md-4 col-form-label text-white">Password</label>
+                        <div class="col-xs-7 col-md-8">
+                          <input formControlName="password" type="password" class="form-control" placeholder="*********" id="account-data-pw">
+                          <div class="fw-lighter text-danger small" *ngIf="userForm.get('password')!.touched">
+                            <div i18n *ngIf="userForm.get('password')?.hasError('required')">
+                                You must type a password
+                            </div>
+                            <div i18n *ngIf="userForm.get('password')?.hasError('maxlength')">
+                                text must be max 50 characteres
+                            </div>
+                            <div i18n *ngIf="userForm.get('password')?.hasError('minlength')">
+                                text must be min 4 characteres
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="mb-3 row">
+                        <label i18n for="account-data-cpw" class="col-xs-5 col-md-4 col-form-label text-white">Confirm Password</label>
+                        <div class="col-xs-7 col-md-8">
+                          <input formControlName="confirmPassword" type="password" class="form-control" placeholder="*********" id="account-data-cpw">
+                          <div class="fw-lighter text-danger small" *ngIf="userForm.get('confirmPassword')!.touched">
+                            <div i18n *ngIf="userForm.get('confirmPassword')?.hasError('required')">
+                                You must type a password
+                            </div>
+                            <div i18n *ngIf="userForm.hasError('noCoincide')">
+                              Both password are diferent
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+      <div class="col-12 text-center mt-3">
+        <button i18n type="submit" class="btn btn-confirm col-4 col-sm-4 col-md-3 col-lg-2" [disabled]="isDisabled" aria-label="create user">Continue</button>
+      </div>
+      <div class="col-12 text-center mt-2">
+        <p i18n class="font-weight-bold">Dou you have an account? <a href="/" aria-label="go to Log In">Log In</a></p>
+      </div>
+  </form>
+  </div>
+</div>
