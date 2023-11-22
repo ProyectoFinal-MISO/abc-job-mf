@@ -94,11 +94,48 @@ export class CompanyCreateComponent {
       this.user.personalInformation.photo = this.url;
       localStorage.clear();
       //console.log(this.user)
-      this.userService.addUser(this.user).subscribe((response) => {
-        this.router.navigate([`/login`]);
-      }, (error) =>{
-        this.isDisabled = false;
-      })
+
+      this.userService.addUser(this.user).subscribe({
+        next: (result:any) => {
+          if(result){         
+            const userSession:UserSessionDto = {
+              username: this.user.username,
+              password: this.user.password,
+              userType: this.user.userType
+            }
+            this.userSessionService.userLogIn(userSession).subscribe({
+              next: (res:any) => {
+                localStorage.setItem('token', res.token);
+                this.userSessionService.getMyUserSession().subscribe({
+                  next: (response:any) => {
+                    this.userSessionService.sendMessage(true);
+                    this.userSessionService.saveUserLocal(response);
+                    this.toastr.success(`login succesful`, 'Success', {
+                      progressBar: true,
+                    });
+                    this.router.navigate([`/home`]);
+                  },
+                  error: (e0:any) => {
+                    this.toastr.error(`login fail`, 'Error, ' + e0, {
+                      progressBar: true,
+                    });
+                  },
+                  complete: () => console.log('complete0'),
+                })
+              },
+              error: (e1:any) => {
+                console.log(e1)
+              },
+              complete: () => console.log('complete1'),
+            });
+          }
+        },
+        error: (e0:any) => {
+          this.toastr.error(`Error`, e0, {
+            progressBar: true,
+          });
+        }
+      });
     } else {
       console.log('Formulario inválido');
       this.markFormGroupTouched(this.userForm);

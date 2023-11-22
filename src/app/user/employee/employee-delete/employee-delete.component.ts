@@ -68,7 +68,8 @@ export class EmployeeDeleteComponent {
                 this.toastr.success(`delete succesful`, 'Success', {
                   progressBar: true,
                 });
-                this.router.navigate([`/home`]);
+                this.userSessionService.closeSession();
+                this.router.navigate([`/login`]);
               },
               error: (e0: any) => {
                 this.toastr.error(`delete fail`, 'Error, ' + e0, {

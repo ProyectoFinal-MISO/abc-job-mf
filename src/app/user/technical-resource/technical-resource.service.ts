@@ -27,6 +27,6 @@ export class TechnicalResourceService {
   }
 
   updateUser(user: TechnicalResource): Observable<any> {
-    return this.http.put<any>(`${this.urlUsers}${this.backController}/${user.id}`, user);
+    return this.http.put<any>(`${this.urlUsers}/${this.backController}/${user.id}`, user);
   }
 }

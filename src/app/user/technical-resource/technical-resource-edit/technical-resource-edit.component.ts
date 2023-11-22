@@ -47,6 +47,7 @@ export class TechnicalResourceEditComponent {
   educationLevels: any = [];
   professionalSectors: any = [];
   languagesArray: any = [];
+  usserSessionData:any;
 
   constructor(
     private userService: TechnicalResourceService,
@@ -60,11 +61,11 @@ export class TechnicalResourceEditComponent {
     private sharedService: SharedService
   ) {
     this.sharedService.setSite('Edit Profile');
+    this.usserSessionData =  this.userSessionService.getUserSession();
   }
 
   createForm(){
     this.userForm = this.formBuilder.group({
-      username: ['', [Validators.required, Validators.email]],
       userType: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       personalInformation: this.formBuilder.group({
@@ -386,7 +387,38 @@ export class TechnicalResourceEditComponent {
     });
   }
 
+  
   getStates() {
+    this.sharedService.getStatesByCountry(Number(this.userForm.get('personalInformation.country')?.value?.id)).subscribe({
+      next: (result:any) => {
+        if(result){
+          this.states = result;
+        }
+      },
+      error: (e0:any) => {
+        this.toastr.error(`Error`, e0, {
+          progressBar: true,
+        });
+      }
+    });
+  }
+
+  getCities() {
+    this.sharedService.getCitiesByState(Number(this.userForm.get('personalInformation.state')?.value?.id)).subscribe({
+      next: (result:any) => {
+        if(result){
+          this.cities = result;
+        }
+      },
+      error: (e0:any) => {
+        this.toastr.error(`Error`, e0, {
+          progressBar: true,
+        });
+      }
+    });
+  }
+
+  getStatesInit() {
     this.sharedService.getStatesByCountry(Number(this.user.personalInformation.country)).subscribe({
       next: (result:any) => {
         if(result){
@@ -404,7 +436,7 @@ export class TechnicalResourceEditComponent {
     });
   }
 
-  getCities() {
+  getCitiesInit() {
     this.sharedService.getCitiesByState(Number(this.user.personalInformation.state)).subscribe({
       next: (result:any) => {
         if(result){
@@ -421,6 +453,7 @@ export class TechnicalResourceEditComponent {
       }
     });
   }
+
 
   async getTypesIdentification() {
     this.sharedService.getTypesIdentification().subscribe({
@@ -542,11 +575,11 @@ export class TechnicalResourceEditComponent {
   async cleanData(){
     this.transferAvailabilities = [{val:0, valaux:false, name:'No'},{val:1, valaux:true, name:'Yes'}];
    
-    this.userForm.get('username')?.setValue(this.user.username);
+    this.userForm.get('username')?.setValue(this.usserSessionData.username);
     this.userForm.get('username')?.updateValueAndValidity();
-    this.userForm.get('userType')?.setValue(this.user.userType);
+    this.userForm.get('userType')?.setValue(this.usserSessionData.userType);
     this.userForm.get('userType')?.updateValueAndValidity();
-    this.userForm.get('email')?.setValue(this.user.email);
+    this.userForm.get('email')?.setValue(this.usserSessionData.username);
     this.userForm.get('email')?.updateValueAndValidity();
 
     this.userForm.get('personalInformation.photo')?.setValue(this.user.personalInformation.photo);
@@ -614,8 +647,8 @@ export class TechnicalResourceEditComponent {
 
   async getAllData(){
     await this.getCountries();
-    await this.getStates();
-    await this.getCities();
+    await this.getStatesInit();
+    await this.getCitiesInit();
     await this.getTypesIdentification();
     await this.getGenres();
     await this.getProfessionalSectors();
@@ -626,20 +659,19 @@ export class TechnicalResourceEditComponent {
 
   async updateUser() {
     let userAux = { ...this.userForm.value };
-    userAux.personalInformation.city = userAux?.personalInformation?.city?.id ? userAux?.personalInformation?.city?.id : '';
-    userAux.personalInformation.state = userAux?.personalInformation?.state?.id ? userAux?.personalInformation?.state?.i : '';
-    userAux.personalInformation.country = userAux?.personalInformation?.country?.id ? userAux?.personalInformation?.country?.id: '';
-    userAux.additionalInformation.transferAvailability = userAux?.additionalInformation?.transferAvailability?.val ? userAux?.additionalInformation?.transferAvailability?.val: '';
-
+    userAux.personalInformation.city = userAux?.personalInformation?.city?.id?.toString() ? userAux?.personalInformation?.city?.id : 1;
+    userAux.personalInformation.state = userAux?.personalInformation?.state?.id?.toString() ? userAux?.personalInformation?.state?.id : 1;
+    userAux.personalInformation.country = userAux?.personalInformation?.country?.id?.toString() ? userAux?.personalInformation?.country?.id: 1;
+    userAux.additionalInformation.transferAvailability = userAux?.additionalInformation?.transferAvailability?.val?.toString() ? userAux?.additionalInformation?.transferAvailability?.val: 0;
+    userAux.id = this.usserSessionData.id;
     await userAux.academicInformation.forEach((obj:any) => {
-      obj.professionalSector = obj.professionalSector?.id ? obj.professionalSector?.id : '';
+      obj.professionalSector = obj.professionalSector?.id?.toString() ? obj.professionalSector?.id : 1;
     });
 
     await userAux.languages.forEach((obj:any) => {
-      obj.language = obj.language?.id ? obj.language?.id : '';
+      obj.language = obj.language?.id?.toString() ? obj.language?.id : 1;
     });
     this.user = userAux;
-    localStorage.clear();
     this.userService.updateUser(this.user).subscribe({
       next: (result:any) => {
         if(result){
