@@ -17,6 +17,7 @@ import { EmployeeCreateComponent } from './user/employee/employee-create/employe
 import { EmployeeViewComponent } from './user/employee/employee-view/employee-view.component';
 import { EmployeeDeleteComponent } from './user/employee/employee-delete/employee-delete.component';
 import { TechnicalResourceEditComponent } from './user/technical-resource/technical-resource-edit/technical-resource-edit.component';
+import { InterviewListComponent } from './interview/interview-list/interview-list.component';
 
 const routes: Routes = [
   {
@@ -85,6 +86,7 @@ const routes: Routes = [
             ]
       },
       { path: 'home', component: HomeComponent },
+      {path: 'interview', component: InterviewListComponent}
     ]
   },
   { path: 'signin', children: [
