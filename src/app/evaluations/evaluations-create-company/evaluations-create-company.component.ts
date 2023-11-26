@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EvaluationListComponent } from '../evaluations-list/evaluations-list.component';
+import { EvaluationListCompanyComponent } from '../evaluations-list-company/evaluations-list-company.component';
 import { ActivatedRoute } from '@angular/router';
 import { Evaluation } from 'src/app/shared/model/evaluations';
 import { ArrayType } from '@angular/compiler';
@@ -14,12 +14,12 @@ interface Item {
 }
 
 @Component({
-  selector: 'app-evaluation-create',
-  templateUrl: './evaluations-create.component.html',
-  styleUrls: ['./evaluations-create.component.css']
+  selector: 'app-evaluation-create-company',
+  templateUrl: './evaluations-create-company.component.html',
+  styleUrls: ['./evaluations-create-company.component.css']
 })
 
-export class EvaluationCreateComponent implements OnInit {
+export class EvaluationCreateCompanyComponent implements OnInit {
 
   list_evaluations: Item[] = [
     {

@@ -18,8 +18,8 @@ import { EmployeeCreateComponent } from './user/employee/employee-create/employe
 import { EmployeeViewComponent } from './user/employee/employee-view/employee-view.component';
 import { EmployeeDeleteComponent } from './user/employee/employee-delete/employee-delete.component';
 
-import { EvaluationListComponent } from './evaluations/evaluations-list/evaluations-list.component';
-import { EvaluationCreateComponent } from './evaluations/evaluations-create/evaluations-create.component';
+import { EvaluationListCompanyComponent } from './evaluations/evaluations-list-company/evaluations-list-company.component';
+import { EvaluationCreateCompanyComponent } from './evaluations/evaluations-create-company/evaluations-create-company.component';
 
 const routes: Routes = [
   {
@@ -91,12 +91,12 @@ const routes: Routes = [
             children: [
               {
                 path: 'list',
-                component: EvaluationListComponent,
+                component: EvaluationListCompanyComponent,
                 data: {}
               },
               {
                 path: 'add/:id',
-                component: EvaluationCreateComponent,
+                component: EvaluationCreateCompanyComponent,
                 data: {}
               }
             ]

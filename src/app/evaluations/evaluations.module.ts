@@ -5,8 +5,8 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CarouselModule } from 'primeng/carousel';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { EvaluationListComponent } from './evaluations-list/evaluations-list.component';
-import { EvaluationCreateComponent } from'./evaluations-create/evaluations-create.component';
+import { EvaluationListCompanyComponent } from './evaluations-list-company/evaluations-list-company.component';
+import { EvaluationCreateCompanyComponent } from'./evaluations-create-company/evaluations-create-company.component';
 
 @NgModule({
   imports: [
@@ -19,12 +19,12 @@ import { EvaluationCreateComponent } from'./evaluations-create/evaluations-creat
     NgbModule
   ],
   declarations: [
-    EvaluationListComponent,
-    EvaluationCreateComponent
+    EvaluationListCompanyComponent,
+    EvaluationCreateCompanyComponent
   ],
   exports: [
-    EvaluationListComponent,
-    EvaluationCreateComponent
+    EvaluationListCompanyComponent,
+    EvaluationCreateCompanyComponent
   ]
 })
 export class EvaluationModule { }

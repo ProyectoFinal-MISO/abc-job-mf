@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-evaluation-list',
-  templateUrl: './evaluations-list.component.html',
-  styleUrls: ['./evaluations-list.component.css']
+  selector: 'app-evaluation-list-company',
+  templateUrl: './evaluations-list-company.component.html',
+  styleUrls: ['./evaluations-list-company.component.css']
 })
-export class EvaluationListComponent implements OnInit {
+export class EvaluationListCompanyComponent implements OnInit {
 
   list_evaluations: any = [];
 
