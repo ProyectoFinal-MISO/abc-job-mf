@@ -42,7 +42,10 @@ export class HeaderComponent implements OnInit {
 
   goToEvaluate(){
     if (this.userSession.userType  === UserType.Company){
-      this.router.navigate([`/evaluations/list`]);
+      this.router.navigate([`/evaluations/list_for_company`]);
+    }
+    else{
+      this.router.navigate([`/evaluations/list_for_technical_resource`]);
     }
   }
 

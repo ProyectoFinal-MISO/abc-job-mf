@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { EvaluationListCompanyComponent } from '../evaluations-list-company/evaluations-list-company.component';
 import { ActivatedRoute } from '@angular/router';
 import { Evaluation } from 'src/app/shared/model/evaluations';
 import { ArrayType } from '@angular/compiler';
@@ -64,11 +63,11 @@ export class EvaluationCreateCompanyComponent implements OnInit {
     return []
   }
 
-  addUser() {
+  addEvaluation() {
     this.toastr.success(`Succesful`, 'Success', {
       progressBar: true,
     });
-    this.router.navigate([`/evaluations/list`]);
+    this.router.navigate([`/evaluations/list_for_company`]);
   }
 
 }

@@ -13,12 +13,15 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UserModule } from './user/user.module';
 import { EvaluationListCompanyComponent } from './evaluations/evaluations-list-company/evaluations-list-company.component';
 import { EvaluationCreateCompanyComponent } from './evaluations/evaluations-create-company/evaluations-create-company.component';
+import { EvaluationListTechnicalResourceComponent } from './evaluations/evaluations-list-technical-resource/evaluations-list-technical-resource.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     EvaluationListCompanyComponent,
-    EvaluationCreateCompanyComponent
+    EvaluationCreateCompanyComponent,
+    EvaluationListTechnicalResourceComponent
   ],
   imports: [
     BrowserModule,

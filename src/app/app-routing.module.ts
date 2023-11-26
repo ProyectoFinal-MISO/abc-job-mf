@@ -20,6 +20,7 @@ import { EmployeeDeleteComponent } from './user/employee/employee-delete/employe
 
 import { EvaluationListCompanyComponent } from './evaluations/evaluations-list-company/evaluations-list-company.component';
 import { EvaluationCreateCompanyComponent } from './evaluations/evaluations-create-company/evaluations-create-company.component';
+import { EvaluationListTechnicalResourceComponent} from './evaluations/evaluations-list-technical-resource/evaluations-list-technical-resource.component';
 
 const routes: Routes = [
   {
@@ -90,13 +91,18 @@ const routes: Routes = [
       { path: 'evaluations',
             children: [
               {
-                path: 'list',
+                path: 'list_for_company',
                 component: EvaluationListCompanyComponent,
                 data: {}
               },
               {
                 path: 'add/:id',
                 component: EvaluationCreateCompanyComponent,
+                data: {}
+              },
+              {
+                path: 'list_for_technical_resource',
+                component: EvaluationListTechnicalResourceComponent,
                 data: {}
               }
             ]
