@@ -12,6 +12,7 @@ import { UserType } from '../model/user-type';
 export class HeaderComponent implements OnInit {
 
   userSession!:any;
+  userType=UserType;
 
   constructor(public sharedService: SharedService,
     private userSessionService: UserSessionService,    
@@ -38,5 +39,9 @@ export class HeaderComponent implements OnInit {
     else{      
       this.router.navigate([`/technical-resource/view/${this.userSession.id}`]);
     }
+  }
+
+  goToProject(){
+   this.router.navigate([`/project/list`]);    
   }
 }

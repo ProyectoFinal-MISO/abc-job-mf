@@ -9,6 +9,7 @@ import { UserSessionComponent } from './user-session/user-session.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CarouselModule } from 'primeng/carousel';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { DropdownModule } from 'primeng/dropdown';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     FormsModule,
     ReactiveFormsModule,
     CarouselModule,
-    NgbModule
+    NgbModule,
+    DropdownModule
   ],
   exports:[
     LayoutComponent,

@@ -17,6 +17,9 @@ import { EmployeeCreateComponent } from './user/employee/employee-create/employe
 import { EmployeeViewComponent } from './user/employee/employee-view/employee-view.component';
 import { EmployeeDeleteComponent } from './user/employee/employee-delete/employee-delete.component';
 import { TechnicalResourceEditComponent } from './user/technical-resource/technical-resource-edit/technical-resource-edit.component';
+import { ProjectCreateComponent } from './project/project-create/project-create.component';
+import { ProjectViewComponent } from './project/project-view/project-view.component';
+import { ProjectListComponent } from './project/project-list/project-list.component';
 
 const routes: Routes = [
   {
@@ -80,6 +83,30 @@ const routes: Routes = [
               {
                 path: 'delete/:id',
                 component: EmployeeDeleteComponent,
+                data: {}
+              }
+            ]
+      },
+      { path: 'project',
+              children: [
+              {
+                path: 'add',
+                component: ProjectCreateComponent,
+                data: {}
+              },
+              {
+                path: 'view/:id',
+                component: ProjectViewComponent,
+                data: {}
+              },
+              {
+                path: 'delete/:id',
+                component: ProjectListComponent,
+                data: {}
+              },
+              {
+                path: 'list',
+                component: ProjectListComponent,
                 data: {}
               }
             ]

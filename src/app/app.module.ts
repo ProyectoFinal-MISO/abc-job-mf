@@ -11,6 +11,7 @@ import { InterceptorService } from './interceptors/interceptor.service';
 import { ToastrModule } from 'ngx-toastr';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UserModule } from './user/user.module';
+import { ProjectModule } from './project/project.module';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { UserModule } from './user/user.module';
     BrowserAnimationsModule,    
     NgbModule,
     UserModule,
+    ProjectModule,
     ToastrModule.forRoot({
       timeOut: 5000,
       positionClass: 'toast-bottom-right',

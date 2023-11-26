@@ -16,7 +16,10 @@
         <div class="offcanvas-body">
           <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
             <li class="nav-item">
-              <a i18n class="nav-link" (click)="goToUser()" >User</a>
+              <a i18n class="nav-link" (click)="goToUser()">User</a>
+            </li>
+            <li class="nav-item" *ngIf="userSession.userType  === userType.Company">
+              <a i18n class="nav-link" (click)="goToProject()">Project</a>
             </li>
           </ul>
         </div>
@@ -27,7 +30,6 @@
             <strong>{{userSession?.username ? userSession.username: ''}}</strong>
           </a>
           <ul class="dropdown-menu dropdown-menu-dark text-small shadow dropdown-ul" aria-labelledby="dropdownUser1">
-            <li><a i18n class="dropdown-item" href="#">Profile</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a i18n class="dropdown-item" alt="" (click)="closeSession()"  href="">Sign out</a></li>
           </ul>
