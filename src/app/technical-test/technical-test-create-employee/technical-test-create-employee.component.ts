@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Evaluation } from 'src/app/shared/model/evaluations';
+import { TechnicalTest } from 'src/app/shared/model/technical-test';
 import { ArrayType } from '@angular/compiler';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
@@ -9,35 +9,39 @@ interface Item {
   id: number,
   name: string,
   name_project: string,
+  score: string,
   url: string
 }
 
 @Component({
-  selector: 'app-evaluation-create-company',
-  templateUrl: './evaluations-create-company.component.html',
-  styleUrls: ['./evaluations-create-company.component.css']
+  selector: 'app-technical-test-create-employee',
+  templateUrl: './technical-test-create-employee.component.html',
+  styleUrls: ['./technical-test-create-employee.component.css']
 })
 
-export class EvaluationCreateCompanyComponent implements OnInit {
+export class TechnicalTestCreateEmployeeComponent implements OnInit {
 
-  list_evaluations: Item[] = [
+  list_technical_test: Item[] = [
     {
       "id": 1,
       "name": "Ana Gabriela López Gómez",
       "name_project": "Vanguard",
-      "url": "evaluations/add/1"
+      "score": "5.9",
+      "url": "technical_test/add/1"
     },
     {
       "id": 2,
       "name": "Francisco Miguel Rodríguez García",
       "name_project": "Cretta",
-      "url": "evaluations/add/2"
+      "score": "",
+      "url": "technical_test/add/2"
     },
     {
       "id": 3,
       "name": "Gabriela Alejandra Hernández Mendoza",
       "name_project": "Anubis",
-      "url": "evaluations/add/3"
+      "score": "1.58",
+      "url": "technical_test/add/3"
     }
   ]
   idFromUrl: any
@@ -55,19 +59,19 @@ export class EvaluationCreateCompanyComponent implements OnInit {
   }
 
   getItemById(itemId: number) {
-    for (let index = 0; index < this.list_evaluations.length; index++) {
-      if (this.list_evaluations[index].id == itemId) {
-        return this.list_evaluations[index];
+    for (let index = 0; index < this.list_technical_test.length; index++) {
+      if (this.list_technical_test[index].id == itemId) {
+        return this.list_technical_test[index];
       }
     }
     return []
   }
 
-  addEvaluation() {
+  addTechnicalTest() {
     this.toastr.success(`Succesful`, 'Success', {
       progressBar: true,
     });
-    this.router.navigate([`/evaluations/list_for_company`]);
+    this.router.navigate([`/technical_test/list_for_employee`]);
   }
 
 }

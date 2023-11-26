@@ -1,0 +1,31 @@
+.container-cards-technical-test-list {
+  background-color: #818870;
+  padding: 2% 3%;
+}
+
+.container-cards-technical-test-list .mt-3 {
+  color: white;
+  font-size: 2.5rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.card-technical-test-list{
+  background-color: #A2BE51;
+  padding: 2%;
+  border-radius: 0.625rem;
+  display: flex;
+  align-items: center; /* Centrar verticalmente */
+  justify-content: center; /* Centrar horizontalmente */
+  margin: 2% 5%;
+}
+
+.card-technical-test-list img{
+  width: 20%;
+  border-radius: 3em;
+}
+
+.card-technical-test-list a {
+  color: white;
+}

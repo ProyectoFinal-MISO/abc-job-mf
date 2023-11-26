@@ -49,5 +49,14 @@ export class HeaderComponent implements OnInit {
     }
   }
 
+  goToTechnicalTest(){
+    if (this.userSession.userType  === UserType.Employee){
+      this.router.navigate([`/technical_test/list_for_employee`]);
+    }
+    else{
+      this.router.navigate([`/technical_test/list_for_technical_resource`]);
+    }
+  }
+
 
 }

@@ -15,19 +15,19 @@ export class EvaluationListTechnicalResourceComponent implements OnInit {
     this.list_evaluations = [
       {
         "id": 1,
-        "name_project": "Angeles azules",
+        "name_project": "Vanguard",
         "url": "evaluations/view/1",
         "score": 3,
       },
       {
         "id": 2,
-        "name_project": "Botas azules",
+        "name_project": "Cretta",
         "url": "evaluations/view/2",
         "score": 2,
       },
       {
         "id": 3,
-        "name_project": "Camisas azules",
+        "name_project": "Anubis",
         "url": "evaluations/view/3",
         "score": 5,
       }
