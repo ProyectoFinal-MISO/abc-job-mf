@@ -2,7 +2,7 @@
     <div class="row align-items-center">
       <div class="col-xs-10 col-12 container">
         <button class="float-right pull-right float-end add-item-array" (click)="goAddProject()" aria-label="go to add project"><i class="bi bi-plus-square add-item-array-icon"></i></button>
-        <p-dataView #dv [value]="projects" [paginator]="true" [rows]="9" filterBy="name"
+        <p-dataView #dv [value]="projects" [paginator]="true" [rows]="3" filterBy="name"
         layout="grid">
             <ng-template pTemplate="header">
                 <div class="flex flex-column md:flex-row md:justify-content-between">
@@ -18,11 +18,11 @@
                     <div class="project-list-item">
                         <i class="bi bi-briefcase-fill"></i>
                         <div class="project-list-detail">
-                            <div class="project-name">{{project.name}}</div>
-                            <div class="project-description">{{project.description}}</div>
+                            <div class="project-name">{{project.projectName}}</div>
+                            <div class="project-description">Team: {{project.teamName}}</div>
                         </div>
                         <div class="project-list-action">
-                            <p-button icon="bi bi-chevron-right" label=""></p-button> 
+                            <p-button icon="bi bi-chevron-right" label="" (onClick)="goViewProject(project.projectId)"></p-button> 
                         </div>
                     </div>
                 </div>
@@ -32,11 +32,11 @@
                     <div class="project-grid-item card">
                         <div class="project-grid-item-content">
                             <i class="bi bi-briefcase-fill"></i>
-                            <div class="project-name">{{project.name}}</div>
-                            <div class="project-description">{{project.description}}</div>
+                            <div class="project-name">{{project.projectName}}</div>
+                            <div class="project-description">{{project.teamName}}</div>
                         </div>
                         <div class="project-grid-item-bottom">
-                            <p-button icon="bi bi-chevron-right" label=""></p-button> 
+                            <p-button icon="bi bi-chevron-right" label="" (onClick)="goViewProject(project.projectId)"></p-button> 
                         </div>
                     </div>
                 </div>
