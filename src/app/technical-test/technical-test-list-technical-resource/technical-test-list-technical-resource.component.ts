@@ -15,19 +15,19 @@ export class TechnicalTestListTechnicalResourceComponent implements OnInit {
     this.list_technical_test = [
       {
         "id": 1,
-        "name_project": "Angeles azules",
+        "name_project": "Vanguard",
         "score": "5.9",
         "url": "technical_test/view/1"
       },
       {
         "id": 2,
-        "name_project": "Botas azules",
+        "name_project": "Cretta",
         "score": "",
         "url": "technical_test/view/2"
       },
       {
         "id": 3,
-        "name_project": "Camisas azules",
+        "name_project": "Anubis",
         "score": "1.58",
         "url": "technical_test/view/3"
       }

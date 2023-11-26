@@ -27,7 +27,7 @@ export class TechnicalTestViewTechnicalResourceComponent implements OnInit {
   list_technical_test: Item[] = [
     {
       "id": 1,
-      "name_project": "Angeles azules",
+      "name_project": "Vanguard",
       "score": "5.9",
       "numberHits": 6,
       "numberError": 4,
@@ -37,7 +37,7 @@ export class TechnicalTestViewTechnicalResourceComponent implements OnInit {
     },
     {
       "id": 2,
-      "name_project": "Botas azules",
+      "name_project": "Cretta",
       "score": "",
       "numberHits": 0,
       "numberError": 0,
@@ -47,7 +47,7 @@ export class TechnicalTestViewTechnicalResourceComponent implements OnInit {
     },
     {
       "id": 3,
-      "name_project": "Camisas azules",
+      "name_project": "Anubis",
       "score": "1.58",
       "numberHits": 2,
       "numberError": 8,
