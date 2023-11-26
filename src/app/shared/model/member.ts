@@ -2,6 +2,7 @@ import { PersonalSkill } from "./personal-skill";
 import { ProgrammingLanguages } from "./programming-language";
 
 export interface Member {
+    id?:number;
     teamId?: number;
     userId?: number;
     isIntern: boolean;    

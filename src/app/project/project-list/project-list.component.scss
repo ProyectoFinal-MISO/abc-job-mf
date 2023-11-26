@@ -17,6 +17,10 @@
     padding-top: 3em!important;
 }
 
+.icon{
+    font-size: 5em;
+}
+
 :host ::ng-deep {
 
     #input-search::placeholder {
@@ -61,6 +65,7 @@
     
         .project-list-detail {
             flex: 1 1 0;
+            padding-left: 1em;
         }
     
         .p-rating {
@@ -108,6 +113,10 @@
         .project-price {
             font-size: 1.5rem;
             font-weight: 600;
+        }
+
+        .icon{
+            font-size: 5em;
         }
     }
 }

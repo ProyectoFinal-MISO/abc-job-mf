@@ -2,21 +2,20 @@
     <div class="row align-items-center">
       <div class="col-xs-10 col-12 container">
         <button class="float-right pull-right float-end add-item-array" (click)="goAddProject()" aria-label="go to add project"><i class="bi bi-plus-square add-item-array-icon"></i></button>
-        <p-dataView #dv [value]="projects" [paginator]="true" [rows]="3" filterBy="name"
-        layout="grid">
+        <p-dataView #dv [value]="projects" [paginator]="true" [rows]="2" filterBy="name"
+        layout="list">
             <ng-template pTemplate="header">
                 <div class="flex flex-column md:flex-row md:justify-content-between">
                     <span class="p-input-icon-left mb-2 md:mb-0">
                         <i class="bi bi-search"></i>
                         <input type="search" id="input-search" pInputText placeholder="Search by Name" (input)="dv.filter($any($event.target).value)">
                     </span>
-                    <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
                 </div>
             </ng-template>
             <ng-template let-project pTemplate="listItem">
                 <div class="col-12">
                     <div class="project-list-item">
-                        <i class="bi bi-briefcase-fill"></i>
+                        <i class="bi bi-briefcase-fill icon"></i>
                         <div class="project-list-detail">
                             <div class="project-name">{{project.projectName}}</div>
                             <div class="project-description">Team: {{project.teamName}}</div>

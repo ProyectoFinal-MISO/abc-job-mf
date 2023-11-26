@@ -69,9 +69,6 @@
     height: 8rem;
     width: 8rem;
     border-radius: 50%;
-    margin-top: auto;
-    margin-left: 30%;
-    display: block;
   }
 
   .close-image {
@@ -156,14 +153,13 @@
     cursor: pointer;
     color: #cccccc;
     transform: rotateY(180deg); /* Flip the star to display properly */
-    color: #ffc800;
   }
   
   /* Style the label elements when hovered over or checked */
   .rating-yellow label:hover,
   .rating-yellow label:hover ~ label,
   .rating-yellow input:checked ~ label {
-    color: #ffa600; /* Change the color of the star to yellow when hovered over or checked */
+    color: #ffc800; /* Change the color of the star to yellow when hovered over or checked */
   }
 
   .btn-confirm{
@@ -173,28 +169,8 @@
 
 
 
-.item-array-banner-delete {
-    background: transparent;
-    margin-top: -4em;
-    margin-right: 2em;
-    border:0
-  }
 
-  .item-array-banner-delete:hover {
-    opacity: 1;
-  }
-
-  .item-array-banner-update {
-    background: transparent;
-    margin-top: -4em;
-    margin-right: -0.5em;
-    border:0
-  }
-
-  .item-array-banner-update:hover {
-    opacity: 1;
-  }
-
+  
   .rating-green {
     font-size: 0; /* Remove any font size */
     direction: rtl; /* Set direction to right-to-left for proper star display */
@@ -218,14 +194,13 @@
     cursor: pointer;
     color: #cccccc;
     transform: rotateY(180deg); /* Flip the star to display properly */
-    color: #00ff4e;
   }
   
   /* Style the label elements when hovered over or checked */
   .rating-green label:hover,
   .rating-green label:hover ~ label,
   .rating-green input:checked ~ label {
-    color: #15ff00; /* Change the color of the star to yellow when hovered over or checked */
+    color: #00ff4e; /* Change the color of the star to yellow when hovered over or checked */
   }
 
 
@@ -252,38 +227,11 @@
     cursor: pointer;
     color: #cccccc;
     transform: rotateY(180deg); /* Flip the star to display properly */
-    color: #00b8ff;
   }
   
   /* Style the label elements when hovered over or checked */
   .rating-blue label:hover,
   .rating-blue label:hover ~ label,
   .rating-blue input:checked ~ label {
-    color: #00a2ff; /* Change the color of the star to yellow when hovered over or checked */
-  }
-  
-  .item-array-banner-delete {
-    background: transparent;
-    margin-top: -4em;
-    margin-right: 2em;
-    border:0
-  }
-
-  .item-array-banner-delete:hover {
-    opacity: 1;
-  }
-
-  .item-array-banner-update {
-    background: transparent;
-    margin-top: -4em;
-    margin-right: -0.5em;
-    border:0
-  }
-
-  .item-array-banner-update:hover {
-    opacity: 1;
-  }
-
-  .item-array-banner-icon{
-    font-size: 2rem;
+    color: #00b8ff; /* Change the color of the star to yellow when hovered over or checked */
   }

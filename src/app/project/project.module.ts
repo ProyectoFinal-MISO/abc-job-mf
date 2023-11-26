@@ -11,6 +11,8 @@ import { TagComponent } from './tag/tag.component';
 import { DropdownModule } from 'primeng/dropdown';
 import { DataViewModule } from 'primeng/dataview';
 import { ButtonModule } from 'primeng/button';
+import { ProjectEditComponent } from './project-edit/project-edit.component';
+import { ProjectDeleteComponent } from './project-delete/project-delete.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { ButtonModule } from 'primeng/button';
     ProjectViewComponent,
     ProjectListComponent,
     MemberComponent,
-    TagComponent
+    TagComponent,
+    ProjectEditComponent,
+    ProjectDeleteComponent
   ],
   imports: [
     CommonModule,

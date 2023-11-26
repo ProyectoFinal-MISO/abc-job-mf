@@ -14,5 +14,6 @@ export const environment = {
   baseUrlInterviews,
   baseUrlMediator,
   sur: 'sur',
-  token: 'token'
+  token: 'token',
+  mockMode:true
 };

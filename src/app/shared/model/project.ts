@@ -6,4 +6,5 @@ export interface Project {
     startDate?:Date;
     endDate?:Date;
     status?:Boolean;
+    teamNa?:string;
 }

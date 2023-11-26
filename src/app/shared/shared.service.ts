@@ -18,6 +18,7 @@ export class SharedService {
   siteEs: string = '';
   private urlUsers:string = environment.baseUrlUsers;
   private urlProjects:string = environment.baseUrlProjects;
+  private mockMode:boolean = environment.mockMode;
 
   constructor(private http: HttpClient) { }
 
@@ -34,6 +35,10 @@ export class SharedService {
 
   getSiteEs():string {
     return this.siteEs;
+  }
+
+  getMockMode():boolean {
+    return this.mockMode;
   }
 
   getCountries(): Observable<Array<Country>>{

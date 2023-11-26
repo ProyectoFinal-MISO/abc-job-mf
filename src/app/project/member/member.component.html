@@ -10,12 +10,12 @@
                         <div class="row" id="row-project-data">
                             <div class="col-12">
                                 <div class="row">
-                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" id="col-project-data-section-rigth">
+                                    <div class="col-12" id="col-project-data-section-rigth">
                                         <div class="form-group">
                                             <div class="mb-3 row">
                                               <label i18n for="member-name" class="col-xs-5 col-md-4 col-form-label text-white">Name</label>
                                               <div class="col-xs-7 col-md-8">
-                                                <input formControlName="Name" type="text" class="form-control" placeholder="Name" id="member-name">
+                                                <input formControlName="name" type="text" class="form-control" placeholder="Name" id="member-name">
                                                 <div class="fw-lighter text-danger small" *ngIf="modalForm.get('name')!.touched">
                                                   <div i18n *ngIf="modalForm.get('name')?.hasError('required')">
                                                       You must type a name
@@ -39,9 +39,22 @@
                                         </div>
                                         <div class="form-group">
                                             <div class="mb-3 row">
+                                              <label i18n for="meber-user" class="col-xs-5 col-md-4 col-form-label text-white">User</label>
+                                              <div class="col-xs-7 col-md-8">
+                                                  <p-dropdown formControlName="user" id="member-user" [options]="users" optionLabel="username"  [filter]="true" filterBy="username" [showClear]="true" placeholder="Select a User">></p-dropdown>
+                                                  <div class="fw-lighter text-danger small" *ngIf="modalForm.get('user')!.touched">
+                                                      <div i18n *ngIf="modalForm.get('user')?.hasError('required')">
+                                                          Please provide any user
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="mb-3 row">
                                               <label i18n for="meber-role" class="col-xs-5 col-md-4 col-form-label text-white">Role</label>
                                               <div class="col-xs-7 col-md-8">
-                                                  <p-dropdown formControlName="role" id="member-role" [options]="roles" optionLabel="name" placeholder="Select a Role"></p-dropdown>
+                                                  <p-dropdown formControlName="role" id="member-role" [options]="roles" optionLabel="name"  [filter]="true" filterBy="name" [showClear]="true" placeholder="Select a Role">></p-dropdown>
                                                   <div class="fw-lighter text-danger small" *ngIf="modalForm.get('role')!.touched">
                                                       <div i18n *ngIf="modalForm.get('role')?.hasError('required')">
                                                           Please provide any role
@@ -49,13 +62,13 @@
                                                   </div>
                                               </div>
                                             </div>
-                                          </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="row" id="row-dialog-information">
-                            <div class="col-12 col-xs-12 col-sm-12 col-md-6" id="col-technical-skills">
+                            <div class="col-12" id="col-technical-skills">
                                 <h3 i18n class="title-section pt-4">Technical Skills</h3>
                                 <button class="float-right pull-right float-end add-item-array" (click)="goAddTechnicalSkills()" aria-label="open dialog technical skills"><i class="bi bi-plus-square add-item-array-icon"></i></button>
                                 <div class="card card-info mb-3" id="technical-skills-card">
@@ -63,7 +76,7 @@
                                     <ng-container *ngFor="let acainf of getTechnicalSkills.controls; index as i">
                                     <div class="row" id="{{'row' + i}}" [formGroupName]="i">
                                         <div class="col-6">
-                                        <label class="col-form-label text-white">{{modalForm.get('technicalSkills')?.value[i]?.name}}</label>
+                                        <label class="col-form-label text-white">{{modalForm.get('programmingLanguages')?.value[i]?.name}}</label>
                                         </div>
                                         <div class="col-6">
                                             <div class="rating-yellow pe-none">
@@ -84,7 +97,7 @@
                                 </div>
                                 </div>
                             </div>
-                            <div class="col-12 col-xs-12 col-sm-12 col-md-6" id="col-personal-skills">
+                            <div class="col-12" id="col-personal-skills">
                                 <h3 i18n class="title-section pt-4">Personal Skills</h3>
                                 <button class="float-right pull-right float-end add-item-array" (click)="goAddPersonalSkill()" aria-label="open dialog personal skills"><i class="bi bi-plus-square add-item-array-icon"></i></button>
                                 <div class="card card-info mb-3" id="personal-skills-card">

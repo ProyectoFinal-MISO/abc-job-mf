@@ -20,6 +20,8 @@ import { TechnicalResourceEditComponent } from './user/technical-resource/techni
 import { ProjectCreateComponent } from './project/project-create/project-create.component';
 import { ProjectViewComponent } from './project/project-view/project-view.component';
 import { ProjectListComponent } from './project/project-list/project-list.component';
+import { ProjectEditComponent } from './project/project-edit/project-edit.component';
+import { ProjectDeleteComponent } from './project/project-delete/project-delete.component';
 
 const routes: Routes = [
   {
@@ -101,7 +103,12 @@ const routes: Routes = [
               },
               {
                 path: 'delete/:id',
-                component: ProjectListComponent,
+                component: ProjectDeleteComponent,
+                data: {}
+              },
+              {
+                path: 'update/:id',
+                component: ProjectEditComponent,
                 data: {}
               },
               {

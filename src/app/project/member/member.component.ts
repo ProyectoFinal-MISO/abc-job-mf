@@ -39,6 +39,7 @@ export class MemberComponent {
     this.modalForm = this.formBuilder.group({
       name: ["", [Validators.required, Validators.minLength(2)]],
       company: ["", [Validators.required]],
+      user: ["", [Validators.required]],
       role: ["", [Validators.required]],
       personalSkills: new UntypedFormArray([]),
       technicalSkills: new UntypedFormArray([])
@@ -58,10 +59,19 @@ export class MemberComponent {
     this.isDisabled=true;
   }
 
-  onCreate(){
+  async onCreate(){
     if(!this.modalForm.invalid) {
+      let memberAux = { ...this.modalForm.value };
+      memberAux.role = memberAux.role.id;
+      memberAux.user = memberAux.user.id;
+      await memberAux.personalSkills.forEach((obj:any) => {
+        obj.score = obj.score?.toString() ? Number(obj.score) : 1;
+      });
+      await memberAux.technicalSkills.forEach((obj:any) => {
+        obj.score = obj.score?.toString() ? Number(obj.score) : 1;
+      });
+      this.activeModal.close(memberAux);
       this.toastr.success("Confirmation", "Record added");
-      this.activeModal.close(this.modalForm.value);
     }
   }
 
@@ -129,36 +139,49 @@ export class MemberComponent {
   }
 
   getRoles() {
-    this.sharedService.getRoles().subscribe({
-      next: (result:any) => {
-        if(result){
-          this.roles = result;
+    if(!this.sharedService.getMockMode()){
+      this.sharedService.getRoles().subscribe({
+        next: (result:any) => {
+          if(result){
+            this.roles = result;
+          }
+        },
+        error: (e0:any) => {
+          this.toastr.error(`Error`, e0, {
+            progressBar: true,
+          });
         }
-      },
-      error: (e0:any) => {
-        this.toastr.error(`Error`, e0, {
-          progressBar: true,
-        });
-      }
-    });
+      });
+    }else{
+      this.roles = [{id:1, name:"Developer"}, {id:2, name:"Tester"}, {id:3, name:"Devops"}, 
+      {id:4, name:"Leader"}, {id:5, name:"Architect"}, {id:6, name:"Ui/Ux"}, {id:7, name:"DBA"},
+      {id:8, name:"Project Manager"}, {id:9, name:"Product Owner"}]
+    }
   }
 
   getUsers() {
-    this.userService.getUsers().subscribe({
-      next: (result:any) => {
-        if(result){
-          this.users = result;
+    if(!this.sharedService.getMockMode()){
+      this.userService.getUsers().subscribe({
+        next: (result:any) => {
+          if(result){
+            this.users = result;
+          }
+        },
+        error: (e0:any) => {
+          this.toastr.error(`Error`, e0, {
+            progressBar: true,
+          });
         }
-      },
-      error: (e0:any) => {
-        this.toastr.error(`Error`, e0, {
-          progressBar: true,
-        });
-      }
-    });
+      });
+    }else{
+      this.users = [{id:1, username:"recursotecnico@test.com"}, 
+      {id:4, username:"candidato@test.com"}, {id:5, username:"test@test.com"}, 
+      {id:6, username:"test2@yopmail.com"}, {id:7, username:"dba@yopmail.com"},
+      {id:8, username:"technicalresource@test.com"}, {id:9, username:"myuser@creative.com"}, 
+      {id:10, username:"tecnico@test.com"}, {id:11, username:"talento@yopmail.com"}]
+    }
   }
 
-  
   goAddPersonalSkill() {
     this.modalService.open(PersonalSkillComponent, {ariaLabelledBy: 'myModalLabel',  backdrop: 'static' }).result.then((result) => {
       if(result){

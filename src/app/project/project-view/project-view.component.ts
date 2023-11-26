@@ -26,7 +26,6 @@ import { Member } from 'src/app/shared/model/member';
 export class ProjectViewComponent {
   helper = new JwtHelperService();
   projectData: FormGroup;
-  token: string | null;
   carga: boolean = false;
   project!: ProjectView;
   localStageData: any;
@@ -48,8 +47,7 @@ export class ProjectViewComponent {
 
   ngOnInit(): void {
     const projectId = this.route.snapshot.paramMap.get('id');
-    this.token = localStorage.getItem('token');
-    if (this.token) {
+    if(!this.sharedService.getMockMode()){
       this.projectService.getProject(projectId).subscribe((data:any) => {        
         if (data) {
           this.project = data;
@@ -71,7 +69,49 @@ export class ProjectViewComponent {
         }
       });   
     }else{
-
+      this.project = {
+        projectId:1,
+        companyId: 1,
+        details: "Varguard es un proyecto de intercambio de documentos entre transportadoras de mercancía",
+        teamId: 1,
+        teamName: "Macondo",
+        startDate: new Date('2023-01-02'),
+        endDate: new Date('2023-12-02'),
+        id:1,
+        status: true,
+        personalSkills:[{id:1, name:"Responsable"}, {id:2, name:"Prompt"}, {id:3, name:"Lead"}, 
+        {id:4, name:"Smart"}, {id:5, name:"Patient"}],
+        projectName: "Vanguard",
+        roles:[{id:1, name:"Developer"}, {id:2, name:"Tester"}, {id:3, name:"Devops"}, 
+        {id:4, name:"Leader"}, {id:5, name:"Architect"}, {id:6, name:"Ui/Ux"}],        
+        technicalSkills:[{id:1, name:"Python"}, {id:2, name:"SQL"}, {id:3, name:"Angular"}, 
+        {id:4, name:"Docker"}, {id:5, name:"C#"}, {id:6, name:"React"}, {id:7, name:"Cypress"},
+        {id:8, name:"GCP"}, {id:9, name:"Jira"}, {id:10, name:"Figma"}, {id:11, name:"Pipeline"}, 
+        {id:12, name:"JMeter"}],
+        members: [
+          {id:1, name: "Pepito Perez",teamId: 1, userId:1, role: 1, company:"Endava", isIntern:false, 
+          technicalSkills:[{id:1, name:"Python", score:5}, {id:3, name:"Angular", score:3}, {id:4, name:"Docker", score:2}],
+          personalSkills:[{id:1, name:"Responsable", score:5}, {id:2, name:"Prompt", score:4}, {id:4, name:"Smart", score:5}]
+          }, 
+          {id:2, name: "Fulanito Sevilla",teamId: 1, userId:4, role: 2, company:"Endava", isIntern:false, 
+          technicalSkills:[{id:7, name:"Cypress", score:5}, {id:12, name:"JMeter", score:3}],
+          personalSkills:[{id:1, name:"Responsable", score:5}, {id:2, name:"Prompt", score:4}, {id:4, name:"Smart", score:5}]
+          }, 
+          {id:3, name: "Kika Dorada",teamId: 1, userId:5, role: 3, company:"Endava", isIntern:true, 
+          technicalSkills:[{id:4, name:"Docker", score:4}, {id:11, name:"Pipeline", score:5}],
+          personalSkills:[{id:1, name:"Responsable", score:5}, {id:2, name:"Prompt", score:4}, {id:4, name:"Smart", score:5}]
+          }, 
+          {id:4, name: "Sutanita Veracruz",teamId: 1, userId:6, role: 4, company:"Endava", isIntern:true, 
+          technicalSkills:[{id:9, name:"Jira", score:5}],
+          personalSkills:[{id:1, name:"Responsable", score:5}, {id:2, name:"Prompt", score:4}, {id:4, name:"Smart", score:5}, 
+          {id:5, name:"Patient", score:3}, {id:3, name:"Lead", score:5}]
+          }, 
+          {id:5, name: "Ali Aranzazu",teamId: 1, userId:7, role: 5, company:"Endava", isIntern:false, 
+          technicalSkills:[{id:1, name:"Python", score:4}, {id:3, name:"Angular", score:2}, {id:4, name:"Docker", score:5},{id:8, name:"GCP", score:5}],
+          personalSkills:[{id:1, name:"Responsable", score:5}, {id:2, name:"Prompt", score:4}, {id:4, name:"Smart", score:5}]
+          }
+        ]
+      }
     }
   }
 
@@ -155,7 +195,9 @@ export class ProjectViewComponent {
 
   addMember(data:any) {
     const myObjAux = data as Member;
-    this.project.members?.push(myObjAux);
+    this.project.members?.push(
+      myObjAux
+      );
   }
   
   onUpdate(){

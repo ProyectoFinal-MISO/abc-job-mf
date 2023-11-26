@@ -16,7 +16,7 @@
                           <div class="mb-3 row">
                             <label i18n for="project-name" class="col-xs-5 col-md-4 col-form-label text-white">Project Name:</label>
                             <div class="col-xs-7 col-md-8">
-                                <label id="name">{{ project.projectName }}</label>
+                                <label id="name" class="text-white">{{ project.projectName }}</label>
                             </div>
                           </div>
                         </div>
@@ -24,7 +24,7 @@
                             <div class="mb-3 row">
                               <label i18n for="startDate" class="col-xs-5 col-md-4 col-form-label text-white">Start Date:</label>
                               <div class="col-xs-7 col-md-8">
-                                <label id="startDate">{{ project.startDate | date: 'yyyy-MM-dd' }}</label>
+                                <label id="startDate" class="text-white">{{ project.startDate | date: 'yyyy-MM-dd' }}</label>
                               </div>
                             </div>
                         </div>
@@ -32,7 +32,7 @@
                             <div class="mb-3 row">
                               <label i18n for="status" class="col-xs-5 col-md-4 col-form-label text-white">Status:</label>
                               <div class="col-xs-7 col-md-8">
-                                  <label id="status">{{ project.status }}</label>
+                                  <label id="status" class="text-white">{{ project.status }}</label>
                               </div>
                             </div>
                           </div>
@@ -42,7 +42,7 @@
                             <div class="mb-3 row">
                               <label i18n for="team" class="col-xs-5 col-md-4 col-form-label text-white">Team:</label>
                               <div class="col-xs-7 col-md-8">
-                                 <label id="team">{{ project.teamName }}</label>
+                                 <label id="team" class="text-white">{{ project.teamName }}</label>
                               </div>
                             </div>
                         </div>
@@ -50,7 +50,7 @@
                             <div class="mb-3 row">
                               <label i18n for="endDate" class="col-xs-5 col-md-4 col-form-label text-white">End Date:</label>
                               <div class="col-xs-7 col-md-8">
-                                <label id="startDate">{{ project.endDate | date: 'yyyy-MM-dd' }}</label>
+                                <label id="startDate" class="text-white">{{ project.endDate | date: 'yyyy-MM-dd' }}</label>
                               </div>
                             </div>
                         </div>                        
@@ -58,7 +58,7 @@
                           <div class="mb-3 row">
                             <label i18n for="description" class="col-xs-5 col-md-4 col-form-label text-white">Description:</label>
                             <div class="col-xs-7 col-md-8">
-                                <label id="description">{{ project.details }}</label>
+                                <label id="description" class="text-white">{{ project.details }}</label>
                             </div>
                           </div>
                         </div>
@@ -81,20 +81,20 @@
                             </label>
                             </div>
                             <div class="mb-3 row">
-                                <label i18n class="col-lg-5 col-form-label text-white">Name:</label>
-                                <div class="col-lg-7">
+                                <label i18n class="col-xs-12 col-sm-5 col-form-label text-white">Name:</label>
+                                <div class="col-xs-12 col-sm-7">
                                 <label i18n class="col-form-label text-white" id="{{'participant-name-' + i}}">{{objinf.name}}</label>
                                 </div>
                             </div>
                             <div class="mb-3 row">
-                                <label i18n class="col-lg-5 col-form-label text-white">Company:</label>
-                                <div class="col-lg-7">
+                                <label i18n class="col-xs-12 col-sm-5 col-form-label text-white">Company:</label>
+                                <div class="col-xs-12 col-sm-7">
                                 <label i18n class="col-form-label text-white" id="{{'participant-company-' + i}}">{{objinf.company}}</label>
                                 </div>
                             </div>
                             <div class="mb-3 row">
-                                <label i18n class="col-lg-5 col-form-label text-white">Role:</label>
-                                <div class="col-lg-7">
+                                <label i18n class="col-xs-12 col-sm-5 col-form-label text-white">Role:</label>
+                                <div class="col-xs-12 col-sm-7">
                                 <label i18n class="col-form-label text-white" id="{{'participant-role-' + i}}">{{objinf.role}}</label>
                                 </div>
                             </div>
@@ -135,43 +135,37 @@
             </div>
             <div class="col-12 col-xs-12 col-sm-12 col-md-6" id="col-skill">
                 <div class="row" id="row-personal-skills">
-                    <h3 i18n class="title-section pt-4">Personal Skills</h3>
-                    <button class="float-right pull-right float-end add-item-array" (click)="goAddPersonalSkills()" aria-label="open dialog personal skills"><i class="bi bi-plus-square add-item-array-icon"></i></button>
-                    <div class="card card-info mb-3" id="personal-skills-card">
-                        <ng-container *ngFor="let objinf of project.personalSkills; index as i">
-                        <div class="row" id="{{'row' + i}}">
-                            <div class="col-2">
-                            <label class="col-form-label text-white">{{objinf.name}}</label>
-                            </div>
+                    <div class="col-12" id="col-personal-skills">
+                        <h3 i18n class="title-section pt-4">Personal Skills</h3>
+                        <button class="float-right pull-right float-end add-item-array" (click)="goAddPersonalSkills()" aria-label="open dialog personal skills"><i class="bi bi-plus-square add-item-array-icon"></i></button>
+                        <div class="card card-info mb-3" id="personal-skills-card">
+                            <div class="list-inline">
+                                <span *ngFor="let objinf of project.personalSkills; index as i" id="{{'tag-personalSkills-' + i}}" class="badge rounded-pill text-bg-light mx-2">{{objinf.name}} <a >✖</a></span>
+                            </div>                       
                         </div>
-                        </ng-container>
-                    </div> 
+                    </div>
                 </div>
                 <div class="row" id="row-technical-skills">
-                    <h3 i18n class="title-section pt-4">Technical Skills</h3>
-                    <button class="float-right pull-right float-end add-item-array" (click)="goAddTechnicalSkills()" aria-label="open dialog technical skills"><i class="bi bi-plus-square add-item-array-icon"></i></button>
-                    <div class="card card-info mb-3" id="technical-skills-card">
-                        <ng-container *ngFor="let objinf of project.technicalSkills; index as i">
-                        <div class="row" id="{{'row' + i}}">
-                            <div class="col-2">
-                            <label class="col-form-label text-white">{{objinf.name}}</label>
+                    <div class="col-12" id="col-technical-skills">
+                        <h3 i18n class="title-section pt-4">Technical Skills</h3>
+                        <button class="float-right pull-right float-end add-item-array" (click)="goAddTechnicalSkills()" aria-label="open dialog technical skills"><i class="bi bi-plus-square add-item-array-icon"></i></button>
+                        <div class="card card-info mb-3" id="technical-skills-card">
+                            <div class="list-inline">
+                                <span *ngFor="let objinf of project.technicalSkills; index as i" id="{{'tag-technicalSkills-' + i}}" class="badge rounded-pill text-bg-light mx-2">{{objinf.name}} <a >✖</a></span>
                             </div>
                         </div>
-                        </ng-container>
-                    </div> 
+                    </div>
                 </div>
                 <div class="row" id="row-roles">
-                    <h3 i18n class="title-section pt-4">Roles</h3>
-                    <button class="float-right pull-right float-end add-item-array" (click)="goAddRoles()" aria-label="open dialog roles"><i class="bi bi-plus-square add-item-array-icon"></i></button>
-                    <div class="card card-info mb-3" id="role-card">
-                        <ng-container *ngFor="let objinf of project.roles; index as i">
-                        <div class="row" id="{{'row' + i}}">
-                            <div class="col-2">
-                            <label class="col-form-label text-white">{{objinf.name}}</label>
+                    <div class="col-12" id="col-roles">
+                        <h3 i18n class="title-section pt-4">Roles</h3>
+                        <button class="float-right pull-right float-end add-item-array" (click)="goAddRoles()" aria-label="open dialog roles"><i class="bi bi-plus-square add-item-array-icon"></i></button>
+                        <div class="card card-info mb-3" id="role-card">
+                            <div class="list-inline">
+                                <span *ngFor="let objinf of project.roles; index as i" id="{{'tag-roles-' + i}}" class="badge rounded-pill text-bg-light mx-2">{{objinf.name}} <a >✖</a></span>
                             </div>
                         </div>
-                        </ng-container>
-                    </div> 
+                    </div>
                 </div>
             </div>
         </div>

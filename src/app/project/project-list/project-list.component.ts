@@ -26,69 +26,73 @@ export class ProjectListComponent {
     }
 
   ngOnInit() {
-    this.projects = [{
-      projectId:1,
-      companyId: 1,
-      details: "loreim ipsuem",
-      personalSkills:[],
-      projectName: "Vanguard",
-      roles:[],
-      teamName: "Macondo",
-      technicalSkills:[]
-    },
-    {
-      projectId:2,
-      companyId: 1,
-      details: "loreim ipsuem",
-      personalSkills:[],
-      projectName: "Cranberry",
-      roles:[],
-      teamName: "DevHorses",
-      technicalSkills:[]
-    },{
-      projectId:3,
-      companyId: 1,
-      details: "loreim ipsuem",
-      personalSkills:[],
-      projectName: "Cretta",
-      roles:[],
-      teamName: "Apolo",
-      technicalSkills:[]
-    },{
-      projectId:4,
-      companyId: 1,
-      details: "loreim ipsuem",
-      personalSkills:[],
-      projectName: "Epsilon",
-      roles:[],
-      teamName: "Marmot",
-      technicalSkills:[]
-    },{
-      projectId:5,
-      companyId: 1,
-      details: "loreim ipsuem",
-      personalSkills:[],
-      projectName: "Avva",
-      roles:[],
-      teamName: "Delta",
-      technicalSkills:[]
-    },{
-      projectId:6,
-      companyId: 1,
-      details: "loreim ipsuem",
-      personalSkills:[],
-      projectName: "Anubis",
-      roles:[],
-      teamName: "Nilo",
-      technicalSkills:[]
-    }];
-     /* this.projectService.getProject(this.usserSessionData.id).subscribe((data:any) => {        
+    if(!this.sharedService.getMockMode()){
+      this.projectService.getProject(this.usserSessionData.id).subscribe((data:any) => {        
         if (data) {
           this.projects = data;
         } else {
           
         }
-      });*/
+      });
+    } else {
+      this.projects = [{
+        projectId:1,
+        companyId: 1,
+        details: "loreim ipsuem",
+        personalSkills:[],
+        projectName: "Vanguard",
+        roles:[],
+        teamName: "Macondo",
+        technicalSkills:[]
+      },
+      {
+        projectId:2,
+        companyId: 1,
+        details: "loreim ipsuem",
+        personalSkills:[],
+        projectName: "Cranberry",
+        roles:[],
+        teamName: "DevHorses",
+        technicalSkills:[]
+      },{
+        projectId:3,
+        companyId: 1,
+        details: "loreim ipsuem",
+        personalSkills:[],
+        projectName: "Cretta",
+        roles:[],
+        teamName: "Apolo",
+        technicalSkills:[]
+      },{
+        projectId:4,
+        companyId: 1,
+        details: "loreim ipsuem",
+        personalSkills:[],
+        projectName: "Epsilon",
+        roles:[],
+        teamName: "Marmot",
+        technicalSkills:[]
+      },{
+        projectId:5,
+        companyId: 1,
+        details: "loreim ipsuem",
+        personalSkills:[],
+        projectName: "Avva",
+        roles:[],
+        teamName: "Delta",
+        technicalSkills:[]
+      },{
+        projectId:6,
+        companyId: 1,
+        details: "loreim ipsuem",
+        personalSkills:[],
+        projectName: "Anubis",
+        roles:[],
+        teamName: "Nilo",
+        technicalSkills:[]
+      }];
+  }
+      
       this.primengConfig.ripple = true;
   }
 
