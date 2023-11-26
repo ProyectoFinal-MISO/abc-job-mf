@@ -7,41 +7,53 @@ import { Router } from '@angular/router';
 
 interface Item {
   id: number,
-  name: string,
   name_project: string,
   score: string,
-  url: string
+  numberHits: number,
+  numberError: number,
+  startDate:string,
+  endDate:string,
+  url: string,
 }
 
 @Component({
-  selector: 'app-technical-test-create-employee',
-  templateUrl: './technical-test-create-employee.component.html',
-  styleUrls: ['./technical-test-create-employee.component.css']
+  selector: 'app-technical-test-view-technical-resource',
+  templateUrl: './technical-test-view-technical-resource.component.html',
+  styleUrls: ['./technical-test-view-technical-resource.component.css']
 })
 
-export class TechnicalTestCreateEmployeeComponent implements OnInit {
+export class TechnicalTestViewTechnicalResourceComponent implements OnInit {
 
   list_technical_test: Item[] = [
     {
       "id": 1,
-      "name": "Anita Arias",
       "name_project": "Angeles azules",
       "score": "5.9",
-      "url": "technical_test/add/1"
+      "numberHits": 6,
+      "numberError": 4,
+      "startDate": "2023-10-11",
+      "endDate": "2023-10-12",
+      "url": "technical_test/view/1"
     },
     {
       "id": 2,
-      "name": "Berta Bonito",
       "name_project": "Botas azules",
       "score": "",
-      "url": "technical_test/add/2"
+      "numberHits": 0,
+      "numberError": 0,
+      "startDate": "",
+      "endDate": "",
+      "url": "technical_test/view/2"
     },
     {
       "id": 3,
-      "name": "Carlota Caceres",
       "name_project": "Camisas azules",
       "score": "1.58",
-      "url": "technical_test/add/3"
+      "numberHits": 2,
+      "numberError": 8,
+      "startDate": "2023-10-14",
+      "endDate": "2023-10-19",
+      "url": "technical_test/view/3"
     }
   ]
   idFromUrl: any
@@ -67,11 +79,8 @@ export class TechnicalTestCreateEmployeeComponent implements OnInit {
     return []
   }
 
-  addTechnicalTest() {
-    this.toastr.success(`Succesful`, 'Success', {
-      progressBar: true,
-    });
-    this.router.navigate([`/technical_test/list_for_employee`]);
+  closeTechnicalTest() {
+    this.router.navigate([`/technical_test/list_for_technical_resource`]);
   }
 
 }
