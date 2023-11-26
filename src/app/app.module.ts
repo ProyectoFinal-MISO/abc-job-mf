@@ -11,12 +11,21 @@ import { InterceptorService } from './interceptors/interceptor.service';
 import { ToastrModule } from 'ngx-toastr';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UserModule } from './user/user.module';
+
 import { InterviewModule } from './interview/interview.module';
 
+import { EvaluationListCompanyComponent } from './evaluations/evaluations-list-company/evaluations-list-company.component';
+import { EvaluationCreateCompanyComponent } from './evaluations/evaluations-create-company/evaluations-create-company.component';
+import { EvaluationListTechnicalResourceComponent } from './evaluations/evaluations-list-technical-resource/evaluations-list-technical-resource.component';
+import { EvaluationViewTechnicalResourceComponent } from './evaluations/evaluations-view-technical-resource/evaluations-view-technical-resource.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    EvaluationListCompanyComponent,
+    EvaluationCreateCompanyComponent,
+    EvaluationListTechnicalResourceComponent,
+    EvaluationViewTechnicalResourceComponent,
   ],
   imports: [
     BrowserModule,
