@@ -12,11 +12,14 @@ import { CompanyDeleteComponent } from './user/company/company-delete/company-de
 import { TechnicalResourceCreateComponent } from './user/technical-resource/technical-resource-create/technical-resource-create.component';
 import { TechnicalResourceViewComponent } from './user/technical-resource/technical-resource-view/technical-resource-view.component';
 import { TechnicalResourceDeleteComponent } from './user/technical-resource/technical-resource-delete/technical-resource-delete.component';
+import { TechnicalResourceEditComponent } from './user/technical-resource/technical-resource-edit/technical-resource-edit.component';
 
 import { EmployeeCreateComponent } from './user/employee/employee-create/employee-create.component';
 import { EmployeeViewComponent } from './user/employee/employee-view/employee-view.component';
 import { EmployeeDeleteComponent } from './user/employee/employee-delete/employee-delete.component';
-import { TechnicalResourceEditComponent } from './user/technical-resource/technical-resource-edit/technical-resource-edit.component';
+
+import { EvaluationListComponent } from './evaluations/evaluations-list/evaluations-list.component';
+import { EvaluationCreateComponent } from './evaluations/evaluations-create/evaluations-create.component';
 
 const routes: Routes = [
   {
@@ -80,6 +83,20 @@ const routes: Routes = [
               {
                 path: 'delete/:id',
                 component: EmployeeDeleteComponent,
+                data: {}
+              }
+            ]
+      },
+      { path: 'evaluations',
+            children: [
+              {
+                path: 'list',
+                component: EvaluationListComponent,
+                data: {}
+              },
+              {
+                path: 'add/:id',
+                component: EvaluationCreateComponent,
                 data: {}
               }
             ]

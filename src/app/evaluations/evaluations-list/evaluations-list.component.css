@@ -1,0 +1,31 @@
+.container-cards-evaluation-list {
+  background-color: #818870;
+  padding: 2% 3%;
+}
+
+.container-cards-evaluation-list .mt-3 {
+  color: white;
+  font-size: 2.5rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.card-evaluation-list{
+  background-color: #A2BE51;
+  padding: 2%;
+  border-radius: 0.625rem;
+  display: flex;
+  align-items: center; /* Centrar verticalmente */
+  justify-content: center; /* Centrar horizontalmente */
+  margin-bottom: 2%;
+}
+
+.card-evaluation-list img{
+  width: 20%;
+  border-radius: 3em;
+}
+
+.card-evaluation-list a {
+  color: white;
+}

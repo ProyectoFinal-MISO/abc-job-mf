@@ -11,11 +11,14 @@ import { InterceptorService } from './interceptors/interceptor.service';
 import { ToastrModule } from 'ngx-toastr';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UserModule } from './user/user.module';
-
+import { EvaluationListComponent } from './evaluations/evaluations-list/evaluations-list.component';
+import { EvaluationCreateComponent } from './evaluations/evaluations-create/evaluations-create.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    EvaluationListComponent,
+    EvaluationCreateComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +27,7 @@ import { UserModule } from './user/user.module';
     SharedModule,
     HomeModule,
     HomeRoutingModule,
-    BrowserAnimationsModule,    
+    BrowserAnimationsModule,
     NgbModule,
     UserModule,
     ToastrModule.forRoot({
