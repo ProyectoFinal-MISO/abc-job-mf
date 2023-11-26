@@ -1,0 +1,73 @@
+.container-cards-evaluation-form {
+  background-color: #818870;
+  padding: 2% 3%;
+}
+
+.container-cards-evaluation-form .mt-3 {
+  color: white;
+  font-size: 2.5rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.card-evaluation-form{
+  background-color: #283138;
+  padding: 2%;
+  border-radius: 0.625rem;
+  display: flex;
+  align-items: center; /* Centrar verticalmente */
+  justify-content: center; /* Centrar horizontalmente */
+  color: #FFF;
+  font-size: 1.25rem;
+  font-style: normal;
+  line-height: normal;
+}
+
+.card-evaluation-form img{
+  width: 20%;
+  border-radius: 3em;
+}
+
+.card-evaluation-form .form-group {
+  padding: 5% 0;
+}
+
+.rating {
+  color: #ff9900;
+  font-size: 0; /* Remove any font size */
+  direction: rtl; /* Set direction to right-to-left for proper star display */
+}
+
+/* Hide the radio input element of the rating bar */
+.rating input {
+  display: none;
+}
+
+/* Style the label elements to display as stars and to allow for interactivity */
+.rating label {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  padding: 0;
+  font-size: 24px;
+  text-align: center;
+  line-height: 20px;
+  cursor: pointer;
+  color: #ff9900;
+  transform: rotateY(180deg); /* Flip the star to display properly */
+}
+
+.btn-confirm{
+  background-color: #828F9A;
+  color: #ffffff
+}
+
+p.observations {
+  font-size: 1rem;
+}
+
+.data-evaluation-form {
+  text-align: left;
+}

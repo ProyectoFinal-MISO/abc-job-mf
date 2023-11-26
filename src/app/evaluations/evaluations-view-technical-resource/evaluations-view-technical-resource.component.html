@@ -1,0 +1,67 @@
+<div class="container align-items-center"  *ngIf="item">
+  <div class="row align-items-center">
+    <div class="col-xs-10 col-12 container">
+
+      <div class="container text-center container-cards-evaluation-form">
+
+        <div class="mt-3 row">
+          <h1 class="text-title-banner">
+            EVALUATIONS</h1>
+        </div>
+
+        <div *ngIf="getItemById(idFromUrl)">
+          <div class="row card-evaluation-form">
+
+            <div class="row top">
+              <div class="col image-evaluation-form">
+                <img class="img-profile"
+                  src="https://www.w3schools.com/howto/img_avatar.png">
+              </div>
+              <div class="col data-evaluation-form">
+                <div class="mb-3 row">
+                  <div class="col">
+                    <div class="rating pe-none">
+                      <ng-container *ngFor="let _ of [].constructor(item.score); let i = index">
+                        <label for="{{'score-rating-' + i}}">★</label>
+                      </ng-container>
+                    </div>
+                  </div>
+              </div>
+
+
+                <div class="row">
+                  {{ item.name_project }}
+                </div>
+
+              </div>
+            </div>
+
+
+            <div class="form-group">
+              <p class="observations">
+              During the project,  consistently demonstrated exceptional
+              dedication and professionalism. Their commitment to excellence and strong
+              work ethic greatly contributed to the project's success. Exhibited
+              impressive problem-solving skills, effectively navigating challenges
+              and ensuring tasks were completed with precision. Their positive attitude and
+              collaborative spirit created a motivating work environment for the entire team.
+              Additionally, displayed excellent communication skills,
+              keeping all stakeholders informed and engaged. Overall, their outstanding
+              performance played a key role in achieving project milestones, and I look
+              forward to future collaborations with such a valuable team member.
+            </p>
+            </div>
+
+            <div class="col-12 text-center mt-3">
+              <button i18n type="submit" class="btn btn-confirm col-4 col-sm-4 col-md-3 col-lg-2" (click)="closeEvaluation()"
+                >Go back</button>
+            </div>
+
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
