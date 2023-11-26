@@ -21,6 +21,7 @@ import { EmployeeDeleteComponent } from './user/employee/employee-delete/employe
 import { EvaluationListCompanyComponent } from './evaluations/evaluations-list-company/evaluations-list-company.component';
 import { EvaluationCreateCompanyComponent } from './evaluations/evaluations-create-company/evaluations-create-company.component';
 import { EvaluationListTechnicalResourceComponent} from './evaluations/evaluations-list-technical-resource/evaluations-list-technical-resource.component';
+import { EvaluationViewTechnicalResourceComponent } from './evaluations/evaluations-view-technical-resource/evaluations-view-technical-resource.component';
 
 const routes: Routes = [
   {
@@ -104,7 +105,12 @@ const routes: Routes = [
                 path: 'list_for_technical_resource',
                 component: EvaluationListTechnicalResourceComponent,
                 data: {}
-              }
+              },
+              {
+                path: 'view/:id',
+                component: EvaluationViewTechnicalResourceComponent,
+                data: {}
+              },
             ]
       },
       { path: 'home', component: HomeComponent },

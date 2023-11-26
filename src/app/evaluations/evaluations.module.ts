@@ -8,6 +8,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { EvaluationListCompanyComponent } from './evaluations-list-company/evaluations-list-company.component';
 import { EvaluationCreateCompanyComponent } from './evaluations-create-company/evaluations-create-company.component';
 import { EvaluationListTechnicalResourceComponent } from './evaluations-list-technical-resource/evaluations-list-technical-resource.component';
+import { EvaluationViewTechnicalResourceComponent } from './evaluations-view-technical-resource/evaluations-view-technical-resource.component';
 
 @NgModule({
   imports: [
@@ -23,11 +24,13 @@ import { EvaluationListTechnicalResourceComponent } from './evaluations-list-tec
     EvaluationListCompanyComponent,
     EvaluationCreateCompanyComponent,
     EvaluationListTechnicalResourceComponent,
+    EvaluationViewTechnicalResourceComponent,
   ],
   exports: [
     EvaluationListCompanyComponent,
     EvaluationCreateCompanyComponent,
     EvaluationListTechnicalResourceComponent,
+    EvaluationViewTechnicalResourceComponent,
   ]
 })
 export class EvaluationModule { }

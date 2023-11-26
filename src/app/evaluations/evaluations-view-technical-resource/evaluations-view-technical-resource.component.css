@@ -1,9 +1,9 @@
-.container-cards-evaluation-list {
+.container-cards-evaluation-form {
   background-color: #818870;
   padding: 2% 3%;
 }
 
-.container-cards-evaluation-list .mt-3 {
+.container-cards-evaluation-form .mt-3 {
   color: white;
   font-size: 2.5rem;
   font-style: normal;
@@ -11,23 +11,26 @@
   line-height: normal;
 }
 
-.card-evaluation-list{
-  background-color: #A2BE51;
+.card-evaluation-form{
+  background-color: #283138;
   padding: 2%;
   border-radius: 0.625rem;
   display: flex;
   align-items: center; /* Centrar verticalmente */
   justify-content: center; /* Centrar horizontalmente */
-  margin: 2% 5%;
+  color: #FFF;
+  font-size: 1.25rem;
+  font-style: normal;
+  line-height: normal;
 }
 
-.card-evaluation-list img{
+.card-evaluation-form img{
   width: 20%;
   border-radius: 3em;
 }
 
-.card-evaluation-list a {
-  color: white;
+.card-evaluation-form .form-group {
+  padding: 5% 0;
 }
 
 .rating {
@@ -54,4 +57,17 @@
   cursor: pointer;
   color: #ff9900;
   transform: rotateY(180deg); /* Flip the star to display properly */
+}
+
+.btn-confirm{
+  background-color: #828F9A;
+  color: #ffffff
+}
+
+p.observations {
+  font-size: 1rem;
+}
+
+.data-evaluation-form {
+  text-align: left;
 }
