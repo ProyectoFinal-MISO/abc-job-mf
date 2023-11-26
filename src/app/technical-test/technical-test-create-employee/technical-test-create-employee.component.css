@@ -1,0 +1,35 @@
+.container-cards-technical-test-form {
+  background-color: #818870;
+  padding: 2% 3%;
+}
+
+.container-cards-technical-test-form .mt-3 {
+  color: white;
+  font-size: 2.5rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.card-technical-test-form{
+  background-color: #283138;
+  padding: 2%;
+  border-radius: 0.625rem;
+  display: flex;
+  align-items: center; /* Centrar verticalmente */
+  justify-content: center; /* Centrar horizontalmente */
+  color: #FFF;
+  font-size: 1.25rem;
+  font-style: normal;
+  line-height: normal;
+}
+
+.card-technical-test-form img{
+  width: 20%;
+  border-radius: 3em;
+}
+
+.btn-confirm{
+  background-color: #828F9A;
+  color: #ffffff
+}

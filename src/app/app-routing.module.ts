@@ -25,6 +25,12 @@ import { EvaluationCreateCompanyComponent } from './evaluations/evaluations-crea
 import { EvaluationListTechnicalResourceComponent} from './evaluations/evaluations-list-technical-resource/evaluations-list-technical-resource.component';
 import { EvaluationViewTechnicalResourceComponent } from './evaluations/evaluations-view-technical-resource/evaluations-view-technical-resource.component';
 
+import { TechnicalTestListEmployeeComponent } from './technical-test/technical-test-list-employee/technical-test-list-employee.component';
+import { TechnicalTestCreateEmployeeComponent } from './technical-test/technical-test-create-employee/technical-test-create-employee.component';
+import { TechnicalTestListTechnicalResourceComponent } from './technical-test/technical-test-list-technical-resource/technical-test-list-technical-resource.component';
+import { TechnicalTestViewTechnicalResourceComponent } from './technical-test/technical-test-view-technical-resource/technical-test-view-technical-resource.component';
+
+
 const routes: Routes = [
   {
     path: '', canActivate: [AuthGuard], component: LayoutComponent, children: [
@@ -111,6 +117,30 @@ const routes: Routes = [
               {
                 path: 'view/:id',
                 component: EvaluationViewTechnicalResourceComponent,
+                data: {}
+              },
+            ]
+      },
+      { path: 'technical_test',
+            children: [
+              {
+                path: 'list_for_employee',
+                component: TechnicalTestListEmployeeComponent,
+                data: {}
+              },
+              {
+                path: 'add/:id',
+                component: TechnicalTestCreateEmployeeComponent,
+                data: {}
+              },
+              {
+                path: 'list_for_technical_resource',
+                component: TechnicalTestListTechnicalResourceComponent,
+                data: {}
+              },
+              {
+                path: 'view/:id',
+                component: TechnicalTestViewTechnicalResourceComponent,
                 data: {}
               },
             ]

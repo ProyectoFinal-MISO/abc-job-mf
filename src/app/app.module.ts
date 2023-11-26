@@ -19,6 +19,11 @@ import { EvaluationCreateCompanyComponent } from './evaluations/evaluations-crea
 import { EvaluationListTechnicalResourceComponent } from './evaluations/evaluations-list-technical-resource/evaluations-list-technical-resource.component';
 import { EvaluationViewTechnicalResourceComponent } from './evaluations/evaluations-view-technical-resource/evaluations-view-technical-resource.component';
 
+import { TechnicalTestListEmployeeComponent } from './technical-test/technical-test-list-employee/technical-test-list-employee.component';
+import { TechnicalTestCreateEmployeeComponent } from './technical-test/technical-test-create-employee/technical-test-create-employee.component';
+import { TechnicalTestListTechnicalResourceComponent } from './technical-test/technical-test-list-technical-resource/technical-test-list-technical-resource.component';
+import { TechnicalTestViewTechnicalResourceComponent } from './technical-test/technical-test-view-technical-resource/technical-test-view-technical-resource.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,6 +31,10 @@ import { EvaluationViewTechnicalResourceComponent } from './evaluations/evaluati
     EvaluationCreateCompanyComponent,
     EvaluationListTechnicalResourceComponent,
     EvaluationViewTechnicalResourceComponent,
+    TechnicalTestListEmployeeComponent,
+    TechnicalTestCreateEmployeeComponent,
+    TechnicalTestListTechnicalResourceComponent,
+    TechnicalTestViewTechnicalResourceComponent
   ],
   imports: [
     BrowserModule,

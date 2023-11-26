@@ -15,19 +15,19 @@ export class EvaluationListCompanyComponent implements OnInit {
     this.list_evaluations = [
       {
         "id": 1,
-        "name": "Anita",
+        "name": "Anita Arias",
         "name_project": "Angeles azules",
         "url": "evaluations/add/1"
       },
       {
         "id": 2,
-        "name": "Berta",
+        "name": "Berta Bonito",
         "name_project": "Botas azules",
         "url": "evaluations/add/2"
       },
       {
         "id": 3,
-        "name": "Carlota",
+        "name": "Carlota Caceres",
         "name_project": "Camisas azules",
         "url": "evaluations/add/3"
       }
