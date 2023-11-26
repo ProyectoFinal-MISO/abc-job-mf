@@ -1,3 +1,48 @@
-<p>
-  interview-list works!
-</p>
+<div class="container" *ngIf="is_charge">
+  <div class="row justify-content-center mt-3">
+    <h1 i18n id="tittle-singin" class="text-title-banner col-12">
+      <img src="assets/images/abc-jobs-tie.png" alt="Logo of page" class="img-logo-banner">
+      MEETS
+    </h1>
+  </div>
+  <div class="accordion accordion-flush mt-5" id="accordionMeets" data-bs-theme="dark">
+    <div class="accordion-item" *ngFor="let meet of meets;">
+      <h2 class="accordion-header">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse'+ meet.id" aria-expanded="true" [attr.aria-controls]="'collapse'+ meet.id">
+          <strong>{{meet.tittle}}</strong>
+        </button>
+      </h2>
+      <div [id]="'collapse'+ meet.id" class="accordion-collapse collapse" data-bs-parent="#accordionMeets">
+        <div class="card m-2">
+          <div class="card-body container">
+            <div class="row justify-content-end my-1">
+              <div class="col-6" style="text-align: end;">
+                {{meet.start_date | date: 'EEEE, MMMM d, y'}}     {{meet.start_date | date: 'H:mm'}} - {{meet.end_date | date: 'H:mm'}}
+              </div>
+            </div>
+            <div class="row my-1">
+              <div class="col" style="text-align: justify;">
+                {{meet.description}}
+              </div>
+            </div>
+            <div class="row my-1">
+              <div class="col" style="text-align: justify;">
+                <strong>Guests</strong>
+              </div>
+            </div>
+            <div class="border" *ngFor="let guest of meet.guests">
+              <div class="row m-1">
+                <div class="col-12">
+                  {{guest.email_user}}
+                </div>
+                <div class="col-12">
+                  {{guest.name_user}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

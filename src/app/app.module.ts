@@ -11,6 +11,7 @@ import { InterceptorService } from './interceptors/interceptor.service';
 import { ToastrModule } from 'ngx-toastr';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UserModule } from './user/user.module';
+import { InterviewModule } from './interview/interview.module';
 
 
 @NgModule({
@@ -24,8 +25,9 @@ import { UserModule } from './user/user.module';
     SharedModule,
     HomeModule,
     HomeRoutingModule,
-    BrowserAnimationsModule,    
+    BrowserAnimationsModule,
     NgbModule,
+    InterviewModule,
     UserModule,
     ToastrModule.forRoot({
       timeOut: 5000,

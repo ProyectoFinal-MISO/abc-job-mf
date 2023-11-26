@@ -7,9 +7,20 @@ import { Observable, Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
-  private backUrl: string = environment.baseUrl;
-  private backController: string = 'users';
+  private backUrlUsers: string = environment.baseUrlUsers;
 
   constructor(private http: HttpClient) { }
+
+  getAllEmployee(): Observable<UserSimple[]>{
+    return this.http.get<UserSimple[]>(`${this.backUrlUsers}/EMPLOYEE`)
+  }
+
+  getAllCompany(): Observable<UserSimple[]>{
+    return this.http.get<UserSimple[]>(`${this.backUrlUsers}/COMPANY`)
+  }
+
+  getAllResource(): Observable<UserSimple[]>{
+    return this.http.get<UserSimple[]>(`${this.backUrlUsers}/PERSON`)
+  }
 
 }
