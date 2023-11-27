@@ -12,6 +12,7 @@ import { UserType } from '../model/user-type';
 export class HeaderComponent implements OnInit {
 
   userSession!:any;
+  userType=UserType;
 
   constructor(public sharedService: SharedService,
     private userSessionService: UserSessionService,
@@ -40,6 +41,10 @@ export class HeaderComponent implements OnInit {
     }
   }
 
+  goToProject(){
+   this.router.navigate([`/project/list`]);    
+  }
+
   goToEvaluate(){
     if (this.userSession.userType  === UserType.Company){
       this.router.navigate([`/evaluations/list_for_company`]);
@@ -56,6 +61,10 @@ export class HeaderComponent implements OnInit {
     else{
       this.router.navigate([`/technical_test/list_for_technical_resource`]);
     }
+  }
+
+  goToCandidate(){
+    this.router.navigate([`/candidate/list`]);    
   }
 
 

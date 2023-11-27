@@ -1,0 +1,96 @@
+<div class="container align-items-center list-container">
+    <div class="row align-items-center">
+      <div class="col-xs-10 col-12 container">
+        <div class="row">
+            <label i18n for="search-project" class="col-xs-5 col-md-7 col-form-label text-title-banner text-white">Search Profiles By Project</label>
+            <div class="col-xs-7 col-md-5">
+                <p-dropdown id="search-project" [options]="projects" [(ngModel)]="projectFilter" 
+                optionLabel="projectName" [filter]="true" filterBy="projectName" [showClear]="true"
+                placeholder="Select a Project" (onChange)="getProject()"></p-dropdown>
+            </div>
+          </div>
+        <p-table #dt2 [value]="technicalResources" dataKey="id"
+        [rows]="5" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" [loading]="loading"
+        [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [globalFilterFields]="['name','username','technicalSkillsFilter','personalSkillsFilter']" [tableStyle]="{'min-width':'75rem'}">
+        <ng-template pTemplate="caption">
+            <div class="flex">
+                <span class="p-input-icon-left ml-auto">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" (input)="dt2.filterGlobal($any($event.target).value, 'contains')" placeholder="Search keyword" />
+                </span>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width:20%">Name</th>
+                <th style="width:20%">Username</th>
+                <th style="width:20%">Technical Skills</th>
+                <th style="width:20%">Personal Skills</th>
+                <th style="width:12%"></th>
+            </tr>
+            <tr>
+                <th>
+                    <p-columnFilter type="text" field="name"></p-columnFilter>
+                </th>
+                <th>
+                    <p-columnFilter type="text" field="username"></p-columnFilter>
+                </th>
+                <th >
+                    <p-columnFilter field="representative" matchMode="in" [showMenu]="false">
+                        <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+                            <p-multiSelect [ngModel]="value" [options]="technicalSkills" placeholder="Any" (onChange)="filter($event.value)" optionLabel="name">
+                                <ng-template let-option pTemplate="item">
+                                    <div class="p-multiselect-representative-option">
+                                        <span class="ml-1">{{option.name}}</span>
+                                    </div>
+                                </ng-template>
+                            </p-multiSelect>
+                        </ng-template>
+                    </p-columnFilter>
+                </th>
+                <th >
+                    <p-columnFilter field="status" matchMode="equals" [showMenu]="false">
+                        <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+                            <p-dropdown [ngModel]="value" [options]="personalSkills" (onChange)="filter($event.value)" placeholder="Any" [showClear]="true">
+                                <ng-template let-option pTemplate="item">
+                                    <span [class]="'customer-badge status-' + option.value">{{option.label}}</span>
+                                </ng-template>
+                            </p-dropdown>
+                        </ng-template>
+                    </p-columnFilter>
+                </th>
+                <th>
+                    <p-columnFilter></p-columnFilter>
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-user>
+            <tr>
+                <td>
+                    {{user.personalInformation.name}}
+                </td>
+                <td>
+                    <span class="image-text">{{user.username}}</span>
+                </td>
+                <td>
+                    <span class="image-text">{{user.technicalSkillsFilter}}</span>
+                </td>
+                <td>
+                    <span class="image-text">{{user.personalSkillsFilter}}</span>
+                </td>
+                <td>
+                    <p-button icon="bi bi-chevron-right" label="" (onClick)="SelectUser(user)"></p-button> 
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td colspan="5">No customers found.</td>
+            </tr>
+        </ng-template>
+    </p-table>
+      </div>
+    </div>
+  </div>
+  

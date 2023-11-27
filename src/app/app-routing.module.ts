@@ -18,6 +18,11 @@ import { EmployeeCreateComponent } from './user/employee/employee-create/employe
 import { EmployeeViewComponent } from './user/employee/employee-view/employee-view.component';
 import { EmployeeDeleteComponent } from './user/employee/employee-delete/employee-delete.component';
 
+import { ProjectCreateComponent } from './project/project-create/project-create.component';
+import { ProjectViewComponent } from './project/project-view/project-view.component';
+import { ProjectListComponent } from './project/project-list/project-list.component';
+import { ProjectEditComponent } from './project/project-edit/project-edit.component';
+import { ProjectDeleteComponent } from './project/project-delete/project-delete.component';
 import { InterviewListComponent } from './interview/interview-list/interview-list.component';
 
 import { EvaluationListCompanyComponent } from './evaluations/evaluations-list-company/evaluations-list-company.component';
@@ -29,6 +34,7 @@ import { TechnicalTestListEmployeeComponent } from './technical-test/technical-t
 import { TechnicalTestCreateEmployeeComponent } from './technical-test/technical-test-create-employee/technical-test-create-employee.component';
 import { TechnicalTestListTechnicalResourceComponent } from './technical-test/technical-test-list-technical-resource/technical-test-list-technical-resource.component';
 import { TechnicalTestViewTechnicalResourceComponent } from './technical-test/technical-test-view-technical-resource/technical-test-view-technical-resource.component';
+import { FindCandidateComponent } from './candidate/find-candidate/find-candidate.component';
 
 
 const routes: Routes = [
@@ -97,6 +103,35 @@ const routes: Routes = [
               }
             ]
       },
+      { path: 'project',
+              children: [
+              {
+                path: 'add',
+                component: ProjectCreateComponent,
+                data: {}
+              },
+              {
+                path: 'view/:id',
+                component: ProjectViewComponent,
+                data: {}
+              },
+              {
+                path: 'delete/:id',
+                component: ProjectDeleteComponent,
+                data: {}
+              },
+              {
+                path: 'update/:id',
+                component: ProjectEditComponent,
+                data: {}
+              },
+              {
+                path: 'list',
+                component: ProjectListComponent,
+                data: {}
+              }
+            ]
+      },
       { path: 'evaluations',
             children: [
               {
@@ -143,6 +178,15 @@ const routes: Routes = [
                 component: TechnicalTestViewTechnicalResourceComponent,
                 data: {}
               },
+            ]
+      },
+      { path: 'candidate',
+              children: [
+              {
+                path: 'list',
+                component: FindCandidateComponent,
+                data: {}
+              }
             ]
       },
       { path: 'home', component: HomeComponent },

@@ -9,19 +9,8 @@ import { UserSessionDto } from 'src/app/shared/model/user-session';
 import { TechnicalResource } from 'src/app/shared/model/technical-resource';
 import { TechnicalResourceService } from '../technical-resource.service';
 import { UserSessionService } from 'src/app/shared/user-session/user-session.service';
-import { Location } from '@angular/common';
-import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { AcademicInformationComponent } from '../../academic-information/academic-information.component';
 import { AcademicInformation } from 'src/app/shared/model/academic-information';
-import { ProfessionalExperiences } from 'src/app/shared/model/professional-experience';
-import { Language } from 'src/app/shared/model/language';
-import { PersonalSkill } from 'src/app/shared/model/personal-skill';
-import { ProgrammingLanguages } from 'src/app/shared/model/programming-language';
-import { ProfessionalExperienceComponent } from '../../professional-experience/professional-experience.component';
-import { ProgrammingLanguageComponent } from '../../programming-language/programming-language.component';
-import { LanguageComponent } from '../../language/language.component';
-import { PersonalSkillComponent } from '../../personal-skill/personal-skill.component';
-import { SharedService } from 'src/app/shared/shared.service';
+import { Language } from 'src/app/shared/model/language';import { SharedService } from 'src/app/shared/shared.service';
 
 @Component({
   selector: 'app-technical-resource-view',
@@ -225,5 +214,4 @@ export class TechnicalResourceViewComponent {
   onDelete(){
     this.router.navigate([`/technical-resource/delete/` + this.user.id]);
   }
-
 }

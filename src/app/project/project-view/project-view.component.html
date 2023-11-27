@@ -1,0 +1,175 @@
+<div class="container align-items-center">
+    <div class="row align-items-center">
+      <div class="col-xs-10 col-12 container">
+        <div class="row" id="row-project-data">
+                <div class="col-12">
+                  <h3 i18n class="title-section">Project Data</h3>
+                  <button i18n id="btn-update" type="button" class="float-end item-array-banner-update" (click)="onUpdate()">
+                    <i class="bi bi-pencil-square item-array-banner-icon"></i>
+                  </button>
+                  <button i18n id="btn-delete" type="submit" class="float-end item-array-banner-delete" (click)="onDelete()">
+                    <i class="bi bi-dash-square item-array-banner-icon"></i>
+                  </button>
+                    <div class="row">
+                      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" id="col-project-data-section-left">
+                        <div class="form-group">
+                          <div class="mb-3 row">
+                            <label i18n for="project-name" class="col-xs-5 col-md-4 col-form-label text-white">Project Name:</label>
+                            <div class="col-xs-7 col-md-8">
+                                <label id="name" class="text-white">{{ project.projectName }}</label>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="mb-3 row">
+                              <label i18n for="startDate" class="col-xs-5 col-md-4 col-form-label text-white">Start Date:</label>
+                              <div class="col-xs-7 col-md-8">
+                                <label id="startDate" class="text-white">{{ project.startDate | date: 'yyyy-MM-dd' }}</label>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="mb-3 row">
+                              <label i18n for="status" class="col-xs-5 col-md-4 col-form-label text-white">Status:</label>
+                              <div class="col-xs-7 col-md-8">
+                                  <label id="status" class="text-white">{{ project.status }}</label>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" id="col-project-data-section-rigth">
+                        <div class="form-group">
+                            <div class="mb-3 row">
+                              <label i18n for="team" class="col-xs-5 col-md-4 col-form-label text-white">Team:</label>
+                              <div class="col-xs-7 col-md-8">
+                                 <label id="team" class="text-white">{{ project.teamName }}</label>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="mb-3 row">
+                              <label i18n for="endDate" class="col-xs-5 col-md-4 col-form-label text-white">End Date:</label>
+                              <div class="col-xs-7 col-md-8">
+                                <label id="startDate" class="text-white">{{ project.endDate | date: 'yyyy-MM-dd' }}</label>
+                              </div>
+                            </div>
+                        </div>                        
+                        <div class="form-group">
+                          <div class="mb-3 row">
+                            <label i18n for="description" class="col-xs-5 col-md-4 col-form-label text-white">Description:</label>
+                            <div class="col-xs-7 col-md-8">
+                                <label id="description" class="text-white">{{ project.details }}</label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+        </div>
+        <div class="row" id="row-project-additional-information">
+            <div class="col-12 col-xs-12 col-sm-12 col-md-6" id="col-participant">
+              <h3 i18n class="title-section pt-4">Participants</h3>
+              <button class="float-right pull-right float-end add-item-array" (click)="goAddMembers()" aria-label="open dialog participant"><i class="bi bi-plus-square add-item-array-icon"></i></button>
+              <ng-container *ngFor="let objinf of project.members; index as i">
+                  <div class="card card-info mb-3" id="{{'participant-card' + i}}">
+                    <div class="row" id="{{'participant-row-header' + i}}">
+                        <div class="col-12" id="{{'participant-col-header' + i}}">
+                            <div class="mb-3 row">
+                            <label id="{{'participant-url-' + i}}">
+                                <img class="img-profile" [src]="objinf.photo ? objinf.photo : 'https://www.w3schools.com/howto/img_avatar.png'">
+                                <div class="background"></div>
+                            </label>
+                            </div>
+                            <div class="mb-3 row">
+                                <label i18n class="col-xs-12 col-sm-5 col-form-label text-white">Name:</label>
+                                <div class="col-xs-12 col-sm-7">
+                                <label i18n class="col-form-label text-white" id="{{'participant-name-' + i}}">{{objinf.name}}</label>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label i18n class="col-xs-12 col-sm-5 col-form-label text-white">Company:</label>
+                                <div class="col-xs-12 col-sm-7">
+                                <label i18n class="col-form-label text-white" id="{{'participant-company-' + i}}">{{objinf.company}}</label>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label i18n class="col-xs-12 col-sm-5 col-form-label text-white">Role:</label>
+                                <div class="col-xs-12 col-sm-7">
+                                <label i18n class="col-form-label text-white" id="{{'participant-role-' + i}}">{{objinf.role}}</label>
+                                </div>
+                            </div>
+                      </div>
+                    </div>
+                    <h3 i18n class="title-section pt-4">Personal Skills</h3>
+                    <ng-container *ngFor="let objinternal of objinf.personalSkills; index as j">
+                        <div class="row" id="{{'participant-personal-skills-row' + j}}">
+                          <div class="col-6" id="{{'participant-personal-skills-col' + j}}">
+                            <label class="col-form-label text-white">{{objinternal.name}}</label>
+                          </div>
+                          <div class="col-6">
+                            <div class="rating-yellow pe-none">
+                              <ng-container *ngFor="let _ of [].constructor(objinternal.score); let k = index">
+                                <label for="{{'participant-personal-skills-rating-' + k}}">★</label>
+                              </ng-container>
+                            </div>
+                          </div>
+                        </div>
+                    </ng-container>
+                    <h3 i18n class="title-section pt-4">Technical Skills</h3>
+                    <ng-container *ngFor="let objinternal of objinf.technicalSkills; index as j">
+                        <div class="row" id="{{'participant-technical-skills-row' + j}}">
+                          <div class="col-6" id="{{'participant-technical-skills-col' + j}}">
+                            <label class="col-form-label text-white">{{objinternal.name}}</label>
+                          </div>
+                          <div class="col-6">
+                            <div class="rating-blue pe-none">
+                              <ng-container *ngFor="let _ of [].constructor(objinternal.score); let k = index">
+                                <label for="{{'participant-technical-skills-rating-' + k}}">★</label>
+                              </ng-container>
+                            </div>
+                          </div>
+                        </div>
+                    </ng-container>
+                  </div>
+              </ng-container>
+            </div>
+            <div class="col-12 col-xs-12 col-sm-12 col-md-6" id="col-skill">
+                <div class="row" id="row-personal-skills">
+                    <div class="col-12" id="col-personal-skills">
+                        <h3 i18n class="title-section pt-4">Personal Skills</h3>
+                        <button class="float-right pull-right float-end add-item-array" (click)="goAddPersonalSkills()" aria-label="open dialog personal skills"><i class="bi bi-plus-square add-item-array-icon"></i></button>
+                        <div class="card card-info mb-3" id="personal-skills-card">
+                            <div class="list-inline">
+                                <span *ngFor="let objinf of project.personalSkills; index as i" id="{{'tag-personalSkills-' + i}}" class="badge rounded-pill text-bg-light mx-2">{{objinf.name}} <a >✖</a></span>
+                            </div>                       
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id="row-technical-skills">
+                    <div class="col-12" id="col-technical-skills">
+                        <h3 i18n class="title-section pt-4">Technical Skills</h3>
+                        <button class="float-right pull-right float-end add-item-array" (click)="goAddTechnicalSkills()" aria-label="open dialog technical skills"><i class="bi bi-plus-square add-item-array-icon"></i></button>
+                        <div class="card card-info mb-3" id="technical-skills-card">
+                            <div class="list-inline">
+                                <span *ngFor="let objinf of project.technicalSkills; index as i" id="{{'tag-technicalSkills-' + i}}" class="badge rounded-pill text-bg-light mx-2">{{objinf.name}} <a >✖</a></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id="row-roles">
+                    <div class="col-12" id="col-roles">
+                        <h3 i18n class="title-section pt-4">Roles</h3>
+                        <button class="float-right pull-right float-end add-item-array" (click)="goAddRoles()" aria-label="open dialog roles"><i class="bi bi-plus-square add-item-array-icon"></i></button>
+                        <div class="card card-info mb-3" id="role-card">
+                            <div class="list-inline">
+                                <span *ngFor="let objinf of project.roles; index as i" id="{{'tag-roles-' + i}}" class="badge rounded-pill text-bg-light mx-2">{{objinf.name}} <a >✖</a></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -7,6 +7,7 @@ import { ProfessionalSector } from './model/professional-sector';
 import { EducationLevel } from './model/education-level';
 import { LanguageDto } from './model/languageDto';
 import { environment } from 'src/environments/environment';
+import { Role } from './model/role';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,9 @@ export class SharedService {
 
   site: string = '';
   siteEs: string = '';
-  private urlUsers:string = environment.baseUrlUsers
+  private urlUsers:string = environment.baseUrlUsers;
+  private urlProjects:string = environment.baseUrlProjects;
+  private mockMode:boolean = environment.mockMode;
 
   constructor(private http: HttpClient) { }
 
@@ -32,6 +35,10 @@ export class SharedService {
 
   getSiteEs():string {
     return this.siteEs;
+  }
+
+  getMockMode():boolean {
+    return this.mockMode;
   }
 
   getCountries(): Observable<Array<Country>>{
@@ -64,5 +71,9 @@ export class SharedService {
 
   getLanguages(): Observable<Array<LanguageDto>>{
     return this.http.get<Array<LanguageDto>>(`${this.urlUsers}/language`);
+  }
+
+  getRoles(): Observable<Array<Role>>{
+    return this.http.get<Array<Role>>(`${this.urlProjects}/role`);
   }
 }

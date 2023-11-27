@@ -4,7 +4,7 @@
 const baseUrl: string = 'http://localhost:5000';
 const baseUrlUsers: string = 'http://localhost:5000/users';
 const baseUrlEvaluations: string = 'http://localhost:5001/evaluations';
-const baseUrlProjects: string = 'http://localhost:5002/projects';
+const baseUrlProjects: string = 'http://localhost:5002/';
 const baseUrlInterviews: string = 'http://localhost:5003/interviews';
 const baseUrlMediator: string = 'http://localhost:5004/mediator';
 
@@ -17,7 +17,8 @@ export const environment = {
   baseUrlInterviews,
   baseUrlMediator,
   sur: 'sur',
-  token: 'token'
+  token: 'token',
+  mockMode:true
 };
 
 /*
