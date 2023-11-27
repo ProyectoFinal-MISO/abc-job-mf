@@ -1,0 +1,145 @@
+<div class="modal-header" role="main" aria-labelledby="myModalLabel" >
+    <h1 i18n class="modal-title modal-title-label-dlg" id="myModalLabel">Member</h1>
+</div>
+<div class="modal-body bg-dark">
+    <div class="container-fluid pt-2">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="container">
+                    <form [formGroup]="modalForm">
+                        <div class="row" id="row-project-data">
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="col-12" id="col-project-data-section-rigth">
+                                        <div class="form-group">
+                                            <div class="mb-3 row">
+                                              <label i18n for="member-name" class="col-xs-5 col-md-4 col-form-label text-white">Name</label>
+                                              <div class="col-xs-7 col-md-8">
+                                                <input formControlName="name" type="text" class="form-control" placeholder="Name" id="member-name">
+                                                <div class="fw-lighter text-danger small" *ngIf="modalForm.get('name')!.touched">
+                                                  <div i18n *ngIf="modalForm.get('name')?.hasError('required')">
+                                                      You must type a name
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="mb-3 row">
+                                              <label i18n for="member-company" class="col-xs-5 col-md-4 col-form-label text-white">Company</label>
+                                              <div class="col-xs-7 col-md-8">
+                                                <input formControlName="company" type="text" class="form-control" placeholder="Company" id="member-company">
+                                                <div class="fw-lighter text-danger small" *ngIf="modalForm.get('company')!.touched">
+                                                  <div i18n *ngIf="modalForm.get('company')?.hasError('required')">
+                                                      You must type a company
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="mb-3 row">
+                                              <label i18n for="meber-user" class="col-xs-5 col-md-4 col-form-label text-white">User</label>
+                                              <div class="col-xs-7 col-md-8">
+                                                  <p-dropdown formControlName="user" id="member-user" [options]="users" optionLabel="username"  [filter]="true" filterBy="username" [showClear]="true" placeholder="Select a User">></p-dropdown>
+                                                  <div class="fw-lighter text-danger small" *ngIf="modalForm.get('user')!.touched">
+                                                      <div i18n *ngIf="modalForm.get('user')?.hasError('required')">
+                                                          Please provide any user
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="mb-3 row">
+                                              <label i18n for="meber-role" class="col-xs-5 col-md-4 col-form-label text-white">Role</label>
+                                              <div class="col-xs-7 col-md-8">
+                                                  <p-dropdown formControlName="role" id="member-role" [options]="roles" optionLabel="name"  [filter]="true" filterBy="name" [showClear]="true" placeholder="Select a Role">></p-dropdown>
+                                                  <div class="fw-lighter text-danger small" *ngIf="modalForm.get('role')!.touched">
+                                                      <div i18n *ngIf="modalForm.get('role')?.hasError('required')">
+                                                          Please provide any role
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" id="row-dialog-information">
+                            <div class="col-12" id="col-technical-skills">
+                                <h3 i18n class="title-section pt-4">Technical Skills</h3>
+                                <button class="float-right pull-right float-end add-item-array" (click)="goAddTechnicalSkills()" aria-label="open dialog technical skills"><i class="bi bi-plus-square add-item-array-icon"></i></button>
+                                <div class="card card-info mb-3" id="technical-skills-card">
+                                <div formArrayName="technicalSkills" >
+                                    <ng-container *ngFor="let acainf of getTechnicalSkills.controls; index as i">
+                                    <div class="row" id="{{'row' + i}}" [formGroupName]="i">
+                                        <div class="col-6">
+                                        <label class="col-form-label text-white">{{modalForm.get('programmingLanguages')?.value[i]?.name}}</label>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="rating-yellow pe-none">
+                                            <input type="radio" id="{{'technical-skills-rating-1-' + i}}" value="1" formControlName="score" [readonly]="true" novalidate/>
+                                            <label for="{{'technical-skills-rating-1-' + i}}">★</label>
+                                            <input type="radio" id="{{'technical-skills-rating-2-' + i}}" value="2" formControlName="score" [readonly]="true" novalidate/>
+                                            <label for="{{'technical-skills-rating-2-' + i}}">★</label>
+                                            <input type="radio" id="{{'technical-skills-rating-3-' + i}}" value="3" formControlName="score" [readonly]="true" novalidate/>
+                                            <label for="{{'technical-skills-rating-3-' + i}}">★</label>
+                                            <input type="radio" id="{{'technical-skills-rating-4-' + i}}" value="4" formControlName="score" [readonly]="true" novalidate/>
+                                            <label for="{{'technical-skills-rating-4-' + i}}">★</label>
+                                            <input type="radio" id="{{'technical-skills-rating-5-' + i}}" value="5" formControlName="score" [readonly]="true" novalidate/>
+                                            <label for="{{'technical-skills-rating-5-' + i}}">★</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </ng-container>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="col-12" id="col-personal-skills">
+                                <h3 i18n class="title-section pt-4">Personal Skills</h3>
+                                <button class="float-right pull-right float-end add-item-array" (click)="goAddPersonalSkill()" aria-label="open dialog personal skills"><i class="bi bi-plus-square add-item-array-icon"></i></button>
+                                <div class="card card-info mb-3" id="personal-skills-card">
+                                <div formArrayName="personalSkills" >
+                                    <ng-container *ngFor="let acainf of getPersonalSkills.controls; index as i">
+                                    <div class="row" id="{{'row' + i}}" [formGroupName]="i">
+                                        <div class="col-6">
+                                        <label class="col-form-label text-white">{{modalForm.get('personalSkills')?.value[i]?.name}}</label>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="rating-blue pe-none">
+                                            <input type="radio" id="{{'personal-skills-rating-1-' + i}}" value="1" formControlName="score" [readonly]="true" novalidate/>
+                                            <label for="{{'personal-skills-rating-1-' + i}}">★</label>
+                                            <input type="radio" id="{{'personal-skills-rating-2-' + i}}" value="2" formControlName="score" [readonly]="true" novalidate/>
+                                            <label for="{{'personal-skills-rating-2-' + i}}">★</label>
+                                            <input type="radio" id="{{'personal-skills-rating-3-' + i}}" value="3" formControlName="score" [readonly]="true" novalidate/>
+                                            <label for="{{'personal-skills-rating-3-' + i}}">★</label>
+                                            <input type="radio" id="{{'personal-skills-rating-4-' + i}}" value="4" formControlName="score" [readonly]="true" novalidate/>
+                                            <label for="{{'personal-skills-rating-4-' + i}}">★</label>
+                                            <input type="radio" id="{{'personal-skills-rating-5-' + i}}" value="5" formControlName="score" [readonly]="true" novalidate/>
+                                            <label for="{{'personal-skills-rating-5-' + i}}">★</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </ng-container>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer bg-dark">
+    <button i18n id="btnCancel" type="button" class="btn btn-danger" (click)="onCancel()" data-dismiss="modal">
+      Cancel
+    </button>
+    <button i18n id="btnSave" type="submit" class="btn btn-success" [disabled]="!modalForm.valid" (click)="onCreate()">
+      Save
+    </button>
+</div>
+  
+  

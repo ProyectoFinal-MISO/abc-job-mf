@@ -20,7 +20,7 @@
     font-family: 'jura';
     font-size: 5em;
     font-weight: bold;
-    text-align: center;    
+    text-align: center;
     color: #000000;
     text-shadow: 1px 4px 2px #494949;
 }
@@ -38,7 +38,7 @@
     display: none;
     top: 50%;
     left:  50%;
-    transform: translate(-50%,-50%);   
+    transform: translate(-50%,-50%);
     z-index: 2;
     text-align: center;
   }
@@ -60,11 +60,11 @@
   .hoverable:hover .background{
     display: block;
   }
-  
+
   #fileInput{
     display: none;
   }
-  
+
 .img-profile {
     height: 8rem;
     width: 8rem;
@@ -109,18 +109,15 @@
   }
 
   .add-item-array {
+    width: 1.9em;
     background: transparent;
-    margin-top: -4em;
-    margin-right: -0.5em;
-    border: 0;
+    border-radius: 50%;
+    margin-top: -3em;
+    font-weight: bold;
+    font-size: 16.5px;
   }
-
   .add-item-array:hover {
     opacity: 1;
-  }
-
-  .add-item-array-icon{
-    font-size: 2rem;
   }
 
   .input-to-label{
@@ -134,12 +131,12 @@
     font-size: 0; /* Remove any font size */
     direction: rtl; /* Set direction to right-to-left for proper star display */
   }
-  
+
   /* Hide the radio input element of the rating bar */
   .rating-yellow input {
     display: none;
   }
-  
+
   /* Style the label elements to display as stars and to allow for interactivity */
   .rating-yellow label {
     display: inline-block;
@@ -154,7 +151,7 @@
     color: #cccccc;
     transform: rotateY(180deg); /* Flip the star to display properly */
   }
-  
+
   /* Style the label elements when hovered over or checked */
   .rating-yellow label:hover,
   .rating-yellow label:hover ~ label,
@@ -164,19 +161,23 @@
 
   .btn-confirm{
     background-color: #828F9A;
-    color: #ffffff  
+    color: #ffffff
 }
+
+
+
+
 
   .rating-green {
     font-size: 0; /* Remove any font size */
     direction: rtl; /* Set direction to right-to-left for proper star display */
   }
-  
+
   /* Hide the radio input element of the rating bar */
   .rating-green input {
     display: none;
   }
-  
+
   /* Style the label elements to display as stars and to allow for interactivity */
   .rating-green label {
     display: inline-block;
@@ -191,7 +192,7 @@
     color: #cccccc;
     transform: rotateY(180deg); /* Flip the star to display properly */
   }
-  
+
   /* Style the label elements when hovered over or checked */
   .rating-green label:hover,
   .rating-green label:hover ~ label,
@@ -204,12 +205,12 @@
     font-size: 0; /* Remove any font size */
     direction: rtl; /* Set direction to right-to-left for proper star display */
   }
-  
+
   /* Hide the radio input element of the rating bar */
   .rating-blue input {
     display: none;
   }
-  
+
   /* Style the label elements to display as stars and to allow for interactivity */
   .rating-blue label {
     display: inline-block;
@@ -224,10 +225,34 @@
     color: #cccccc;
     transform: rotateY(180deg); /* Flip the star to display properly */
   }
-  
+
   /* Style the label elements when hovered over or checked */
   .rating-blue label:hover,
   .rating-blue label:hover ~ label,
   .rating-blue input:checked ~ label {
     color: #00b8ff; /* Change the color of the star to yellow when hovered over or checked */
+  }
+
+
+  //////////////////////////
+  ///
+  //////////////////////////
+  .container-terms {
+    background-color: #D9D9D9;
+    padding: 5% 3%;
+    border-radius: 0.25rem;
+    box-sizing: border-box;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+  .container-terms h2{
+    font-size: 1.25rem;
+    text-align: center;
+  }
+
+  .col-12.account-acept-terms {
+    text-align: center;
+    margin-top: 5%;
   }
