@@ -3,19 +3,18 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable, Subject } from 'rxjs';
 import { User } from '../shared/model/user';
+import { UserSimple } from './user-simple';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  private urlUsers:string = environment.baseUrlUsers
   private backUrlUsers: string = environment.baseUrlUsers;
-  private backController: string = 'users';
 
   constructor(private http: HttpClient) { }
 
   getUsers(): Observable<User>{
-    return this.http.get<User>(`${this.urlUsers}/${this.backController}`);
+    return this.http.get<User>(`${this.backUrlUsers}`);
   }
 
   getAllCompany(): Observable<UserSimple[]>{
