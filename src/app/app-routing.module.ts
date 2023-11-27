@@ -18,6 +18,7 @@ import { EmployeeViewComponent } from './user/employee/employee-view/employee-vi
 import { EmployeeDeleteComponent } from './user/employee/employee-delete/employee-delete.component';
 import { TechnicalResourceEditComponent } from './user/technical-resource/technical-resource-edit/technical-resource-edit.component';
 import { InterviewListComponent } from './interview/interview-list/interview-list.component';
+import { InterviewCreateComponent } from './interview/interview-create/interview-create.component';
 
 const routes: Routes = [
   {
@@ -86,7 +87,23 @@ const routes: Routes = [
             ]
       },
       { path: 'home', component: HomeComponent },
-      {path: 'interview', component: InterviewListComponent}
+      {
+        path: 'interview',
+        children: [
+          {
+            path: '',
+            component: InterviewListComponent
+          },
+          {
+            path: 'create',
+            component: InterviewCreateComponent
+          },
+          {
+            path: 'create/:id_meet',
+            component: InterviewCreateComponent
+          }
+        ]
+      }
     ]
   },
   { path: 'signin', children: [

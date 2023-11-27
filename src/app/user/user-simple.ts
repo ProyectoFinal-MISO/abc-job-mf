@@ -11,7 +11,7 @@ export class UserSimple {
     userId: number,
     identification: string,
     name: string,
-    start_date: string,
+    lastName: string,
   ){
     this.id = id;
     this.userId = userId;

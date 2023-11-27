@@ -12,6 +12,12 @@ import { ToastrModule } from 'ngx-toastr';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UserModule } from './user/user.module';
 import { InterviewModule } from './interview/interview.module';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { DatePipe } from '@angular/common';
+
 
 
 @NgModule({
@@ -26,6 +32,10 @@ import { InterviewModule } from './interview/interview.module';
     HomeModule,
     HomeRoutingModule,
     BrowserAnimationsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatInputModule,
+    MatFormFieldModule,
     NgbModule,
     InterviewModule,
     UserModule,
@@ -40,7 +50,8 @@ import { InterviewModule } from './interview/interview.module';
       provide: HTTP_INTERCEPTORS,
       useClass: InterceptorService,
       multi: true
-    }
+    },
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })
