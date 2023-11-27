@@ -16,5 +16,7 @@ export interface TechnicalResource extends User {
     languages:Array<Language>;
     personalSkills:Array<PersonalSkill>;
     aditionalInformation:AditionalInformation;
-    location:any;
+    location?:any;
+    technicalSkillsFilter?:string;
+    personalSkillsFilter?:string;
 }

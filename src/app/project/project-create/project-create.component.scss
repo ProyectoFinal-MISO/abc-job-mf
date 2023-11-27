@@ -1,0 +1,237 @@
+.title-section {
+    font-family: 'jura';
+    font-size: 1em;
+    border-bottom: 3px solid rgba(0,0,0,0.1);
+    margin-bottom: 0.8em;
+    font-weight: 600;
+    padding-bottom: 8px;
+    border-color: #000000;
+    color: #ffffff;
+    font-weight: 300;
+}
+
+.img-logo-banner{
+    width: 1.4em;
+    margin: auto;
+    display: inline-flex;
+}
+
+.text-title-banner{
+    font-family: 'jura';
+    font-size: 5em;
+    font-weight: bold;
+    text-align: center;    
+    color: #000000;
+    text-shadow: 1px 4px 2px #494949;
+}
+
+.hoverable{
+    position: relative;
+    display: block;
+    cursor: pointer;
+    height: 8rem;
+    width: 8rem;
+    border-radius: 50%;
+  }
+  .hoverable .hover-text{
+    position: absolute;
+    display: none;
+    top: 50%;
+    left:  50%;
+    transform: translate(-50%,-50%);   
+    z-index: 2;
+    text-align: center;
+  }
+  .hoverable .background{
+    position: absolute;
+    display: none;
+    top: 0;
+    left:  0;
+    bottom: 0;
+    right: 0;
+    background-color:rgba(255, 255, 255, 0.5);
+    pointer-events: none;
+    border-radius: 50%;
+    z-index: 1;
+  }
+  .hoverable:hover .hover-text{
+    display: block;
+  }
+  .hoverable:hover .background{
+    display: block;
+  }
+  
+  #fileInput{
+    display: none;
+  }
+  
+.img-profile {
+    height: 8rem;
+    width: 8rem;
+    border-radius: 50%;
+  }
+
+  .close-image {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    opacity: 0.3;
+    z-index: 2;
+    border: transparent;
+    background: #ffffff;
+    border-radius: 50%;
+    margin-top: -3.5em;
+    margin-left: 5em;
+  }
+  .close-image:hover {
+    opacity: 1;
+  }
+  .close-image:before, .close-image:after {
+    position: absolute;
+    content: ' ';
+    height: 20px;
+    width: 2px;
+    background-color: #333333;
+    z-index: 2;
+    margin-top: -35%;
+    margin-left: -1%;
+  }
+  .close-image:before {
+    transform: rotate(45deg);
+  }
+  .close-image:after {
+    transform: rotate(-45deg);
+  }
+
+  .card-info{
+    background-color: #283138;
+    padding: 2em;
+  }
+
+  .add-item-array {
+    background: transparent;
+    margin-top: -4em;
+    margin-right: -0.5em;
+    border: 0;
+  }
+
+  .add-item-array:hover {
+    opacity: 1;
+  }
+
+  .add-item-array-icon{
+    font-size: 2rem;
+  }
+
+  .input-to-label{
+    background-color: transparent;
+    color: #ffffff;
+    border: transparent;
+    pointer-events: none;
+  }
+
+  .rating-yellow {
+    font-size: 0; /* Remove any font size */
+    direction: rtl; /* Set direction to right-to-left for proper star display */
+  }
+  
+  /* Hide the radio input element of the rating bar */
+  .rating-yellow input {
+    display: none;
+  }
+  
+  /* Style the label elements to display as stars and to allow for interactivity */
+  .rating-yellow label {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    padding: 0;
+    font-size: 24px;
+    text-align: center;
+    line-height: 20px;
+    cursor: pointer;
+    color: #cccccc;
+    transform: rotateY(180deg); /* Flip the star to display properly */
+  }
+  
+  /* Style the label elements when hovered over or checked */
+  .rating-yellow label:hover,
+  .rating-yellow label:hover ~ label,
+  .rating-yellow input:checked ~ label {
+    color: #ffc800; /* Change the color of the star to yellow when hovered over or checked */
+  }
+
+  .btn-confirm{
+    background-color: #828F9A;
+    color: #ffffff  
+}
+
+
+
+
+  
+  .rating-green {
+    font-size: 0; /* Remove any font size */
+    direction: rtl; /* Set direction to right-to-left for proper star display */
+  }
+  
+  /* Hide the radio input element of the rating bar */
+  .rating-green input {
+    display: none;
+  }
+  
+  /* Style the label elements to display as stars and to allow for interactivity */
+  .rating-green label {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    padding: 0;
+    font-size: 24px;
+    text-align: center;
+    line-height: 20px;
+    cursor: pointer;
+    color: #cccccc;
+    transform: rotateY(180deg); /* Flip the star to display properly */
+  }
+  
+  /* Style the label elements when hovered over or checked */
+  .rating-green label:hover,
+  .rating-green label:hover ~ label,
+  .rating-green input:checked ~ label {
+    color: #00ff4e; /* Change the color of the star to yellow when hovered over or checked */
+  }
+
+
+  .rating-blue {
+    font-size: 0; /* Remove any font size */
+    direction: rtl; /* Set direction to right-to-left for proper star display */
+  }
+  
+  /* Hide the radio input element of the rating bar */
+  .rating-blue input {
+    display: none;
+  }
+  
+  /* Style the label elements to display as stars and to allow for interactivity */
+  .rating-blue label {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    padding: 0;
+    font-size: 24px;
+    text-align: center;
+    line-height: 20px;
+    cursor: pointer;
+    color: #cccccc;
+    transform: rotateY(180deg); /* Flip the star to display properly */
+  }
+  
+  /* Style the label elements when hovered over or checked */
+  .rating-blue label:hover,
+  .rating-blue label:hover ~ label,
+  .rating-blue input:checked ~ label {
+    color: #00b8ff; /* Change the color of the star to yellow when hovered over or checked */
+  }

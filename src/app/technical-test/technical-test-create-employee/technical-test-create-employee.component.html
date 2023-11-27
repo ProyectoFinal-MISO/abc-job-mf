@@ -1,0 +1,112 @@
+<div class="container align-items-center" *ngIf="item">
+  <div class="row align-items-center">
+    <div class="col-xs-10 col-12 container">
+
+      <div class="container text-center container-cards-technical-test-form">
+
+        <div class="mt-3 row">
+          <h1 class="text-title-banner">
+            TECHNICAL TEST</h1>
+        </div>
+
+        <div *ngIf="getItemById(idFromUrl)">
+          <div class="row card-technical-test-form">
+
+            <div class="row top">
+              <div class="col image-technical-test-form">
+                <img class="img-profile"
+                  src="https://www.w3schools.com/howto/img_avatar.png">
+              </div>
+              <div class="col data-technical-test-form">
+
+                <div class="row">
+                  {{ item.name }}
+                </div>
+
+                <div class="row">
+                  {{ item.name_project }}
+                </div>
+
+              </div>
+            </div>
+
+
+            <div class="form-group">
+
+              <div class="form-group mx-sm-3 mb-2">
+                <div class="mb-3 row">
+                  <label i18n for="score"
+                    class="col-xs-5 col-md-4 col-form-label text-white">Final score</label>
+                  <div class="col-xs-7 col-md-8">
+                    <input formControlName="score" id="score"
+                      type="text" class="form-control" placeholder="Final score"
+                      required>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group mx-sm-3 mb-2">
+                <div class="mb-3 row">
+                  <label i18n for="numberHits"
+                    class="col-xs-5 col-md-4 col-form-label text-white">Number hits</label>
+                  <div class="col-xs-7 col-md-8">
+                    <input formControlName="numberHits" id="numberHits"
+                      type="text" class="form-control" placeholder="Number hits"
+                      required>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group mx-sm-3 mb-2">
+                <div class="mb-3 row">
+                  <label i18n for="numberError"
+                    class="col-xs-5 col-md-4 col-form-label text-white">Number error</label>
+                  <div class="col-xs-7 col-md-8">
+                    <input formControlName="numberError" id="numberError"
+                      type="text" class="form-control" placeholder="Number error"
+                      required>
+                  </div>
+                </div>
+              </div>
+              <!--Start Date-->
+              <div class="form-group mx-sm-3 mb-2">
+                <div class="mb-3 row">
+                  <label i18n for="startDate"
+                    class="col-xs-5 col-md-4 col-form-label text-white">Start
+                    Date</label>
+                  <div class="col-xs-7 col-md-8">
+                    <input formControlName="startDate" id="startDate"
+                      type="date" class="form-control" placeholder="Start Date"
+                      required>
+                  </div>
+                </div>
+              </div>
+              <!--End Date-->
+              <div class="form-group mx-sm-3 mb-2">
+                <div class="mb-3 row">
+                  <label i18n for="endDate"
+                    class="col-xs-5 col-md-4 col-form-label text-white">End
+                    Date</label>
+                  <div class="col-xs-7 col-md-8">
+                    <input formControlName="endDate" id="endDate" type="date"
+                      class="form-control" placeholder="End Date" required>
+                    <div class="fw-lighter text-danger small">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 text-center mt-3">
+              <button i18n type="submit"
+                class="btn btn-confirm col-4 col-sm-4 col-md-3 col-lg-2"
+                (click)="addTechnicalTest()">Continue</button>
+            </div>
+
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

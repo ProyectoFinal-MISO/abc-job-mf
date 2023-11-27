@@ -11,11 +11,38 @@ import { InterceptorService } from './interceptors/interceptor.service';
 import { ToastrModule } from 'ngx-toastr';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UserModule } from './user/user.module';
+import { ProjectModule } from './project/project.module';
 
+import { InterviewModule } from './interview/interview.module';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { DatePipe } from '@angular/common';
+
+
+import { EvaluationListCompanyComponent } from './evaluations/evaluations-list-company/evaluations-list-company.component';
+import { EvaluationCreateCompanyComponent } from './evaluations/evaluations-create-company/evaluations-create-company.component';
+import { EvaluationListTechnicalResourceComponent } from './evaluations/evaluations-list-technical-resource/evaluations-list-technical-resource.component';
+import { EvaluationViewTechnicalResourceComponent } from './evaluations/evaluations-view-technical-resource/evaluations-view-technical-resource.component';
+
+import { TechnicalTestListEmployeeComponent } from './technical-test/technical-test-list-employee/technical-test-list-employee.component';
+import { TechnicalTestCreateEmployeeComponent } from './technical-test/technical-test-create-employee/technical-test-create-employee.component';
+import { TechnicalTestListTechnicalResourceComponent } from './technical-test/technical-test-list-technical-resource/technical-test-list-technical-resource.component';
+import { TechnicalTestViewTechnicalResourceComponent } from './technical-test/technical-test-view-technical-resource/technical-test-view-technical-resource.component';
+import { CandidateModule } from './candidate/candidate.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    EvaluationListCompanyComponent,
+    EvaluationCreateCompanyComponent,
+    EvaluationListTechnicalResourceComponent,
+    EvaluationViewTechnicalResourceComponent,
+    TechnicalTestListEmployeeComponent,
+    TechnicalTestCreateEmployeeComponent,
+    TechnicalTestListTechnicalResourceComponent,
+    TechnicalTestViewTechnicalResourceComponent
   ],
   imports: [
     BrowserModule,
@@ -24,9 +51,16 @@ import { UserModule } from './user/user.module';
     SharedModule,
     HomeModule,
     HomeRoutingModule,
-    BrowserAnimationsModule,    
+    BrowserAnimationsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatInputModule,
+    MatFormFieldModule,
     NgbModule,
+    InterviewModule,
     UserModule,
+    ProjectModule,
+    CandidateModule,
     ToastrModule.forRoot({
       timeOut: 5000,
       positionClass: 'toast-bottom-right',
@@ -38,7 +72,8 @@ import { UserModule } from './user/user.module';
       provide: HTTP_INTERCEPTORS,
       useClass: InterceptorService,
       multi: true
-    }
+    },
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })

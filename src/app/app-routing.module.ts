@@ -12,11 +12,31 @@ import { CompanyDeleteComponent } from './user/company/company-delete/company-de
 import { TechnicalResourceCreateComponent } from './user/technical-resource/technical-resource-create/technical-resource-create.component';
 import { TechnicalResourceViewComponent } from './user/technical-resource/technical-resource-view/technical-resource-view.component';
 import { TechnicalResourceDeleteComponent } from './user/technical-resource/technical-resource-delete/technical-resource-delete.component';
+import { TechnicalResourceEditComponent } from './user/technical-resource/technical-resource-edit/technical-resource-edit.component';
 
 import { EmployeeCreateComponent } from './user/employee/employee-create/employee-create.component';
 import { EmployeeViewComponent } from './user/employee/employee-view/employee-view.component';
 import { EmployeeDeleteComponent } from './user/employee/employee-delete/employee-delete.component';
-import { TechnicalResourceEditComponent } from './user/technical-resource/technical-resource-edit/technical-resource-edit.component';
+
+import { ProjectCreateComponent } from './project/project-create/project-create.component';
+import { ProjectViewComponent } from './project/project-view/project-view.component';
+import { ProjectListComponent } from './project/project-list/project-list.component';
+import { ProjectEditComponent } from './project/project-edit/project-edit.component';
+import { ProjectDeleteComponent } from './project/project-delete/project-delete.component';
+import { InterviewListComponent } from './interview/interview-list/interview-list.component';
+import { InterviewCreateComponent } from './interview/interview-create/interview-create.component';
+
+import { EvaluationListCompanyComponent } from './evaluations/evaluations-list-company/evaluations-list-company.component';
+import { EvaluationCreateCompanyComponent } from './evaluations/evaluations-create-company/evaluations-create-company.component';
+import { EvaluationListTechnicalResourceComponent} from './evaluations/evaluations-list-technical-resource/evaluations-list-technical-resource.component';
+import { EvaluationViewTechnicalResourceComponent } from './evaluations/evaluations-view-technical-resource/evaluations-view-technical-resource.component';
+
+import { TechnicalTestListEmployeeComponent } from './technical-test/technical-test-list-employee/technical-test-list-employee.component';
+import { TechnicalTestCreateEmployeeComponent } from './technical-test/technical-test-create-employee/technical-test-create-employee.component';
+import { TechnicalTestListTechnicalResourceComponent } from './technical-test/technical-test-list-technical-resource/technical-test-list-technical-resource.component';
+import { TechnicalTestViewTechnicalResourceComponent } from './technical-test/technical-test-view-technical-resource/technical-test-view-technical-resource.component';
+import { FindCandidateComponent } from './candidate/find-candidate/find-candidate.component';
+
 
 const routes: Routes = [
   {
@@ -84,7 +104,110 @@ const routes: Routes = [
               }
             ]
       },
+      { path: 'project',
+              children: [
+              {
+                path: 'add',
+                component: ProjectCreateComponent,
+                data: {}
+              },
+              {
+                path: 'view/:id',
+                component: ProjectViewComponent,
+                data: {}
+              },
+              {
+                path: 'delete/:id',
+                component: ProjectDeleteComponent,
+                data: {}
+              },
+              {
+                path: 'update/:id',
+                component: ProjectEditComponent,
+                data: {}
+              },
+              {
+                path: 'list',
+                component: ProjectListComponent,
+                data: {}
+              }
+            ]
+      },
+      { path: 'evaluations',
+            children: [
+              {
+                path: 'list_for_company',
+                component: EvaluationListCompanyComponent,
+                data: {}
+              },
+              {
+                path: 'add/:id',
+                component: EvaluationCreateCompanyComponent,
+                data: {}
+              },
+              {
+                path: 'list_for_technical_resource',
+                component: EvaluationListTechnicalResourceComponent,
+                data: {}
+              },
+              {
+                path: 'view/:id',
+                component: EvaluationViewTechnicalResourceComponent,
+                data: {}
+              },
+            ]
+      },
+      { path: 'technical_test',
+            children: [
+              {
+                path: 'list_for_employee',
+                component: TechnicalTestListEmployeeComponent,
+                data: {}
+              },
+              {
+                path: 'add/:id',
+                component: TechnicalTestCreateEmployeeComponent,
+                data: {}
+              },
+              {
+                path: 'list_for_technical_resource',
+                component: TechnicalTestListTechnicalResourceComponent,
+                data: {}
+              },
+              {
+                path: 'view/:id',
+                component: TechnicalTestViewTechnicalResourceComponent,
+                data: {}
+              },
+            ]
+      },
+      { path: 'candidate',
+              children: [
+              {
+                path: 'list',
+                component: FindCandidateComponent,
+                data: {}
+              }
+            ]
+      },
       { path: 'home', component: HomeComponent },
+      {
+        path: 'interview',
+        children: [
+          {
+            path: '',
+            component: InterviewListComponent
+          },
+          {
+            path: 'create',
+            component: InterviewCreateComponent
+          },
+          {
+            path: 'create/:id_meet',
+            component: InterviewCreateComponent
+          }
+        ]
+      }
     ]
   },
   { path: 'signin', children: [

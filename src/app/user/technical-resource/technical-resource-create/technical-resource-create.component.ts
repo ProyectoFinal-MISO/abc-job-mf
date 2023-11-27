@@ -117,7 +117,7 @@ export class TechnicalResourceCreateComponent {
           this.getCountries();
           this.getTypesIdentification();
           this.getGenres();
-          this.transferAvailabilities = [{val:0, name:'No'},{val:1, name:'Yes'}];
+          this.transferAvailabilities = [{val:'0', name:'No'},{val:'1', name:'Yes'}];
           this.carga = true;
       }
     }
@@ -447,40 +447,52 @@ export class TechnicalResourceCreateComponent {
 
   async addUser() {
     let userAux = { ...this.userForm.value };
-    userAux.personalInformation.city = userAux?.personalInformation?.city?.id ? userAux?.personalInformation?.city?.id : '';
-    userAux.personalInformation.state = userAux?.personalInformation?.state?.id ? userAux?.personalInformation?.state?.i : '';
-    userAux.personalInformation.country = userAux?.personalInformation?.country?.id ? userAux?.personalInformation?.country?.id: '';
-    userAux.additionalInformation.transferAvailability = userAux?.additionalInformation?.transferAvailability?.val ? userAux?.additionalInformation?.transferAvailability?.val: '';
+    userAux.personalInformation.city = userAux?.personalInformation?.city?.id?.toString() ? userAux?.personalInformation?.city?.id : 1;
+    userAux.personalInformation.state = userAux?.personalInformation?.state?.id?.toString() ? userAux?.personalInformation?.state?.id : 1;
+    userAux.personalInformation.country = userAux?.personalInformation?.country?.id?.toString() ? userAux?.personalInformation?.country?.id: 1;
+    userAux.additionalInformation.transferAvailability = userAux?.additionalInformation?.transferAvailability?.val ? Number(userAux?.additionalInformation?.transferAvailability?.val) : 0;
 
     await userAux.academicInformation.forEach((obj:any) => {
-      obj.professionalSector = obj.professionalSector?.id ? obj.professionalSector?.id : '';
+      obj.professionalSector = obj.professionalSector?.id?.toString() ? obj.professionalSector?.id : 1;
     });
 
     await userAux.languages.forEach((obj:any) => {
-      obj.language = obj.language?.id ? obj.language?.id : '';
+      obj.language = obj.language?.id?.toString() ? obj.language?.id : 1;
     });
     this.user = userAux;
     localStorage.clear();
     this.userService.addUser(this.user).subscribe({
       next: (result:any) => {
-        if(result){
-          localStorage.setItem('token', result.token);
-          const decodedToken = this.helper.decodeToken(result.token);
-          this.userService.getUser(decodedToken.sub).subscribe({
-            next: (response:any) => {
-              this.userSessionService.sendMessage(true);
-              this.userSessionService.saveUserLocal(response);
-              this.toastr.success(`login succesful`, 'Success', {
-                progressBar: true,
-              });
-              this.router.navigate([`/home`]);
+        if(result){         
+          const userSession:UserSessionDto = {
+            username: this.user.username,
+            password: this.user.password,
+            userType: this.user.userType
+          }
+          this.userSessionService.userLogIn(userSession).subscribe({
+            next: (res:any) => {
+              localStorage.setItem('token', res.token);
+              this.userSessionService.getMyUserSession().subscribe({
+                next: (response:any) => {
+                  this.userSessionService.sendMessage(true);
+                  this.userSessionService.saveUserLocal(response);
+                  this.toastr.success(`login succesful`, 'Success', {
+                    progressBar: true,
+                  });
+                  this.router.navigate([`/home`]);
+                },
+                error: (e0:any) => {
+                  this.toastr.error(`login fail`, 'Error, ' + e0, {
+                    progressBar: true,
+                  });
+                },
+                complete: () => console.log('complete0'),
+              })
             },
-            error: (e0:any) => {
-              this.toastr.error(`login fail`, 'Error, ' + e0, {
-                progressBar: true,
-              });
+            error: (e1:any) => {
+              console.log(e1)
             },
-            complete: () => console.log('complete0'),
+            complete: () => console.log('complete1'),
           });
         }
       },

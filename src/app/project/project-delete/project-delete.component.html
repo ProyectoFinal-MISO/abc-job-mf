@@ -1,0 +1,88 @@
+<div class="container align-items-center">
+    <div class="row align-items-center">
+      <div class="col-xs-10 col-12 container">
+        <div class="row">
+          <div class="row">
+            <div class="col-12">
+              <div class="container-terms">
+                <h2 i18n id="terms-of-delete">Terms of Close Project</h2>
+                <p i18n id="paragraph-of-delete">When it comes to the terms of service for deleting a user
+                  account
+                  in an application, it's essential to ensure clarity and
+                  transparency. We understand that users may want to discontinue
+                  their use of our services for various reasons, and we respect
+                  their choice. To delete your account, you can initiate the
+                  process
+                  through your account settings or by contacting our customer
+                  support. Please note that once you request the deletion of your
+                  account, your data, including personal information, posts, and
+                  interactions, will be permanently removed from our system. This
+                  action is irreversible, so make sure you've backed up any data
+                  you
+                  wish to keep. Additionally, it's important to be aware that some
+                  information may remain in our system for a limited period to
+                  comply with legal obligations or for business purposes. We take
+                  the security of your data seriously and use industry-standard
+                  measures to protect it. By deleting your account, you agree to
+                  waive any rights or claims related to your data. We advise users
+                  to review our full terms of service and privacy policy for a
+                  comprehensive understanding of our data management and account
+                  deletion processes. Your satisfaction and privacy are of the
+                  utmost importance to us, and we are committed to providing a
+                  seamless and secure experience throughout your journey with our
+                  application.</p>
+              </div>
+            </div>
+          </div>
+  
+          <form  [formGroup]="projectForm">
+            <div class="row" id="row-personal-information">
+              <div class="row" id="row-account-data">
+                <div class="col-12">
+                  <div class="mb-3">
+                    <div class="row">
+                      <div class="col-12 account-acept-terms">
+                        <div class="form-group">
+                          <div class="mb-3 row">  
+                            <label i18n for="account-acept-terms"
+                                class="col-xs-12 col-md-12 text-white-big" id="acept-terms">Acept Terms of Service
+                                <input formControlName="aceptTerms" type="checkbox">
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                    <div class="card card-info mb-3">
+                        <div class="form-group">
+                            <div class="mb-3 row">
+                              <div class="col-12">
+                                <label i18n for="account-acept-terms"
+                                class="col-xs-12 col-md-12 text-white text-center" id="acept-terms">Close Project
+                                <input formControlName="status" type="checkbox">
+                                </label>
+                                <div class="fw-lighter text-danger small text-center">
+                                  <div i18n
+                                    *ngIf="projectForm.get('status')?.hasError('required')">
+                                    You must type an status
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                    </div>
+                  </div>
+                </div>
+              </div>  
+              <div class="col-12 text-center mt-3">
+                <button i18n type="submit"
+                  class="btn btn-confirm col-4 col-sm-4 col-md-3 col-lg-2"
+                  [disabled]="!projectForm.valid"
+                  aria-label="delete user" (click)="deleteProject()">Confirm</button>
+              </div>
+              <div class="col-12 text-center mt-2"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  

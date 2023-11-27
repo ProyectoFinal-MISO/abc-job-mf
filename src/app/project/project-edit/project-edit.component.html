@@ -1,0 +1,85 @@
+<div class="container align-items-center">
+    <div class="row align-items-center">
+      <div class="col-xs-10 col-12 container">
+          <form [formGroup]="projectForm">
+              <div class="row" id="row-personal-information">
+                <div class="col-12">
+                  <h3 i18n class="title-section">Project Data</h3>
+                    <div class="row">
+                      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" id="col-personal-information-section-left">
+                        <div class="form-group">
+                          <div class="mb-3 row">
+                            <label i18n for="project-name" class="col-xs-5 col-md-4 col-form-label text-white">Project Name</label>
+                            <div class="col-xs-7 col-md-8">
+                                <label id="name" class="text-white">{{ project.projectName }}</label>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="mb-3 row">
+                              <label i18n for="startDate" class="col-xs-5 col-md-4 col-form-label text-white">Start Date</label>
+                              <div class="col-xs-7 col-md-8">
+                                <label id="startDate" class="text-white">{{ project.startDate | date: 'yyyy-MM-dd' }}</label>
+                              </div>
+                            </div>
+                        </div>                        
+                        <div class="form-group">
+                            <div class="mb-3 row">
+                              <label i18n for="details" class="col-xs-5 col-md-4 col-form-label text-white">Details</label>
+                              <div class="col-xs-7 col-md-8">
+                                  <textarea formControlName="details" id="details" type="text" class="form-control" placeholder="Details"></textarea>
+                                  <div class="fw-lighter text-danger small" *ngIf="projectForm.get('details')!.touched">
+                                      <div i18n *ngIf="projectForm.get('details')?.hasError('required')">
+                                          You must type your details
+                                      </div>
+                                  </div>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" id="col-personal-information-section-rigth">
+                        <div class="form-group">
+                            <div class="mb-3 row">
+                              <label i18n for="team" class="col-xs-5 col-md-4 col-form-label text-white">Team</label>
+                              <div class="col-xs-7 col-md-8">
+                                  <input formControlName="team" type="text" class="form-control" placeholder="Team" id="team">
+                                  <div class="fw-lighter text-danger small" *ngIf="projectForm.get('team')!.touched">
+                                    <div i18n *ngIf="projectForm.get('team')?.hasError('required')">
+                                        You must type your team
+                                    </div>
+                                    <div i18n *ngIf="projectForm.get('team')?.hasError('minlength')">
+                                      text must be min 4 characteres
+                                    </div>
+                                  </div>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="mb-3 row">
+                              <label i18n for="endDate" class="col-xs-5 col-md-4 col-form-label text-white">End Date</label>
+                              <div class="col-xs-7 col-md-8">
+                                  <input formControlName="endDate" type="date" class="form-control" placeholder="End Date" id="end-date">
+                                  <div class="fw-lighter text-danger small" *ngIf="projectForm.get('endDate')!.touched">
+                                    <div i18n *ngIf="projectForm.get('endDate')?.hasError('required')">
+                                        You must type your end date
+                                    </div>
+                                    <div i18n *ngIf="projectForm.get('endDate')?.hasError('minlength')">
+                                      text must be min 4 characteres
+                                    </div>
+                                  </div>
+                              </div>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+              </div>
+              <div class="col-12 text-center mt-3">
+                <button i18n type="submit" class="btn btn-confirm col-4 col-sm-4 col-md-3 col-lg-2"
+                  [disabled]="!projectForm.valid" aria-label="create project" (click)="updateProject()">Continue</button>
+              </div>
+          </form>
+      </div>
+    </div>
+  </div>
+  
