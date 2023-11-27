@@ -14,6 +14,12 @@ import { UserModule } from './user/user.module';
 import { ProjectModule } from './project/project.module';
 
 import { InterviewModule } from './interview/interview.module';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { DatePipe } from '@angular/common';
+
 
 import { EvaluationListCompanyComponent } from './evaluations/evaluations-list-company/evaluations-list-company.component';
 import { EvaluationCreateCompanyComponent } from './evaluations/evaluations-create-company/evaluations-create-company.component';
@@ -46,6 +52,10 @@ import { CandidateModule } from './candidate/candidate.module';
     HomeModule,
     HomeRoutingModule,
     BrowserAnimationsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatInputModule,
+    MatFormFieldModule,
     NgbModule,
     InterviewModule,
     UserModule,
@@ -62,7 +72,8 @@ import { CandidateModule } from './candidate/candidate.module';
       provide: HTTP_INTERCEPTORS,
       useClass: InterceptorService,
       multi: true
-    }
+    },
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })

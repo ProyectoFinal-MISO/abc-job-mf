@@ -1,0 +1,136 @@
+<div class="container" *ngIf="is_charge">
+  <div class="row justify-content-center mt-3">
+    <h1 i18n id="tittle-singin" class="text-title-banner col-12">
+      <img src="assets/images/abc-jobs-tie.png" alt="Logo of page" class="img-logo-banner">
+      MEET
+    </h1>
+  </div>
+  <div class="row justify-content-center" data-bs-theme="dark">
+    <div class="card cardForm mt-5">
+      <div class="card-body mx-5">
+        <span i18n id="createheader" class="card-title mb-2 noh5" *ngIf="!this.id_meet">Create</span>
+        <span i18n id="editheader" class="card-title mb-2 noh5" *ngIf="this.id_meet">Edit</span>
+        <form
+        [formGroup]="interviewForm"
+        (ngSubmit)="submitInterview()"
+        class="">
+          <div class="form-group my-3">
+            <label i18n for="tittle" class="form-label">Tittle</label>
+            <input novalidate id="tittle" class="form-control" formControlName="tittle" placeholder="tittle">
+            <div class="fw-lighter text-danger small" *ngIf="interviewForm.get('tittle')!.touched">
+              <div i18n *ngIf="interviewForm.get('tittle')!.hasError('required')">
+                Tittle required
+              </div>
+              <div i18n *ngIf="interviewForm.get('tittle')!.hasError('minlength')">
+                Tittle too short
+              </div>
+              <div i18n *ngIf="interviewForm.get('tittle')!.hasError('maxlength')">
+                Tittle too long
+              </div>
+            </div>
+          </div>
+          <div class="form-group my-3">
+            <label i18n for="description" class="form-label">Description</label>
+            <textarea novalidate type="text" id="description" class="form-control" formControlName="description" placeholder="description" rows="3"></textarea>
+            <div class="fw-lighter text-danger small" *ngIf="interviewForm.get('description')!.touched">
+              <div i18n *ngIf="interviewForm.get('description')!.hasError('required')">
+                Description required
+              </div>
+              <div i18n *ngIf="interviewForm.get('description')!.hasError('minlength')">
+                Description too short
+              </div>
+              <div i18n *ngIf="interviewForm.get('description')!.hasError('maxlength')">
+                Description too long
+              </div>
+            </div>
+          </div>
+          <div class="row my-3">
+            <div class="form-group col-6">
+              <label i18n for="date" class="form-label">Date</label>
+              <div class="input-group">
+                <input novalidate id="date" class="form-control" formControlName="date" placeholder="yyyy-mm-dd" ngbDatepicker #d="ngbDatepicker">
+                <button aria-label="abrir o cerrar selector de fecha" class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button">
+                  <em class="bi bi-calendar-week-fill"></em>
+                </button>
+              </div>
+              <div class="fw-lighter text-danger small" *ngIf="interviewForm.get('date')!.touched">
+                <div i18n *ngIf="interviewForm.get('date')!.hasError('required')">
+                  Birthdate required
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-3">
+              <label i18n for="star_hour" class="form-label">Star</label>
+              <input novalidate step="3600" type="time" id="star_hour" class="form-control" formControlName="star_hour" placeholder="star_hour">
+              <div class="fw-lighter text-danger small" *ngIf="interviewForm.get('star_hour')!.touched">
+                <div i18n *ngIf="interviewForm.get('star_hour')!.hasError('required')">
+                  Star required
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-3">
+              <label i18n for="end_hour" class="form-label">End</label>
+              <input novalidate step="3600" type="time" id="end_hour" class="form-control" formControlName="end_hour" placeholder="end_hour">
+              <div class="fw-lighter text-danger small" *ngIf="interviewForm.get('end_hour')!.touched">
+                <div i18n *ngIf="interviewForm.get('end_hour')!.hasError('required')">
+                  End required
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group my-3">
+            <label i18n for="place" class="form-label">Place</label>
+            <input novalidate id="place" class="form-control" formControlName="place" placeholder="place">
+            <div class="fw-lighter text-danger small" *ngIf="interviewForm.get('place')!.touched">
+              <div i18n *ngIf="interviewForm.get('place')!.hasError('required')">
+                Place required
+              </div>
+              <div i18n *ngIf="interviewForm.get('place')!.hasError('minlength')">
+                Place too short
+              </div>
+              <div i18n *ngIf="interviewForm.get('place')!.hasError('maxlength')">
+                Place too long
+              </div>
+            </div>
+          </div>
+          <div class="row my-3">
+            <strong>Guests:</strong>
+          </div>
+          <div class="row my-3 align-items-end" *ngIf="!is_edit">
+            <div class="form-group col-md-10">
+              <label i18n for="userC" class="form-label">Company</label>
+              <select novalidate id="userC" class="form-select selectps" placeholder="" formControlName="company">
+                <option *ngFor="let company of usersCompany" value="{{company.userId}}">{{company.identification}} - {{company.name}} {{company.lastName}}</option>
+              </select>
+            </div>
+            <div class="col-2">
+              <button class="btn btn-secondary" type="button" (click)="addResource('company')">add</button>
+            </div>
+          </div>
+          <div class="row my-3 align-items-end" *ngIf="!is_edit">
+            <div class="form-group col-md-10">
+              <label i18n for="userR" class="form-label">Resource</label>
+              <select novalidate id="userR" class="form-select selectps" placeholder="" formControlName="resource">
+                <option *ngFor="let resource of usersResource" value="{{resource.userId}}">{{resource.identification}} - {{resource.name}} {{resource.lastName}}</option>
+              </select>
+            </div>
+            <div class="col-2">
+              <button class="btn btn-secondary" type="button" (click)="addResource('resource')">add</button>
+            </div>
+          </div>
+          <div class="row my-4">
+            <div class="border mx-3 my-0 p-2 col-8" *ngFor="let guest of guests_name">
+              {{guest}}
+            </div>
+          </div>
+          <div class="my-5 d-flex justify-content-start">
+            <button aria-label="create new artist" id="btncreateartist" *ngIf="!this.id_meet" type="submit" class="btn btn-primary" [disabled]="is_disabled">Create</button>
+            <button aria-label="edit current artist" id="btneditartist" *ngIf="this.id_meet" type="submit" class="btn btn-primary" [disabled]="is_disabled">Edit</button>
+            <button aria-label="restart form" id="btnclearartist" type="button" class="btn btn-secondary mx-3" (click)="this.interviewForm.reset()">Clear</button>
+            <button aria-label="go back to artist list" id="btncancel" type="button" class="btn btn-danger" (click)="cancel()">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

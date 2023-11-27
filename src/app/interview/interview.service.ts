@@ -20,6 +20,10 @@ export class InterviewService {
     return this.htpp.get<Interview[]>(this.apiUrl)
   }
 
+  getInterview(id_meet:number): Observable<Interview>{
+    return this.htpp.get<Interview>(`${this.apiUrl}/${id_meet}`)
+  }
+
   addInterview(meet: InterviewCreate): Observable<Interview>{
     return this.htpp.post<Interview>(this.apiUrl, meet)
   }

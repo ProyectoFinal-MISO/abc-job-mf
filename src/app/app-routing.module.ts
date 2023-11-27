@@ -24,6 +24,7 @@ import { ProjectListComponent } from './project/project-list/project-list.compon
 import { ProjectEditComponent } from './project/project-edit/project-edit.component';
 import { ProjectDeleteComponent } from './project/project-delete/project-delete.component';
 import { InterviewListComponent } from './interview/interview-list/interview-list.component';
+import { InterviewCreateComponent } from './interview/interview-create/interview-create.component';
 
 import { EvaluationListCompanyComponent } from './evaluations/evaluations-list-company/evaluations-list-company.component';
 import { EvaluationCreateCompanyComponent } from './evaluations/evaluations-create-company/evaluations-create-company.component';
@@ -190,7 +191,23 @@ const routes: Routes = [
             ]
       },
       { path: 'home', component: HomeComponent },
-      {path: 'interview', component: InterviewListComponent}
+      {
+        path: 'interview',
+        children: [
+          {
+            path: '',
+            component: InterviewListComponent
+          },
+          {
+            path: 'create',
+            component: InterviewCreateComponent
+          },
+          {
+            path: 'create/:id_meet',
+            component: InterviewCreateComponent
+          }
+        ]
+      }
     ]
   },
   { path: 'signin', children: [
