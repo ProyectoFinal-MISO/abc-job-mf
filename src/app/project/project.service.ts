@@ -43,4 +43,12 @@ export class ProjectService {
   getMember(projectId:any): Observable<Project>{
     return this.http.get<Project>(`${this.urlProjects}/${this.backControllerMember}/${projectId}`);
   }
+
+  getProjects(): Observable<Project>{
+    return this.http.get<Project>(`${this.urlProjects}/${this.backControllerProject}`);
+  }
+
+  getProjectByCompany(companyId:any): Observable<Project>{
+    return this.http.get<Project>(`${this.urlProjects}/${this.backControllerProject}/${companyId}`);
+  }
 }

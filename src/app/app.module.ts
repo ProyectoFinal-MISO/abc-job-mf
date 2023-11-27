@@ -24,6 +24,7 @@ import { TechnicalTestListEmployeeComponent } from './technical-test/technical-t
 import { TechnicalTestCreateEmployeeComponent } from './technical-test/technical-test-create-employee/technical-test-create-employee.component';
 import { TechnicalTestListTechnicalResourceComponent } from './technical-test/technical-test-list-technical-resource/technical-test-list-technical-resource.component';
 import { TechnicalTestViewTechnicalResourceComponent } from './technical-test/technical-test-view-technical-resource/technical-test-view-technical-resource.component';
+import { CandidateModule } from './candidate/candidate.module';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { TechnicalTestViewTechnicalResourceComponent } from './technical-test/te
     InterviewModule,
     UserModule,
     ProjectModule,
+    CandidateModule,
     ToastrModule.forRoot({
       timeOut: 5000,
       positionClass: 'toast-bottom-right',

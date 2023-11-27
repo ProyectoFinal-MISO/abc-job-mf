@@ -34,6 +34,7 @@ import { TechnicalTestListEmployeeComponent } from './technical-test/technical-t
 import { TechnicalTestCreateEmployeeComponent } from './technical-test/technical-test-create-employee/technical-test-create-employee.component';
 import { TechnicalTestListTechnicalResourceComponent } from './technical-test/technical-test-list-technical-resource/technical-test-list-technical-resource.component';
 import { TechnicalTestViewTechnicalResourceComponent } from './technical-test/technical-test-view-technical-resource/technical-test-view-technical-resource.component';
+import { FindCandidateComponent } from './candidate/find-candidate/find-candidate.component';
 
 
 const routes: Routes = [
@@ -177,6 +178,15 @@ const routes: Routes = [
                 component: TechnicalTestViewTechnicalResourceComponent,
                 data: {}
               },
+            ]
+      },
+      { path: 'candidate',
+              children: [
+              {
+                path: 'list',
+                component: FindCandidateComponent,
+                data: {}
+              }
             ]
       },
       { path: 'home', component: HomeComponent },

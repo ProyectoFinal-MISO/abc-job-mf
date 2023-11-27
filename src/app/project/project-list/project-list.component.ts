@@ -27,7 +27,7 @@ export class ProjectListComponent {
 
   ngOnInit() {
     if(!this.sharedService.getMockMode()){
-      this.projectService.getProject(this.usserSessionData.id).subscribe((data:any) => {        
+      this.projectService.getProjectByCompany(this.usserSessionData.id).subscribe((data:any) => {        
         if (data) {
           this.projects = data;
         } else {
@@ -91,8 +91,7 @@ export class ProjectListComponent {
         teamName: "Nilo",
         technicalSkills:[]
       }];
-  }
-      
+    }      
       this.primengConfig.ripple = true;
   }
 

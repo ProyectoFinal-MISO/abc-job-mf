@@ -63,5 +63,9 @@ export class HeaderComponent implements OnInit {
     }
   }
 
+  goToCandidate(){
+    this.router.navigate([`/candidate/list`]);    
+  }
+
 
 }

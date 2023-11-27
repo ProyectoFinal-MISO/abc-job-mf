@@ -1,0 +1,10 @@
+.text-title-banner{
+    font-family: 'jura';
+    font-size: 2.5em;  
+    color: #000000;
+}
+:host ::ng-deep {
+    .p-dropdown.p-component{
+    width: 100%;
+    }
+}
