@@ -9,12 +9,21 @@ import { User } from '../shared/model/user';
 })
 export class UserService {
   private urlUsers:string = environment.baseUrlUsers
+  private backUrlUsers: string = environment.baseUrlUsers;
   private backController: string = 'users';
 
   constructor(private http: HttpClient) { }
 
   getUsers(): Observable<User>{
     return this.http.get<User>(`${this.urlUsers}/${this.backController}`);
+  }
+
+  getAllCompany(): Observable<UserSimple[]>{
+    return this.http.get<UserSimple[]>(`${this.backUrlUsers}/COMPANY`)
+  }
+
+  getAllResource(): Observable<UserSimple[]>{
+    return this.http.get<UserSimple[]>(`${this.backUrlUsers}/PERSON`)
   }
 
 }

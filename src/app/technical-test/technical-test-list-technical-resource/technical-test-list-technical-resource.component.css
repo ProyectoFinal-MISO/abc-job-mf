@@ -1,0 +1,57 @@
+.container-cards-technical-test-list {
+  background-color: #818870;
+  padding: 2% 3%;
+}
+
+.container-cards-technical-test-list .mt-3 {
+  color: white;
+  font-size: 2.5rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.card-technical-test-list{
+  background-color: #A2BE51;
+  padding: 2%;
+  border-radius: 0.625rem;
+  display: flex;
+  align-items: center; /* Centrar verticalmente */
+  justify-content: center; /* Centrar horizontalmente */
+  margin: 2% 5%;
+}
+
+.card-technical-test-list img{
+  width: 20%;
+  border-radius: 3em;
+}
+
+.card-technical-test-list a {
+  color: white;
+}
+
+.rating {
+  color: #ff9900;
+  font-size: 0; /* Remove any font size */
+  direction: rtl; /* Set direction to right-to-left for proper star display */
+}
+
+/* Hide the radio input element of the rating bar */
+.rating input {
+  display: none;
+}
+
+/* Style the label elements to display as stars and to allow for interactivity */
+.rating label {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  padding: 0;
+  font-size: 24px;
+  text-align: center;
+  line-height: 20px;
+  cursor: pointer;
+  color: #ff9900;
+  transform: rotateY(180deg); /* Flip the star to display properly */
+}

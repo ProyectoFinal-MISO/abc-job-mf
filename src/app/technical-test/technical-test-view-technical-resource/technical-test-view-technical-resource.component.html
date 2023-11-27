@@ -1,0 +1,86 @@
+<div class="container align-items-center"  *ngIf="item">
+  <div class="row align-items-center">
+    <div class="col-xs-10 col-12 container">
+
+      <div class="container text-center container-cards-technical-test-form">
+
+        <div class="mt-3 row">
+          <h1 class="text-title-banner">
+            TECHNICAL TEST</h1>
+        </div>
+
+        <div *ngIf="getItemById(idFromUrl)">
+          <div class="row card-technical-test-form">
+
+            <div class="row top">
+              <div class="col image-technical-test-form">
+                <img class="img-profile"
+                  src="https://www.w3schools.com/howto/img_avatar.png">
+              </div>
+              <div class="col data-technical-test-form">
+
+                <div class="row">
+                  {{ item.name_project }}
+                </div>
+
+              </div>
+            </div>
+
+
+            <div class="form-group">
+
+              <div class="form-group mx-sm-3 mb-2">
+                <div class="mb-3 row">
+                  <label i18n for="score"
+                    class="col-xs-5 col-md-4 text-white text-right">Final score</label>
+                  <p class="col-xs-7 col-md-8 text-white text-left">{{ item.score }}</p>
+                </div>
+              </div>
+
+              <div class="form-group mx-sm-3 mb-2">
+                <div class="mb-3 row">
+                  <label i18n for="numberHits"
+                    class="col-xs-5 col-md-4 col-form-label text-white text-right">Number hits</label>
+                    <p class="col-xs-7 col-md-8 text-white text-left">{{ item.numberHits }}</p>
+                </div>
+              </div>
+              <div class="form-group mx-sm-3 mb-2">
+                <div class="mb-3 row">
+                  <label i18n for="numberError"
+                    class="col-xs-5 col-md-4 col-form-label text-white text-right">Number error</label>
+                    <p class="col-xs-7 col-md-8 text-white text-left">{{ item.numberError}}</p>
+                </div>
+              </div>
+              <!--Start Date-->
+              <div class="form-group mx-sm-3 mb-2">
+                <div class="mb-3 row">
+                  <label i18n for="startDate"
+                    class="col-xs-5 col-md-4 col-form-label text-white text-right">Start
+                    Date</label>
+                    <p class="col-xs-7 col-md-8 text-white text-left">{{ item.startDate }}</p>
+                </div>
+              </div>
+              <!--End Date-->
+              <div class="form-group mx-sm-3 mb-2">
+                <div class="mb-3 row">
+                  <label i18n for="endDate"
+                    class="col-xs-5 col-md-4 col-form-label text-white text-right">End
+                    Date</label>
+                    <p class="col-xs-7 col-md-8 text-white text-left">{{ item.endDate }}</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 text-center mt-3">
+              <button i18n type="submit" class="btn btn-confirm col-4 col-sm-4 col-md-3 col-lg-2" (click)="closeTechnicalTest()"
+                >Go back</button>
+            </div>
+
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
