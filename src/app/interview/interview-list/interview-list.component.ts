@@ -4,7 +4,8 @@ import { Interview } from '../interview';
 import { InterviewService } from '../interview.service';
 import { ToastrService } from 'ngx-toastr';
 import { UserSessionService } from 'src/app/shared/user-session/user-session.service';
-
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalInterviewComponent } from '../modal-interview/modal-interview.component';
 @Component({
   selector: 'app-interview-list',
   templateUrl: './interview-list.component.html',
@@ -16,12 +17,14 @@ export class InterviewListComponent implements OnInit {
   is_charge: Boolean = false;
   token:String | null;
   userId:number;
+  userType:string = '';
 
   constructor(
     private router: Router,
     private interviewService: InterviewService,
     private toastr: ToastrService,
-    private userSessionService: UserSessionService
+    private userSessionService: UserSessionService,
+    private modalService: NgbModal,
   ) { }
 
   getMeets(): void {
@@ -37,6 +40,7 @@ export class InterviewListComponent implements OnInit {
       console.log('por aca')
       this.userSessionService.getUserMe().subscribe(user => {
         this.userId = user.id!;
+        this.userType = user.userType!
         this.getMeets();
       })
     } else {
@@ -75,6 +79,40 @@ export class InterviewListComponent implements OnInit {
     } else {
       return `${horas} horas y ${minutos} minutos`;
     }
+  }
+
+  deleteMeet(id_meet:number): void{
+    this.interviewService.deleteInterview(id_meet).subscribe(meet => {
+      this.getMeets()
+      this.toastr.success(`delete succesful`, 'Success', {
+        progressBar: true,
+      });
+    })
+  }
+
+  viewScore( score:number){
+    if(score == -1){
+      return 'ungraded'
+    }else{
+      return score
+    }
+  }
+
+  goModal(id_guest:number) {
+    this.modalService.open(ModalInterviewComponent, {ariaLabelledBy: 'myModalLabel',  backdrop: 'static' }).result.then((result) => {
+      if(result){
+        this.interviewService.scoreMeet(id_guest, result).subscribe(response =>{
+          this.getMeets()
+          this.toastr.success(`score succesful`, 'Success', {
+            progressBar: true,
+          });
+        })
+      }else{
+        console.log(result)
+      }
+    }, (reason) => {
+      console.log(reason);
+    });
   }
 
 }

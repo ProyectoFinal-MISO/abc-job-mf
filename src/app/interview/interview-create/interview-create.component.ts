@@ -119,18 +119,24 @@ export class InterviewCreateComponent implements OnInit {
     })
   }
 
+
+
   submitInterview(){
     if (this.interviewForm.valid) {
       this.is_disabled=true
       this.meet_create = this.interviewForm.value
       let date = this.interviewForm.get('date')?.value
-      this.meet_create.start_date = new Date(`${date.year}-${date.month}-${date.day}T${this.interviewForm.get('star_hour')?.value}:00`)
-      this.meet_create.end_date = new Date(`${date.year}-${date.month}-${date.day}T${this.interviewForm.get('end_hour')?.value}:00`)
+      this.meet_create.start_date = new Date(`${date.year}-${date.month.toString().padStart(2,0)}-${date.day.toString().padStart(2,0)}T${this.interviewForm.get('star_hour')?.value}:00`)
+      this.meet_create.end_date = new Date(`${date.year}-${date.month.toString().padStart(2,0)}-${date.day.toString().padStart(2,0)}T${this.interviewForm.get('end_hour')?.value}:00`)
+      this.meet_create.end_date.setHours(this.meet_create.end_date.getHours()-5)
+      this.meet_create.start_date.setHours(this.meet_create.start_date.getHours()-5)
       this.meet_create.guests = this.guests
+      console.log(this.meet_create)
       if(this.is_edit){
         console.log('put')
         this.interviewService.updateInterview(this.meet_create, this.id_meet).subscribe(meet => {
           console.log(meet)
+          this.router.navigateByUrl('/home')
           this.router.navigateByUrl('/interview')
           this.toastr.success(`update succesful`, 'Success', {
             progressBar: true,
@@ -142,6 +148,7 @@ export class InterviewCreateComponent implements OnInit {
         console.log('post')
         this.interviewService.addInterview(this.meet_create).subscribe(meet => {
           console.log(meet)
+          this.router.navigateByUrl('/home')
           this.router.navigateByUrl('/interview')
           this.toastr.success(`create succesful`, 'Success', {
             progressBar: true,
