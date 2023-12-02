@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InterviewListComponent } from './interview-list/interview-list.component';
 import { InterviewCreateComponent } from './interview-create/interview-create.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ModalInterviewComponent } from './modal-interview/modal-interview.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     NgbModule
   ],
   exports: [InterviewListComponent],
-  declarations: [InterviewListComponent, InterviewCreateComponent]
+  declarations: [InterviewListComponent, InterviewCreateComponent, ModalInterviewComponent]
 })
 export class InterviewModule { }

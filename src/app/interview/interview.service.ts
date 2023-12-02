@@ -28,6 +28,10 @@ export class InterviewService {
     return this.htpp.post<Interview>(this.apiUrl, meet)
   }
 
+  deleteInterview(id_meet:number): Observable<any>{
+    return this.htpp.delete<any>(`${this.apiUrl}/${id_meet}`)
+  }
+
   updateInterview(meet: InterviewCreate, id:number): Observable<Interview>{
     return this.htpp.put<Interview>(`${this.apiUrl}/${id}`, meet)
   }
