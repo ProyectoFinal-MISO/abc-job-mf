@@ -61,7 +61,7 @@
                   <strong>Guests:</strong>
                 </div>
               </div>
-              <div class="border" *ngFor="let guest of meet.guests">
+              <div class="border" *ngFor="let guest of meet.guests" [style]="'background-color: '+backColor(guest.is_confirm)+';'">
                 <div class="row m-1">
                   <div class="col-12">
                     {{guest.email_user}}
@@ -82,6 +82,18 @@
                     <button class="btn btn-secondary btn-sm"
                     (click)="goModal(guest.id)">
                       evaluate
+                    </button>
+                  </div>
+                </div>
+                <div class="row justify-content-end m-2" *ngIf="guest.id_user == userId">
+                  <div class="col-12" style="text-align: end;">
+                    <button class="btn btn-primary btn-sm"
+                    (click)="confirmMeet(guest.id, 'CONFIRMED')">
+                      confirm
+                    </button>
+                    <button class="btn btn-danger btn-sm"
+                    (click)="confirmMeet(guest.id, 'REFUSED')">
+                      refuse
                     </button>
                   </div>
                 </div>

@@ -58,15 +58,6 @@ export class InterviewListComponent implements OnInit {
     });
   }
 
-  scoreMeet(id_guest:number, score:number): void{
-    this.interviewService.scoreMeet(id_guest, score).subscribe((guest)=>{
-      this.toastr.success(`score succesful`, 'Success', {
-        progressBar: true,
-      });
-      this.getMeets()
-    });
-  }
-
   calcularDiferenciaEnHorasYMinutos(fechaFinal:Date, fechaInicial:Date): string {
     const diferenciaEnMilisegundos = fechaFinal.getTime() - fechaInicial.getTime();
     const minutosTotales = diferenciaEnMilisegundos / (1000 * 60);
@@ -113,6 +104,16 @@ export class InterviewListComponent implements OnInit {
     }, (reason) => {
       console.log(reason);
     });
+  }
+
+  backColor(estado:string){
+    if(estado == 'WAIT'){
+      return '#383838'
+    }else if(estado == 'CONFIRMED'){
+      return '#371D7A'
+    }else{
+      return '#6F0125'
+    }
   }
 
 }
