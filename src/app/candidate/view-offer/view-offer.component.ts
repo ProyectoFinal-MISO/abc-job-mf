@@ -120,7 +120,7 @@ export class ViewOfferComponent {
       },{
         projectId: 2,
         userId: this.usserSessionData.id,
-        status: 'OFFERS',
+        status: 'CONTRACTED',
         id:2
       },{
         projectId: 3,
@@ -138,6 +138,9 @@ export class ViewOfferComponent {
    let candidateAux = this.candidates.find(x => x.projectId === id);
    if(candidateAux){
     candidateAux.status = 'CANDIDATE';
+    this.toastr.success(`Request was accepted`, 'Success', {
+      progressBar: true,
+    });
     this.FilterProjects();
    }   
   }
@@ -146,10 +149,7 @@ export class ViewOfferComponent {
   this.projects = [];
   this.projectsCandidate.forEach(x=> this.candidates.forEach(y => {
     if(y.projectId === x.projectId && y.status==='OFFERS'){
-      this.projects.push(x);
-      this.toastr.success(`Request was accepted`, 'Success', {
-        progressBar: true,
-      });
+      this.projects.push(x);      
     }
   } ));
  }

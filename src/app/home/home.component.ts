@@ -9,14 +9,14 @@ import { UserType } from '../shared/model/user-type';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
-  showCandidates:boolean =true;
+  showCandidates:boolean =false;
   usserSessionData:any;
 
   constructor(public sharedService: SharedService,
     private userSessionService: UserSessionService) {
     this.sharedService.setSite('Home');
     this.usserSessionData =  this.userSessionService.getUserSession();
-    this.showCandidates = this.usserSessionData.userType  === UserType.TechnicalResource? true:false;
+   // this.showCandidates = this.usserSessionData.userType  === UserType.TechnicalResource? true:false;
   }
 
 }
