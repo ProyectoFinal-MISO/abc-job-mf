@@ -59,19 +59,15 @@ export class CompanyViewComponent {
   ) { }
 
   ngOnInit(): void {
+    this.transferAvailabilities = [{val:0, valaux:false, name:'No'},{val:1, valaux:true, name:'Yes'}];
     const userId = this.route.snapshot.paramMap.get('id');
+    this.token = localStorage.getItem('token');
     this.userService.getUser(userId).subscribe(data => {
       this.user = data;
-    });
-    this.token = localStorage.getItem('token');
-    if (this.token) {
-      const decodedToken = this.helper.decodeToken(this.token);
-      this.router.navigate([`/company/view/` + userId]);
-    } else {
-      this.route.paramMap.subscribe((data) => {
-
-      })
-    }
+      if (this.token) {
+      } else {
+      }
+    });   
   }
 
 

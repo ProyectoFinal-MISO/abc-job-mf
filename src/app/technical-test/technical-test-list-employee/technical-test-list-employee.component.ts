@@ -15,7 +15,7 @@ export class TechnicalTestListEmployeeComponent implements OnInit {
     this.list_technical_test = [
       {
         "id": 1,
-        "name": "Ana Gabriela López Gómez",
+        "name": "Lalo Lolez",
         "name_project": "Vanguard",
         "score": "5.9",
         "url": "technical_test/add/1"

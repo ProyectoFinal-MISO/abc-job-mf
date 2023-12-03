@@ -9,10 +9,13 @@ import { DropdownModule } from 'primeng/dropdown';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { MultiSelectModule } from 'primeng/multiselect';
+import { ViewOfferComponent } from './view-offer/view-offer.component';
+import { DataViewModule } from 'primeng/dataview';
 
 @NgModule({
   declarations: [
-    FindCandidateComponent
+    FindCandidateComponent,
+    ViewOfferComponent
   ],
   imports: [
     CommonModule,
@@ -23,10 +26,12 @@ import { MultiSelectModule } from 'primeng/multiselect';
     DropdownModule,
     TableModule,
     ButtonModule,
-    MultiSelectModule
+    MultiSelectModule,
+    DataViewModule
   ],
   exports: [
-    FindCandidateComponent
+    FindCandidateComponent,
+    ViewOfferComponent
   ]
 })
 export class CandidateModule { }
