@@ -16,7 +16,7 @@ export class HomeComponent {
     private userSessionService: UserSessionService) {
     this.sharedService.setSite('Home');
     this.usserSessionData =  this.userSessionService.getUserSession();
-   // this.showCandidates = this.usserSessionData.userType  === UserType.TechnicalResource? true:false;
+    this.showCandidates = this.usserSessionData.userType  === UserType.TechnicalResource? true:false;
   }
 
 }
