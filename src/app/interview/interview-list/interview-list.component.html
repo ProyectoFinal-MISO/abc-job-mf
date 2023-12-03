@@ -5,9 +5,10 @@
       MEETS
     </h1>
   </div>
-  <div class="row justify-content-end mt-5">
+  <div class="row justify-content-end mt-5" *ngIf="userType == 'EMPLOYEE'">
     <div class="col-4" style="text-align: end;">
-      <button class="btn btn-primary" routerLink="/interview/create">
+      <button
+      *ngIf="userType == 'EMPLOYEE'" class="btn btn-primary" routerLink="/interview/create">
       new
       </button>
     </div>
@@ -24,9 +25,18 @@
         <div [id]="'collapse'+ meet.id" class="accordion-collapse collapse" data-bs-parent="#accordionMeets">
           <div class="card m-2">
             <div class="card-body container">
-              <div class="row justify-content-end my-1">
+              <div class="row justify-content-end my-1" *ngIf="userType == 'EMPLOYEE'" >
                 <div class="col-6" style="text-align: end;">
-                  <button class="btn btn-secondary btn-sm" routerLink="/interview/create/{{meet.id}}">
+                  <button
+                  *ngIf="userType == 'EMPLOYEE'"
+                  class="btn btn-danger btn-sm mx-1"
+                  (click)="deleteMeet(meet.id)">
+                    delete
+                  </button>
+                  <button
+                  *ngIf="userType == 'EMPLOYEE'"
+                  class="btn btn-secondary btn-sm"
+                  routerLink="/interview/create/{{meet.id}}">
                     edit
                   </button>
                 </div>
@@ -43,16 +53,48 @@
               </div>
               <div class="row my-1">
                 <div class="col" style="text-align: justify;">
+                  <strong>Place:</strong> {{meet.place}}
+                </div>
+              </div>
+              <div class="row my-1">
+                <div class="col" style="text-align: justify;">
                   <strong>Guests:</strong>
                 </div>
               </div>
-              <div class="border" *ngFor="let guest of meet.guests">
+              <div class="border" *ngFor="let guest of meet.guests" [style]="'background-color: '+backColor(guest.is_confirm)+';'">
                 <div class="row m-1">
                   <div class="col-12">
                     {{guest.email_user}}
                   </div>
+                </div>
+                <div class="row m-1">
                   <div class="col-12">
                     {{guest.name_user}}
+                  </div>
+                </div>
+                <div class="row m-1" *ngIf="(userType == 'EMPLOYEE' || guest.id_user == userId) && guest.type_user != 'COMPANY'">
+                  <div class="col-12">
+                    Score: {{viewScore(guest.score)}}
+                  </div>
+                </div>
+                <div class="row justify-content-end m-2" *ngIf="userType == 'EMPLOYEE' && guest.type_user != 'COMPANY'">
+                  <div class="col-12" style="text-align: end;">
+                    <button class="btn btn-secondary btn-sm"
+                    (click)="goModal(guest.id)">
+                      evaluate
+                    </button>
+                  </div>
+                </div>
+                <div class="row justify-content-end m-2" *ngIf="guest.id_user == userId">
+                  <div class="col-12" style="text-align: end;">
+                    <button class="btn btn-primary btn-sm"
+                    (click)="confirmMeet(guest.id, 'CONFIRMED')">
+                      confirm
+                    </button>
+                    <button class="btn btn-danger btn-sm"
+                    (click)="confirmMeet(guest.id, 'REFUSED')">
+                      refuse
+                    </button>
                   </div>
                 </div>
               </div>

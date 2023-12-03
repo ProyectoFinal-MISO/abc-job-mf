@@ -1,0 +1,44 @@
+<div class="modal-header" role="main" aria-labelledby="myModalLabel" >
+  <h1 i18n class="modal-title modal-title-label-dlg" id="myModalLabel">Academic Information</h1>
+</div>
+<div class="modal-body bg-dark">
+  <div class="container-fluid pt-2">
+      <div class="row">
+          <div class="col-md-12">
+              <div class="container">
+                  <form [formGroup]="modalForm">
+                      <!--School Name-->
+                      <div class="form-group mx-sm-3 mb-2">
+                          <div class="mb-3 row">
+                              <label i18n for="score" class="col-xs-5 col-md-4 col-form-label text-white">School Name</label>
+                              <div class="col-xs-7 col-md-8">
+                                  <input formControlName="score" id="score" type="number" class="form-control" placeholder="School Name" required>
+                                  <div class="fw-lighter text-danger small" *ngIf="modalForm.get('score')!.touched">
+                                      <div i18n *ngIf="modalForm.get('score')?.hasError('required')">
+                                          You must type a score
+                                      </div>
+                                      <div i18n *ngIf="modalForm.get('score')?.hasError('max')">
+                                        Max calification 5
+                                      </div>
+                                      <div i18n *ngIf="modalForm.get('score')?.hasError('min')">
+                                        Min calification 0
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+<div class="modal-footer bg-dark">
+  <button i18n id="btnCancel" type="button" class="btn btn-danger" (click)="onCancel()" data-dismiss="modal">
+    Cancel
+  </button>
+  <button i18n id="btnSave" type="submit" class="btn btn-success" [disabled]="!modalForm.valid" (click)="onCreate()">
+    Save
+  </button>
+</div>
+
