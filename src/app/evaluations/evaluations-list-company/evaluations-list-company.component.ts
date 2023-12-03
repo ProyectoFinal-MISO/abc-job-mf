@@ -15,7 +15,7 @@ export class EvaluationListCompanyComponent implements OnInit {
     this.list_evaluations = [
       {
         "id": 1,
-        "name": "Ana Gabriela López Gómez",
+        "name": "Lalo Lolez",
         "name_project": "Vanguard",
         "url": "evaluations/add/1"
       },

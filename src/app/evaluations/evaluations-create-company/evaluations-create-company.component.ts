@@ -23,7 +23,7 @@ export class EvaluationCreateCompanyComponent implements OnInit {
   list_evaluations: Item[] = [
     {
       "id": 1,
-      "name": "Ana Gabriela López Gómez",
+      "name": "Lalo Lolez",
       "name_project": "Vanguard",
       "url": "evaluations/add/1"
     },

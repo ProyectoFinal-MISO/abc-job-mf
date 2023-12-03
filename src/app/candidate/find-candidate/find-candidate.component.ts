@@ -190,9 +190,9 @@ export class FindCandidateComponent {
     }else{
       this.technicalResources = [
         { id:1,
-          username: "recursotecnico3@test.com",
+          username: "technicalresource@test.com",
           userType: "PERSON",
-          email: "recursotecnico3@test.com",
+          email: "technicalresource@test.com",
           personalInformation: {
             photo: "",
             name: "Lalo",
